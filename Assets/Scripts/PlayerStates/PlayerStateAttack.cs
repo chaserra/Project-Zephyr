@@ -12,7 +12,7 @@ namespace Zephyr.Player.Combat
 
         public override void Update(PlayerController player)
         {
-
+            // Add mover script here? For skills that can be spammed while moving
         }
 
         IEnumerator TransitionState(PlayerController player)

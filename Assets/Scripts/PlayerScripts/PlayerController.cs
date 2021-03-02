@@ -11,6 +11,11 @@ namespace Zephyr.Player
     [RequireComponent(typeof(InputController))]
     public class PlayerController : MonoBehaviour
     {
+        // TODO (A- HIGH PRIO): Create character stats script.
+        // TODO (A- HIGH PRIO): Create modifier script.
+        // TODO (A- HIGH PRIO): Make modifier affect character stats.
+                    // Which in turn affects other aspects of movements and attacks
+                    // Modifiers are applied before the other scripts do their methods
         // Cache
         private CharacterController characterController;
         private InputController inputController;
@@ -19,6 +24,7 @@ namespace Zephyr.Player
         private PlayerMover mover = new PlayerMover();
 
         // Parameters
+        // TODO (Character Stats): These should be on a separate character stats script
         [SerializeField] float moveSpeed = 5f;
         [SerializeField] float turnSmoothTime = .1f;
 
@@ -32,15 +38,16 @@ namespace Zephyr.Player
 
         // Properties
         #region Properties
+        /* **Cache** */
         public CharacterController Controller { get { return characterController; } }
         public InputController Input { get { return inputController; } }
         public Animator Anim { get { return anim; } }
         public Camera Cam { get { return cam; } }
         public PlayerMover Mover { get { return mover; } }
-
+        /* **Parameters** */
         public float MoveSpeed { get { return moveSpeed; } }
         public float TurnSmoothTime { get { return turnSmoothTime; } }
-
+        /* **States** */
         public PlayerStateBase CurrentState { get { return currentState; } }
         public Skill CurrentSkill { get { return currentSkill; } }
         public Dictionary<string, Skill> SkillWithKeyMap { get { return skillWithKeyMap; } }
@@ -63,13 +70,13 @@ namespace Zephyr.Player
         private void Update()
         {
             // Detect button press and get mapped skill
-            Attack(inputController.SkillButtonPress());
+            UseSkill(inputController.SkillButtonPress());
 
             // Do state Update method
             currentState.Update(this);
         }
 
-        private void Attack(Dictionary<string, Skill> skillWithKey)
+        private void UseSkill(Dictionary<string, Skill> skillWithKey)
         {
             if (skillWithKey != null && skillWithKeyMap.Count < 1)
             {

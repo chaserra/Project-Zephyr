@@ -12,6 +12,7 @@ namespace Zephyr.Combat
         public float skillChargeTime;
         public bool skillRealeaseWhenFullyCharged;
         public bool skillMustFullyCharge;
+        public bool playerCanMove;
         public float moveSpeedModifier;
         [Header("SFX/VFX")]
         public AudioClip skillSound;
