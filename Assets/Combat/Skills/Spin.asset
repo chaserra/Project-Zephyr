@@ -19,6 +19,8 @@ MonoBehaviour:
   skillChargeTime: 0.75
   skillRealeaseWhenFullyCharged: 1
   skillMustFullyCharge: 0
+  playerCanMove: 1
+  moveSpeedModifier: 0
   skillSound: {fileID: 0}
   damage: 5
   range: 2

@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Player.Movement;
 using Zephyr.Combat;
 
 namespace Zephyr.Player.Combat
@@ -10,6 +10,7 @@ namespace Zephyr.Player.Combat
         // Cache
         private string heldKey;
         private Skill skill;
+        private PlayerMover mover;
 
         // State
         private float chargePercent = 0f;
@@ -24,6 +25,7 @@ namespace Zephyr.Player.Combat
         public override void EnterState(PlayerController player)
         {
             // Initialize
+            mover = player.Mover;
             foreach (KeyValuePair<string, Skill> keyValue in player.SkillWithKeyMap)
             {
                 heldKey = keyValue.Key;
@@ -37,7 +39,12 @@ namespace Zephyr.Player.Combat
 
         public override void Update(PlayerController player)
         {
-            // TODO (Charged Attack): Allow movement. Make Move a separate class
+            // TODO (Movement): Pass this to move script. Modifier should be handled by movement
+            // Move if skill allows movement
+            if (skill.playerCanMove)
+            {
+                mover.Move(player, true);
+            }
 
             // Detect if input is still held
             if (Input.GetButton(heldKey))
