@@ -32,12 +32,7 @@ namespace Zephyr.Player.Combat
                 heldKey = keyValue.Key;
                 skill = keyValue.Value;
             }
-            // Apply modifiers
-            // TODO (Mods): Apply properly
-            for (int i = 0; i < skill.modifiers.Length; i++)
-            {
-                player.ApplyStatModifiers(skill.modifiers[i]);
-            }
+            // TODO (Mods): Apply modifiers
             // Set properties
             chargeTime = skill.skillChargeTime;
             skillRealeaseWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;

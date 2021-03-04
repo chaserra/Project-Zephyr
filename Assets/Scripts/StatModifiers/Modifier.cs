@@ -14,7 +14,7 @@ namespace Zephyr.Combat.Mods
 
         public void ApplyModifier(CharacterStats stats)
         {
-            // TODO (Mods): Review ALL!!
+            // TODO (Modifier): Make passing of properties generic
             for (int i = 0; i < statEffects.Length; i++)
             {
                 statEffects[i].ApplyStatEffect(stats);
@@ -27,6 +27,8 @@ namespace Zephyr.Combat.Mods
             public bool isActive;
             public bool hasDuration;
             public float duration;
+
+            public bool IsActive { get { return isActive; } }
         }
 
         public enum ValidTargets

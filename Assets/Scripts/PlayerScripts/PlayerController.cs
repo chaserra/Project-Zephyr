@@ -14,6 +14,11 @@ namespace Zephyr.Player
     [RequireComponent(typeof(InputController))]
     public class PlayerController : MonoBehaviour
     {
+        // TODO HIGH PRIO(Mod Controller): See comments below
+        // Make a new MonoBehaviour Modifier class
+        // Use that as the one to process all things related to mods or stat effects
+        // Pass active stat effects there
+        // Remove stat effects in the list once it no longer applies
         // Cache
         private CharacterController characterController;
         private CharacterStats characterStats;
@@ -95,12 +100,6 @@ namespace Zephyr.Player
                     TransitionState(AttackState);
                 }
             }
-        }
-
-        // TODO (Mods): Apply properly
-        public void ApplyStatModifiers(Modifier mod)
-        {
-            mod.ApplyModifier(characterStats);
         }
 
         public void TransitionState(PlayerStateBase state)

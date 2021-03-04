@@ -6,7 +6,7 @@ using Zephyr.Stats;
 namespace Zephyr.Combat.Mods
 {
     [CreateAssetMenu(fileName = "NewStatModifier", menuName = "Stat Modifier/Status Effects/Stat Modifier")]
-    public class StatEffect_ModifyStats : StatEffect
+    public class StatEffect_StatMultiplier : StatEffect
     {
         public float multiplier;
 
