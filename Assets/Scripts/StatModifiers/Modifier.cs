@@ -13,6 +13,7 @@ namespace Zephyr.Combat.Mods
 
         public void ApplyModifier(CharacterStats stats)
         {
+            // TODO (Modifiers): Review ALL!!
             // Do stuff here
             // Preferrably generic modifications to stats
         }

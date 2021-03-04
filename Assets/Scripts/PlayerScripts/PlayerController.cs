@@ -14,11 +14,6 @@ namespace Zephyr.Player
     [RequireComponent(typeof(InputController))]
     public class PlayerController : MonoBehaviour
     {
-        // TODO (A- HIGH PRIO): Create character stats script.
-        // TODO (A- HIGH PRIO): Create modifier script.
-        // TODO (A- HIGH PRIO): Make modifier affect character stats.
-                    // Which in turn affects other aspects of movements and attacks
-                    // Modifiers are applied before the other scripts do their methods
         // Cache
         private CharacterController characterController;
         private CharacterStats characterStats;
