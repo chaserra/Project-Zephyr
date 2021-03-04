@@ -13,7 +13,6 @@ namespace Zephyr.Combat
 
         public override void Initialize(Animator anim)
         {
-            Debug.LogFormat("{0} skill initialized", skillName);
             TriggerSkill(anim);
         }
 

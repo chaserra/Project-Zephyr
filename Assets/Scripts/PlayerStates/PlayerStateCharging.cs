@@ -2,6 +2,7 @@
 using UnityEngine;
 using Zephyr.Player.Movement;
 using Zephyr.Combat;
+using Zephyr.Combat.Mods;
 
 namespace Zephyr.Player.Combat
 {
@@ -31,7 +32,12 @@ namespace Zephyr.Player.Combat
                 heldKey = keyValue.Key;
                 skill = keyValue.Value;
             }
-
+            // Apply modifiers
+            for (int i = 0; i < skill.modifiers.Length; i++)
+            {
+                player.ApplyStatModifiers(skill.modifiers[i]);
+            }
+            // Set properties
             chargeTime = skill.skillChargeTime;
             skillRealeaseWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;
             skillMustFullyCharge = skill.skillMustFullyCharge;

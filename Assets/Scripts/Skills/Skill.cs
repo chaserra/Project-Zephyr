@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Zephyr.Combat.Mods;
 
 namespace Zephyr.Combat
 {
@@ -13,7 +14,8 @@ namespace Zephyr.Combat
         public bool skillRealeaseWhenFullyCharged;
         public bool skillMustFullyCharge;
         public bool playerCanMove;
-        public float moveSpeedModifier;
+        [Header("Modifiers")]
+        public Modifier[] modifiers;
         [Header("SFX/VFX")]
         public AudioClip skillSound;
 

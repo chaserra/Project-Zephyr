@@ -4,10 +4,13 @@ using Zephyr.Player.Controls;
 using Zephyr.Player.Movement;
 using Zephyr.Player.Combat;
 using Zephyr.Combat;
+using Zephyr.Combat.Mods;
+using Zephyr.Stats;
 
 namespace Zephyr.Player
 {
     [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(CharacterStats))]
     [RequireComponent(typeof(InputController))]
     public class PlayerController : MonoBehaviour
     {
@@ -18,15 +21,11 @@ namespace Zephyr.Player
                     // Modifiers are applied before the other scripts do their methods
         // Cache
         private CharacterController characterController;
+        private CharacterStats characterStats;
         private InputController inputController;
         private Animator anim;
         private Camera cam;
         private PlayerMover mover = new PlayerMover();
-
-        // Parameters
-        // TODO (Character Stats): These should be on a separate character stats script
-        [SerializeField] float moveSpeed = 5f;
-        [SerializeField] float turnSmoothTime = .1f;
 
         // States
         private PlayerStateBase currentState;
@@ -45,8 +44,8 @@ namespace Zephyr.Player
         public Camera Cam { get { return cam; } }
         public PlayerMover Mover { get { return mover; } }
         /* **Parameters** */
-        public float MoveSpeed { get { return moveSpeed; } }
-        public float TurnSmoothTime { get { return turnSmoothTime; } }
+        public float MoveSpeed { get { return characterStats.GetMoveSpeed(); } }
+        public float TurnSmoothTime { get { return characterStats.GetTurnSpeed(); } }
         /* **States** */
         public PlayerStateBase CurrentState { get { return currentState; } }
         public Skill CurrentSkill { get { return currentSkill; } }
@@ -56,6 +55,7 @@ namespace Zephyr.Player
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
+            characterStats = GetComponent<CharacterStats>();
             inputController = GetComponent<InputController>();
             anim = GetComponent<Animator>();
             cam = Camera.main;
@@ -100,6 +100,11 @@ namespace Zephyr.Player
                     TransitionState(AttackState);
                 }
             }
+        }
+
+        public void ApplyStatModifiers(Modifier mod)
+        {
+            mod.ApplyModifier(characterStats);
         }
 
         public void TransitionState(PlayerStateBase state)
