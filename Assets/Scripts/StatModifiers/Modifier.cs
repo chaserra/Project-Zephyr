@@ -5,17 +5,35 @@ using Zephyr.Stats;
 
 namespace Zephyr.Combat.Mods
 {
-    [CreateAssetMenu(fileName = "NewBuff", menuName = "Modifiers/Buff")]
+    [CreateAssetMenu(fileName = "NewModifier", menuName = "Stat Modifier/Mod")]
     public class Modifier : ScriptableObject
     {
-        public float multiplier;
-        public float duration;
+        public ModifierContext context;
+        public ValidTargets targetSelector;
+        public StatEffect[] statEffects;
 
         public void ApplyModifier(CharacterStats stats)
         {
-            // TODO (Modifiers): Review ALL!!
-            // Do stuff here
-            // Preferrably generic modifications to stats
+            // TODO (Mods): Review ALL!!
+            for (int i = 0; i < statEffects.Length; i++)
+            {
+                statEffects[i].ApplyStatEffect(stats);
+            }
+        }
+
+        [System.Serializable]
+        public class ModifierContext
+        {
+            public bool isActive;
+            public bool hasDuration;
+            public float duration;
+        }
+
+        public enum ValidTargets
+        {
+            PLAYER,
+            ENEMY,
+            OBJECT
         }
     }
 

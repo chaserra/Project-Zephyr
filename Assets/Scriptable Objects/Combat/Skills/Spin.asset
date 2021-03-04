@@ -20,7 +20,7 @@ MonoBehaviour:
   skillRealeaseWhenFullyCharged: 1
   skillMustFullyCharge: 0
   playerCanMove: 1
-  moveSpeedModifier: 0
+  modifiers: []
   skillSound: {fileID: 0}
   damage: 5
   range: 2

@@ -97,6 +97,7 @@ namespace Zephyr.Player
             }
         }
 
+        // TODO (Mods): Apply properly
         public void ApplyStatModifiers(Modifier mod)
         {
             mod.ApplyModifier(characterStats);
