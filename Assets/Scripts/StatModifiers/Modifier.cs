@@ -15,16 +15,20 @@ namespace Zephyr.Combat.Mods
         public void ApplyModifier(CharacterStats stats)
         {
             // TODO (Modifier): Make passing of properties generic
-            for (int i = 0; i < statEffects.Length; i++)
+            if (!context.isActive)
             {
-                statEffects[i].ApplyStatEffect(stats);
+                context.isActive = true;
+                for (int i = 0; i < statEffects.Length; i++)
+                {
+                    statEffects[i].ApplyStatEffect(stats);
+                }
             }
         }
 
         [System.Serializable]
         public class ModifierContext
         {
-            public bool isActive;
+            public bool isActive = false;
             public bool hasDuration;
             public float duration;
 
@@ -33,9 +37,8 @@ namespace Zephyr.Combat.Mods
 
         public enum ValidTargets
         {
-            PLAYER,
-            ENEMY,
-            OBJECT
+            CASTER,
+            TARGET
         }
     }
 

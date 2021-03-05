@@ -12,7 +12,7 @@ namespace Zephyr.Combat.Mods
 
         public override void ApplyStatEffect(CharacterStats stats)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

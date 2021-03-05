@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d2a3bf563bbf6243ab242070174106b, type: 3}
   m_Name: StopRotation
   m_EditorClassIdentifier: 
+  statToAffect: 2
   flag: 0

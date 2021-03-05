@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3d40c86b7776a42a3c866bb33212a6, type: 3}
   m_Name: DecreaseSpeed
   m_EditorClassIdentifier: 
+  statToAffect: 1
   multiplier: 0.2
