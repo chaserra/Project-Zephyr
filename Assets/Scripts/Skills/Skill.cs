@@ -24,6 +24,7 @@ namespace Zephyr.Combat
     public enum SkillType
     {
         Instant,
-        Charged
+        Charged, 
+        Channelled
     }
 }
