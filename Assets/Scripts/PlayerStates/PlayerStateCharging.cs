@@ -62,7 +62,6 @@ namespace Zephyr.Player.Combat
                         // Auto Release if skill releases when fully charged
                         if (skillRealeaseWhenFullyCharged)
                         {
-                            Debug.Log("Full charged auto release!");
                             ReleaseAttack(player);
                         }
                     }
