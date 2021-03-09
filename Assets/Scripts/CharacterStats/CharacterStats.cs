@@ -22,15 +22,15 @@ namespace Zephyr.Stats
         #endregion
 
         #region Stat Modification
-        public void ModifyMoveSpeed(float percentage)
+        public void ModifyMoveSpeed(float value)
         {
-            float multiplier = PercentageToDecimal(percentage);
-            characterStats.ModifySpeed(multiplier);
+            //float multiplier = PercentageToDecimal(value);
+            characterStats.ModifySpeed(value);
         }
-        public void ModifyTurnSpeed(float percentage)
+        public void ModifyTurnSpeed(float value)
         {
-            float multiplier = PercentageToDecimal(percentage);
-            characterStats.ModifyTurnSpeed(multiplier);
+            //float multiplier = PercentageToDecimal(value);
+            characterStats.ModifyTurnSpeed(value);
         }
         #endregion
 

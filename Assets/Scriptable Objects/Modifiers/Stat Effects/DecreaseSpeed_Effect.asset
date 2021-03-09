@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: DecreaseSpeed_Effect
   m_EditorClassIdentifier: 
   targetStat: 1
-  percentModifier: -50
+  isPercentage: 1
+  modifierValue: -50

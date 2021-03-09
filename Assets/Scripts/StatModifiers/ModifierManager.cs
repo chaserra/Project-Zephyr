@@ -12,7 +12,7 @@ namespace Zephyr.Mods
         private CharacterStats characterStats;
 
         // State
-        private List<StatEffect> statEffects = new List<StatEffect>();
+        private List<Modifier> modifiers = new List<Modifier>();
 
         private void Awake()
         {
@@ -29,22 +29,40 @@ namespace Zephyr.Mods
 
         }
 
-        public void GrabStatEffectsFromModifier(Modifier mod)
+        public void AddModifier(Modifier mod)
         {
-            var listOfEffects = mod.ApplyStatEffects();
+            modifiers.Add(mod);
+            mod.InitializeModifier(this);
+        }
 
-            foreach (StatEffect effect in listOfEffects)
+        public void RemoveModifier(Modifier mod)
+        {
+            modifiers.Remove(mod);
+            mod.RemoveStatEffects();
+        }
+
+        public void ApplyStatEffects(StatEffect effect)
+        {
+            StatList stat = effect.targetStat;
+            switch (stat)
             {
-                statEffects.Add(effect);
+                case StatList.HEALTH :
+                    // Do health stuff
+                    break;
+                case StatList.MOVESPEED :
+                    // Do speed stuff
+                    break;
+                case StatList.TURNSPEED:
+                    // Do turn speed stuff
+                    break;
             }
         }
 
-        public void ApplyModifiers()
+        private void OnDisable()
         {
-            foreach (StatEffect effect in statEffects)
-            {
-                effect.ApplyEffect();
-            }
+            // Failsafe
+            modifiers.Clear();
+            StopAllCoroutines();
         }
 
     }
