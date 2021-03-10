@@ -19,8 +19,9 @@ namespace Zephyr.Mods
             characterStats = GetComponent<CharacterStats>();
         }
 
-        public void AddModifier(Modifier mod)
+        public void AddModifier(Modifier mod_template)
         {
+            Modifier mod = Instantiate(mod_template); // Prevent from saving over scriptable object file
             modifiers.Add(mod);
             mod.InitializeModifier(this);
         }
@@ -28,6 +29,10 @@ namespace Zephyr.Mods
         public void RemoveModifier(Modifier mod)
         {
             mod.RemoveStatEffects();
+        }
+
+        public void RemoveModifierFromList(Modifier mod)
+        {
             modifiers.Remove(mod);
         }
 

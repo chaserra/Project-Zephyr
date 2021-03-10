@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   context:
     isActive: 0
-    hasDuration: 0
-    duration: 0
+    hasDuration: 1
+    duration: 5
   target: 0
-  statEffects:
-  - {fileID: 11400000, guid: 64a4e650a4907fc4e97624201ef0c2d7, type: 2}
+  statEffects_template: []

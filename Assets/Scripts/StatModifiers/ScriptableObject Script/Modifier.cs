@@ -58,11 +58,7 @@ namespace Zephyr.Mods
                 }
                 statEffects[i].RemoveEffect();
             }
-
-            if (context.hasDuration)
-            {
-                modManager.RemoveModifier(this);
-            }
+            modManager.RemoveModifierFromList(this);
         }
 
         private void AggregateEffectValues(StatEffect effect, bool reverseValues)
