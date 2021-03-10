@@ -10,17 +10,17 @@ namespace Zephyr.Mods
         public bool isPercentage;
         public float modifierValue;
 
-        public override void ApplyEffect(ModifierManager modManager)
+        public override void ApplyEffect()
         {
             // Initialize and add this effect
         }
 
-        public override void Tick(ModifierManager modManager)
+        public override void Tick()
         {
             // Apply effect over time
         }
 
-        public override void RemoveEffect(ModifierManager modManager)
+        public override void RemoveEffect()
         {
             // Remove / reverse this effect
         }

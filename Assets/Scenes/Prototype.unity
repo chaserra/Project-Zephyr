@@ -3487,6 +3487,8 @@ GameObject:
   - component: {fileID: 914615297}
   - component: {fileID: 914615299}
   - component: {fileID: 914615296}
+  - component: {fileID: 914615300}
+  - component: {fileID: 914615301}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3587,6 +3589,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats_Template: {fileID: 11400000, guid: 8606de5b7dc43a241b2b0e6326e08ac3,
     type: 2}
+--- !u!114 &914615300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914615293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa159b52ed465494294d1c0be94e0d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &914615301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914615293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 750ee8d8df75fc8478c827535ad1b23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugEnabled: 1
+  mods:
+  - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
 --- !u!1 &932937968
 GameObject:
   m_ObjectHideFlags: 0

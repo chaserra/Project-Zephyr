@@ -26,16 +26,33 @@ namespace Zephyr.Stats
         #endregion
 
         #region Stat Modifiers
-        public void ModifySpeed(float multiplier)
+        public void ModifyHealth(float flatValue, float percentage)
         {
-            float percentValue = moveSpeed * multiplier;
-            currentMoveSpeed += percentValue;
+            //float percentValue = healthPoints * PercentageToDecimal(percentage);
+            //float modifierValue = flatValue + percentValue;
+            //currentHealth += modifierValue;
         }
 
-        public void ModifyTurnSpeed(float multiplier)
+        public void ModifySpeed(float flatValue, float percentage)
         {
-            float percentValue = turnSmoothTime * multiplier;
-            currentTurnSmoothTime -= percentValue; // Subtraction since lower value == faster turn
+            float percentValue = moveSpeed * PercentageToDecimal(percentage);
+            float modifierValue = flatValue + percentValue;
+            currentMoveSpeed += modifierValue;
+            if (currentMoveSpeed < 0) { currentMoveSpeed = 0; }
+        }
+
+        public void ModifyTurnSpeed(float flatValue, float percentage)
+        {
+            float percentValue = turnSmoothTime * PercentageToDecimal(percentage);
+            float modifierValue = flatValue + percentValue;
+            currentTurnSmoothTime -= modifierValue; // Subtraction since lower value == faster turn
+        }
+        #endregion
+
+        #region Helper Functions
+        private float PercentageToDecimal(float percentValue)
+        {
+            return percentValue / 100;
         }
         #endregion
     }

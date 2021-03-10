@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
-  m_Name: SpinAttack_Mod
+  m_Script: {fileID: 11500000, guid: 4f39419e3aa3dc940ad070ae63069665, type: 3}
+  m_Name: IncreaseSpeed_Effect
   m_EditorClassIdentifier: 
-  context:
-    isActive: 0
-    hasDuration: 0
-    duration: 0
-  target: 0
-  statEffects:
-  - {fileID: 11400000, guid: 64a4e650a4907fc4e97624201ef0c2d7, type: 2}
+  targetStat: 1
+  isPercentage: 1
+  modifierValue: 50

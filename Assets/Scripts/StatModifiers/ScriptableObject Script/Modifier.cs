@@ -30,31 +30,52 @@ namespace Zephyr.Mods
         private void ApplyStatEffects()
         {
             if (context.isActive) { return; }
-            context.isActive = true;
+            //context.isActive = true;
             for (int i = 0; i < statEffects.Length; i++)
             {
-                statEffects[i].ApplyEffect(modManager);
+                if (statEffects[i] is StatEffect_ModifyStats)
+                {
+                    AggregateEffectValues(statEffects[i], false);
+                }
+                statEffects[i].ApplyEffect();
             }
             modManager.StartCoroutine(StartModDuration());
         }
 
         private void Tick()
         {
-            if (context.isActive)
-            {
-                for (int i = 0; i < statEffects.Length; i++)
-                {
-                    statEffects[i].Tick(modManager);
-                }
-            }
+            // Do DoT stuff
         }
 
         public void RemoveStatEffects()
         {
+            //context.isActive = false;
             for (int i = 0; i < statEffects.Length; i++)
             {
-                statEffects[i].RemoveEffect(modManager);
+                if (statEffects[i] is StatEffect_ModifyStats)
+                {
+                    AggregateEffectValues(statEffects[i], true);
+                }
+                statEffects[i].RemoveEffect();
             }
+
+            if (context.hasDuration)
+            {
+                modManager.RemoveModifier(this);
+            }
+        }
+
+        private void AggregateEffectValues(StatEffect effect, bool reverseValues)
+        {
+            // Cast StatEffect to ModifyStats
+            StatEffect_ModifyStats statMod = (StatEffect_ModifyStats)effect;
+
+            // Initialize variables
+            StatList targetStat = statMod.targetStat;
+            float statModValue = statMod.modifierValue;
+            bool statModIsPercent = statMod.isPercentage;
+
+            modManager.AggregateStatValues(targetStat, statModValue, statModIsPercent, reverseValues);
         }
 
         IEnumerator StartModDuration()

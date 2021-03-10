@@ -9,6 +9,14 @@ namespace Zephyr.Stats
         [SerializeField] CharacterStats_SO characterStats_Template;
         private CharacterStats_SO characterStats;
 
+        // Aggregate Values
+        private float flatHealthMod;
+        private float percentHealthMod;
+        private float flatMoveSpeedMod;
+        private float percentMoveSpeedMod;
+        private float flatTurnSpeedMod;
+        private float percentTurnSpeedMod;
+
         private void Awake()
         {
             if (characterStats_Template != null)
@@ -18,20 +26,55 @@ namespace Zephyr.Stats
         }
 
         #region Stat Increasers
-        // Do health and mana stuff here
+        // Non-buff stat increase (healing, mana regen, etc.)
         #endregion
 
         #region Stat Modification
-        public void ModifyMoveSpeed(float value)
+        public void ModifyStat(StatList targetStat, float value, bool isPercentage, bool reverseValues)
         {
-            //float multiplier = PercentageToDecimal(value);
-            characterStats.ModifySpeed(value);
+            // TODO HIGH-PRIO (Mods): Put all aggregate logic in mod manager
+            if (reverseValues)
+            {
+                value *= -1;
+            }
+            switch (targetStat)
+            {
+                case StatList.HEALTH :
+                    if (isPercentage)
+                    {
+                        percentHealthMod += value;
+                    }
+                    else
+                    {
+                        flatHealthMod += value;
+                    }
+                    characterStats.ModifyHealth(flatHealthMod, percentHealthMod);
+                    break;
+                case StatList.MOVESPEED:
+                    if (isPercentage)
+                    {
+                        percentMoveSpeedMod += value;
+                    }
+                    else
+                    {
+                        flatMoveSpeedMod += value;
+                    }
+                    characterStats.ModifySpeed(flatMoveSpeedMod, percentMoveSpeedMod);
+                    break;
+                case StatList.TURNSPEED:
+                    if (isPercentage)
+                    {
+                        percentTurnSpeedMod += value;
+                    }
+                    else
+                    {
+                        flatTurnSpeedMod += value;
+                    }
+                    characterStats.ModifyTurnSpeed(flatTurnSpeedMod, percentTurnSpeedMod);
+                    break;
+            }
         }
-        public void ModifyTurnSpeed(float value)
-        {
-            //float multiplier = PercentageToDecimal(value);
-            characterStats.ModifyTurnSpeed(value);
-        }
+
         #endregion
 
         #region Reporters
@@ -43,13 +86,6 @@ namespace Zephyr.Stats
         public float GetTurnSpeed()
         {
             return characterStats.currentTurnSmoothTime;
-        }
-        #endregion
-
-        #region Helper Functions
-        private float PercentageToDecimal(float percentValue)
-        {
-            return percentValue / 100;
         }
         #endregion
 

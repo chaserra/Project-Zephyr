@@ -8,8 +8,8 @@ namespace Zephyr.Mods
     {
         public StatList targetStat;
 
-        public abstract void ApplyEffect(ModifierManager modManager); // Initialize and add this effect
-        public abstract void Tick(ModifierManager modManager); // Apply effect over time
-        public abstract void RemoveEffect(ModifierManager modManager); // Remove / reverse this effect
+        public abstract void ApplyEffect(); // Initialize and add this effect
+        public abstract void Tick(); // Apply effect over time
+        public abstract void RemoveEffect(); // Remove / reverse this effect
     }
 }

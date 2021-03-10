@@ -12,21 +12,11 @@ namespace Zephyr.Mods
         private CharacterStats characterStats;
 
         // State
-        private List<Modifier> modifiers = new List<Modifier>();
+        [SerializeField] private List<Modifier> modifiers = new List<Modifier>();
 
         private void Awake()
         {
             characterStats = GetComponent<CharacterStats>();
-        }
-
-        private void Start()
-        {
-
-        }
-
-        private void Update()
-        {
-
         }
 
         public void AddModifier(Modifier mod)
@@ -37,32 +27,22 @@ namespace Zephyr.Mods
 
         public void RemoveModifier(Modifier mod)
         {
-            modifiers.Remove(mod);
             mod.RemoveStatEffects();
+            modifiers.Remove(mod);
         }
 
-        public void ApplyStatEffects(StatEffect effect)
+        // TODO HIGH-PRIO (Mods): Put all aggregate logic here in mod manager
+        // Do summation of total flat and percentage here and just pass values to charStats
+        public void AggregateStatValues(StatList targetStat, float value, bool isPercentage, bool reverseValues)
         {
-            StatList stat = effect.targetStat;
-            switch (stat)
-            {
-                case StatList.HEALTH :
-                    // Do health stuff
-                    break;
-                case StatList.MOVESPEED :
-                    // Do speed stuff
-                    break;
-                case StatList.TURNSPEED:
-                    // Do turn speed stuff
-                    break;
-            }
+            characterStats.ModifyStat(targetStat, value, isPercentage, reverseValues);
         }
 
         private void OnDisable()
         {
             // Failsafe
-            modifiers.Clear();
             StopAllCoroutines();
+            modifiers.Clear();
         }
 
     }
