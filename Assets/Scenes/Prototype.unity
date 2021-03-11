@@ -3589,6 +3589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterStats_Template: {fileID: 11400000, guid: 8606de5b7dc43a241b2b0e6326e08ac3,
     type: 2}
+  characterStats: {fileID: 0}
 --- !u!114 &914615300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3616,8 +3617,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugEnabled: 1
   mods:
-  - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
   - {fileID: 11400000, guid: d563725b080567341b7df027195b5380, type: 2}
+  - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
 --- !u!1 &932937968
 GameObject:
   m_ObjectHideFlags: 0

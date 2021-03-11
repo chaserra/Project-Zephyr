@@ -29,8 +29,6 @@ namespace Zephyr.Mods
 
         private void ApplyStatEffects()
         {
-            if (context.isActive) { return; }
-            //context.isActive = true;
             for (int i = 0; i < statEffects.Length; i++)
             {
                 if (statEffects[i] is StatEffect_ModifyStats)
@@ -49,7 +47,6 @@ namespace Zephyr.Mods
 
         public void RemoveStatEffects()
         {
-            //context.isActive = false;
             for (int i = 0; i < statEffects.Length; i++)
             {
                 if (statEffects[i] is StatEffect_ModifyStats)
@@ -66,7 +63,7 @@ namespace Zephyr.Mods
             // Cast StatEffect to ModifyStats
             StatEffect_ModifyStats statMod = (StatEffect_ModifyStats)effect;
 
-            // Initialize variables
+            // Initialize variables to pass to Mod Manager
             StatList targetStat = statMod.targetStat;
             float statModValue = statMod.modifierValue;
             bool statModIsPercent = statMod.isPercentage;

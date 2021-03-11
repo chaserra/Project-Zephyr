@@ -10,7 +10,5 @@ namespace Zephyr.Mods
         public float percentHealthMod;
         public float flatMoveSpeedMod;
         public float percentMoveSpeedMod;
-        public float flatTurnSpeedMod;
-        public float percentTurnSpeedMod;
     }
 }

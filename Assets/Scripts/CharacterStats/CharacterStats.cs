@@ -7,7 +7,7 @@ namespace Zephyr.Stats
     public class CharacterStats : MonoBehaviour
     {
         [SerializeField] CharacterStats_SO characterStats_Template;
-        public CharacterStats_SO characterStats;
+        private CharacterStats_SO characterStats;
 
         private void Awake()
         {
@@ -32,15 +32,17 @@ namespace Zephyr.Stats
                 case StatList.MOVESPEED:
                     characterStats.ModifySpeed(flatValue, percentValue);
                     break;
-                case StatList.TURNSPEED:
-                    characterStats.ModifyTurnSpeed(flatValue, percentValue);
-                    break;
             }
         }
 
         #endregion
 
         #region Reporters
+        public float GetHealthPoints()
+        {
+            return characterStats.currentHealth;
+        }
+
         public float GetMoveSpeed()
         {
             return characterStats.currentMoveSpeed;

@@ -13,13 +13,14 @@ namespace Zephyr.Mods
         private StatModSheet statModSheet = new StatModSheet();
 
         // State
-        [SerializeField] private List<Modifier> modifiers = new List<Modifier>();
+        [SerializeField] private List<Modifier> modifiers = new List<Modifier>(); // TODO (cleanup): Remove serializefield
 
         private void Awake()
         {
             characterStats = GetComponent<CharacterStats>();
         }
 
+        #region MODIFIER MANAGEMENT
         public void AddModifier(Modifier mod_template)
         {
             Modifier mod = Instantiate(mod_template); // Prevent from saving over scriptable object file
@@ -36,9 +37,12 @@ namespace Zephyr.Mods
         {
             modifiers.Remove(mod);
         }
+        #endregion
 
+        #region STAT MODIFIERS (Buffs, Debuffs)
         public void AggregateStatValues(StatList targetStat, float value, bool isPercentage, bool reverseValues)
         {
+            // Reverse values for removing stat mods
             if (reverseValues)
             {
                 value *= -1;
@@ -67,19 +71,9 @@ namespace Zephyr.Mods
                     }
                     characterStats.ModifyStat(targetStat, statModSheet.flatMoveSpeedMod, statModSheet.percentMoveSpeedMod);
                     break;
-                case StatList.TURNSPEED:
-                    if (isPercentage)
-                    {
-                        statModSheet.percentTurnSpeedMod += value;
-                    }
-                    else
-                    {
-                        statModSheet.flatTurnSpeedMod += value;
-                    }
-                    characterStats.ModifyStat(targetStat, statModSheet.flatTurnSpeedMod, statModSheet.percentTurnSpeedMod);
-                    break;
             }
         }
+        #endregion
 
         private void OnDisable()
         {

@@ -19,3 +19,4 @@ MonoBehaviour:
   target: 0
   statEffects:
   - {fileID: 11400000, guid: 51777fae68253d54db4054ecfb8b5509, type: 2}
+  - {fileID: 11400000, guid: dc85285fd30ee97498fe0df70a094a72, type: 2}

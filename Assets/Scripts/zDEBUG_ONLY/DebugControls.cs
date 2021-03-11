@@ -29,6 +29,7 @@ public class DebugControls : MonoBehaviour
         {
             for (int i = 0; i < mods.Length; i++)
             {
+                if (mods[i].Context.hasDuration) { return; }
                 modMgr.RemoveModifier(mods[i]);
             }
         }

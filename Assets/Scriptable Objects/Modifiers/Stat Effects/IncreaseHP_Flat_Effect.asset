@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetStat: 0
   isPercentage: 0
-  modifierValue: 0
+  modifierValue: 50
