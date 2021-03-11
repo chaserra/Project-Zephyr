@@ -39,12 +39,8 @@ namespace Zephyr.Player.Combat
 
         public override void Update(PlayerController player)
         {
-            // TODO (Movement): Pass this to move script. Modifier should be handled by movement
             // Move if skill allows movement
-            if (skill.playerCanMove)
-            {
-                mover.Move(player, true);
-            }
+            mover.Move(player, skill.userCanRotate, skill.userCanMove, skill.moveSpeedMultiplier);
 
             // Detect if input is still held
             if (Input.GetButton(heldKey))

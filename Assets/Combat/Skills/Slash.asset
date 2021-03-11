@@ -16,10 +16,14 @@ MonoBehaviour:
   skillName: Slash
   skillAnimationName: Slash_Skill
   skillCooldown: 0.5
+  userCanRotate: 1
+  userCanMove: 1
+  moveSpeedMultiplier: 0.8
+  skillSound: {fileID: 0}
   skillChargeTime: 0
   skillRealeaseWhenFullyCharged: 0
   skillMustFullyCharge: 0
-  skillSound: {fileID: 0}
+  mods: {fileID: 0}
   damage: 1
   range: 1.5
   hitForce: 10

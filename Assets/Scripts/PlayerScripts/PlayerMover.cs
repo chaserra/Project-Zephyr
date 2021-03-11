@@ -7,7 +7,7 @@ namespace Zephyr.Player.Movement
         // Cache
         private float turnSmoothVelocity;
 
-        public void Move(PlayerController player, bool playerCanRotate)
+        public void Move(PlayerController player, bool playerCanRotate, bool playerCanMove, float speedMultiplier)
         {
             Vector3 dir = player.Input.JoystickDirection();
 
@@ -16,7 +16,6 @@ namespace Zephyr.Player.Movement
                 // Get angle of directional input
                 float targetAngle = Mathf.Atan2(dir.x, dir.z) * Mathf.Rad2Deg + player.Cam.transform.eulerAngles.y;
 
-                // TODO (Movement): playerCanRotate should be passed as part of a modifier
                 if (playerCanRotate)
                 {
                     // Rotate character
@@ -27,9 +26,10 @@ namespace Zephyr.Player.Movement
                 // Move relative to camera angle
                 Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-                // TODO (Movement): playerCanMove should be passed as part of a modifier
-                // TODO (Movement): moveSpeed modifiers should also be added here
-                player.Controller.Move(moveDir.normalized * player.MoveSpeed * Time.deltaTime);
+                if (playerCanMove)
+                {
+                    player.Controller.Move(moveDir.normalized * player.MoveSpeed * Time.deltaTime * speedMultiplier);
+                }
             }
         }
     }

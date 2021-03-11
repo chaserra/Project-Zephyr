@@ -7,6 +7,7 @@ namespace Zephyr.Combat
     [CreateAssetMenu(fileName = "NewMeleeSkill", menuName = "Skills/Melee")]
     public class MeleeSkill : Skill
     {
+        [Header("Skill Values")]
         [SerializeField] float damage = 1f;
         [SerializeField] float range = 1f;
         [SerializeField] float hitForce = 10f;
@@ -14,6 +15,7 @@ namespace Zephyr.Combat
         public override void Initialize(Animator anim)
         {
             //Debug.LogFormat("{0} skill initialized", skillName);
+            // Apply mods?
             TriggerSkill(anim);
         }
 
@@ -22,6 +24,11 @@ namespace Zephyr.Combat
             // Do melee skill stuff like trigger animations, etc
             anim.SetTrigger(skillAnimationName);
             Debug.LogFormat("Player used {0}! Damage is {2} with force of {4}. Cooldown: {1}, Range: {3}", skillName, skillCooldown, damage, range, hitForce);
+        }
+
+        public override void ApplySkillModifiers()
+        {
+            // Do mod stuff here
         }
 
     }

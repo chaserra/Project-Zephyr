@@ -5,6 +5,7 @@
         //Cache
         private PlayerMover mover;
         private bool playerCanRotate = true;
+        private bool playerCanMove = true;
 
         public override void EnterState(PlayerController player)
         {
@@ -14,8 +15,7 @@
 
         public override void Update(PlayerController player)
         {
-            // TODO (Movement): playerCanRotate should be handled by the Mover script
-            mover.Move(player, playerCanRotate);
+            mover.Move(player, playerCanRotate, playerCanMove, 1f);
         }
 
     }

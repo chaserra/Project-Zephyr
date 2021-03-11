@@ -18,23 +18,31 @@ namespace Zephyr.Stats
         }
 
         #region Stat Increasers
-        // Do health and mana stuff here
+        // Non-buff stat increase (healing, mana regen, etc.)
         #endregion
 
         #region Stat Modification
-        public void ModifyMoveSpeed(float percentage)
+        public void ModifyStat(StatList targetStat, float flatValue, float percentValue)
         {
-            float multiplier = PercentageToDecimal(percentage);
-            characterStats.ModifySpeed(multiplier);
+            switch (targetStat)
+            {
+                case StatList.HEALTH :
+                    characterStats.ModifyHealth(flatValue, percentValue);
+                    break;
+                case StatList.MOVESPEED:
+                    characterStats.ModifySpeed(flatValue, percentValue);
+                    break;
+            }
         }
-        public void ModifyTurnSpeed(float percentage)
-        {
-            float multiplier = PercentageToDecimal(percentage);
-            characterStats.ModifyTurnSpeed(multiplier);
-        }
+
         #endregion
 
         #region Reporters
+        public float GetHealthPoints()
+        {
+            return characterStats.currentHealth;
+        }
+
         public float GetMoveSpeed()
         {
             return characterStats.currentMoveSpeed;
@@ -43,13 +51,6 @@ namespace Zephyr.Stats
         public float GetTurnSpeed()
         {
             return characterStats.currentTurnSmoothTime;
-        }
-        #endregion
-
-        #region Helper Functions
-        private float PercentageToDecimal(float percentValue)
-        {
-            return percentValue / 100;
         }
         #endregion
 

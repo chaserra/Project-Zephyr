@@ -9,13 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a6a2e756718ab54c971e9d391e9ecfd, type: 3}
-  m_Name: PlayerStats
+  m_Script: {fileID: 11500000, guid: 4f39419e3aa3dc940ad070ae63069665, type: 3}
+  m_Name: IncreaseHP_Flat_Effect
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentMaxHealth: 0
-  currentHealth: 80
-  moveSpeed: 6.5
-  currentMoveSpeed: 0
-  turnSmoothTime: 0.08
-  currentTurnSmoothTime: 0
+  targetStat: 0
+  isPercentage: 0
+  modifierValue: 50
