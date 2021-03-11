@@ -10,6 +10,7 @@ namespace Zephyr.Mods
     {
         // Cache
         private CharacterStats characterStats;
+        private StatModSheet statModSheet = new StatModSheet();
 
         // State
         [SerializeField] private List<Modifier> modifiers = new List<Modifier>();
@@ -36,11 +37,48 @@ namespace Zephyr.Mods
             modifiers.Remove(mod);
         }
 
-        // TODO HIGH-PRIO (Mods): Put all aggregate logic here in mod manager
-        // Do summation of total flat and percentage here and just pass values to charStats
         public void AggregateStatValues(StatList targetStat, float value, bool isPercentage, bool reverseValues)
         {
-            characterStats.ModifyStat(targetStat, value, isPercentage, reverseValues);
+            if (reverseValues)
+            {
+                value *= -1;
+            }
+            switch (targetStat)
+            {
+                case StatList.HEALTH:
+                    if (isPercentage)
+                    {
+                        statModSheet.percentHealthMod += value;
+                    }
+                    else
+                    {
+                        statModSheet.flatHealthMod += value;
+                    }
+                    characterStats.ModifyStat(targetStat, statModSheet.flatHealthMod, statModSheet.percentHealthMod);
+                    break;
+                case StatList.MOVESPEED:
+                    if (isPercentage)
+                    {
+                        statModSheet.percentMoveSpeedMod += value;
+                    }
+                    else
+                    {
+                        statModSheet.flatMoveSpeedMod += value;
+                    }
+                    characterStats.ModifyStat(targetStat, statModSheet.flatMoveSpeedMod, statModSheet.percentMoveSpeedMod);
+                    break;
+                case StatList.TURNSPEED:
+                    if (isPercentage)
+                    {
+                        statModSheet.percentTurnSpeedMod += value;
+                    }
+                    else
+                    {
+                        statModSheet.flatTurnSpeedMod += value;
+                    }
+                    characterStats.ModifyStat(targetStat, statModSheet.flatTurnSpeedMod, statModSheet.percentTurnSpeedMod);
+                    break;
+            }
         }
 
         private void OnDisable()

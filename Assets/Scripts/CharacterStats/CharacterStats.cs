@@ -7,15 +7,7 @@ namespace Zephyr.Stats
     public class CharacterStats : MonoBehaviour
     {
         [SerializeField] CharacterStats_SO characterStats_Template;
-        private CharacterStats_SO characterStats;
-
-        // Aggregate Values
-        private float flatHealthMod;
-        private float percentHealthMod;
-        private float flatMoveSpeedMod;
-        private float percentMoveSpeedMod;
-        private float flatTurnSpeedMod;
-        private float percentTurnSpeedMod;
+        public CharacterStats_SO characterStats;
 
         private void Awake()
         {
@@ -30,47 +22,18 @@ namespace Zephyr.Stats
         #endregion
 
         #region Stat Modification
-        public void ModifyStat(StatList targetStat, float value, bool isPercentage, bool reverseValues)
+        public void ModifyStat(StatList targetStat, float flatValue, float percentValue)
         {
-            // TODO HIGH-PRIO (Mods): Put all aggregate logic in mod manager
-            if (reverseValues)
-            {
-                value *= -1;
-            }
             switch (targetStat)
             {
                 case StatList.HEALTH :
-                    if (isPercentage)
-                    {
-                        percentHealthMod += value;
-                    }
-                    else
-                    {
-                        flatHealthMod += value;
-                    }
-                    characterStats.ModifyHealth(flatHealthMod, percentHealthMod);
+                    characterStats.ModifyHealth(flatValue, percentValue);
                     break;
                 case StatList.MOVESPEED:
-                    if (isPercentage)
-                    {
-                        percentMoveSpeedMod += value;
-                    }
-                    else
-                    {
-                        flatMoveSpeedMod += value;
-                    }
-                    characterStats.ModifySpeed(flatMoveSpeedMod, percentMoveSpeedMod);
+                    characterStats.ModifySpeed(flatValue, percentValue);
                     break;
                 case StatList.TURNSPEED:
-                    if (isPercentage)
-                    {
-                        percentTurnSpeedMod += value;
-                    }
-                    else
-                    {
-                        flatTurnSpeedMod += value;
-                    }
-                    characterStats.ModifyTurnSpeed(flatTurnSpeedMod, percentTurnSpeedMod);
+                    characterStats.ModifyTurnSpeed(flatValue, percentValue);
                     break;
             }
         }

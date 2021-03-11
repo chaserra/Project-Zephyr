@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Zephyr.Mods
 {
-    [CreateAssetMenu(fileName = "NewStatModifier", menuName = "Mods/Stat Effects/Modify Stat(Percentage)")]
+    [CreateAssetMenu(fileName = "NewStatModifier", menuName = "Mods/Stat Effects/Modify Stat Values")]
     public class StatEffect_ModifyStats : StatEffect
     {
         public bool isPercentage;
