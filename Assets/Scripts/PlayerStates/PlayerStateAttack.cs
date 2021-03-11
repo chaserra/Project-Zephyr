@@ -1,24 +1,33 @@
 ﻿using System.Collections;
 using UnityEngine;
+using Zephyr.Player.Movement;
+using Zephyr.Combat;
 
 namespace Zephyr.Player.Combat
 {
     public class PlayerStateAttack : PlayerStateBase
     {
+        // Cache
+        private PlayerMover mover;
+        private Skill skill;
+
         public override void EnterState(PlayerController player)
         {
+            mover = player.Mover;
+            skill = player.CurrentSkill;
             player.StartCoroutine(TransitionState(player));
         }
 
         public override void Update(PlayerController player)
         {
-            // Add mover script here? For skills that can be spammed while moving
+            // Move if skill allows movement
+            mover.Move(player, skill.userCanRotate, skill.userCanMove, skill.moveSpeedMultiplier);
         }
 
         IEnumerator TransitionState(PlayerController player)
         {
             // TODO (Attacks): Possibly change this to animation based instead of a coroutine
-            player.CurrentSkill.Initialize(player.Anim);
+            skill.Initialize(player.Anim);
             yield return new WaitForSeconds(.5f); // Better change this to wait for animation to end
             player.ResetCurrentSkill();
             player.TransitionState(player.MoveState);
