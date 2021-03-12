@@ -8,6 +8,8 @@ namespace Zephyr.Mods
     {
         public float flatHealthMod;
         public float percentHealthMod;
+        public float flatDamageMod;
+        public float percentDamageMod;
         public float flatMoveSpeedMod;
         public float percentMoveSpeedMod;
     }

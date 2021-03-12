@@ -16,6 +16,10 @@ namespace Zephyr.Stats
         [System.NonSerialized]
         public float currentMoveSpeed;
 
+        public int baseDamage = 1;
+        [System.NonSerialized]
+        public int currentDamage;
+
         public float turnSmoothTime = 0.08f;
         [System.NonSerialized]
         public float currentTurnSmoothTime;
@@ -24,11 +28,26 @@ namespace Zephyr.Stats
         {
             currentMaxHealth = maxHealth;
             currentMoveSpeed = moveSpeed;
+            currentDamage = baseDamage;
             currentTurnSmoothTime = turnSmoothTime;
         }
 
         #region Stat Increasers
-        // Do health and mana stuff here (healing, etc)
+        // Non-buff stat increase (healing, mana regen, etc.)
+        #endregion
+
+        #region Stat Decreasers
+        // Non-buff stat decrease (damage, mana consume, etc.)
+        public void TakeDamage(int amount)
+        {
+            currentHealth -= amount;
+
+            if (currentHealth <= 0)
+            {
+                //Die();
+                // TODO (Combat): Create Die() method to invoke an event
+            }
+        }
         #endregion
 
         #region Stat Modifiers
@@ -74,6 +93,24 @@ namespace Zephyr.Stats
 
             // Prevent negative values
             if (currentMoveSpeed <= 0) { currentMoveSpeed = 0; }
+        }
+
+        public void ModifyDamage(float flatValue, float percentage)
+        {
+            // Reset to base value for recompute
+            currentDamage = baseDamage;
+
+            // Compute percentage value then add flat mod
+            float percentValue = baseDamage * PercentageToDecimal(percentage);
+            float modifierValue = flatValue + percentValue;
+
+            int intValueDamage = Mathf.RoundToInt(modifierValue);
+
+            // Apply stat modification
+            currentDamage += intValueDamage;
+
+            // Prevent negative values
+            if (currentDamage <= 0) { currentDamage = 1; }
         }
 
         #endregion

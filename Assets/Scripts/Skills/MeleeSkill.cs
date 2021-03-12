@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Zephyr.Stats;
 using UnityEngine;
 
 namespace Zephyr.Combat
@@ -8,7 +9,9 @@ namespace Zephyr.Combat
     public class MeleeSkill : Skill
     {
         [Header("Skill Values")]
-        [SerializeField] float damage = 1f;
+        [SerializeField] int damage = 1;
+        [Range(0, 1)][SerializeField] float criticalChance = .05f;
+        [SerializeField] float criticalMultiplier = 2f;
         [SerializeField] float range = 1f;
         [SerializeField] float hitForce = 10f;
 
@@ -29,6 +32,23 @@ namespace Zephyr.Combat
         public override void ApplySkillModifiers()
         {
             // Do mod stuff here
+        }
+
+        public Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats)
+        {
+            float coreDamage = attackerStats.GetDamage();
+            coreDamage += damage;
+
+            bool isCritical = Random.value < criticalChance;
+
+            if (isCritical)
+            {
+                coreDamage *= criticalMultiplier;
+            }
+
+            // Compute defender resistance then subtract to coreDmg
+
+            return new Attack((int)coreDamage, isCritical, this);
         }
 
     }

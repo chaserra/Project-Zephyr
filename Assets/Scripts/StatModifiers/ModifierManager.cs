@@ -71,6 +71,17 @@ namespace Zephyr.Mods
                     }
                     characterStats.ModifyStat(targetStat, statModSheet.flatMoveSpeedMod, statModSheet.percentMoveSpeedMod);
                     break;
+                case StatList.DAMAGE:
+                    if (isPercentage)
+                    {
+                        statModSheet.percentDamageMod += value;
+                    }
+                    else
+                    {
+                        statModSheet.flatDamageMod += value;
+                    }
+                    characterStats.ModifyStat(targetStat, statModSheet.flatDamageMod, statModSheet.percentDamageMod);
+                    break;
             }
         }
         #endregion
