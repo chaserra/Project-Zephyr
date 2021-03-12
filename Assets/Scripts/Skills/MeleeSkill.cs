@@ -20,11 +20,11 @@ namespace Zephyr.Combat
             // Initialize then trigger skill
             if (userAnim == null)
             {
-                userAnim = skillUser.GetComponent<Animator>(); // Not sure if check null is needed
+                userAnim = skillUser.GetComponent<Animator>(); // Not sure if null check is needed
             }
             if (userStats == null)
             {
-                userStats = skillUser.GetComponent<CharacterStats>(); // Not sure if check null is needed
+                userStats = skillUser.GetComponent<CharacterStats>(); // Not sure if null check is needed
             }
             TriggerSkill(skillUser);
         }
@@ -56,7 +56,7 @@ namespace Zephyr.Combat
                 coreDamage *= criticalMultiplier;
             }
 
-            // Compute defender resistance then subtract to coreDmg
+            // TODO (Combat): Compute defender resistance then subtract to coreDmg
 
             return new Attack((int)coreDamage, isCritical, this);
         }

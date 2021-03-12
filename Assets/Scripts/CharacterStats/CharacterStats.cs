@@ -7,7 +7,7 @@ namespace Zephyr.Stats
     public class CharacterStats : MonoBehaviour
     {
         [SerializeField] CharacterStats_SO characterStats_Template;
-        private CharacterStats_SO characterStats;
+        [SerializeField] private CharacterStats_SO characterStats; // TODO (cleanup): Remove serializefield
 
         private void Awake()
         {
