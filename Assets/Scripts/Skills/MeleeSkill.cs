@@ -15,25 +15,35 @@ namespace Zephyr.Combat
         [SerializeField] float range = 1f;
         [SerializeField] float hitForce = 10f;
 
-        public override void Initialize(Animator anim)
+        public override void Initialize(GameObject skillUser)
         {
-            //Debug.LogFormat("{0} skill initialized", skillName);
-            // Apply mods?
-            TriggerSkill(anim);
+            // Initialize then trigger skill
+            if (userAnim == null)
+            {
+                userAnim = skillUser.GetComponent<Animator>(); // Not sure if check null is needed
+            }
+            if (userStats == null)
+            {
+                userStats = skillUser.GetComponent<CharacterStats>(); // Not sure if check null is needed
+            }
+            TriggerSkill(skillUser);
         }
 
-        public override void TriggerSkill(Animator anim)
+        public override void TriggerSkill(GameObject skillUser)
         {
             // Do melee skill stuff like trigger animations, etc
-            anim.SetTrigger(skillAnimationName);
+            userAnim.SetTrigger(skillAnimationName);
             Debug.LogFormat("Player used {0}! Damage is {2} with force of {4}. Cooldown: {1}, Range: {3}", skillName, skillCooldown, damage, range, hitForce);
         }
 
-        public override void ApplySkillModifiers()
+        public override void ApplySkillModifiers(GameObject skillUser)
         {
             // Do mod stuff here
         }
 
+        // Create attack when hitting an enemy
+        // Maybe get the skillUser's weapon collider?
+        // Then create attack and pass to enemy on collision?
         public Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats)
         {
             float coreDamage = attackerStats.GetDamage();

@@ -88,6 +88,9 @@ namespace Zephyr.Mods
             public bool isActive;
             public bool hasDuration;
             public float duration;
+            // public float chanceToApplyMod
+            // public bool isStackable
+            // public int maxStacks
         }
 
         public enum ValidTargets

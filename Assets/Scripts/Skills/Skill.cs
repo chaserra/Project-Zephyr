@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
+using Zephyr.Stats;
 using Zephyr.Mods;
 
 namespace Zephyr.Combat
 {
     public abstract class Skill : ScriptableObject
     {
+        [System.NonSerialized]
+        public Animator userAnim;
+        [System.NonSerialized]
+        public CharacterStats userStats;
         public SkillType skillType;
         public string skillName;
         public string skillAnimationName;
@@ -21,9 +26,9 @@ namespace Zephyr.Combat
         [Header("Skill Modifiers")]
         public Modifier mods;
 
-        public abstract void Initialize(Animator anim);
-        public abstract void TriggerSkill(Animator anim);
-        public abstract void ApplySkillModifiers();
+        public abstract void Initialize(GameObject skillUser);
+        public abstract void TriggerSkill(GameObject skillUser);
+        public abstract void ApplySkillModifiers(GameObject skillUser);
     }
 
     public enum SkillType
