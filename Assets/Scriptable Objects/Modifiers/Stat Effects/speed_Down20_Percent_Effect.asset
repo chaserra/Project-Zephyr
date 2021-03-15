@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f39419e3aa3dc940ad070ae63069665, type: 3}
   m_Name: speed_Down20_Percent_Effect
   m_EditorClassIdentifier: 
-  targetStat: 0
-  isPercentage: 0
-  modifierValue: 0
+  targetStat: 1
+  isPercentage: 1
+  modifierValue: -20

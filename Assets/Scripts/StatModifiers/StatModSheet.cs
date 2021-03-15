@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Zephyr.Stats;
-
-namespace Zephyr.Mods
+﻿namespace Zephyr.Mods
 {
     public class StatModSheet
     {
