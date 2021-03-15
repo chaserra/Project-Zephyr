@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Mods;
 
 namespace Zephyr.Stats
 {
@@ -31,20 +32,12 @@ namespace Zephyr.Stats
         #endregion
 
         #region Stat Modification
-        public void ModifyStat(StatList targetStat, float flatValue, float percentValue)
+        public void ComputeStatMods(StatModSheet statModSheet)
         {
-            switch (targetStat)
-            {
-                case StatList.HEALTH :
-                    characterStats.ModifyHealth(flatValue, percentValue);
-                    break;
-                case StatList.MOVESPEED:
-                    characterStats.ModifySpeed(flatValue, percentValue);
-                    break;
-                case StatList.DAMAGE:
-                    characterStats.ModifyDamage(flatValue, percentValue);
-                    break;
-            }
+            // NOTE: All mods are computed against the BASE stat.
+            characterStats.ModifyHealth(statModSheet.flatHealthMod, statModSheet.percentHealthMod);
+            characterStats.ModifyDamage(statModSheet.flatDamageMod, statModSheet.percentDamageMod);
+            characterStats.ModifySpeed(statModSheet.flatMoveSpeedMod, statModSheet.percentMoveSpeedMod);
         }
 
         #endregion
