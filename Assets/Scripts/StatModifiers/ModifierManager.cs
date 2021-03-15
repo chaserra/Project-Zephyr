@@ -47,42 +47,12 @@ namespace Zephyr.Mods
             {
                 value *= -1;
             }
-            switch (targetStat)
-            {
-                case StatList.HEALTH:
-                    if (isPercentage)
-                    {
-                        statModSheet.percentHealthMod += value;
-                    }
-                    else
-                    {
-                        statModSheet.flatHealthMod += value;
-                    }
-                    characterStats.ModifyStat(targetStat, statModSheet.flatHealthMod, statModSheet.percentHealthMod);
-                    break;
-                case StatList.MOVESPEED:
-                    if (isPercentage)
-                    {
-                        statModSheet.percentMoveSpeedMod += value;
-                    }
-                    else
-                    {
-                        statModSheet.flatMoveSpeedMod += value;
-                    }
-                    characterStats.ModifyStat(targetStat, statModSheet.flatMoveSpeedMod, statModSheet.percentMoveSpeedMod);
-                    break;
-                case StatList.DAMAGE:
-                    if (isPercentage)
-                    {
-                        statModSheet.percentDamageMod += value;
-                    }
-                    else
-                    {
-                        statModSheet.flatDamageMod += value;
-                    }
-                    characterStats.ModifyStat(targetStat, statModSheet.flatDamageMod, statModSheet.percentDamageMod);
-                    break;
-            }
+
+            // Compute Mod Sheet values (total per stat and type of modification)
+            statModSheet.AggregateModValuesPerStat(targetStat, value, isPercentage);
+
+            // Apply buff / debuff values using Mod Sheet values
+            characterStats.ComputeStatMods(statModSheet);
         }
         #endregion
 

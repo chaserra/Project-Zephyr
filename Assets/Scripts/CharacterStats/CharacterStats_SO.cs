@@ -8,20 +8,20 @@ namespace Zephyr.Stats
     public class CharacterStats_SO : ScriptableObject
     {
         public int maxHealth = 100;
-        [System.NonSerialized]
+        //[System.NonSerialized]
         public int currentMaxHealth;
         public int currentHealth;
 
         public float moveSpeed = 6.5f;
-        [System.NonSerialized]
+        //[System.NonSerialized]
         public float currentMoveSpeed;
 
         public int baseDamage = 1;
-        [System.NonSerialized]
+        //[System.NonSerialized]
         public int currentDamage;
 
         public float turnSmoothTime = 0.08f;
-        [System.NonSerialized]
+        //[System.NonSerialized]
         public float currentTurnSmoothTime;
 
         private void Awake()
@@ -73,6 +73,7 @@ namespace Zephyr.Stats
 
             // Prevent negative values
             if (currentMaxHealth <= 0) { currentMaxHealth = 1; }
+            if (currentHealth <= 0) { currentHealth = 1; }
             // Prevent overheal
             if (currentHealth > currentMaxHealth) { currentHealth = currentMaxHealth; }
         }

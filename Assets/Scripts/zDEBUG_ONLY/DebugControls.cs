@@ -7,7 +7,8 @@ public class DebugControls : MonoBehaviour
 {
     private ModifierManager modMgr;
     public bool debugEnabled = false;
-    public Modifier[] mods;
+    public Modifier[] mods_M;
+    public Modifier[] mods_Comma;
 
     private void Start()
     {
@@ -20,17 +21,24 @@ public class DebugControls : MonoBehaviour
         if (!debugEnabled) { return; }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            for (int i = 0; i < mods.Length; i++)
+            for (int i = 0; i < mods_M.Length; i++)
             {
-                modMgr.AddModifier(mods[i]);
+                modMgr.AddModifier(mods_M[i]);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Comma))
+        {
+            for (int i = 0; i < mods_Comma.Length; i++)
+            {
+                modMgr.AddModifier(mods_Comma[i]);
             }
         }
         if (Input.GetKeyDown(KeyCode.N))
         {
-            for (int i = 0; i < mods.Length; i++)
+            for (int i = 0; i < mods_M.Length; i++)
             {
-                if (mods[i].Context.hasDuration) { return; }
-                modMgr.RemoveModifier(mods[i]);
+                if (mods_M[i].Context.hasDuration) { return; }
+                modMgr.RemoveModifier(mods_M[i]);
             }
         }
     }
