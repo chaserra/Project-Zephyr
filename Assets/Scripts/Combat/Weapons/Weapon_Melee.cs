@@ -7,16 +7,6 @@ namespace Zephyr.Combat
     [CreateAssetMenu(fileName = "NewMeleeWeapon", menuName = "Weapons/Melee")]
     public class Weapon_Melee : Weapon
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        // Do melee weapon-specific stuff
     }
 }

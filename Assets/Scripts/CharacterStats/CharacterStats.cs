@@ -8,6 +8,8 @@ namespace Zephyr.Stats
 {
     public class CharacterStats : MonoBehaviour
     {
+        private StatModSheet statModSheet = new StatModSheet();
+
         [SerializeField] CharacterStats_SO characterStats_Template;
         [SerializeField] private CharacterStats_SO characterStats; // TODO (cleanup): Remove serializefield
         [SerializeField] GameObject weaponSlot;
@@ -26,25 +28,27 @@ namespace Zephyr.Stats
         {
             if (weaponSlot != null)
             {
-                characterStats.EquipWeapon(characterStats.equippedWeapon, weaponSlot);
+                ChangeWeapon(characterStats.equippedWeapon, weaponSlot);
             }
         }
 
+        // TODO (cleanup): Remove all Update stuff
         private void Update()
         {
             if (weaponSlot != null)
             {
                 if(Input.GetKeyDown(KeyCode.J))
                 {
-                    characterStats.EquipWeapon(test_Weapon, weaponSlot);
+                    ChangeWeapon(test_Weapon, weaponSlot);
                 }
                 if (Input.GetKeyDown(KeyCode.K))
                 {
                     characterStats.UnequipWeapon(weaponSlot);
+                    ApplyStatModifierValues();
                 }
                 if (Input.GetKeyDown(KeyCode.H))
                 {
-                    characterStats.EquipWeapon(test_Weapon2, weaponSlot);
+                    ChangeWeapon(test_Weapon2, weaponSlot);
                 }
             }
         }
@@ -63,7 +67,16 @@ namespace Zephyr.Stats
         #endregion
 
         #region Stat Modification
-        public void ComputeStatMods(StatModSheet statModSheet)
+        public void AggregateStateSheetValues(StatList targetStat, float value, bool isPercentage)
+        {
+            // Compute Mod Sheet values (total per stat and type of modification)
+            statModSheet.AggregateModValuesPerStat(targetStat, value, isPercentage);
+
+            // Apply buff / debuff values using Mod Sheet values
+            ApplyStatModifierValues();
+        }
+
+        private void ApplyStatModifierValues()
         {
             // NOTE: All mods are computed against the BASE stat.
             characterStats.ModifyHealth(statModSheet.flatHealthMod, statModSheet.percentHealthMod);
@@ -74,9 +87,10 @@ namespace Zephyr.Stats
         #endregion
 
         #region Equipment
-        public void ChangeWeapon(Weapon weapon)
+        public void ChangeWeapon(Weapon weapon, GameObject weaponSlot)
         {
             characterStats.EquipWeapon(weapon, weaponSlot);
+            ApplyStatModifierValues();
         }
         #endregion
 

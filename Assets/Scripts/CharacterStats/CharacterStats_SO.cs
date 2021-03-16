@@ -9,15 +9,16 @@ namespace Zephyr.Stats
     public class CharacterStats_SO : ScriptableObject
     {
         public int maxHealth = 100;
-        [System.NonSerialized]
+        //[System.NonSerialized]
         public int currentMaxHealth;
         public int currentHealth;
 
         public float moveSpeed = 6.5f;
-        [System.NonSerialized]
+        //[System.NonSerialized]
         public float currentMoveSpeed;
 
         public int baseDamage = 1;
+        private int originalBaseDamage;
         //[System.NonSerialized]
         public int currentDamage;
 
@@ -33,6 +34,7 @@ namespace Zephyr.Stats
             currentMoveSpeed = moveSpeed;
             currentDamage = baseDamage;
             currentTurnSmoothTime = turnSmoothTime;
+            originalBaseDamage = baseDamage;
         }
 
         #region Stat Increasers
@@ -122,21 +124,31 @@ namespace Zephyr.Stats
         #region Equipment Methods
         public void EquipWeapon(Weapon weapon, GameObject weaponSlot)
         {
+            // Check if a weapon is currently equipped. Unequip if yes.
             if (equippedWeapon != null)
             {
                 UnequipWeapon(weaponSlot);
             }
+            
+            // Equip weapon
             equippedWeapon = weapon;
             Instantiate(weapon.weaponPrefab, weaponSlot.transform);
+
             // TODO (Weapon): Recompute damage values
+            baseDamage += weapon.damage;
         }
 
         public void UnequipWeapon(GameObject weaponSlot)
         {
+            // Check if a weapon prefab is already equipped in the weapon slot
             if (weaponSlot.transform.childCount <= 0) { return; }
+
+            // Unequip weapon
             Destroy(weaponSlot.transform.GetChild(0).gameObject);
             equippedWeapon = null;
+
             // TODO (Weapon): Recompute damage values
+            baseDamage = originalBaseDamage;
         }
         #endregion
 

@@ -10,7 +10,6 @@ namespace Zephyr.Mods
     {
         // Cache
         private CharacterStats characterStats;
-        private StatModSheet statModSheet = new StatModSheet();
 
         // State
         [SerializeField] private List<Modifier> modifiers = new List<Modifier>(); // TODO (cleanup): Remove serializefield
@@ -49,10 +48,7 @@ namespace Zephyr.Mods
             }
 
             // Compute Mod Sheet values (total per stat and type of modification)
-            statModSheet.AggregateModValuesPerStat(targetStat, value, isPercentage);
-
-            // Apply buff / debuff values using Mod Sheet values
-            characterStats.ComputeStatMods(statModSheet);
+            characterStats.AggregateStateSheetValues(targetStat, value, isPercentage);
         }
         #endregion
 
