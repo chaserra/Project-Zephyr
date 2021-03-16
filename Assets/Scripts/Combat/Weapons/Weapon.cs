@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+namespace Zephyr.Combat
 {
-    // Start is called before the first frame update
-    void Start()
+    public abstract class Weapon : ScriptableObject
     {
-        
+        public WeaponType weaponType;
+        public string weaponName;
+        public int damage;
+        public GameObject weaponPrefab;
     }
 
-    // Update is called once per frame
-    void Update()
+    public enum WeaponType
     {
-        
+        MELEE,
+        RANGED
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Zephyr.Combat
 {
     [CreateAssetMenu(fileName = "NewMeleeSkill", menuName = "Skills/Melee")]
-    public class MeleeSkill : Skill
+    public class Skill_Melee : Skill
     {
         [Header("Skill Values")]
         [SerializeField] int damage = 1;

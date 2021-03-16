@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Mods;
+using Zephyr.Combat;
 
 namespace Zephyr.Stats
 {
@@ -9,12 +10,42 @@ namespace Zephyr.Stats
     {
         [SerializeField] CharacterStats_SO characterStats_Template;
         [SerializeField] private CharacterStats_SO characterStats; // TODO (cleanup): Remove serializefield
+        [SerializeField] GameObject weaponSlot;
+        [SerializeField] Weapon test_Weapon;
+        [SerializeField] Weapon test_Weapon2;
 
         private void Awake()
         {
             if (characterStats_Template != null)
             {
                 characterStats = Instantiate(characterStats_Template);
+            }
+        }
+
+        private void Start()
+        {
+            if (weaponSlot != null)
+            {
+                characterStats.EquipWeapon(characterStats.equippedWeapon, weaponSlot);
+            }
+        }
+
+        private void Update()
+        {
+            if (weaponSlot != null)
+            {
+                if(Input.GetKeyDown(KeyCode.J))
+                {
+                    characterStats.EquipWeapon(test_Weapon, weaponSlot);
+                }
+                if (Input.GetKeyDown(KeyCode.K))
+                {
+                    characterStats.UnequipWeapon(weaponSlot);
+                }
+                if (Input.GetKeyDown(KeyCode.H))
+                {
+                    characterStats.EquipWeapon(test_Weapon2, weaponSlot);
+                }
             }
         }
 
@@ -40,6 +71,13 @@ namespace Zephyr.Stats
             characterStats.ModifySpeed(statModSheet.flatMoveSpeedMod, statModSheet.percentMoveSpeedMod);
         }
 
+        #endregion
+
+        #region Equipment
+        public void ChangeWeapon(Weapon weapon)
+        {
+            characterStats.EquipWeapon(weapon, weaponSlot);
+        }
         #endregion
 
         #region Reporters
