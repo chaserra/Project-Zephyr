@@ -74,6 +74,7 @@ namespace Zephyr.Mods
         IEnumerator StartModDuration()
         {
             if (!context.hasDuration) { yield break; }
+            // TODO (Mods): Check if stackable. If not, reset duration.
             while (context.duration > 0)
             {
                 context.duration -= Time.deltaTime;
