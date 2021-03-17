@@ -12,7 +12,6 @@ namespace Zephyr.Combat
         [SerializeField] int damage = 1;
         [Range(0, 1)][SerializeField] float criticalChance = .05f;
         [SerializeField] float criticalMultiplier = 2f;
-        [SerializeField] float range = 1f;
         [SerializeField] float hitForce = 10f;
 
         public override void Initialize(GameObject skillUser)
@@ -41,6 +40,8 @@ namespace Zephyr.Combat
             
             if(targetStats != null)
             {
+                Debug.LogFormat("{0} attacks {1} with Melee Skill {2}", skillUser.name, skillTarget.name, skillName);
+
                 var attack = CreateAttack(userStats, targetStats);
                 var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
 
@@ -66,7 +67,7 @@ namespace Zephyr.Combat
 
             // TODO (Combat): Compute defender resistance then subtract to coreDmg
 
-            Debug.LogFormat("Player used melee skill {0}! Damage is {1}", skillName, coreDamage);
+            Debug.LogFormat("Damage: {0}, Critical: {1}", coreDamage, isCritical);
             return new Attack((int)coreDamage, isCritical, this);
         }
 

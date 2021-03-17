@@ -15,8 +15,16 @@ MonoBehaviour:
   skillType: 0
   skillName: Bash
   skillAnimationName: Bash_Skill
-  skillSound: {fileID: 0}
   skillCooldown: 5
-  damage: 2
-  range: 2
+  userCanRotate: 0
+  userCanMove: 0
+  moveSpeedMultiplier: 0
+  skillSound: {fileID: 0}
+  skillChargeTime: 0
+  skillRealeaseWhenFullyCharged: 0
+  skillMustFullyCharge: 0
+  mods: {fileID: 0}
+  damage: 5
+  criticalChance: 0.6
+  criticalMultiplier: 2
   hitForce: 25
