@@ -28,7 +28,7 @@ namespace Zephyr.Combat
 
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
-        public abstract void ApplySkillModifiers(GameObject skillUser);
+        public abstract void ApplySkill(GameObject skillUser, GameObject skillTarget);
     }
 
     public enum SkillType

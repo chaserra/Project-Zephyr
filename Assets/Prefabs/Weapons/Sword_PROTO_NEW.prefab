@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8906768388592286975}
   - component: {fileID: 8906768388592286974}
   - component: {fileID: 6855360521599046282}
+  - component: {fileID: 6458721207873332006}
   m_Layer: 0
   m_Name: Sword_PROTO_NEW
   m_TagString: Untagged
@@ -91,8 +92,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 1.5
+  m_Height: 2.5
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
 --- !u!54 &6855360521599046282
@@ -111,3 +112,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6458721207873332006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8906768388592286944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d732847d03caa0d4a9bc7050d986307c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

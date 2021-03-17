@@ -19,7 +19,7 @@ namespace Zephyr.Player.Movement
                 if (playerCanRotate)
                 {
                     // Rotate character
-                    float angle = Mathf.SmoothDampAngle(player.transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, player.TurnSmoothTime);
+                    float angle = Mathf.SmoothDampAngle(player.transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, player.GetTurnSmoothTime);
                     player.transform.rotation = Quaternion.Euler(0f, angle, 0f);
                 }
 
@@ -28,7 +28,7 @@ namespace Zephyr.Player.Movement
 
                 if (playerCanMove)
                 {
-                    player.Controller.Move(moveDir.normalized * player.MoveSpeed * Time.deltaTime * speedMultiplier);
+                    player.Controller.Move(moveDir.normalized * player.GetMoveSpeed * Time.deltaTime * speedMultiplier);
                 }
             }
         }

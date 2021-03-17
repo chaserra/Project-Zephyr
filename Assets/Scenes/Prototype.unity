@@ -509,7 +509,7 @@ GameObject:
   - component: {fileID: 93056390}
   - component: {fileID: 93056389}
   - component: {fileID: 93056388}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FrontPointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1446,7 +1446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 383965015}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1761,7 +1761,7 @@ GameObject:
   - component: {fileID: 433732962}
   - component: {fileID: 433732961}
   - component: {fileID: 433732960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2322,7 +2322,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 546655243}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2447,7 +2447,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 585219477}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Arm_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2575,7 +2575,7 @@ GameObject:
   - component: {fileID: 607758140}
   - component: {fileID: 607758139}
   - component: {fileID: 607758138}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3491,9 +3491,9 @@ GameObject:
   - component: {fileID: 914615300}
   - component: {fileID: 914615303}
   - component: {fileID: 914615301}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5393,7 +5393,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1283512903}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7611,7 +7611,7 @@ GameObject:
   - component: {fileID: 1837581747}
   - component: {fileID: 1837581746}
   - component: {fileID: 1837581745}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7708,7 +7708,7 @@ GameObject:
   - component: {fileID: 1863028894}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

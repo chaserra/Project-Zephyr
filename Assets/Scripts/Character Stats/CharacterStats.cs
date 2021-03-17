@@ -6,15 +6,15 @@ using Zephyr.Combat;
 
 namespace Zephyr.Stats
 {
-    public class CharacterStats : MonoBehaviour
+    public class CharacterStats : MonoBehaviour 
     {
         private StatModSheet statModSheet = new StatModSheet();
 
         [SerializeField] CharacterStats_SO characterStats_Template;
         [SerializeField] private CharacterStats_SO characterStats; // TODO (cleanup): Remove serializefield
         [SerializeField] GameObject weaponSlot;
-        [SerializeField] Weapon test_Weapon;
-        [SerializeField] Weapon test_Weapon2;
+        [SerializeField] Weapon test_Weapon; // TODO (cleanup): Remove this
+        [SerializeField] Weapon test_Weapon2; // TODO (cleanup): Remove this
 
         private void Awake()
         {
@@ -67,7 +67,7 @@ namespace Zephyr.Stats
         #endregion
 
         #region Stat Modification
-        public void AggregateStateSheetValues(StatList targetStat, float value, bool isPercentage)
+        public void AggregateStatSheetValues(StatList targetStat, float value, bool isPercentage)
         {
             // Compute Mod Sheet values (total per stat and type of modification)
             statModSheet.AggregateModValuesPerStat(targetStat, value, isPercentage);
@@ -95,7 +95,12 @@ namespace Zephyr.Stats
         #endregion
 
         #region Reporters
-        public float GetHealthPoints()
+        public int GetMaxHealth()
+        {
+            return characterStats.currentMaxHealth;
+        }
+
+        public int GetHealthPoints()
         {
             return characterStats.currentHealth;
         }

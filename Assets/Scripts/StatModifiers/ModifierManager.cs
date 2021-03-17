@@ -48,7 +48,7 @@ namespace Zephyr.Mods
             }
 
             // Compute Mod Sheet values (total per stat and type of modification)
-            characterStats.AggregateStateSheetValues(targetStat, value, isPercentage);
+            characterStats.AggregateStatSheetValues(targetStat, value, isPercentage);
         }
         #endregion
 

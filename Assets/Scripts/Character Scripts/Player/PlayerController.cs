@@ -11,7 +11,7 @@ namespace Zephyr.Player
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(CharacterStats))]
     [RequireComponent(typeof(InputController))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, ICombatant
     {
         // Cache
         private CharacterController characterController;
@@ -38,8 +38,11 @@ namespace Zephyr.Player
         public Camera Cam { get { return cam; } }
         public PlayerMover Mover { get { return mover; } }
         /* **Parameters** */
-        public float MoveSpeed { get { return characterStats.GetMoveSpeed(); } }
-        public float TurnSmoothTime { get { return characterStats.GetTurnSpeed(); } }
+        public int GetMaxHealth { get { return characterStats.GetMaxHealth(); } }
+        public int GetCurrentHealth { get { return characterStats.GetHealthPoints(); } }
+        public float GetMoveSpeed { get { return characterStats.GetMoveSpeed(); } }
+        public int GetDamage { get { return characterStats.GetDamage(); } }
+        public float GetTurnSmoothTime { get { return characterStats.GetTurnSpeed(); } }
         /* **States** */
         public PlayerStateBase CurrentState { get { return currentState; } }
         public Skill CurrentSkill { get { return currentSkill; } }
@@ -109,6 +112,12 @@ namespace Zephyr.Player
         {
             skillWithKeyMap.Clear();
             currentSkill = null;
+        }
+
+        public void Hit(GameObject attackTarget)
+        {
+            if (currentSkill == null) { return; }
+            currentSkill.ApplySkill(gameObject, attackTarget);
         }
 
     }

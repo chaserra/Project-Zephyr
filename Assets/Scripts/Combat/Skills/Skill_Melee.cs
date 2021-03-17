@@ -33,18 +33,25 @@ namespace Zephyr.Combat
         {
             // Do melee skill stuff like trigger animations, etc
             userAnim.SetTrigger(skillAnimationName);
-            Debug.LogFormat("Player used {0}! Damage is {2} with force of {4}. Cooldown: {1}, Range: {3}", skillName, skillCooldown, damage, range, hitForce);
         }
 
-        public override void ApplySkillModifiers(GameObject skillUser)
+        public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
-            // Do mod stuff here
+            CharacterStats targetStats = skillTarget.GetComponent<CharacterStats>();
+            
+            if(targetStats != null)
+            {
+                var attack = CreateAttack(userStats, targetStats);
+                var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
+
+                foreach (IAttackable a in attackables)
+                {
+                    a.OnAttacked(skillUser, attack);
+                }
+            }
         }
 
-        // Create attack when hitting an enemy
-        // Maybe get the skillUser's weapon collider?
-        // Then create attack and pass to enemy on collision?
-        public Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats)
+        private Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats)
         {
             float coreDamage = attackerStats.GetDamage();
             coreDamage += damage;
@@ -54,10 +61,12 @@ namespace Zephyr.Combat
             if (isCritical)
             {
                 coreDamage *= criticalMultiplier;
+                Debug.Log("CRITICAL HIT");
             }
 
             // TODO (Combat): Compute defender resistance then subtract to coreDmg
 
+            Debug.LogFormat("Player used melee skill {0}! Damage is {1}", skillName, coreDamage);
             return new Attack((int)coreDamage, isCritical, this);
         }
 
