@@ -10,17 +10,17 @@ namespace Zephyr.Mods
         public bool flag;
         [Range(0, 1)] public float procChance;
 
-        public override void ApplyEffect()
+        public override void ApplyEffect(Modifier mod)
         {
             // Initialize and add this effect
         }
 
-        public override void Tick()
+        public override void Tick(Modifier mod)
         {
             // Apply effect over time
         }
 
-        public override void RemoveEffect()
+        public override void RemoveEffect(Modifier mod)
         {
             // Remove / reverse this effect
         }

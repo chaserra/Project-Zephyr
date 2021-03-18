@@ -16,6 +16,7 @@ namespace Zephyr.Mods
         private ModifierManager modManager;
 
         #region Properties
+        public ModifierManager ModManager { get { return modManager; } }
         public ModifierContext Context { get { return context; } }
         public ValidTargets Target { get { return target; } }
         public StatEffect[] StatEffects { get { return statEffects; } }
@@ -31,11 +32,7 @@ namespace Zephyr.Mods
         {
             for (int i = 0; i < statEffects.Length; i++)
             {
-                if (statEffects[i] is StatEffect_ModifyStats)
-                {
-                    AggregateEffectValues(statEffects[i], false);
-                }
-                statEffects[i].ApplyEffect();
+                statEffects[i].ApplyEffect(this);
             }
             modManager.StartCoroutine(StartModDuration());
         }
@@ -49,26 +46,9 @@ namespace Zephyr.Mods
         {
             for (int i = 0; i < statEffects.Length; i++)
             {
-                if (statEffects[i] is StatEffect_ModifyStats)
-                {
-                    AggregateEffectValues(statEffects[i], true);
-                }
-                statEffects[i].RemoveEffect();
+                statEffects[i].RemoveEffect(this);
             }
             modManager.RemoveModifierFromList(this);
-        }
-
-        private void AggregateEffectValues(StatEffect effect, bool reverseValues)
-        {
-            // Cast StatEffect to ModifyStats
-            StatEffect_ModifyStats statMod = (StatEffect_ModifyStats)effect;
-
-            // Initialize variables to pass to Mod Manager
-            StatList targetStat = statMod.targetStat;
-            float statModValue = statMod.modifierValue;
-            bool statModIsPercent = statMod.isPercentage;
-
-            modManager.AggregateStatValues(targetStat, statModValue, statModIsPercent, reverseValues);
         }
 
         IEnumerator StartModDuration()
@@ -89,9 +69,9 @@ namespace Zephyr.Mods
             public bool isActive;
             public bool hasDuration;
             public float duration;
-            // public float chanceToApplyMod
-            // public bool isStackable
-            // public int maxStacks
+            //public float chanceToApplyMod
+            //public bool isStackable
+            //public int maxStacks
         }
 
         public enum ValidTargets
