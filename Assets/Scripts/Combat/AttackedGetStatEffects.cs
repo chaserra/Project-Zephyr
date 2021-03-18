@@ -25,7 +25,7 @@ namespace Zephyr.Combat
             bool applyMods = Random.value < attack.SkillUsed.chanceToApplyMods;
 
             if (!applyMods) { return; }
-            Debug.Log("APPLIED");
+
             for (int i = 0; i < attackSkillMods.Length; i++)
             {
                 if (attackSkillMods[i].Target == Modifier.ValidTargets.TARGET)

@@ -24,7 +24,10 @@ namespace Zephyr.Mods
 
         public void InitializeModifier(ModifierManager modifierManager)
         {
-            modManager = modifierManager;
+            if (modManager == null)
+            {
+                modManager = modifierManager;
+            }
             ApplyStatEffects();
         }
 
@@ -69,9 +72,9 @@ namespace Zephyr.Mods
             public bool isActive;
             public bool hasDuration;
             public float duration;
-            //public float chanceToApplyMod
-            //public bool isStackable
-            //public int maxStacks
+            public bool isStackable;
+            //public int maxStacks;
+            //public float chanceToApplyMod; // Design: Not sure if chance should be per mod or per skill            
         }
 
         public enum ValidTargets
