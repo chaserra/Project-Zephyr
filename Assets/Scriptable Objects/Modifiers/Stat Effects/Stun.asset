@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: Stun
   flag: 1
+  procChance: 1

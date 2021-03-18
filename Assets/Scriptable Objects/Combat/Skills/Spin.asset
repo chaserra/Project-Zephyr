@@ -23,7 +23,8 @@ MonoBehaviour:
   skillChargeTime: 0.75
   skillRealeaseWhenFullyCharged: 1
   skillMustFullyCharge: 0
-  mods: {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
+  chanceToApplyMods: 0.5
+  mods: []
   damage: 2
   criticalChance: 0.05
   criticalMultiplier: 2

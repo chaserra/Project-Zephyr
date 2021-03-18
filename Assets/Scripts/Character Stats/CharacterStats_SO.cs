@@ -78,7 +78,7 @@ namespace Zephyr.Stats
 
             // Prevent negative values
             if (currentMaxHealth <= 0) { currentMaxHealth = 1; }
-            if (currentHealth <= 0) { currentHealth = 1; }
+            //if (currentHealth <= 0) { currentHealth = 1; }
             // Prevent overheal
             if (currentHealth > currentMaxHealth) { currentHealth = currentMaxHealth; }
         }

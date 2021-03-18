@@ -40,8 +40,6 @@ namespace Zephyr.Combat
             
             if(targetStats != null)
             {
-                Debug.LogFormat("{0} attacks {1} with Melee Skill {2}", skillUser.name, skillTarget.name, skillName);
-
                 var attack = CreateAttack(userStats, targetStats);
                 var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
 
@@ -62,12 +60,11 @@ namespace Zephyr.Combat
             if (isCritical)
             {
                 coreDamage *= criticalMultiplier;
-                Debug.Log("CRITICAL HIT");
             }
 
             // TODO (Combat): Compute defender resistance then subtract to coreDmg
 
-            Debug.LogFormat("Damage: {0}, Critical: {1}", coreDamage, isCritical);
+            Debug.LogFormat("Critical: {0}", isCritical);
             return new Attack((int)coreDamage, isCritical, this);
         }
 

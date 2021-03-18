@@ -24,7 +24,8 @@ namespace Zephyr.Combat
         public bool skillRealeaseWhenFullyCharged;
         public bool skillMustFullyCharge;
         [Header("Skill Modifiers")]
-        public Modifier mods;
+        [Range(0, 1)] public float chanceToApplyMods;
+        public Modifier[] mods;
 
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);

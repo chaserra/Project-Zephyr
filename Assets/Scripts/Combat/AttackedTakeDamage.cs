@@ -18,7 +18,6 @@ namespace Zephyr.Combat
         public void OnAttacked(GameObject attacker, Attack attack)
         {
             stats.TakeDamage(attack.Damage);
-            // Take damage and get skill used to transfer any possible stat mods
         }
     }
 
