@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f39419e3aa3dc940ad070ae63069665, type: 3}
   m_Name: dmg_Up75_Percent_Effect
   m_EditorClassIdentifier: 
+  effectName: Damage Up
   targetStat: 2
   isPercentage: 1
   modifierValue: 75

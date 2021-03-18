@@ -4,12 +4,11 @@ using UnityEngine;
 
 namespace Zephyr.Mods
 {
-    [CreateAssetMenu(fileName = "NewStatModifier", menuName = "Mods/Stat Effects/Modify Stat Values")]
-    public class StatEffect_ModifyStats : StatEffect
+    [CreateAssetMenu(fileName = "NewStatModifier", menuName = "Mods/Stat Effects/Boolean Status")]
+    public class StatEffect_BooleanStatus : StatEffect
     {
-        public StatList targetStat;
-        public bool isPercentage;
-        public float modifierValue;
+        public bool flag;
+        [Range(0, 1)] public float procChance;
 
         public override void ApplyEffect()
         {

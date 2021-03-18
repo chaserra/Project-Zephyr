@@ -6,7 +6,7 @@ namespace Zephyr.Mods
 {
     public abstract class StatEffect : ScriptableObject, IStatEffect
     {
-        public StatList targetStat;
+        public string effectName;
 
         public abstract void ApplyEffect(); // Initialize and add this effect
         public abstract void Tick(); // Apply effect over time

@@ -28,6 +28,7 @@ namespace Zephyr.Player
         public readonly PlayerStateCharging ChargingState = new PlayerStateCharging();
         private Dictionary<string, Skill> skillWithKeyMap;
         private Skill currentSkill = null;
+        private bool isStunned = false;
 
         // Properties
         #region Properties
@@ -66,6 +67,8 @@ namespace Zephyr.Player
 
         private void Update()
         {
+            if (isStunned) { return; }
+
             // Detect button press and get mapped skill
             UseSkill(inputController.SkillButtonPress());
 
@@ -114,11 +117,18 @@ namespace Zephyr.Player
             currentSkill = null;
         }
 
+        public void Stunned(bool flag)
+        {
+            isStunned = flag;
+        }
+
+        #region Interface Methods
         public void Hit(GameObject attackTarget)
         {
             if (currentSkill == null) { return; }
             currentSkill.ApplySkill(gameObject, attackTarget);
         }
+        #endregion
 
     }
 }
