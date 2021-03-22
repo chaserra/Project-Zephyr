@@ -28,7 +28,7 @@ namespace Zephyr.Combat
 
             for (int i = 0; i < attackSkillMods.Length; i++)
             {
-                if (attackSkillMods[i].Target == Modifier.ValidTargets.TARGET)
+                if (attackSkillMods[i].Target == ValidTargets.TARGET)
                 {
                     modMgr.AddModifier(attackSkillMods[i]);
                 }

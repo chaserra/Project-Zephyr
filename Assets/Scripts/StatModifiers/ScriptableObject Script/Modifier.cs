@@ -8,6 +8,7 @@ namespace Zephyr.Mods
     public class Modifier : ScriptableObject
     {
         // Parameters
+        // TODO (SO BUG): Find way to reference these outside of the SO script
         [SerializeField] private ModifierContext context;
         [SerializeField] private ValidTargets target;
         [SerializeField] private StatEffect[] statEffects;
@@ -64,23 +65,6 @@ namespace Zephyr.Mods
                 yield return null;
             }
             RemoveStatEffects();
-        }
-
-        [System.Serializable]
-        public class ModifierContext
-        {
-            public bool isActive;
-            public bool hasDuration;
-            public float duration;
-            public bool isStackable;
-            //public int maxStacks;
-            //public float chanceToApplyMod; // Design: Not sure if chance should be per mod or per skill            
-        }
-
-        public enum ValidTargets
-        {
-            SELF,
-            TARGET
         }
     }
 }
