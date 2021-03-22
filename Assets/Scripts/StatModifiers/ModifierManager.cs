@@ -22,6 +22,9 @@ namespace Zephyr.Mods
         #region MODIFIER MANAGEMENT
         public void AddModifier(Modifier mod_template)
         {
+            // TODO (Modifier Management): Create a new list of mod references.
+            // Check if mod reference exists in new list. If not, add reference.
+            // Use reference to track duration, etc.
             Modifier mod = Instantiate(mod_template); // Prevent from saving over scriptable object file
             modifiers.Add(mod);
             mod.InitializeModifier(this);

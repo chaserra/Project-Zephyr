@@ -15,7 +15,8 @@ MonoBehaviour:
   context:
     isActive: 0
     hasDuration: 1
-    duration: 10
+    duration: 5
+    isStackable: 0
   target: 0
   statEffects:
   - {fileID: 11400000, guid: 51777fae68253d54db4054ecfb8b5509, type: 2}
