@@ -28,6 +28,7 @@ namespace Zephyr.Player
         public readonly PlayerStateCharging ChargingState = new PlayerStateCharging();
         private Dictionary<string, Skill> skillWithKeyMap;
         private Skill currentSkill = null;
+        public SkillType_SO skillTypeCharged;
         private bool isStunned = false;
 
         // Properties
@@ -89,7 +90,7 @@ namespace Zephyr.Player
                 }
 
                 // Check if skill is a charged attack
-                if (currentSkill.skillType == SkillType.Charged)
+                if (currentSkill.skillType == skillTypeCharged)
                 {
                     // Pass this attack type to ChargingState
                     TransitionState(ChargingState);

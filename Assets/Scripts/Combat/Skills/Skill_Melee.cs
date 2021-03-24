@@ -9,22 +9,16 @@ namespace Zephyr.Combat
     public class Skill_Melee : Skill
     {
         [Header("Skill Values")]
-        [SerializeField] int damage = 1;
-        [Range(0, 1)][SerializeField] float criticalChance = .05f;
-        [SerializeField] float criticalMultiplier = 2f;
-        [SerializeField] float hitForce = 10f;
+        [SerializeField] private int damage = 1;
+        [Range(0, 1)][SerializeField] private float criticalChance = .05f;
+        [SerializeField] private float criticalMultiplier = 2f;
+        [SerializeField] private float hitForce = 10f;
 
         public override void Initialize(GameObject skillUser)
         {
             // Initialize then trigger skill
-            if (userAnim == null)
-            {
-                userAnim = skillUser.GetComponent<Animator>(); // Not sure if null check is needed
-            }
-            if (userStats == null)
-            {
-                userStats = skillUser.GetComponent<CharacterStats>(); // Not sure if null check is needed
-            }
+            userAnim = skillUser.GetComponent<Animator>(); // Not sure if null check is needed
+            userStats = skillUser.GetComponent<CharacterStats>(); // Not sure if null check is needed
             TriggerSkill(skillUser);
         }
 

@@ -11,7 +11,7 @@ namespace Zephyr.Combat
         public Animator userAnim;
         [System.NonSerialized]
         public CharacterStats userStats;
-        public SkillType skillType;
+        public SkillType_SO skillType;
         public string skillName;
         public string skillAnimationName;
         public float skillCooldown;
@@ -31,12 +31,5 @@ namespace Zephyr.Combat
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
         public abstract void ApplySkill(GameObject skillUser, GameObject skillTarget);
-    }
-
-    public enum SkillType
-    {
-        Instant,
-        Charged, 
-        Channelled
     }
 }

@@ -3611,6 +3611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6eaab81282bce41af838b9768b6a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillTypeCharged: {fileID: 11400000, guid: d4cbb5ff4c7865345a9a8af9a12a34b2, type: 2}
 --- !u!95 &914615298
 Animator:
   serializedVersion: 3

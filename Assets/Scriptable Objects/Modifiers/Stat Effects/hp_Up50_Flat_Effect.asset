@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: hp_Up50_Flat_Effect
   m_EditorClassIdentifier: 
   effectName: HP Up Base
-  targetStat: 0
+  targetStat: {fileID: 11400000, guid: 1c555e98057a2da44b1ebbc9bb02c7de, type: 2}
   isPercentage: 0
   modifierValue: 50

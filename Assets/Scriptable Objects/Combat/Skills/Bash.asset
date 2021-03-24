@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59988bb95759494b866df3137c49c1e, type: 3}
   m_Name: Bash
   m_EditorClassIdentifier: 
-  skillType: 0
+  skillType: {fileID: 11400000, guid: 31d89c43f5cc6da4592e2c887d91f109, type: 2}
   skillName: Bash
   skillAnimationName: Bash_Skill
   skillCooldown: 5

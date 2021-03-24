@@ -16,34 +16,16 @@
             switch (targetStat)
             {
                 case StatList.HEALTH:
-                    if (isPercentage)
-                    {
-                        percentHealthMod += value;
-                    }
-                    else
-                    {
-                        flatHealthMod += value;
-                    }
+                    if (isPercentage) { percentHealthMod += value; }
+                    else { flatHealthMod += value; }
                     break;
                 case StatList.MOVESPEED:
-                    if (isPercentage)
-                    {
-                        percentMoveSpeedMod += value;
-                    }
-                    else
-                    {
-                        flatMoveSpeedMod += value;
-                    }
+                    if (isPercentage) { percentMoveSpeedMod += value; }
+                    else { flatMoveSpeedMod += value; }
                     break;
                 case StatList.DAMAGE:
-                    if (isPercentage)
-                    {
-                        percentDamageMod += value;
-                    }
-                    else
-                    {
-                        flatDamageMod += value;
-                    }
+                    if (isPercentage) { percentDamageMod += value; }
+                    else { flatDamageMod += value; }
                     break;
             }
         }

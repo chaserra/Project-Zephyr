@@ -25,10 +25,7 @@ namespace Zephyr.Mods
 
         public void InitializeModifier(ModifierManager modifierManager)
         {
-            if (modManager == null)
-            {
-                modManager = modifierManager;
-            }
+            modManager = modifierManager;
             ApplyStatEffects();
         }
 
