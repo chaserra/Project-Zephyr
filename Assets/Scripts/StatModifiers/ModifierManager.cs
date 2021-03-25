@@ -55,7 +55,10 @@ namespace Zephyr.Mods
             ModifierWrapper existingWrapper = ExistingMod(modifier);
             if (existingWrapper == null) { return; }
             existingWrapper.DeactivateMod();
-            existingWrapper.Mod.RemoveStatEffects();
+            for (int i = 0; i < existingWrapper.CurrentStacks; i++)
+            {
+                existingWrapper.Mod.RemoveStatEffects();
+            }
         }
 
         public void RemoveModifierFromList(Modifier modifier)
@@ -112,15 +115,6 @@ namespace Zephyr.Mods
 
             // Compute Mod Sheet values (total per stat and type of modification)
             characterStats.AggregateStatSheetValues(targetStat, value, isPercentage);
-        }
-        #endregion
-
-        #region Cleanup
-        private void OnDisable()
-        {
-            // Failsafe
-            StopAllCoroutines();
-            modWrappers.Clear();
         }
         #endregion
 
@@ -199,6 +193,15 @@ namespace Zephyr.Mods
                 isActive = false;
             }
 
+        }
+        #endregion
+
+        #region Cleanup
+        private void OnDisable()
+        {
+            // Failsafe
+            StopAllCoroutines();
+            modWrappers.Clear();
         }
         #endregion
 
