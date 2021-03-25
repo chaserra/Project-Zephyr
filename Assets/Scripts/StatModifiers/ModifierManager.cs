@@ -48,10 +48,13 @@ namespace Zephyr.Mods
             }
         }
 
+        /* So far this is only used for debug */
+        /* This specifically targets the RemoveStatEffects method. Might need to delete this method */
         public void RemoveModifier(Modifier modifier)
         {
             ModifierWrapper existingWrapper = ExistingMod(modifier);
             if (existingWrapper == null) { return; }
+            existingWrapper.DeactivateMod();
             existingWrapper.Mod.RemoveStatEffects();
         }
 
@@ -62,6 +65,10 @@ namespace Zephyr.Mods
             existingWrapper.DeactivateMod();
             modWrappers.Remove(existingWrapper);
         }
+
+        // TODO (Modifier Manager): Create remove buffs and remove debuffs methods
+        // Iterate through list of wrappers and check buff type
+        // Pass those wrappers to RemoveModifierFromList
         #endregion
 
         #region Class Helper Methods
@@ -161,6 +168,7 @@ namespace Zephyr.Mods
              **/
             public void ReapplyModifiers()
             {
+                if (currentStacks >= mod.Context.maxStacks) { return; }
                 mod.ApplyStatEffects();
                 currentStacks++;
             }
@@ -178,10 +186,9 @@ namespace Zephyr.Mods
                     duration -= Time.deltaTime;
                     yield return null;
                 }
-                if (!isActive) { yield return null; }
+                if (!isActive) { yield break; } // Prevents negative stacking bug.
                 for (int i = 0; i < currentStacks; i++)
                 {
-                    Debug.Log("Went here");
                     mod.RemoveStatEffects();
                 }
                 isActive = false;
