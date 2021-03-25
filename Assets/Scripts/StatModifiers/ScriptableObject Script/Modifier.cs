@@ -29,16 +29,16 @@ namespace Zephyr.Mods
             ApplyStatEffects();
         }
 
-        private void ApplyStatEffects()
+        public void ApplyStatEffects()
         {
             for (int i = 0; i < statEffects.Length; i++)
             {
                 statEffects[i].ApplyEffect(this);
             }
-            modManager.StartCoroutine(StartModDuration());
+            //modManager.StartCoroutine(StartModDuration());
         }
 
-        private void Tick()
+        public void Tick()
         {
             // Do DoT stuff
         }
@@ -50,18 +50,6 @@ namespace Zephyr.Mods
                 statEffects[i].RemoveEffect(this);
             }
             modManager.RemoveModifierFromList(this);
-        }
-
-        IEnumerator StartModDuration()
-        {
-            if (!context.hasDuration) { yield break; }
-            // TODO (Mods): Check if stackable. If not, reset duration.
-            while (context.duration > 0)
-            {
-                context.duration -= Time.deltaTime;
-                yield return null;
-            }
-            RemoveStatEffects();
         }
     }
 }
