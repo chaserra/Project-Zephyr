@@ -12,7 +12,7 @@ namespace Zephyr.Mods
         private CharacterStats characterStats;
 
         // State
-        [SerializeField] private List<ModifierWrapper> modWrappers = new List<ModifierWrapper>(); // TODO (cleanup): Remove serializefield
+        private List<ModifierWrapper> modWrappers = new List<ModifierWrapper>();
 
         private void Awake()
         {
@@ -29,15 +29,14 @@ namespace Zephyr.Mods
                 // Check if stackable
                 if (existingWrapper.Mod.Context.isStackable) 
                 {
-                    // Reset duration
-                    existingWrapper.Duration = modifier.Context.duration;
-                    // Stack buff to the list
+                    // Reset duration then stack buff to the list
+                    existingWrapper.ResetModDuration();
                     existingWrapper.ReapplyModifiers();
                 } 
                 else
                 {
                     // Reset duration
-                    existingWrapper.Duration = modifier.Context.duration;
+                    existingWrapper.ResetModDuration();
                 }
             }
             else // If mod is new
@@ -45,19 +44,6 @@ namespace Zephyr.Mods
                 ModifierWrapper newWrapper = WrapModifier(modifier);
                 modWrappers.Add(newWrapper);
                 newWrapper.InitializeWrapper();
-            }
-        }
-
-        /* So far this is only used for debug */
-        /* This specifically targets the RemoveStatEffects method. Might need to delete this method */
-        public void RemoveModifier(Modifier modifier)
-        {
-            ModifierWrapper existingWrapper = ExistingMod(modifier);
-            if (existingWrapper == null) { return; }
-            existingWrapper.DeactivateMod();
-            for (int i = 0; i < existingWrapper.CurrentStacks; i++)
-            {
-                existingWrapper.Mod.RemoveStatEffects();
             }
         }
 
@@ -69,9 +55,36 @@ namespace Zephyr.Mods
             modWrappers.Remove(existingWrapper);
         }
 
-        // TODO (Modifier Manager): Create remove buffs and remove debuffs methods
-        // Iterate through list of wrappers and check buff type
-        // Pass those wrappers to RemoveModifierFromList
+        /**
+         * Removes Buffs or Debuffs (Type-specific)
+         **/
+        public void RemoveModType(ModType type)
+        {
+            // Iterate through list of wrappers
+            for (int i = modWrappers.Count - 1; i >= 0; i--)
+            {
+                // Compare mod type
+                if (modWrappers[i].Mod.Context.modType == type)
+                {
+                    RemoveModifier(modWrappers[i].Mod);
+                }
+            }
+        }
+
+        /** 
+         * Remove target modifier 
+         **/
+        public void RemoveModifier(Modifier modifier)
+        {
+            ModifierWrapper existingWrapper = ExistingMod(modifier);
+            if (existingWrapper == null) { return; }
+            existingWrapper.DeactivateMod();
+            for (int i = 0; i < existingWrapper.CurrentStacks; i++)
+            {
+                // Remove effect stacks
+                existingWrapper.Mod.RemoveStatEffects();
+            }
+        }
         #endregion
 
         #region Class Helper Methods
@@ -95,7 +108,7 @@ namespace Zephyr.Mods
         }
 
         /** 
-         * Wraps Mod in a Wrapper for internal management 
+         * Wraps Mod in a Wrapper for internal management
         **/
         private ModifierWrapper WrapModifier(Modifier mod)
         {
@@ -118,7 +131,7 @@ namespace Zephyr.Mods
         }
         #endregion
 
-        #region ModifierWrapper SUBCLASS
+        #region SUBCLASS ModifierWrapper
         /**
         * Modifier Wrappers act as containers for Modifier scriptable objects
         * This makes it possible to separately keep track of instances of modifiers
@@ -135,7 +148,7 @@ namespace Zephyr.Mods
 
             // Properties
             public Modifier Mod { get { return mod; } }
-            public float Duration { get { return duration; } set { duration = value; } }
+            public float Duration { get { return duration; } }
             public int CurrentStacks { get { return currentStacks; } }
 
             // Constructor
@@ -167,6 +180,11 @@ namespace Zephyr.Mods
                 currentStacks++;
             }
 
+            public void ResetModDuration()
+            {
+                duration = mod.Context.duration;
+            }
+
             /**
              * Duration countdown. Only starts if mod is initialized (new mod)
              * Called only when initialized to prevent Coroutine effect stacking (faster timer bug)
@@ -183,6 +201,7 @@ namespace Zephyr.Mods
                 if (!isActive) { yield break; } // Prevents negative stacking bug.
                 for (int i = 0; i < currentStacks; i++)
                 {
+                    // Remove effect stacks
                     mod.RemoveStatEffects();
                 }
                 isActive = false;

@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
   m_Name: Stun
   m_EditorClassIdentifier: 
+  modName: Stun
   context:
     isActive: 0
     hasDuration: 1
     duration: 2
+    isStackable: 0
+    maxStacks: 0
+    modType: 1
   target: 1
   statEffects:
   - {fileID: 11400000, guid: 7e7ff3222ffd9214bae074745a5cc76d, type: 2}

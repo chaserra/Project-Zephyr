@@ -37,9 +37,12 @@ public class DebugControls : MonoBehaviour
         {
             for (int i = 0; i < mods_M.Length; i++)
             {
-                //if (mods_M[i].Context.hasDuration) { return; }
                 modMgr.RemoveModifier(mods_M[i]);
             }
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            modMgr.RemoveModType(ModType.DEBUFF);
         }
     }
 }

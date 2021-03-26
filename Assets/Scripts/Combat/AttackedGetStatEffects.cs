@@ -31,6 +31,7 @@ namespace Zephyr.Combat
                 if (attackSkillMods[i].Target == ValidTargets.TARGET)
                 {
                     modMgr.AddModifier(attackSkillMods[i]);
+                    Debug.Log("Stat effect afflicted " + attackSkillMods[i].ModifierName);
                 }
             }
         }

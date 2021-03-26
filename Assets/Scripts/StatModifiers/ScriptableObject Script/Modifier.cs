@@ -8,7 +8,7 @@ namespace Zephyr.Mods
     public class Modifier : ScriptableObject
     {
         // Parameters
-        // TODO (SO BUG): Find way to reference these outside of the SO script
+        [SerializeField] private string modName;
         [SerializeField] private ModifierContext context;
         [SerializeField] private ValidTargets target;
         [SerializeField] private StatEffect[] statEffects;
@@ -17,6 +17,7 @@ namespace Zephyr.Mods
         private ModifierManager modManager;
 
         #region Properties
+        public string ModifierName { get { return modName; } }
         public ModifierManager ModManager { get { return modManager; } }
         public ModifierContext Context { get { return context; } }
         public ValidTargets Target { get { return target; } }
@@ -35,7 +36,6 @@ namespace Zephyr.Mods
             {
                 statEffects[i].ApplyEffect(this);
             }
-            //modManager.StartCoroutine(StartModDuration());
         }
 
         public void Tick()

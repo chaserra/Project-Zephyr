@@ -6,12 +6,11 @@ namespace Zephyr.Combat
 {
     public abstract class Skill : ScriptableObject
     {
-        // TODO (SO BUG): Find way to reference these outside of the SO script
         [System.NonSerialized]
         public Animator userAnim;
         [System.NonSerialized]
         public CharacterStats userStats;
-        public SkillType_SO skillType;
+        public SkillType skillType;
         public string skillName;
         public string skillAnimationName;
         public float skillCooldown;
