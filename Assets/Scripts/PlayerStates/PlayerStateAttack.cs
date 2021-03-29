@@ -27,7 +27,8 @@ namespace Zephyr.Player.Combat
         IEnumerator TransitionState(PlayerController player)
         {
             // TODO (Attacks): Possibly change this to animation based instead of a coroutine
-            skill.Initialize(player.Anim);
+            skill.Initialize(player.gameObject);
+            // TODO (Combat): Create an attack, then pass to target
             yield return new WaitForSeconds(.5f); // Better change this to wait for animation to end
             player.ResetCurrentSkill();
             player.TransitionState(player.MoveState);

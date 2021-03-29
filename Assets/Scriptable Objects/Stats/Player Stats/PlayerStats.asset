@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentMaxHealth: 0
   currentHealth: 80
   moveSpeed: 6.5
-  currentMoveSpeed: 0
+  baseDamage: 5
   turnSmoothTime: 0.08
-  currentTurnSmoothTime: 0
+  equippedWeapon: {fileID: 11400000, guid: 4c10b462cb68fff4c9b2a5fea01855e5, type: 2}

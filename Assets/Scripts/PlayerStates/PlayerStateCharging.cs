@@ -102,7 +102,7 @@ namespace Zephyr.Player.Combat
         {
             chargePercent = 0f;
             fullyCharged = false;
-            player.ResetCurrentSkill();
+            //player.ResetCurrentSkill(); // Not needed? Skill automatically resets after attack state
         }
 
     }

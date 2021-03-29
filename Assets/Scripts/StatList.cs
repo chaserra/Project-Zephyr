@@ -1,5 +1,6 @@
 ﻿public enum StatList
 {
     HEALTH,
-    MOVESPEED
+    MOVESPEED,
+    DAMAGE
 }
