@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59988bb95759494b866df3137c49c1e, type: 3}
   m_Name: Slash
   m_EditorClassIdentifier: 
-  skillType: {fileID: 11400000, guid: 31d89c43f5cc6da4592e2c887d91f109, type: 2}
+  skillType: 0
   skillName: Slash
   skillAnimationName: Slash_Skill
   skillCooldown: 0.5
@@ -25,7 +25,7 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   chanceToApplyMods: 0.5
   mods:
-  - {fileID: 11400000, guid: 6a2f6003594c3fa4ba6a51db021e51e8, type: 2}
+  - {fileID: 11400000, guid: 88e57c164060f3f4baae2de7619a2b0c, type: 2}
   damage: 1
   criticalChance: 0.05
   criticalMultiplier: 2
