@@ -24,7 +24,6 @@ namespace Zephyr.Combat
         public bool skillRealeaseWhenFullyCharged;
         public bool skillMustFullyCharge;
         [Header("Skill Modifiers")]
-        [Range(0, 1)] public float chanceToApplyMods; // Design: Not sure if chance should be per mod or per skill
         public Modifier[] mods;
 
         public abstract void Initialize(GameObject skillUser);

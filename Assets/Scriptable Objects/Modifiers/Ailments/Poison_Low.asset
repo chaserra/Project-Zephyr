@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
-  m_Name: Damage_Up
+  m_Name: Poison_Low
   m_EditorClassIdentifier: 
-  modName: Damage Boost
+  modName: Poison
   context:
     isActive: 0
     hasDuration: 1
-    duration: 5
-    isStackable: 1
-    maxStacks: 5
-    modType: 0
-    procChance: 1
-  target: 0
+    duration: 30
+    isStackable: 0
+    maxStacks: 0
+    modType: 1
+    procChance: 0.2
+  target: 1
   statEffects:
-  - {fileID: 11400000, guid: c1db861fae92a034183eeb10b154dc49, type: 2}
+  - {fileID: 11400000, guid: f52710929ea7271458f9005015301a5f, type: 2}

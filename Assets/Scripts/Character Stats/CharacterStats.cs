@@ -62,7 +62,7 @@ namespace Zephyr.Stats
         public void TakeDamage(int amount)
         {
             characterStats.TakeDamage(amount);
-
+            Debug.Log(gameObject.name + " takes " + amount + " damage");
         }
         #endregion
 

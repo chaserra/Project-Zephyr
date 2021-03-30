@@ -8,7 +8,6 @@ namespace Zephyr.Mods
     public class StatEffect_BooleanStatus : StatEffect
     {
         public bool flag;
-        [Range(0, 1)] public float procChance;
 
         public override void ApplyEffect(Modifier mod)
         {

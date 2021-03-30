@@ -135,7 +135,6 @@ namespace Zephyr.Stats
             GameObject weaponPrefab = Instantiate(weapon.weaponPrefab, weaponSlot.transform);
             weaponPrefab.layer = weaponSlot.gameObject.layer;
 
-            // TODO (Weapon): Recompute damage values
             baseDamage += weapon.damage;
         }
 
@@ -148,7 +147,6 @@ namespace Zephyr.Stats
             Destroy(weaponSlot.transform.GetChild(0).gameObject);
             equippedWeapon = null;
 
-            // TODO (Weapon): Recompute damage values
             baseDamage = originalBaseDamage;
         }
         #endregion

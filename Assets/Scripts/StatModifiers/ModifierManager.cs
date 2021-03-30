@@ -19,9 +19,21 @@ namespace Zephyr.Mods
             characterStats = GetComponent<CharacterStats>();
         }
 
+        private void Update()
+        {
+            if (modWrappers.Count < 1) { return; }
+            foreach (ModifierWrapper wrapper in modWrappers)
+            {
+                wrapper.Mod.Tick();
+            }
+        }
+
         #region MODIFIER MANAGEMENT
         public void AddModifier(Modifier modifier)
         {
+            // Roll for proc
+            if (!modifier.ProcModifier()) { return; }
+
             ModifierWrapper existingWrapper = ExistingMod(modifier);
 
             if (existingWrapper != null) // If mod exists
@@ -45,6 +57,7 @@ namespace Zephyr.Mods
                 modWrappers.Add(newWrapper);
                 newWrapper.InitializeWrapper();
             }
+            Debug.Log("Stat effect " + modifier.ModifierName + " activated for " + gameObject.name);
         }
 
         public void RemoveModifierFromList(Modifier modifier)
@@ -53,6 +66,7 @@ namespace Zephyr.Mods
             if (existingWrapper == null) { return; }
             existingWrapper.DeactivateMod();
             modWrappers.Remove(existingWrapper);
+            Debug.Log("Stat effect " + modifier.ModifierName + " removed from " + gameObject.name);
         }
 
         /**
@@ -117,7 +131,7 @@ namespace Zephyr.Mods
         }
         #endregion
 
-        #region STAT MODIFIERS (Buffs, Debuffs)
+        #region MODIFIER ACTIONS
         public void AggregateStatValues(StatList targetStat, float value, bool isPercentage, bool reverseValues)
         {
             // Reverse values for removing stat mods
@@ -128,6 +142,11 @@ namespace Zephyr.Mods
 
             // Compute Mod Sheet values (total per stat and type of modification)
             characterStats.AggregateStatSheetValues(targetStat, value, isPercentage);
+        }
+
+        public void DealDamage(int amount)
+        {
+            characterStats.TakeDamage(amount);
         }
         #endregion
 

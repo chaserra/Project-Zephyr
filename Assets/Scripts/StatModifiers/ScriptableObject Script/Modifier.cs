@@ -40,7 +40,10 @@ namespace Zephyr.Mods
 
         public void Tick()
         {
-            // Do DoT stuff
+            for (int i = 0; i < statEffects.Length; i++)
+            {
+                statEffects[i].Tick(this);
+            }
         }
 
         public void RemoveStatEffects()
@@ -51,5 +54,12 @@ namespace Zephyr.Mods
             }
             modManager.RemoveModifierFromList(this);
         }
+
+        public bool ProcModifier()
+        {
+            bool applyMods = Random.value < context.procChance;
+            return applyMods;
+        }
+
     }
 }
