@@ -7,34 +7,25 @@ namespace Zephyr.Mods
     [CreateAssetMenu(fileName = "NewStatModifier", menuName = "Mods/Stat Effects/Damage Over-Time")]
     public class StatEffect_DamageOverTime : StatEffect
     {
+        public Ailment targetAilment;
         public float tickInterval;
         public int damagePerTick;
 
-        private float tickTimer = 0;
-        private bool active = false;
-
-        public override void ApplyEffect(Modifier mod)
+        public override void ApplyEffect(ModifierManager modManager)
         {
-            active = true;
+            // Find poison in ailment list (from mod manager) then activate there
+            modManager.AilmentsList.InitializeAilment(targetAilment, this);
         }
 
-        public override void RemoveEffect(Modifier mod)
+        public override void RemoveEffect(ModifierManager modManager)
         {
-            active = false;
+            // Find poison in ailment list (from mod manager) then deactivate there
+            modManager.AilmentsList.RemoveAilment(targetAilment);
         }
 
-        public override void Tick(Modifier mod)
+        public override void Tick(ModifierManager modManager)
         {
-            // TODO (DoT): Fix bug. SO should not track timers as this will affect all other objects
-            if (active)
-            {
-                if (tickTimer <= 0)
-                {
-                    mod.ModManager.DealDamage(damagePerTick);
-                    tickTimer = tickInterval;
-                }
-                tickTimer -= Time.deltaTime;
-            }
+            
         }
 
     }

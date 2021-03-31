@@ -47,7 +47,7 @@ namespace Zephyr.Mods {
         public void ReapplyModifiers()
         {
             if (currentStacks >= mod.Context.maxStacks) { return; }
-            mod.ApplyStatEffects();
+            mod.ApplyStatEffects(modMgr);
             currentStacks++;
         }
 
@@ -73,7 +73,7 @@ namespace Zephyr.Mods {
             for (int i = 0; i < currentStacks; i++)
             {
                 // Remove effect stacks
-                mod.RemoveStatEffects();
+                mod.RemoveStatEffects(modMgr);
             }
             isActive = false;
         }

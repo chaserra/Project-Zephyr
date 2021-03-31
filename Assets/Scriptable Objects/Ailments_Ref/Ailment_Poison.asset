@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16cd7ede7362660428bbcfe4045c6a34, type: 3}
-  m_Name: ailment_Poison_5dmg
+  m_Script: {fileID: 11500000, guid: f2b93a80fa1d35d48b95aec3cf7a0b51, type: 3}
+  m_Name: Ailment_Poison
   m_EditorClassIdentifier: 
-  effectName: Poison Effect
-  targetAilment: {fileID: 11400000, guid: 4388b5d85e64e194aa237ddc3fd8741c, type: 2}
-  tickInterval: 5
-  damagePerTick: 2
+  ailmentName: Poison
+  tickInterval: 0
+  tickTimer: 0
+  isActive: 0

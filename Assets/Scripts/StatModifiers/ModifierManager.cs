@@ -10,21 +10,36 @@ namespace Zephyr.Mods
     {
         // Cache
         private CharacterStats characterStats;
+        [SerializeField] private AilmentsList ailmentsList_Template;
+        [SerializeField] private AilmentsList ailmentsList; // TODO (cleanup): remove SerializeField
 
         // State
         private List<ModifierWrapper> modWrappers = new List<ModifierWrapper>();
+        
+        // Properties
+        public AilmentsList AilmentsList { get { return ailmentsList; } }
 
         private void Awake()
         {
             characterStats = GetComponent<CharacterStats>();
+            if (ailmentsList_Template == null) { Debug.LogWarning("Missing Ailments List for " + gameObject.name); return; }
+            ailmentsList = Instantiate(ailmentsList_Template);
+            ailmentsList.Initialize(this);
         }
 
         private void Update()
         {
-            if (modWrappers.Count < 1) { return; }
-            foreach (ModifierWrapper wrapper in modWrappers)
+            if (modWrappers.Count > 0)
             {
-                wrapper.Mod.Tick();
+                foreach (ModifierWrapper wrapper in modWrappers)
+                {
+                    wrapper.Mod.Tick(this);
+                }
+            }
+
+            if (ailmentsList != null)
+            {
+                ailmentsList.Tick();
             }
         }
 
@@ -57,16 +72,7 @@ namespace Zephyr.Mods
                 modWrappers.Add(newWrapper);
                 newWrapper.InitializeWrapper();
             }
-            Debug.Log("Stat effect " + modifier.ModifierName + " activated for " + gameObject.name);
-        }
-
-        public void RemoveModifierFromList(Modifier modifier)
-        {
-            ModifierWrapper existingWrapper = ExistingMod(modifier);
-            if (existingWrapper == null) { return; }
-            existingWrapper.DeactivateMod();
-            modWrappers.Remove(existingWrapper);
-            Debug.Log("Stat effect " + modifier.ModifierName + " removed from " + gameObject.name);
+            Debug.Log("Stat effect " + modifier.name + " added to " + gameObject.name);
         }
 
         /**
@@ -96,8 +102,20 @@ namespace Zephyr.Mods
             for (int i = 0; i < existingWrapper.CurrentStacks; i++)
             {
                 // Remove effect stacks
-                existingWrapper.Mod.RemoveStatEffects();
+                existingWrapper.Mod.RemoveStatEffects(this);
             }
+        }
+
+        /** 
+         * Called by Modifier. Removes mod from manager's list after all effects are removed. 
+         **/
+        public void RemoveModifierFromList(Modifier modifier)
+        {
+            ModifierWrapper existingWrapper = ExistingMod(modifier);
+            if (existingWrapper == null) { return; }
+            existingWrapper.DeactivateMod();
+            modWrappers.Remove(existingWrapper);
+            Debug.Log("Stat effect " + modifier.name + " removed from " + gameObject.name);
         }
         #endregion
 

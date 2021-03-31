@@ -9,17 +9,17 @@ namespace Zephyr.Mods
     {
         public bool flag;
 
-        public override void ApplyEffect(Modifier mod)
+        public override void ApplyEffect(ModifierManager modManager)
         {
             // Initialize and add this effect
         }
 
-        public override void Tick(Modifier mod)
+        public override void Tick(ModifierManager modManager)
         {
             // Apply effect over time
         }
 
-        public override void RemoveEffect(Modifier mod)
+        public override void RemoveEffect(ModifierManager modManager)
         {
             // Remove / reverse this effect
         }

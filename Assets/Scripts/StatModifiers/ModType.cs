@@ -3,4 +3,5 @@
     BUFF, 
     DEBUFF, 
     PERMANENT,
+    AILMENT,
 }

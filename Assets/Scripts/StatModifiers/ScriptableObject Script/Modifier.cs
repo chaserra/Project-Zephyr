@@ -13,44 +13,39 @@ namespace Zephyr.Mods
         [SerializeField] private ValidTargets target;
         [SerializeField] private StatEffect[] statEffects;
 
-        // State
-        private ModifierManager modManager;
-
         #region Properties
         public string ModifierName { get { return modName; } }
-        public ModifierManager ModManager { get { return modManager; } }
         public ModifierContext Context { get { return context; } }
         public ValidTargets Target { get { return target; } }
         public StatEffect[] StatEffects { get { return statEffects; } }
         #endregion
 
-        public void InitializeModifier(ModifierManager modifierManager)
+        public void InitializeModifier(ModifierManager modManager)
         {
-            modManager = modifierManager;
-            ApplyStatEffects();
+            ApplyStatEffects(modManager);
         }
 
-        public void ApplyStatEffects()
+        public void ApplyStatEffects(ModifierManager modManager)
         {
             for (int i = 0; i < statEffects.Length; i++)
             {
-                statEffects[i].ApplyEffect(this);
+                statEffects[i].ApplyEffect(modManager);
             }
         }
 
-        public void Tick()
+        public void Tick(ModifierManager modManager)
         {
             for (int i = 0; i < statEffects.Length; i++)
             {
-                statEffects[i].Tick(this);
+                statEffects[i].Tick(modManager);
             }
         }
 
-        public void RemoveStatEffects()
+        public void RemoveStatEffects(ModifierManager modManager)
         {
             for (int i = 0; i < statEffects.Length; i++)
             {
-                statEffects[i].RemoveEffect(this);
+                statEffects[i].RemoveEffect(modManager);
             }
             modManager.RemoveModifierFromList(this);
         }
