@@ -166,6 +166,11 @@ namespace Zephyr.Mods
         {
             characterStats.TakeDamage(amount);
         }
+
+        public void DealPercentDamage(float amount)
+        {
+            characterStats.TakePercentageDamage(amount);
+        }
         #endregion
 
         #region Cleanup

@@ -7,6 +7,11 @@ namespace Zephyr.Mods
     [CreateAssetMenu(fileName = "NewModifier", menuName = "Mods/Modifier")]
     public class Modifier : ScriptableObject
     {
+#if UNITY_EDITOR
+        [Multiline]
+        public string DeveloperNotes;
+        [Space]
+#endif
         // Parameters
         [SerializeField] private string modName;
         [SerializeField] private ModifierContext context;

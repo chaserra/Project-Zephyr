@@ -16,11 +16,11 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            isActive = true;
-            //TODO (Ailment): Decouple!
-            StatEffect_DamageOverTime burn = (StatEffect_DamageOverTime)statEffect;
+            var burn = statEffect as StatEffect_DamageOverTime;
+            if (burn == null) { return; }
             damagePerTick = burn.damagePerTick;
             tickInterval = burn.tickInterval;
+            isActive = true;
         }
 
         public override void RemoveAilment()

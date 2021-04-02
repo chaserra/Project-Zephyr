@@ -6,6 +6,11 @@ namespace Zephyr.Mods
 {
     public abstract class Ailment : ScriptableObject
     {
+#if UNITY_EDITOR
+        [Multiline]
+        public string DeveloperNotes;
+        [Space]
+#endif
         protected ModifierManager modManager;
         public string ailmentName;
         protected float tickInterval;

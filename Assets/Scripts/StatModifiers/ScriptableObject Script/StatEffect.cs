@@ -6,6 +6,11 @@ namespace Zephyr.Mods
 {
     public abstract class StatEffect : ScriptableObject, IStatEffect
     {
+#if UNITY_EDITOR
+        [Multiline]
+        public string DeveloperNotes;
+        [Space]
+#endif
         public string effectName;
 
         public abstract void ApplyEffect(ModifierManager modManager); // Initialize and add this effect

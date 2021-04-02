@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2b93a80fa1d35d48b95aec3cf7a0b51, type: 3}
   m_Name: Ailment_Poison
   m_EditorClassIdentifier: 
+  DeveloperNotes: Poison deals PERCENT damage
   ailmentName: Poison
-  tickInterval: 0
-  tickTimer: 0
-  isActive: 0

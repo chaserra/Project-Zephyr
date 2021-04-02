@@ -13,13 +13,11 @@ namespace Zephyr.Mods
 
         public override void ApplyEffect(ModifierManager modManager)
         {
-            // Find poison in ailment list (from mod manager) then activate there
             modManager.AilmentsList.InitializeAilment(targetAilment, this);
         }
 
         public override void RemoveEffect(ModifierManager modManager)
         {
-            // Find poison in ailment list (from mod manager) then deactivate there
             modManager.AilmentsList.RemoveAilment(targetAilment);
         }
 

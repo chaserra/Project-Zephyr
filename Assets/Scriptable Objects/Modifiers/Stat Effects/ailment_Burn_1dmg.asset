@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16cd7ede7362660428bbcfe4045c6a34, type: 3}
   m_Name: ailment_Burn_1dmg
   m_EditorClassIdentifier: 
+  DeveloperNotes: 
   effectName: Burn Effect
   targetAilment: {fileID: 11400000, guid: 2daa469ee5a24d8469a8080beb877ba6, type: 2}
   tickInterval: 2

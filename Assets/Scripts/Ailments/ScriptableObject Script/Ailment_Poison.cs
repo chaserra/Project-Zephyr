@@ -7,7 +7,7 @@ namespace Zephyr.Mods
     [CreateAssetMenu(fileName = "Ailment_Poison", menuName = "Mods/Ailment/Poison")]
     public class Ailment_Poison : Ailment
     {
-        private int damagePerTick = 0;
+        private float damagePerTick = 0;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
@@ -15,11 +15,11 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            isActive = true;
-            //TODO (Ailment): Decouple!
-            StatEffect_DamageOverTime poison = (StatEffect_DamageOverTime)statEffect;
+            var poison = statEffect as StatEffect_DamageOverTime;
+            if (poison == null) { return; }
             damagePerTick = poison.damagePerTick;
             tickInterval = poison.tickInterval;
+            isActive = true;
         }
 
         public override void RemoveAilment()
@@ -36,8 +36,7 @@ namespace Zephyr.Mods
             {
                 if (tickTimer <= 0)
                 {
-                    // TODO (Poison): Make poison % damage
-                    modManager.DealDamage(damagePerTick);
+                    modManager.DealPercentDamage(damagePerTick);
                     tickTimer = tickInterval;
                 }
                 tickTimer -= Time.deltaTime;

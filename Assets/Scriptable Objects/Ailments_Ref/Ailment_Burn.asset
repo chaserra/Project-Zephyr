@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af9ce6ed72bc56c4788091c13c73ce2c, type: 3}
   m_Name: Ailment_Burn
   m_EditorClassIdentifier: 
+  DeveloperNotes: 'Burn deals FLAT damage
+
+    Spreads to nearby targets'
   ailmentName: Burn
-  tickInterval: 0
-  tickTimer: 0
-  isActive: 0
