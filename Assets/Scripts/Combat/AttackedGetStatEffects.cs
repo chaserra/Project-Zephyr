@@ -22,16 +22,11 @@ namespace Zephyr.Combat
             
             if (attackSkillMods.Length < 1) { return; }
 
-            bool applyMods = Random.value < attack.SkillUsed.chanceToApplyMods;
-
-            if (!applyMods) { return; }
-
             for (int i = 0; i < attackSkillMods.Length; i++)
             {
                 if (attackSkillMods[i].Target == ValidTargets.TARGET)
                 {
                     modMgr.AddModifier(attackSkillMods[i]);
-                    Debug.Log("Stat effect afflicted " + attackSkillMods[i].ModifierName);
                 }
             }
         }

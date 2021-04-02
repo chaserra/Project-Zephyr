@@ -7,49 +7,59 @@ namespace Zephyr.Mods
     [CreateAssetMenu(fileName = "NewModifier", menuName = "Mods/Modifier")]
     public class Modifier : ScriptableObject
     {
+#if UNITY_EDITOR
+        [Multiline]
+        public string DeveloperNotes;
+        [Space]
+#endif
         // Parameters
         [SerializeField] private string modName;
         [SerializeField] private ModifierContext context;
         [SerializeField] private ValidTargets target;
         [SerializeField] private StatEffect[] statEffects;
 
-        // State
-        private ModifierManager modManager;
-
         #region Properties
         public string ModifierName { get { return modName; } }
-        public ModifierManager ModManager { get { return modManager; } }
         public ModifierContext Context { get { return context; } }
         public ValidTargets Target { get { return target; } }
         public StatEffect[] StatEffects { get { return statEffects; } }
         #endregion
 
-        public void InitializeModifier(ModifierManager modifierManager)
+        public void InitializeModifier(ModifierManager modManager)
         {
-            modManager = modifierManager;
-            ApplyStatEffects();
+            ApplyStatEffects(modManager);
         }
 
-        public void ApplyStatEffects()
+        public void ApplyStatEffects(ModifierManager modManager)
         {
             for (int i = 0; i < statEffects.Length; i++)
             {
-                statEffects[i].ApplyEffect(this);
+                statEffects[i].ApplyEffect(modManager);
             }
         }
 
-        public void Tick()
-        {
-            // Do DoT stuff
-        }
-
-        public void RemoveStatEffects()
+        public void Tick(ModifierManager modManager)
         {
             for (int i = 0; i < statEffects.Length; i++)
             {
-                statEffects[i].RemoveEffect(this);
+                statEffects[i].Tick(modManager);
+            }
+        }
+
+        public void RemoveStatEffects(ModifierManager modManager)
+        {
+            for (int i = 0; i < statEffects.Length; i++)
+            {
+                statEffects[i].RemoveEffect(modManager);
             }
             modManager.RemoveModifierFromList(this);
         }
+
+        public bool ProcModifier()
+        {
+            bool applyMods = Random.value < context.procChance;
+            return applyMods;
+        }
+
     }
 }

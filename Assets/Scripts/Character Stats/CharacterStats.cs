@@ -62,7 +62,13 @@ namespace Zephyr.Stats
         public void TakeDamage(int amount)
         {
             characterStats.TakeDamage(amount);
+            Debug.Log(gameObject.name + " takes " + amount + " damage");
+        }
 
+        public void TakePercentageDamage(float amount)
+        {
+            float damage = characterStats.currentMaxHealth * (amount / 100);
+            TakeDamage(Mathf.RoundToInt(damage));
         }
         #endregion
 

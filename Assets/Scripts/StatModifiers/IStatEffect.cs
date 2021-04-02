@@ -2,8 +2,8 @@
 {
     public interface IStatEffect
     {
-        void ApplyEffect(Modifier mod);
-        void Tick(Modifier mod);
-        void RemoveEffect(Modifier mod);
+        void ApplyEffect(ModifierManager modManager);
+        void Tick(ModifierManager modManager);
+        void RemoveEffect(ModifierManager modManager);
     }
 }

@@ -43,6 +43,7 @@ public class DebugControls : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             modMgr.RemoveModType(ModType.DEBUFF);
+            modMgr.RemoveModType(ModType.AILMENT);
         }
     }
 }

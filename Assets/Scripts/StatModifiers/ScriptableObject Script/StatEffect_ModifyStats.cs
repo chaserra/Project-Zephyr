@@ -11,19 +11,19 @@ namespace Zephyr.Mods
         public bool isPercentage;
         public float modifierValue;
 
-        public override void ApplyEffect(Modifier mod)
+        public override void ApplyEffect(ModifierManager modManager)
         {
-            mod.ModManager.AggregateStatValues(targetStat, modifierValue, isPercentage, false);
+            modManager.AggregateStatValues(targetStat, modifierValue, isPercentage, false);
         }
 
-        public override void Tick(Modifier mod)
+        public override void Tick(ModifierManager modManager)
         {
             // Apply effect over time
         }
 
-        public override void RemoveEffect(Modifier mod)
+        public override void RemoveEffect(ModifierManager modManager)
         {
-            mod.ModManager.AggregateStatValues(targetStat, modifierValue, isPercentage, true);
+            modManager.AggregateStatValues(targetStat, modifierValue, isPercentage, true);
         }
     }
 }

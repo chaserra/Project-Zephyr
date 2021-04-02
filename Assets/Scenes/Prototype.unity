@@ -3611,7 +3611,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad6eaab81282bce41af838b9768b6a99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillTypeCharged: {fileID: 11400000, guid: d4cbb5ff4c7865345a9a8af9a12a34b2, type: 2}
 --- !u!95 &914615298
 Animator:
   serializedVersion: 3
@@ -3661,6 +3660,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa159b52ed465494294d1c0be94e0d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ailmentsList_Template: {fileID: 11400000, guid: ed54159cf07019243924ecd2faa86224,
+    type: 2}
+  ailmentsList: {fileID: 0}
 --- !u!114 &914615301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3679,7 +3681,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
   - {fileID: 11400000, guid: 36c6bf973d7804e4c9c2322d844e01d3, type: 2}
   mods_Comma:
-  - {fileID: 11400000, guid: d563725b080567341b7df027195b5380, type: 2}
+  - {fileID: 11400000, guid: 39b9fc479d1ae4e44b591b30c2641b46, type: 2}
+  - {fileID: 11400000, guid: b314195d797b43a4d8081616d23c559b, type: 2}
 --- !u!136 &914615302
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7851,6 +7854,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa159b52ed465494294d1c0be94e0d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ailmentsList_Template: {fileID: 11400000, guid: ed54159cf07019243924ecd2faa86224,
+    type: 2}
+  ailmentsList: {fileID: 0}
 --- !u!114 &1863028894
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ MonoBehaviour:
     duration: 5
     isStackable: 1
     maxStacks: 2
+    modType: 0
+    procChance: 1
   target: 0
   statEffects:
   - {fileID: 11400000, guid: 64a4e650a4907fc4e97624201ef0c2d7, type: 2}

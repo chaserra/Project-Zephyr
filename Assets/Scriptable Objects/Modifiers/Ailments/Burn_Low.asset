@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
-  m_Name: Damage_Up
+  m_Name: Burn_Low
   m_EditorClassIdentifier: 
-  modName: Damage Boost
+  DeveloperNotes: 
+  modName: Burn
   context:
     isActive: 0
     hasDuration: 1
-    duration: 5
-    isStackable: 1
-    maxStacks: 5
-    modType: 0
+    duration: 15
+    isStackable: 0
+    maxStacks: 0
+    modType: 3
     procChance: 1
-  target: 0
+  target: 1
   statEffects:
-  - {fileID: 11400000, guid: c1db861fae92a034183eeb10b154dc49, type: 2}
+  - {fileID: 11400000, guid: 9edee481a3be2004fba4e2247e7b0325, type: 2}
