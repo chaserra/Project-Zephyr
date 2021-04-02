@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperNotes: 'Burn deals FLAT damage
 
-    Spreads to nearby targets'
+    Damage intensifies per tick
+
+    Spreads
+    to nearby targets'
   ailmentName: Burn

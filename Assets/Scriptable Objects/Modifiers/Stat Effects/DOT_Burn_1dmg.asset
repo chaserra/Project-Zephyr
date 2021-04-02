@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16cd7ede7362660428bbcfe4045c6a34, type: 3}
-  m_Name: ailment_Burn_1dmg
+  m_Script: {fileID: 11500000, guid: eb71faf6eae668b4c90ba409f1f4ebc7, type: 3}
+  m_Name: DOT_Burn_1dmg
   m_EditorClassIdentifier: 
   DeveloperNotes: 
   effectName: Burn Effect
   targetAilment: {fileID: 11400000, guid: 2daa469ee5a24d8469a8080beb877ba6, type: 2}
-  tickInterval: 2
+  tickInterval: 3
   damagePerTick: 1
+  damageMultiplierPerTick: 1.5

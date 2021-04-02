@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Zephyr.Mods
 {
-    [CreateAssetMenu(fileName = "NewAilmentList", menuName = "Mods/Ailment/MasterList")]
+    [CreateAssetMenu(fileName = "NewAilmentList", menuName = "Mods/Ailment_Ref/MasterList")]
     public class AilmentsList : ScriptableObject
     {
         private ModifierManager modManager;
@@ -12,6 +12,7 @@ namespace Zephyr.Mods
         [SerializeField] private List<Ailment> ailmentsList_Template;
         [SerializeField] private List<Ailment> ailmentsList; // TODO (cleanup): remove SerializeField
 
+        #region SETUP
         public void Initialize(ModifierManager modMgr)
         {
             modManager = modMgr;
@@ -20,10 +21,10 @@ namespace Zephyr.Mods
                 ailmentsList.Add(Instantiate(ailment));
             }
         }
+        #endregion
 
         public void InitializeAilment(Ailment ailmentToFind, StatEffect statEffect)
         {
-            //TODO (Ailment): Target the effect properly!!
             foreach (Ailment ailment in ailmentsList)
             {
                 if (ailmentToFind.ailmentName == ailment.ailmentName)
@@ -31,12 +32,10 @@ namespace Zephyr.Mods
                     ailment.InitializeAilment(modManager, statEffect);
                 }
             }
-            //ailmentsList.Find(x => ailmentToFind).InitializeAilment(modManager, statEffect);
         }
 
         public void RemoveAilment(Ailment ailmentToFind)
         {
-            //TODO (Ailment): Target the effect properly!!
             foreach (Ailment ailment in ailmentsList)
             {
                 if (ailmentToFind.ailmentName == ailment.ailmentName)
@@ -44,7 +43,6 @@ namespace Zephyr.Mods
                     ailment.RemoveAilment();
                 }
             }
-            //ailmentsList.Find(x => ailmentToFind).RemoveAilment();
         }
 
         public void Tick()

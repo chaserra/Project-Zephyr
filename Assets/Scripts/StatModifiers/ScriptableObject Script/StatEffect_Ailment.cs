@@ -4,12 +4,10 @@ using UnityEngine;
 
 namespace Zephyr.Mods
 {
-    [CreateAssetMenu(fileName = "NewStatModifier", menuName = "Mods/Stat Effects/Damage Over-Time")]
-    public class StatEffect_DamageOverTime : StatEffect
+    public class StatEffect_Ailment : StatEffect
     {
         public Ailment targetAilment;
         public float tickInterval;
-        public int damagePerTick;
 
         public override void ApplyEffect(ModifierManager modManager)
         {

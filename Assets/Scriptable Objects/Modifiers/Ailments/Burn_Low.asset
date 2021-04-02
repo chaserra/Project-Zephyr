@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
   m_Name: Burn_Low
   m_EditorClassIdentifier: 
+  DeveloperNotes: 
   modName: Burn
   context:
     isActive: 0
     hasDuration: 1
-    duration: 20
+    duration: 15
     isStackable: 0
     maxStacks: 0
     modType: 3
     procChance: 1
   target: 1
   statEffects:
-  - {fileID: 11400000, guid: 83d5fcbd90797f246a3bd3efbb3edd8a, type: 2}
+  - {fileID: 11400000, guid: 9edee481a3be2004fba4e2247e7b0325, type: 2}

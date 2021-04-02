@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace Zephyr.Mods
 {
-    [CreateAssetMenu(fileName = "Ailment_Poison", menuName = "Mods/Ailment/Poison")]
+    [CreateAssetMenu(fileName = "Ailment_Poison", menuName = "Mods/Ailment_Ref/Poison")]
     public class Ailment_Poison : Ailment
     {
-        private float damagePerTick = 0;
+        private float percentDamagePerTick = 0;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
@@ -15,19 +15,19 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            var poison = statEffect as StatEffect_DamageOverTime;
+            var poison = statEffect as DOT_Poison;
             if (poison == null) { return; }
-            damagePerTick = poison.damagePerTick;
             tickInterval = poison.tickInterval;
+            percentDamagePerTick = poison.percentDamagePerTick;
             isActive = true;
         }
 
         public override void RemoveAilment()
         {
             isActive = false;
-            damagePerTick = 0;
             tickInterval = 0;
             tickTimer = 0;
+            percentDamagePerTick = 0;
         }
 
         public override void Tick()
@@ -36,7 +36,7 @@ namespace Zephyr.Mods
             {
                 if (tickTimer <= 0)
                 {
-                    modManager.DealPercentDamage(damagePerTick);
+                    modManager.DealPercentDamage(percentDamagePerTick);
                     tickTimer = tickInterval;
                 }
                 tickTimer -= Time.deltaTime;

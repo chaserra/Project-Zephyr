@@ -56,15 +56,11 @@ namespace Zephyr.Mods
                 // Check if stackable
                 if (existingWrapper.Mod.Context.isStackable) 
                 {
-                    // Reset duration then stack buff to the list
-                    existingWrapper.ResetModDuration();
+                    // Stack buff to the list
                     existingWrapper.ReapplyModifiers();
                 } 
-                else
-                {
-                    // Reset duration
-                    existingWrapper.ResetModDuration();
-                }
+                // Reset duration
+                existingWrapper.ResetModDuration();
             }
             else // If mod is new
             {
