@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
+using Zephyr.Events;
 
 namespace Zephyr.Mods
 {
