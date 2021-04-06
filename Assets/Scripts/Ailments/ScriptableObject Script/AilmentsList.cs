@@ -40,7 +40,7 @@ namespace Zephyr.Mods
             {
                 if (ailmentToFind.ailmentName == ailment.ailmentName)
                 {
-                    ailment.RemoveAilment();
+                    ailment.RemoveAilment(modManager);
                 }
             }
         }

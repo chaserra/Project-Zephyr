@@ -19,7 +19,7 @@ namespace Zephyr.Mods
         protected bool isActive = false;
 
         public abstract void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect);
-        public abstract void RemoveAilment();
+        public abstract void RemoveAilment(ModifierManager modifierManager);
         public abstract void Tick();
     }
 }

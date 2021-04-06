@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
@@ -16,6 +17,9 @@ namespace Zephyr.Mods
 
         // State
         private List<ModifierWrapper> modWrappers = new List<ModifierWrapper>();
+
+        // Events
+        public event Action<StatEffect, bool> OnStatusTrigger;
         
         // Properties
         public AilmentsList AilmentsList { get { return ailmentsList; } }
@@ -167,6 +171,15 @@ namespace Zephyr.Mods
         public void DealPercentDamage(float amount)
         {
             characterStats.TakePercentageDamage(amount);
+        }
+        #endregion
+
+        #region Event Triggering
+        public void InvokeEvent(StatEffect statEffect, bool arg)
+        {
+            // TODO (Stat Effect UI): Trigger UI
+            Debug.Log("Asasd");
+            OnStatusTrigger?.Invoke(statEffect, arg);
         }
         #endregion
 

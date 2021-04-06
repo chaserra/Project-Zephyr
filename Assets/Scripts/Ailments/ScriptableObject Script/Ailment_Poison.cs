@@ -22,7 +22,7 @@ namespace Zephyr.Mods
             isActive = true;
         }
 
-        public override void RemoveAilment()
+        public override void RemoveAilment(ModifierManager modifierManager)
         {
             isActive = false;
             tickInterval = 0;
