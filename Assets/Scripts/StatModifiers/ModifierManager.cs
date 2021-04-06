@@ -170,6 +170,13 @@ namespace Zephyr.Mods
         }
         #endregion
 
+        #region Event Triggering
+        public void InvokeEvent()
+        {
+            // TODO (UI Event): Trigger event
+        }
+        #endregion
+
         #region Cleanup
         private void OnDisable()
         {

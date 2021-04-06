@@ -29,7 +29,7 @@ namespace Zephyr.Mods
             isActive = true;
         }
 
-        public override void RemoveAilment()
+        public override void RemoveAilment(ModifierManager modifierManager)
         {
             isActive = false;
             tickInterval = 0;
@@ -39,7 +39,7 @@ namespace Zephyr.Mods
             damageMultiplier = 0;
         }
 
-        public override void Tick()
+        public override void Tick(ModifierManager modifierManager)
         {
             if (isActive)
             {
