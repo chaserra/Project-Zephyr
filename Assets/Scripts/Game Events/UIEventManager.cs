@@ -6,6 +6,6 @@ namespace Zephyr.Events
 {
     public class UIEventManager : MonoBehaviour
     {
-        
+        // Uhh.... wat do
     }
 }
