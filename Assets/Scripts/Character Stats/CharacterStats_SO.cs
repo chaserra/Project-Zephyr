@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Combat;
+using Zephyr.Util;
 
 namespace Zephyr.Stats
 {
@@ -65,7 +66,7 @@ namespace Zephyr.Stats
             currentMaxHealth = maxHealth;
 
             // Compute percentage value then add flat mod
-            float percentValueMaxHP = maxHealth * PercentageToDecimal(percentage);
+            float percentValueMaxHP = maxHealth * UtilityHelper.PercentageToDecimal(percentage);
             float modifierValueMaxHP = flatValue + percentValueMaxHP;
 
             // Convert to Int
@@ -91,7 +92,7 @@ namespace Zephyr.Stats
             currentMoveSpeed = moveSpeed;
 
             // Compute percentage value then add flat mod
-            float percentValue = moveSpeed * PercentageToDecimal(percentage);
+            float percentValue = moveSpeed * UtilityHelper.PercentageToDecimal(percentage);
             float modifierValue = flatValue + percentValue;
 
             // Apply stat modification
@@ -107,7 +108,7 @@ namespace Zephyr.Stats
             currentDamage = baseDamage;
 
             // Compute percentage value then add flat mod
-            float percentValue = baseDamage * PercentageToDecimal(percentage);
+            float percentValue = baseDamage * UtilityHelper.PercentageToDecimal(percentage);
             float modifierValue = flatValue + percentValue;
 
             int intValueDamage = Mathf.RoundToInt(modifierValue);
@@ -148,13 +149,6 @@ namespace Zephyr.Stats
             equippedWeapon = null;
 
             baseDamage = originalBaseDamage;
-        }
-        #endregion
-
-        #region Helper Functions
-        private float PercentageToDecimal(float percentValue)
-        {
-            return percentValue / 100;
         }
         #endregion
     }

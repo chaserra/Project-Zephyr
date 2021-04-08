@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Zephyr.Events
 {
-    [CreateAssetMenu(fileName = "NewEvent", menuName = "Game Event")]
+    [CreateAssetMenu(fileName = "NewEvent", menuName = "Game Event/Event")]
     public class GameEvent : ScriptableObject
     {
         private List<GameEventListener> listeners = new List<GameEventListener>();

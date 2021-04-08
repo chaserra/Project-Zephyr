@@ -18,6 +18,7 @@ namespace Zephyr.Mods
         private List<ModifierWrapper> modWrappers = new List<ModifierWrapper>();
         
         // Properties
+        public List<ModifierWrapper> ActiveMods { get { return modWrappers; } }
         public AilmentsList AilmentsList { get { return ailmentsList; } }
 
         private void Awake()

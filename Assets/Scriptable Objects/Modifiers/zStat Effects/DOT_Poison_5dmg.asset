@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperNotes: 
   effectName: Poison Effect
+  gameEvent: {fileID: 11400000, guid: 53b9b59f65009d14a94c3aa5b98d8603, type: 2}
   targetAilment: {fileID: 11400000, guid: 4388b5d85e64e194aa237ddc3fd8741c, type: 2}
   tickInterval: 5
   percentDamagePerTick: 5

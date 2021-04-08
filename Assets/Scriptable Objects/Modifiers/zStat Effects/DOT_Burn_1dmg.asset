@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperNotes: 
   effectName: Burn Effect
+  gameEvent: {fileID: 11400000, guid: 6f78dbbb591c485499b174ff2ce9ce32, type: 2}
   targetAilment: {fileID: 11400000, guid: 2daa469ee5a24d8469a8080beb877ba6, type: 2}
   tickInterval: 3
   damagePerTick: 1

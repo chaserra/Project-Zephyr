@@ -2354,9 +2354,11 @@ GameObject:
   m_Component:
   - component: {fileID: 557856428}
   - component: {fileID: 557856432}
-  - component: {fileID: 557856431}
   - component: {fileID: 557856430}
   - component: {fileID: 557856429}
+  - component: {fileID: 557856434}
+  - component: {fileID: 557856433}
+  - component: {fileID: 557856431}
   m_Layer: 5
   m_Name: Mods Panel
   m_TagString: Untagged
@@ -2434,26 +2436,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 557856427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 00e3ab0e2ca2a4842b5bd2639035dfe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
+  Event: {fileID: 11400000, guid: 780fe285ea1aa8d4cb378651273118e0, type: 2}
+  Response:
     m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+      m_Calls:
+      - m_Target: {fileID: 755105558}
+        m_MethodName: ToggleObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &557856432
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2462,6 +2462,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557856427}
   m_CullTransparentMesh: 0
+--- !u!114 &557856433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557856427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e3ab0e2ca2a4842b5bd2639035dfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 6f78dbbb591c485499b174ff2ce9ce32, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 664027164}
+        m_MethodName: ToggleObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &557856434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557856427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e3ab0e2ca2a4842b5bd2639035dfe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 53b9b59f65009d14a94c3aa5b98d8603, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1846061087}
+        m_MethodName: ToggleObject
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &584914620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3279,6 +3333,7 @@ GameObject:
   - component: {fileID: 664027161}
   - component: {fileID: 664027163}
   - component: {fileID: 664027162}
+  - component: {fileID: 664027164}
   m_Layer: 5
   m_Name: Burn Image
   m_TagString: Untagged
@@ -3342,6 +3397,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664027160}
   m_CullTransparentMesh: 0
+--- !u!114 &664027164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 664027160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2240a3685128c894c8be42912c163e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3539,6 +3606,7 @@ GameObject:
   - component: {fileID: 755105555}
   - component: {fileID: 755105557}
   - component: {fileID: 755105556}
+  - component: {fileID: 755105558}
   m_Layer: 5
   m_Name: Speed Down Image
   m_TagString: Untagged
@@ -3602,6 +3670,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755105554}
   m_CullTransparentMesh: 0
+--- !u!114 &755105558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755105554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2240a3685128c894c8be42912c163e10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &828289849
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,6 +3890,7 @@ GameObject:
   - component: {fileID: 914615305}
   - component: {fileID: 914615304}
   - component: {fileID: 914615301}
+  - component: {fileID: 914615306}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -3999,6 +4080,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 937b529c6040e0c4e94f490ffa9f41de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &914615306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914615293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0257921e396b96d478ab07b4804a1650, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventList: {fileID: 11400000, guid: 2fbf491b6dd11994cb9cd534d0a40a44, type: 2}
 --- !u!1 &932937968
 GameObject:
   m_ObjectHideFlags: 0
@@ -8215,7 +8309,6 @@ GameObject:
   - component: {fileID: 1846061084}
   - component: {fileID: 1846061086}
   - component: {fileID: 1846061085}
-  - component: {fileID: 1846061088}
   - component: {fileID: 1846061087}
   m_Layer: 5
   m_Name: Poison Image
@@ -8289,51 +8382,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1846061083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e3ab0e2ca2a4842b5bd2639035dfe4, type: 3}
+  m_Script: {fileID: 11500000, guid: 2240a3685128c894c8be42912c163e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 80c510132298b13428b73ded403ea1cb, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1846061083}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1846061088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1846061083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e3ab0e2ca2a4842b5bd2639035dfe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: c418770fa839f0e4198434ac43764c48, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1846061083}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!1 &1863028889
 GameObject:
   m_ObjectHideFlags: 0
