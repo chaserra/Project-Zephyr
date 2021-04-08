@@ -8,5 +8,10 @@ namespace Zephyr.Util
         {
             gameObject.SetActive(!gameObject.activeSelf);
         }
+
+        public void ToggleObject(bool arg)
+        {
+            gameObject.SetActive(arg);
+        }
     }
 }

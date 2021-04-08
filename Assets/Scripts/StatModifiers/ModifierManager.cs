@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
@@ -16,6 +17,7 @@ namespace Zephyr.Mods
 
         // State
         private List<ModifierWrapper> modWrappers = new List<ModifierWrapper>();
+        public static event Action OnModifierChange;
         
         // Properties
         public List<ModifierWrapper> ActiveMods { get { return modWrappers; } }
@@ -71,6 +73,7 @@ namespace Zephyr.Mods
                 newWrapper.InitializeWrapper();
             }
             Debug.Log("Stat effect " + modifier.name + " added to " + gameObject.name);
+            OnModifierChange?.Invoke();
         }
 
         /**
@@ -102,6 +105,7 @@ namespace Zephyr.Mods
                 // Remove effect stacks
                 existingWrapper.Mod.RemoveStatEffects(this);
             }
+            OnModifierChange?.Invoke();
         }
 
         /** 
