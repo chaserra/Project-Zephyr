@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.UI;
 
 namespace Zephyr.Events
 {
@@ -13,6 +14,14 @@ namespace Zephyr.Events
             for (int i = listeners.Count - 1; i >= 0; i--)
             {
                 listeners[i].OnEventRaised();
+            }
+        }
+
+        public void Raise(UIStatEffect_SO effect_SO)
+        {
+            for (int i = listeners.Count - 1; i >= 0; i--)
+            {
+                listeners[i].OnEventRaised(effect_SO);
             }
         }
 

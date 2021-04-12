@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
-using Zephyr.Events;
+using Zephyr.UI;
 
 namespace Zephyr.Mods
 {
@@ -16,6 +16,7 @@ namespace Zephyr.Mods
 
         // State
         private List<ModifierWrapper> modWrappers = new List<ModifierWrapper>();
+        private UIEventManager uiEventManager;
         
         // Properties
         public List<ModifierWrapper> ActiveMods { get { return modWrappers; } }
@@ -24,6 +25,7 @@ namespace Zephyr.Mods
         private void Awake()
         {
             characterStats = GetComponent<CharacterStats>();
+            uiEventManager = GetComponent<UIEventManager>();
             if (ailmentsList_Template == null) { Debug.LogWarning("Missing Ailments List for " + gameObject.name); return; }
             ailmentsList = Instantiate(ailmentsList_Template);
             ailmentsList.Initialize(this);
