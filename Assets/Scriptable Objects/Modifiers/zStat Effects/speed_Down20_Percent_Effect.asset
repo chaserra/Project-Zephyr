@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperNotes: 
   effectName: Speed Down
-  gameEvent: {fileID: 11400000, guid: 780fe285ea1aa8d4cb378651273118e0, type: 2}
+  effectImage: {fileID: 11400000, guid: c56deb643ccbebd449a89cb5b12297aa, type: 2}
   targetStat: 1
   isPercentage: 1
   modifierValue: -20

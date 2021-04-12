@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df96a0bdd69d15641b948c25afd1c4a4, type: 3}
-  m_Name: Event_Burn
+  m_Script: {fileID: 11500000, guid: 2864896fe67628845aedb5f52e3ba221, type: 3}
+  m_Name: Burn_Image
   m_EditorClassIdentifier: 
+  effectImage: {fileID: 1274509828703992897, guid: 2f3e99e6b19036c47a5d811bee10d683,
+    type: 3}
