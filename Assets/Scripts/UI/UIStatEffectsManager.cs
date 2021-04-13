@@ -8,6 +8,7 @@ namespace Zephyr.UI
     public class UIStatEffectsManager : MonoBehaviour
     {
         private List<UIStatEffect_SO> activeStatEffects = new List<UIStatEffect_SO>();
+        private Dictionary<GameObject, string> statEffectImages = new Dictionary<GameObject, string>();
 
         private void OnEnable()
         {
@@ -20,28 +21,55 @@ namespace Zephyr.UI
 
         private void HandleStatEffectUpdate(UIStatEffect_SO effectImage, bool isActive)
         {
-            if (activeStatEffects.Count > 0)
+            // Get effect image KeyValue<GameObject, string> pair
+            GameObject objectImage = effectImage.DisplayImage();
+            string objectRefID = objectImage.GetInstanceID().ToString();
+
+            // Enable stat effect UI
+            if (isActive)
             {
-                if (isActive)
+                // If stat effect is not yet in the list
+                if (!activeStatEffects.Contains(effectImage)) 
                 {
-                    if (activeStatEffects.Contains(effectImage)) { return; }
                     activeStatEffects.Add(effectImage);
-                    effectImage.DisplayImage();
                 }
+
+                // If image prefab is not yet in the dictionary (checked via instance ID string)
+                if (!statEffectImages.ContainsValue(objectRefID))
+                {
+                    // Create new prefab instance in HUD then add to dictionary
+                    GameObject thisObjectImage = Instantiate(objectImage, transform);
+                    statEffectImages.Add(thisObjectImage, objectRefID);
+                }
+                // If image prefab is already in the dictionary (checked via instance ID string)
                 else
                 {
-                    for (int i = activeStatEffects.Count - 1; i >= 0; i--)
-                    {
-                        //TODO (UI Event): Destroy image
-                        activeStatEffects.Remove(effectImage);
-                        return;
-                    }
+                    // Enable image prefab
+                    ProcessEffectImages(objectRefID, isActive);
                 }
             }
+            // Disable stat effect UI
             else
             {
-                activeStatEffects.Add(effectImage);
-                effectImage.DisplayImage();
+                // Remove stat effect SO from the list
+                activeStatEffects.Remove(effectImage);
+
+                // Disable image prefab
+                ProcessEffectImages(objectRefID, isActive);
+            }
+        }
+
+        private void ProcessEffectImages(string objectRefID, bool isActive)
+        {
+            // Iterate through dictionary
+            foreach (KeyValuePair<GameObject, string> img in statEffectImages)
+            {
+                // Compare reference IDs
+                if (img.Value == objectRefID)
+                {
+                    // Toggle image prefab
+                    img.Key.SetActive(isActive);
+                }
             }
         }
 

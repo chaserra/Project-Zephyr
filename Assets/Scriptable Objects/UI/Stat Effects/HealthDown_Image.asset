@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f39419e3aa3dc940ad070ae63069665, type: 3}
-  m_Name: hp_Down5_Percent_Effect
+  m_Script: {fileID: 11500000, guid: 2864896fe67628845aedb5f52e3ba221, type: 3}
+  m_Name: HealthDown_Image
   m_EditorClassIdentifier: 
-  DeveloperNotes: 
-  effectName: HP Down
-  effectImage: {fileID: 11400000, guid: ba849698968982a41b4d3ad9c67c2b9e, type: 2}
-  targetStat: 0
-  isPercentage: 1
-  modifierValue: -5
+  effectImage: {fileID: 4177207197452590772, guid: 1fffe9321067e204ea302e5a4de31d97,
+    type: 3}

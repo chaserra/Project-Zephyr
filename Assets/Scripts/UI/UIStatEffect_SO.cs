@@ -9,10 +9,9 @@ namespace Zephyr.UI
     {
         public GameObject effectImage;
 
-        public void DisplayImage()
+        public GameObject DisplayImage()
         {
-            //TODO (UI Event): Properly display image
-            Instantiate(effectImage);
+            return effectImage;
         }
 
     }
