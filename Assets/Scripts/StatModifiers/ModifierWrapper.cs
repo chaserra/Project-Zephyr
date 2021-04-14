@@ -39,6 +39,7 @@ namespace Zephyr.Mods {
             mod.InitializeModifier(modMgr);
             modMgr.StartCoroutine(StartModDuration());
             currentStacks++;
+            TriggerUIEvent();
         }
 
         /**
@@ -49,6 +50,7 @@ namespace Zephyr.Mods {
             if (currentStacks >= mod.Context.maxStacks) { return; }
             mod.ApplyStatEffects(modMgr);
             currentStacks++;
+            TriggerUIEvent();
         }
 
         public void ResetModDuration()
@@ -81,6 +83,16 @@ namespace Zephyr.Mods {
         public void DeactivateMod()
         {
             isActive = false;
+            TriggerUIEvent();
+        }
+
+        private void TriggerUIEvent()
+        {
+            for (int i = 0; i < mod.StatEffects.Length; i++)
+            {
+                if (mod.StatEffects[i].effectImage == null) { return; }
+                modMgr.InvokeStatEffectUIEvent(mod.StatEffects[i].effectImage, isActive);
+            }
         }
 
     }

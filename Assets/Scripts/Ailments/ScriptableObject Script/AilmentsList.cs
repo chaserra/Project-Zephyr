@@ -40,7 +40,7 @@ namespace Zephyr.Mods
             {
                 if (ailmentToFind.ailmentName == ailment.ailmentName)
                 {
-                    ailment.RemoveAilment();
+                    ailment.RemoveAilment(modManager);
                 }
             }
         }
@@ -50,7 +50,7 @@ namespace Zephyr.Mods
             if (ailmentsList == null) { Debug.LogWarning("No ailments found in " + ailmentsList_Template); return; }
             foreach (Ailment ailment in ailmentsList)
             {
-                ailment.Tick();
+                ailment.Tick(modManager);
             }
         }
 

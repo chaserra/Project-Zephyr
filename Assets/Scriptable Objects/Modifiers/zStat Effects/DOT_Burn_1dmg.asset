@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb71faf6eae668b4c90ba409f1f4ebc7, type: 3}
+  m_Name: DOT_Burn_1dmg
+  m_EditorClassIdentifier: 
+  DeveloperNotes: 
+  effectName: Burn Effect
+  effectImage: {fileID: 11400000, guid: 2be2f54f70e199b49880d7adea99c9f1, type: 2}
+  targetAilment: {fileID: 11400000, guid: 2daa469ee5a24d8469a8080beb877ba6, type: 2}
+  tickInterval: 3
+  damagePerTick: 1
+  damageMultiplierPerTick: 1.5

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
+using Zephyr.UI;
 
 namespace Zephyr.Mods
 {
@@ -12,16 +13,20 @@ namespace Zephyr.Mods
         private CharacterStats characterStats;
         [SerializeField] private AilmentsList ailmentsList_Template;
         [SerializeField] private AilmentsList ailmentsList; // TODO (cleanup): remove SerializeField
+        private UIEventListener eventListener;
 
         // State
+        /** Keeps track of all active mods (wrapped to prevent SO overwriting) **/
         private List<ModifierWrapper> modWrappers = new List<ModifierWrapper>();
         
         // Properties
+        public List<ModifierWrapper> ActiveMods { get { return modWrappers; } }
         public AilmentsList AilmentsList { get { return ailmentsList; } }
 
         private void Awake()
         {
             characterStats = GetComponent<CharacterStats>();
+            eventListener = GetComponent<UIEventListener>();
             if (ailmentsList_Template == null) { Debug.LogWarning("Missing Ailments List for " + gameObject.name); return; }
             ailmentsList = Instantiate(ailmentsList_Template);
             ailmentsList.Initialize(this);
@@ -166,6 +171,15 @@ namespace Zephyr.Mods
         public void DealPercentDamage(float amount)
         {
             characterStats.TakePercentageDamage(amount);
+        }
+        #endregion
+
+        #region Event Triggering
+        /** UI Stat Effect Icons **/
+        public void InvokeStatEffectUIEvent(UIStatEffect_SO statEffectImage, bool arg)
+        {
+            if (eventListener == null) { return; } // Only called if object listens to UI events
+            eventListener.RaiseUIEvent(statEffectImage, arg);
         }
         #endregion
 

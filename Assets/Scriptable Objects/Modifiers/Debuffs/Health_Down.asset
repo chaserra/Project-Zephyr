@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
   m_Name: Health_Down
   m_EditorClassIdentifier: 
+  DeveloperNotes: 
   modName: Health Down
   context:
     isActive: 0
     hasDuration: 1
-    duration: 5
+    duration: 8
     isStackable: 0
     maxStacks: 0
     modType: 1

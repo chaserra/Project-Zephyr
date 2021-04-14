@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
   m_Name: Speed_Down
   m_EditorClassIdentifier: 
+  DeveloperNotes: 
   modName: Speed Down
   context:
     isActive: 0

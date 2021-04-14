@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.UI;
 
 namespace Zephyr.Mods
 {
@@ -12,6 +13,7 @@ namespace Zephyr.Mods
         [Space]
 #endif
         public string effectName;
+        public UIStatEffect_SO effectImage;
 
         public abstract void ApplyEffect(ModifierManager modManager); // Initialize and add this effect
         public abstract void Tick(ModifierManager modManager); // Apply effect over time
