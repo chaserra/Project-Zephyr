@@ -7,9 +7,15 @@ namespace Zephyr.UI
 {
     public class UIStatEffectsManager : MonoBehaviour
     {
+        #region Attributes
+        // List of active stat effects to monitor.
         private List<UIStatEffect_SO> activeStatEffects = new List<UIStatEffect_SO>();
+        
+        // List of UI images. Images are created once then pooled in case stat effects are reactivated
         private Dictionary<GameObject, string> statEffectImages = new Dictionary<GameObject, string>();
+        #endregion
 
+        #region Event Subscription
         private void OnEnable()
         {
             UIEventListener.OnStatEffectUpdate += HandleStatEffectUpdate;
@@ -18,11 +24,12 @@ namespace Zephyr.UI
         {
             UIEventListener.OnStatEffectUpdate -= HandleStatEffectUpdate;
         }
+        #endregion
 
         private void HandleStatEffectUpdate(UIStatEffect_SO effectImage, bool isActive)
         {
             // Get effect image KeyValue<GameObject, string> pair
-            GameObject objectImage = effectImage.DisplayImage();
+            GameObject objectImage = effectImage.GetEffectImage();
             string objectRefID = objectImage.GetInstanceID().ToString();
 
             // Enable stat effect UI
@@ -69,6 +76,7 @@ namespace Zephyr.UI
                 {
                     // Toggle image prefab
                     img.Key.SetActive(isActive);
+                    img.Key.transform.SetAsLastSibling();
                 }
             }
         }

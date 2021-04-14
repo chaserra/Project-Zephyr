@@ -50,6 +50,7 @@ namespace Zephyr.Mods {
             if (currentStacks >= mod.Context.maxStacks) { return; }
             mod.ApplyStatEffects(modMgr);
             currentStacks++;
+            TriggerUIEvent();
         }
 
         public void ResetModDuration()

@@ -21,7 +21,6 @@ MonoBehaviour:
     isStackable: 0
     maxStacks: 0
     modType: 3
-    gameEvent: {fileID: 11400000, guid: 6f78dbbb591c485499b174ff2ce9ce32, type: 2}
     procChance: 1
   target: 1
   statEffects:

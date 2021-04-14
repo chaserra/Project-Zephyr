@@ -175,9 +175,10 @@ namespace Zephyr.Mods
         #endregion
 
         #region Event Triggering
+        /** UI Stat Effect Icons **/
         public void InvokeStatEffectUIEvent(UIStatEffect_SO statEffectImage, bool arg)
         {
-            if (eventListener == null) { return; }
+            if (eventListener == null) { return; } // Only called if object listens to UI events
             eventListener.RaiseUIEvent(statEffectImage, arg);
         }
         #endregion

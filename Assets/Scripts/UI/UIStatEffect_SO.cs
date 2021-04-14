@@ -9,7 +9,7 @@ namespace Zephyr.UI
     {
         public GameObject effectImage;
 
-        public GameObject DisplayImage()
+        public GameObject GetEffectImage()
         {
             return effectImage;
         }

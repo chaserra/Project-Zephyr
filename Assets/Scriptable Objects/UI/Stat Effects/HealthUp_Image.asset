@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f39419e3aa3dc940ad070ae63069665, type: 3}
-  m_Name: dmg_Up75_Percent_Effect
+  m_Script: {fileID: 11500000, guid: 2864896fe67628845aedb5f52e3ba221, type: 3}
+  m_Name: HealthUp_Image
   m_EditorClassIdentifier: 
-  DeveloperNotes: 
-  effectName: Damage Up
-  effectImage: {fileID: 11400000, guid: 4ac931808859ed348a85ee74e7b1d6fc, type: 2}
-  targetStat: 2
-  isPercentage: 1
-  modifierValue: 75
+  effectImage: {fileID: 4177207197452590772, guid: 0a3e5f1d7802e92418cdd4c0dde42ddb,
+    type: 3}
