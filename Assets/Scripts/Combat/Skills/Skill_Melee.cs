@@ -58,7 +58,6 @@ namespace Zephyr.Combat
 
             // TODO (Combat): Compute defender resistance then subtract to coreDmg
 
-            Debug.LogFormat("Critical: {0}", isCritical);
             return new Attack((int)coreDamage, isCritical, this);
         }
 

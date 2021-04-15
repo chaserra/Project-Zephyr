@@ -26,6 +26,6 @@ MonoBehaviour:
   mods:
   - {fileID: 11400000, guid: 39b9fc479d1ae4e44b591b30c2641b46, type: 2}
   damage: 1
-  criticalChance: 0.05
+  criticalChance: 0.1
   criticalMultiplier: 2
   hitForce: 10
