@@ -17,6 +17,9 @@ namespace Zephyr.Combat
 
         public void OnAttacked(GameObject attacker, Attack attack)
         {
+            // If attack is not a skill, do nothing.
+            if (attack.SkillUsed == null) { return; }
+
             Modifier[] attackSkillMods;
             attackSkillMods = attack.SkillUsed.mods;
             

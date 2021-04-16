@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Combat;
 
 namespace Zephyr.Mods
 {
@@ -11,12 +12,15 @@ namespace Zephyr.Mods
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
+            // Cache modManager
             if (modManager == null)
             {
                 modManager = modifierManager;
             }
+            // Cast Stat Effect as DOT
             var poison = statEffect as DOT_Poison;
             if (poison == null) { return; }
+            // Set values obtained from SO
             tickInterval = poison.tickInterval;
             percentDamagePerTick = poison.percentDamagePerTick;
             isActive = true;
@@ -24,6 +28,7 @@ namespace Zephyr.Mods
 
         public override void RemoveAilment(ModifierManager modifierManager)
         {
+            // Reset values
             isActive = false;
             tickInterval = 0;
             tickTimer = 0;
@@ -36,7 +41,12 @@ namespace Zephyr.Mods
             {
                 if (tickTimer <= 0)
                 {
-                    modManager.DealPercentDamage(percentDamagePerTick);
+                    // Get computed damage from health percentage
+                    var computedDamage = modManager.DealPercentDamage(percentDamagePerTick);
+                    // Create attack
+                    var attack = new Attack(computedDamage, damageTextColor);
+
+                    modManager.DealDamage(attack);
                     tickTimer = tickInterval;
                 }
                 tickTimer -= Time.deltaTime;

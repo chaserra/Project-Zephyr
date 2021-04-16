@@ -28,14 +28,14 @@ namespace Zephyr.Combat
             userAnim.SetTrigger(skillAnimationName);
         }
 
-        public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
+        public override void ApplySkill(GameObject skillUser, GameObject attackTarget)
         {
-            CharacterStats targetStats = skillTarget.GetComponent<CharacterStats>();
+            CharacterStats targetStats = attackTarget.GetComponent<CharacterStats>();
             
             if(targetStats != null)
             {
                 var attack = CreateAttack(userStats, targetStats);
-                var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
+                var attackables = attackTarget.GetComponentsInChildren<IAttackable>();
 
                 foreach (IAttackable a in attackables)
                 {

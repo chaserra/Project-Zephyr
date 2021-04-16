@@ -19,3 +19,4 @@ MonoBehaviour:
     Spreads
     to nearby targets'
   ailmentName: Burn
+  damageTextColor: {r: 0.5568628, g: 0.034794718, b: 0.0039215554, a: 1}

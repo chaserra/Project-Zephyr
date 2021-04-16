@@ -10,7 +10,7 @@ namespace Zephyr.Combat
         private List<ScrollingText> texts = new List<ScrollingText>();
 
         public ScrollingText Text;
-        public Color TextColor;
+        public Color DefaultTextColor = Color.red;
 
         public void OnAttacked(GameObject attacker, Attack attack)
         {
@@ -34,12 +34,14 @@ namespace Zephyr.Combat
         private void InitializeText(ScrollingText text, Attack attack)
         {
             string damageText = attack.Damage.ToString();
-            if (attack.IsCritical) { damageText += "!"; }
-            // TODO (damage text): Set critical text to something better like bigger font, different color
+            text.SetColor(attack.TextColor);
+
+            if (attack.IsCritical) {
+                text.SetColor(Color.yellow);
+                damageText += "!"; 
+            }
 
             text.SetText(damageText);
-            text.SetColor(TextColor);
-            // TODO (damage text): Set color depending on what caused the damage
             text.gameObject.SetActive(true);
         }
 

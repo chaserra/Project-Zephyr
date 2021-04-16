@@ -15,6 +15,7 @@ namespace Zephyr.Mods
         public string ailmentName;
         protected float tickInterval;
         protected float tickTimer = 0f;
+        [SerializeField] protected Color damageTextColor = Color.red;
 
         protected bool isActive = false;
 
