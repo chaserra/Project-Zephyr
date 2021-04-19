@@ -6,10 +6,10 @@ namespace Zephyr.Combat
 {
     public abstract class Skill : ScriptableObject
     {
-        [System.NonSerialized]
-        public Animator userAnim;
-        [System.NonSerialized]
-        public CharacterStats userStats;
+        //[System.NonSerialized]
+        //public Animator userAnim;
+        //[System.NonSerialized]
+        //public CharacterStats userStats;
         public SkillType skillType;
         public string skillName;
         public string skillAnimationName;

@@ -3725,7 +3725,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillButtonOne: {fileID: 11400000, guid: 2d72cca43d0a7424c9f44970a46c6f7c, type: 2}
   skillButtonTwo: {fileID: 11400000, guid: f8616f0ab2cd3224aac2d617ab132900, type: 2}
-  skillButtonThree: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
+  skillButtonThree: {fileID: 11400000, guid: 39e1b9d553014e14fab5c159deb382a4, type: 2}
+  skillButtonFour: {fileID: 0}
+  skillButtonFive: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3874,7 +3876,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 2875650150705414853, guid: 016a757e270419b438cdeb12a48de49c, type: 3}
-  TextColor: {r: 0.9622642, g: 0, b: 0, a: 1}
+  DefaultTextColor: {r: 1, g: 0, b: 0, a: 1}
+  amountToPool: 5
 --- !u!1 &932937968
 GameObject:
   m_ObjectHideFlags: 0
@@ -8201,7 +8204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 2875650150705414853, guid: 016a757e270419b438cdeb12a48de49c, type: 3}
-  TextColor: {r: 1, g: 0, b: 0.009691238, a: 1}
+  DefaultTextColor: {r: 1, g: 0, b: 0, a: 1}
+  amountToPool: 5
 --- !u!1 &1879636411
 GameObject:
   m_ObjectHideFlags: 0

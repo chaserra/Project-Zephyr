@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e59988bb95759494b866df3137c49c1e, type: 3}
   m_Name: Spin
   m_EditorClassIdentifier: 
-  skillType: 1
+  skillType: 2
   skillName: Spin
   skillAnimationName: Spin_Skill
   skillCooldown: 10

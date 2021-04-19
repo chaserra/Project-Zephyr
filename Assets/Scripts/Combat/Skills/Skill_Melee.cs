@@ -17,14 +17,13 @@ namespace Zephyr.Combat
         public override void Initialize(GameObject skillUser)
         {
             // Initialize then trigger skill
-            userAnim = skillUser.GetComponent<Animator>(); // Not sure if null check is needed
-            userStats = skillUser.GetComponent<CharacterStats>(); // Not sure if null check is needed
             TriggerSkill(skillUser);
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
             // Do melee skill stuff like trigger animations, etc
+            Animator userAnim = skillUser.GetComponent<Animator>();
             userAnim.SetTrigger(skillAnimationName);
         }
 
@@ -34,6 +33,7 @@ namespace Zephyr.Combat
             
             if(targetStats != null)
             {
+                CharacterStats userStats = skillUser.GetComponent<CharacterStats>();
                 var attack = CreateAttack(userStats, targetStats);
                 var attackables = attackTarget.GetComponentsInChildren<IAttackable>();
 

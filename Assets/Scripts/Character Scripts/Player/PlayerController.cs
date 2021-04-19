@@ -26,6 +26,7 @@ namespace Zephyr.Player
         public readonly PlayerStateMove MoveState = new PlayerStateMove();
         public readonly PlayerStateAttack AttackState = new PlayerStateAttack();
         public readonly PlayerStateCharging ChargingState = new PlayerStateCharging();
+        public readonly PlayerStateChannelling ChannellingState = new PlayerStateChannelling();
         private Dictionary<string, Skill> skillWithKeyMap;
         private Skill currentSkill = null;
         private bool isStunned = false;
@@ -94,6 +95,15 @@ namespace Zephyr.Player
                     // Pass this attack type to ChargingState
                     TransitionState(ChargingState);
                 }
+
+                // Check if skill is a channelled attack
+                else if (currentSkill.skillType == SkillType.Channelled)
+                {
+                    // Pass this attack type to ChannellingState
+                    TransitionState(ChannellingState);
+                }
+
+                // Instant attack
                 else
                 {
                     // Pass this attack type to AttackState

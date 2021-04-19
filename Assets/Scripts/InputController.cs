@@ -10,6 +10,8 @@ namespace Zephyr.Player.Controls
         [SerializeField] Skill skillButtonOne;
         [SerializeField] Skill skillButtonTwo;
         [SerializeField] Skill skillButtonThree;
+        [SerializeField] Skill skillButtonFour;
+        [SerializeField] Skill skillButtonFive;
 
         // State
         private float horizontal;
@@ -43,9 +45,17 @@ namespace Zephyr.Player.Controls
             {
                 return GetKeyMappedToSkill("Fire2", skillButtonTwo);
             }
-            else if (Input.GetButtonDown("Jump") && skillButtonThree != null)
+            else if (Input.GetButtonDown("Fire3") && skillButtonThree != null)
             {
-                return GetKeyMappedToSkill("Jump", skillButtonThree);
+                return GetKeyMappedToSkill("Fire3", skillButtonThree);
+            }
+            else if (Input.GetButtonDown("Fire4") && skillButtonFour != null)
+            {
+                return GetKeyMappedToSkill("Fire4", skillButtonFour);
+            }
+            else if (Input.GetButtonDown("Jump") && skillButtonFive != null)
+            {
+                return GetKeyMappedToSkill("Jump", skillButtonFive);
             }
             else
             {
