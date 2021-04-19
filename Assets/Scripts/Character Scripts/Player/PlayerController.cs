@@ -123,6 +123,7 @@ namespace Zephyr.Player
         }
 
         #region Interface Methods
+        // Hit other Combatants
         public void Hit(GameObject attackTarget)
         {
             if (currentSkill == null) { return; }

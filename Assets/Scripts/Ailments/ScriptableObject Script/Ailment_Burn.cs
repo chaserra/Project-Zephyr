@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Combat;
 
 namespace Zephyr.Mods
 {
@@ -16,12 +17,15 @@ namespace Zephyr.Mods
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
+            // Cache modManager
             if (modManager == null)
             {
                 modManager = modifierManager;
             }
+            // Cast Stat Effect as DOT
             var burn = statEffect as DOT_Burn;
             if (burn == null) { return; }
+            // Set values obtained from SO
             tickInterval = burn.tickInterval;
             damagePerTick = burn.damagePerTick;
             baseDamagePerTick = burn.damagePerTick;
@@ -31,6 +35,7 @@ namespace Zephyr.Mods
 
         public override void RemoveAilment(ModifierManager modifierManager)
         {
+            // Reset values
             isActive = false;
             tickInterval = 0;
             tickTimer = 0;
@@ -46,9 +51,15 @@ namespace Zephyr.Mods
                 // TODO (Burn): Add code that will affect other nearby enemies (rng chance)
                 if (tickTimer <= 0)
                 {
-                    modManager.DealDamage(damagePerTick);
+                    // Create attack
+                    var attack = new Attack(damagePerTick, damageTextColor);
+
+                    modManager.DealDamage(attack);
+
+                    // Increment next burn damage tick
                     float newDamage = baseDamagePerTick * damageMultiplier;
                     damagePerTick += Mathf.RoundToInt(newDamage);
+
                     tickTimer = tickInterval;
                 }
                 tickTimer -= Time.deltaTime;

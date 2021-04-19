@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Combat;
 using Zephyr.Stats;
 using Zephyr.UI;
 
@@ -73,7 +74,8 @@ namespace Zephyr.Mods
                 modWrappers.Add(newWrapper);
                 newWrapper.InitializeWrapper();
             }
-            Debug.Log("Stat effect " + modifier.name + " added to " + gameObject.name);
+            // TODO (cleanup): Remove debug
+            // Debug.Log("Stat effect " + modifier.name + " added to " + gameObject.name);
         }
 
         /**
@@ -116,7 +118,8 @@ namespace Zephyr.Mods
             if (existingWrapper == null) { return; }
             existingWrapper.DeactivateMod();
             modWrappers.Remove(existingWrapper);
-            Debug.Log("Stat effect " + modifier.name + " removed from " + gameObject.name);
+            // TODO (cleanup): Remove debug
+            //Debug.Log("Stat effect " + modifier.name + " removed from " + gameObject.name);
         }
         #endregion
 
@@ -163,14 +166,19 @@ namespace Zephyr.Mods
             characterStats.AggregateStatSheetValues(targetStat, value, isPercentage);
         }
 
-        public void DealDamage(int amount)
+        public void DealDamage(Attack attack)
         {
-            characterStats.TakeDamage(amount);
+            var attackables = gameObject.GetComponentsInChildren<IAttackable>();
+
+            foreach (IAttackable a in attackables)
+            {
+                a.OnAttacked(gameObject, attack);
+            }
         }
 
-        public void DealPercentDamage(float amount)
+        public int DealPercentDamage(float amount)
         {
-            characterStats.TakePercentageDamage(amount);
+            return characterStats.TakePercentageDamage(amount);
         }
         #endregion
 
