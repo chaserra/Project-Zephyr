@@ -10,7 +10,7 @@ namespace Zephyr.UI
         // Cache
         private RectTransform rectTransform;
         private TextMeshPro textMesh;
-        private Animator anim;
+        //private Animator anim;
         private Camera mainCam;
         private Transform parentTransform;
 
@@ -26,7 +26,7 @@ namespace Zephyr.UI
         {
             rectTransform = GetComponent<RectTransform>();
             textMesh = GetComponent<TextMeshPro>();
-            anim = GetComponent<Animator>();
+            //anim = GetComponent<Animator>();
             mainCam = Camera.main;
             parentTransform = gameObject.transform.parent;
         }

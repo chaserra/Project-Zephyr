@@ -11,6 +11,19 @@ namespace Zephyr.Combat
 
         public ScrollingText Text;
         public Color DefaultTextColor = Color.red;
+        public int amountToPool = 5;
+
+        private void Start()
+        {
+            // Initial pool at start
+            for (int i = 0; i < amountToPool; i++)
+            {
+                ScrollingText scrollingText = Instantiate(
+                            Text, transform.position, Quaternion.identity, gameObject.transform);
+                scrollingText.gameObject.SetActive(false);
+                texts.Add(scrollingText);
+            }
+        }
 
         public void OnAttacked(GameObject attacker, Attack attack)
         {
