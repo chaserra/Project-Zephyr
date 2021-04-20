@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using Zephyr.Stats;
 using UnityEngine;
+using Zephyr.Stats;
+using Zephyr.Mods;
 
 namespace Zephyr.Combat
 {
@@ -13,6 +14,9 @@ namespace Zephyr.Combat
         [Range(0, 1)][SerializeField] private float criticalChance = .05f;
         [SerializeField] private float criticalMultiplier = 2f;
         [SerializeField] private float hitForce = 10f;
+        [Header("Skill Modifiers")]
+        [Tooltip("Mods to apply upon skill use")]
+        public Modifier[] mods;
 
         public override void Initialize(GameObject skillUser)
         {

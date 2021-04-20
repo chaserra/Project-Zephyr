@@ -3725,8 +3725,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillButtonOne: {fileID: 11400000, guid: 2d72cca43d0a7424c9f44970a46c6f7c, type: 2}
   skillButtonTwo: {fileID: 11400000, guid: f8616f0ab2cd3224aac2d617ab132900, type: 2}
-  skillButtonThree: {fileID: 11400000, guid: 39e1b9d553014e14fab5c159deb382a4, type: 2}
-  skillButtonFour: {fileID: 11400000, guid: 202335f5577777040b2d0b799ca0ec01, type: 2}
+  skillButtonThree: {fileID: 11400000, guid: 59b786d3fcb3bfe4ba9576dd503658c9, type: 2}
+  skillButtonFour: {fileID: 11400000, guid: 240a96e7bf2d9024bac329a18ce0468d, type: 2}
   skillButtonFive: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
