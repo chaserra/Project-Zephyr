@@ -21,10 +21,11 @@ namespace Zephyr.Combat
             if (attack.SkillUsed == null) { return; }
 
             Modifier[] attackSkillMods;
-            var skillMods = attack.SkillUsed as Skill_Melee; // TODO (bug check): Check if this still works even if skill is ranged
-            attackSkillMods = skillMods.mods;
+            attackSkillMods = attack.SkillUsed.mods;
             
             if (attackSkillMods.Length < 1) { return; }
+
+            ModifierManager attackerModManager = attacker.GetComponent<ModifierManager>();
 
             for (int i = 0; i < attackSkillMods.Length; i++)
             {
@@ -36,7 +37,7 @@ namespace Zephyr.Combat
                 // Apply mod to self
                 if (attackSkillMods[i].Target == ValidTargets.SELF)
                 {
-                    attacker.GetComponent<ModifierManager>().AddModifier(attackSkillMods[i]);
+                    attackerModManager.AddModifier(attackSkillMods[i]);
                 }
             }
         }

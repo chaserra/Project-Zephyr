@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
   m_Name: Health_Up_Minor
   m_EditorClassIdentifier: 
-  DeveloperNotes: 
-  modName: 
+  DeveloperNotes: Flat +10 HP
+  modName: Minor Health Boost
   context:
     isActive: 0
-    hasDuration: 0
-    duration: 0
-    isStackable: 0
-    maxStacks: 0
+    hasDuration: 1
+    duration: 30
+    isStackable: 1
+    maxStacks: 2
     modType: 0
     procChance: 1
   target: 0
-  statEffects: []
+  statEffects:
+  - {fileID: 11400000, guid: cd98e01d76aabed4b8fdb6f8c92eec89, type: 2}

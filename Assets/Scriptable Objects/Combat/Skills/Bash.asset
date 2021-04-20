@@ -29,4 +29,4 @@ MonoBehaviour:
   hitForce: 25
   mods:
   - {fileID: 11400000, guid: 6a2f6003594c3fa4ba6a51db021e51e8, type: 2}
-  - {fileID: 11400000, guid: d563725b080567341b7df027195b5380, type: 2}
+  - {fileID: 11400000, guid: a2a6a75c55b2d754599fc141c34f9a27, type: 2}

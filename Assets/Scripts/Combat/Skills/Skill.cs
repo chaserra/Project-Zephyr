@@ -26,6 +26,9 @@ namespace Zephyr.Combat
         public bool skillRealeaseWhenFullyCharged;
         [Tooltip("Skill will not cast if not fully charged. Not needed for channelled skills")]
         public bool skillMustFullyCharge;
+        [Header("Skill Modifiers")]
+        [Tooltip("Mods to apply upon skill use")]
+        public Modifier[] mods;
 
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
