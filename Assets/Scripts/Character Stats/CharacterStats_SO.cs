@@ -40,6 +40,15 @@ namespace Zephyr.Stats
 
         #region Stat Increasers
         // Non-buff stat increase (healing, mana regen, etc.)
+        public void TakeHealing(int amount)
+        {
+            int amountToHeal = Mathf.Abs(amount);
+            currentHealth += amountToHeal;
+            if (currentHealth > currentMaxHealth)
+            {
+                currentHealth = currentMaxHealth;
+            }
+        }
         #endregion
 
         #region Stat Decreasers
@@ -47,7 +56,6 @@ namespace Zephyr.Stats
         public void TakeDamage(int amount)
         {
             currentHealth -= amount;
-
             if (currentHealth <= 0)
             {
                 //Die();

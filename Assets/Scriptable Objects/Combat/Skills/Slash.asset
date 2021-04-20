@@ -16,7 +16,7 @@ MonoBehaviour:
   skillName: Slash
   skillAnimationName: Slash_Skill
   skillCooldown: 0.5
-  userCanRotate: 1
+  userCanRotate: 0
   userCanMove: 1
   moveSpeedMultiplier: 0.8
   skillSound: {fileID: 0}

@@ -13,7 +13,7 @@ namespace Zephyr.Mods
             // procs to avoid infinite burn loop
         private int damagePerTick = 0;
         private int baseDamagePerTick = 0;
-        private float damageMultiplier = 0; // TODO (Burn): Find way to make this editable in inspector
+        private float damageMultiplier = 0;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {

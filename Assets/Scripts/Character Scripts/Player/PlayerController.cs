@@ -27,7 +27,7 @@ namespace Zephyr.Player
         public readonly PlayerStateAttack AttackState = new PlayerStateAttack();
         public readonly PlayerStateCharging ChargingState = new PlayerStateCharging();
         public readonly PlayerStateChannelling ChannellingState = new PlayerStateChannelling();
-        private Dictionary<string, Skill> skillWithKeyMap;
+        private Dictionary<string, Skill> skillWithKeyMap = new Dictionary<string, Skill>();
         private Skill currentSkill = null;
         private bool isStunned = false;
 
@@ -58,7 +58,6 @@ namespace Zephyr.Player
             inputController = GetComponent<InputController>();
             anim = GetComponent<Animator>();
             cam = Camera.main;
-            skillWithKeyMap = new Dictionary<string, Skill>();
         }
 
         private void Start()
@@ -103,7 +102,7 @@ namespace Zephyr.Player
                     TransitionState(ChannellingState);
                 }
 
-                // Instant attack
+                // Instant skill
                 else
                 {
                     // Pass this attack type to AttackState
@@ -136,7 +135,7 @@ namespace Zephyr.Player
         // Hit other Combatants
         public void Hit(GameObject attackTarget)
         {
-            if (currentSkill == null) { return; }
+            if (currentSkill == null || currentSkill is Skill_Self) { return; }
             currentSkill.ApplySkill(gameObject, attackTarget);
         }
         #endregion

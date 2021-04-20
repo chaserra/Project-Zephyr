@@ -17,6 +17,5 @@ MonoBehaviour:
   effectImage: {fileID: 11400000, guid: 2be2f54f70e199b49880d7adea99c9f1, type: 2}
   targetAilment: {fileID: 11400000, guid: 2daa469ee5a24d8469a8080beb877ba6, type: 2}
   tickInterval: 3
-  damageTextColor: {r: 0.764151, g: 0.26892897, b: 0.025231415, a: 1}
   damagePerTick: 1
   damageMultiplierPerTick: 1.5

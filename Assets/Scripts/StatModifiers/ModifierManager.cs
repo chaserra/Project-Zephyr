@@ -178,7 +178,7 @@ namespace Zephyr.Mods
 
         public int DealPercentDamage(float amount)
         {
-            return characterStats.TakePercentageDamage(amount);
+            return characterStats.GetHealthPercentValue(amount);
         }
         #endregion
 

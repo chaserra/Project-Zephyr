@@ -8,6 +8,6 @@ namespace Zephyr.Mods
     public class DOT_Burn : StatEffect_Ailment
     {
         public int damagePerTick;
-        public float damageMultiplierPerTick;
+        public float damageMultiplierPerTick = 1f;
     }
 }

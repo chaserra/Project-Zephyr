@@ -17,7 +17,13 @@ namespace Zephyr.Combat
 
         public void OnAttacked(GameObject attacker, Attack attack)
         {
-            stats.TakeDamage(attack.Damage);
+            if (attack.Damage < 0) { 
+                stats.TakeHealing(attack.Damage);
+            }
+            else
+            {
+                stats.TakeDamage(attack.Damage);
+            }
         }
     }
 

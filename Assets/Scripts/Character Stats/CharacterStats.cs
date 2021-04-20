@@ -55,6 +55,10 @@ namespace Zephyr.Stats
 
         #region Stat Increasers
         // Non-buff stat increase (healing, mana regen, etc.)
+        public void TakeHealing(int amount)
+        {
+            characterStats.TakeHealing(amount);
+        }
         #endregion
 
         #region Stat Decreasers
@@ -64,10 +68,10 @@ namespace Zephyr.Stats
             characterStats.TakeDamage(amount);
         }
 
-        public int TakePercentageDamage(float amount)
+        public int GetHealthPercentValue(float percentValue)
         {
-            float damage = characterStats.currentMaxHealth * (amount / 100);
-            return Mathf.RoundToInt(damage);
+            float flatValue = characterStats.currentMaxHealth * (percentValue / 100);
+            return Mathf.RoundToInt(flatValue);
         }
         #endregion
 
