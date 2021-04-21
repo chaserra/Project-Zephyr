@@ -42,11 +42,13 @@ namespace Zephyr.Mods
                 if (tickTimer <= 0)
                 {
                     // Get computed damage from health percentage
-                    var computedDamage = modManager.DealPercentDamage(percentDamagePerTick);
-                    // Create attack
-                    var attack = new Attack(computedDamage, damageTextColor);
+                    var computedDamage = modManager.GetHealthPercentage(percentDamagePerTick);
 
+                    // Create attack
+                    var attack = new Attack(computedDamage, textColor);
                     modManager.DealDamage(attack);
+
+                    // Reset tick timer
                     tickTimer = tickInterval;
                 }
                 tickTimer -= Time.deltaTime;

@@ -52,14 +52,14 @@ namespace Zephyr.Mods
                 if (tickTimer <= 0)
                 {
                     // Create attack
-                    var attack = new Attack(damagePerTick, damageTextColor);
-
+                    var attack = new Attack(damagePerTick, textColor);
                     modManager.DealDamage(attack);
 
                     // Increment next burn damage tick
                     float newDamage = baseDamagePerTick * damageMultiplier;
                     damagePerTick += Mathf.RoundToInt(newDamage);
 
+                    // Reset tick timer
                     tickTimer = tickInterval;
                 }
                 tickTimer -= Time.deltaTime;

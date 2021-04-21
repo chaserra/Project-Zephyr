@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2b93a80fa1d35d48b95aec3cf7a0b51, type: 3}
-  m_Name: Ailment_Poison
+  m_Script: {fileID: 11500000, guid: 2864896fe67628845aedb5f52e3ba221, type: 3}
+  m_Name: Blessing_Image
   m_EditorClassIdentifier: 
-  DeveloperNotes: Poison deals PERCENT damage
-  ailmentName: Poison
-  textColor: {r: 0.20894752, g: 0, b: 0.3301887, a: 1}
+  effectImage: {fileID: 1274509828703992897, guid: d72df7bf58906e84d84b0c24f001f0f1,
+    type: 3}

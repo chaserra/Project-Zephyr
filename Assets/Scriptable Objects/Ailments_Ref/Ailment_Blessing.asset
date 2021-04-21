@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2864896fe67628845aedb5f52e3ba221, type: 3}
-  m_Name: HealOverTime_Image
+  m_Script: {fileID: 11500000, guid: 80ae5f2af26e0cc40998339587fee02a, type: 3}
+  m_Name: Ailment_Blessing
   m_EditorClassIdentifier: 
-  effectImage: {fileID: 1274509828703992897, guid: d72df7bf58906e84d84b0c24f001f0f1,
-    type: 3}
+  DeveloperNotes: Heal over-time. Percentage or flat values.
+  ailmentName: Blessing
+  textColor: {r: 0, g: 0.5882353, b: 0, a: 1}

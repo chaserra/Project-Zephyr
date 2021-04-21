@@ -176,7 +176,14 @@ namespace Zephyr.Mods
             }
         }
 
-        public int DealPercentDamage(float amount)
+        public void DealHealing(Attack attack)
+        {
+            // Convert to negative damage value (heal) then pass to DealDamage
+            var newAttack = new Attack(attack.Damage * -1, attack.TextColor);
+            DealDamage(newAttack);
+        }
+
+        public int GetHealthPercentage(float amount)
         {
             return characterStats.GetHealthPercentValue(amount);
         }

@@ -18,4 +18,4 @@ MonoBehaviour:
   targetAilment: {fileID: 11400000, guid: 2daa469ee5a24d8469a8080beb877ba6, type: 2}
   tickInterval: 3
   damagePerTick: 1
-  damageMultiplierPerTick: 1.5
+  damageMultiplierPerTick: 1

@@ -17,9 +17,11 @@ namespace Zephyr.Combat
 
         public void OnAttacked(GameObject attacker, Attack attack)
         {
+            // Getting negative damage means value should heal this object
             if (attack.Damage < 0) { 
                 stats.TakeHealing(attack.Damage);
             }
+            // Positive damage value will damage this object
             else
             {
                 stats.TakeDamage(attack.Damage);

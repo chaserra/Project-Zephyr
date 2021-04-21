@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
-  m_Name: Poison_Low
+  m_Name: Blessing_Low_P
   m_EditorClassIdentifier: 
   DeveloperNotes: 
-  modName: Poison
+  modName: Blessing
   context:
     isActive: 0
     hasDuration: 1
-    duration: 45
+    duration: 60
     isStackable: 0
     maxStacks: 0
-    modType: 3
+    modType: 0
     procChance: 1
-  target: 1
+  target: 0
   statEffects:
-  - {fileID: 11400000, guid: ee481345263a1294b813da3945746ad2, type: 2}
+  - {fileID: 11400000, guid: 48bf8f7dbb04b1f4e8eca28909fdfb78, type: 2}
