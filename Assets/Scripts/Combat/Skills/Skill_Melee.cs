@@ -42,6 +42,7 @@ namespace Zephyr.Combat
                 {
                     a.OnAttacked(skillUser, attack);
                 }
+                TriggerPerks(skillUser, attack, attackTarget);
             }
         }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 using Zephyr.Combat;
 using Zephyr.Stats;
 using Zephyr.UI;
+using Zephyr.Util;
 
 namespace Zephyr.Mods
 {
@@ -53,7 +54,7 @@ namespace Zephyr.Mods
         public void AddModifier(Modifier modifier)
         {
             // Roll for proc
-            if (!modifier.ProcModifier()) { return; }
+            if (!UtilityHelper.RollForProc(modifier.Context.procChance)) { return; }
 
             ModifierWrapper existingWrapper = ExistingMod(modifier);
 
@@ -179,7 +180,7 @@ namespace Zephyr.Mods
         public void DealHealing(Attack attack)
         {
             // Convert to negative damage value (heal) then pass to DealDamage
-            var newAttack = new Attack(attack.Damage * -1, attack.TextColor);
+            var newAttack = new Attack(attack.Damage * -1);
             DealDamage(newAttack);
         }
 

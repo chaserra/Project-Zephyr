@@ -66,7 +66,7 @@ namespace Zephyr.Mods
                         convertedHealValue = Mathf.RoundToInt(healPerTick);
                     }
                     // Create attack
-                    var attack = new Attack(convertedHealValue, textColor);
+                    var attack = new Attack(convertedHealValue);
                     modManager.DealHealing(attack);
 
                     // Increment next heal recovery tick

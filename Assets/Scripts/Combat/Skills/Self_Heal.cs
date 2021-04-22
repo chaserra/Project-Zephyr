@@ -28,8 +28,7 @@ namespace Zephyr.Combat
 
                 healAmount *= -1;
 
-                Color healColor = new Color(0, 150f/255f, 0);
-                var heal = new Attack(Mathf.RoundToInt(healAmount), healColor);
+                var heal = new Attack(Mathf.RoundToInt(healAmount));
 
                 foreach (IAttackable a in attackables)
                 {

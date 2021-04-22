@@ -51,8 +51,14 @@ namespace Zephyr.Combat
             {
                 // Remove negative sign if healing
                 damageText = damageText.Substring(1, damageText.Length - 1);
+                // Color to green
+                text.SetColor(new Color(0, 150f / 255f, 0));
+            } 
+            else
+            {
+                // If not healing, set color to specified color
+                text.SetColor(attack.TextColor);
             }
-            text.SetColor(attack.TextColor);
 
             if (attack.IsCritical) {
                 text.SetColor(Color.yellow);

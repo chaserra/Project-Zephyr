@@ -210,5 +210,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Duration: 1
-  Speed: 2.2
+  Speed: 1.75
   yOffset: 2.1

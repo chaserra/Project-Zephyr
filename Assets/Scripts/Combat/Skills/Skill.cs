@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using Zephyr.Stats;
 using Zephyr.Mods;
+using Zephyr.Perks;
+using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
@@ -29,9 +31,19 @@ namespace Zephyr.Combat
         [Header("Skill Modifiers")]
         [Tooltip("Mods to apply upon skill use")]
         public Modifier[] mods;
+        [Header("Skill Perks")]
+        [Tooltip("Perks to apply upon skill use")]
+        public Perk[] perks;
 
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
         public abstract void ApplySkill(GameObject skillUser, GameObject skillTarget);
+        protected void TriggerPerks(GameObject skillUser, Attack attack, GameObject skillTarget)
+        {
+            for (int i = 0; i < perks.Length; i++)
+            {
+                perks[i].TriggerPerk(skillUser, attack, skillTarget);
+            }
+        }
     }
 }

@@ -55,11 +55,5 @@ namespace Zephyr.Mods
             modManager.RemoveModifierFromList(this);
         }
 
-        public bool ProcModifier()
-        {
-            bool applyMods = Random.value < context.procChance;
-            return applyMods;
-        }
-
     }
 }
