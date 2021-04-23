@@ -14,6 +14,8 @@ namespace Zephyr.Mods
         private int damagePerTick = 0;
         private int baseDamagePerTick = 0;
         private float damageMultiplier = 0;
+        private int maxTickIncrements = 1;
+        private int currentTickIncrements = 0;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
@@ -30,6 +32,7 @@ namespace Zephyr.Mods
             damagePerTick = burn.damagePerTick;
             baseDamagePerTick = burn.damagePerTick;
             damageMultiplier = burn.damageMultiplierPerTick;
+            maxTickIncrements = burn.maxTickIncrements;
             isActive = true;
         }
 
@@ -42,6 +45,8 @@ namespace Zephyr.Mods
             damagePerTick = 0;
             baseDamagePerTick = 0;
             damageMultiplier = 0;
+            maxTickIncrements = 1;
+            currentTickIncrements = 0;
         }
 
         public override void Tick(ModifierManager modifierManager)
@@ -56,8 +61,12 @@ namespace Zephyr.Mods
                     modManager.DealDamage(attack);
 
                     // Increment next burn damage tick
-                    float newDamage = baseDamagePerTick * damageMultiplier;
-                    damagePerTick += Mathf.RoundToInt(newDamage);
+                    if (currentTickIncrements < maxTickIncrements)
+                    {
+                        float newDamage = baseDamagePerTick * damageMultiplier;
+                        damagePerTick += Mathf.RoundToInt(newDamage);
+                        currentTickIncrements++;
+                    }
 
                     // Reset tick timer
                     tickTimer = tickInterval;

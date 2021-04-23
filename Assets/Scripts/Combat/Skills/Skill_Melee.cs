@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
 using Zephyr.Mods;
+using Zephyr.Perks;
 
 namespace Zephyr.Combat
 {
@@ -30,19 +31,39 @@ namespace Zephyr.Combat
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)
         {
+            // Get target stats
             CharacterStats targetStats = attackTarget.GetComponent<CharacterStats>();
             
             if(targetStats != null)
             {
+                // Get target perk manager
+                PerkManager targetPerkMgr = attackTarget.GetComponent<PerkManager>();
+
+                // Get skill user's stats and perk manager
                 CharacterStats userStats = skillUser.GetComponent<CharacterStats>();
+                PerkManager userPerkMgr = skillUser.GetComponent<PerkManager>();
+
+                // Create attack
                 var attack = CreateAttack(userStats, targetStats);
                 var attackables = attackTarget.GetComponentsInChildren<IAttackable>();
 
+                // Apply attack to attackables
                 foreach (IAttackable a in attackables)
                 {
                     a.OnAttacked(skillUser, attack);
                 }
-                TriggerPerks(skillUser, attack, attackTarget);
+
+                // Trigger TARGET's defensive perks
+                if (targetPerkMgr != null)
+                {
+                    targetPerkMgr.TriggerPerk(PerkType.Defense, skillUser, attack, attackTarget);
+                }
+
+                // Trigger USER's attack perks
+                if (userPerkMgr != null)
+                {
+                    userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, attackTarget);
+                }
             }
         }
 

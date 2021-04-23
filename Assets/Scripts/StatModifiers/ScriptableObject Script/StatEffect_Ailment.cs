@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Zephyr.Mods
 {
     public class StatEffect_Ailment : StatEffect
     {
         public Ailment targetAilment;
+        [Tooltip("Applies effect every x seconds.")]
         public float tickInterval;
 
         public override void ApplyEffect(ModifierManager modManager)

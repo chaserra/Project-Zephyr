@@ -17,7 +17,7 @@ MonoBehaviour:
   currentHealth: 140
   moveSpeed: 6.5
   currentMoveSpeed: 6.5
-  baseDamage: 5
-  currentDamage: 5
+  baseDamage: 1
+  currentDamage: 1
   turnSmoothTime: 0.08
   equippedWeapon: {fileID: 11400000, guid: 4c10b462cb68fff4c9b2a5fea01855e5, type: 2}

@@ -20,8 +20,7 @@ namespace Zephyr.Combat
             // If attack is not a skill, do nothing.
             if (attack.SkillUsed == null) { return; }
 
-            Modifier[] attackSkillMods;
-            attackSkillMods = attack.SkillUsed.mods;
+            Modifier[] attackSkillMods = attack.SkillUsed.mods;
             
             if (attackSkillMods.Length < 1) { return; }
 

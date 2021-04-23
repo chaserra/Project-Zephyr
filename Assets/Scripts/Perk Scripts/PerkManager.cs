@@ -7,15 +7,17 @@ namespace Zephyr.Perks
 {
     public class PerkManager : MonoBehaviour
     {
-        // TODO (Perk Manager): Make this work. Perks should be triggered here, not as skill add-on
-        private List<Perk> perks;
+        [SerializeField] private List<Perk> perks;
 
         #region PERK MANAGER ACTIONS
-        public void TriggerPerk(GameObject skillUser, Attack attack, GameObject attackTarget)
+        public void TriggerPerk(PerkType perkType, GameObject skillUser, Attack attack, GameObject attackTarget)
         {
             for (int i = perks.Count - 1; i >= 0; i--)
             {
-                perks[i].TriggerPerk(skillUser, attack, attackTarget);
+                if (perks[i].perkType == perkType)
+                {
+                    perks[i].TriggerPerk(skillUser, attack, attackTarget);
+                }
             }
         }
 

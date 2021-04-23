@@ -65,7 +65,7 @@ namespace Zephyr.Mods
                 {
                     // Stack buff to the list
                     existingWrapper.ReapplyModifiers();
-                } 
+                }
                 // Reset duration
                 existingWrapper.ResetModDuration();
             }
@@ -130,6 +130,9 @@ namespace Zephyr.Mods
         **/
         private ModifierWrapper ExistingMod(Modifier modifier)
         {
+            // TODO HIGH (Ailment Stacking Bug): Do something here? Not sure.
+            // Maybe check if modtype is ailment then do something about that.
+
             // Check each wrapper in the list
             foreach (ModifierWrapper wrapper in modWrappers)
             {

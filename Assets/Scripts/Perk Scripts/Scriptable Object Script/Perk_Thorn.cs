@@ -6,13 +6,13 @@ using Zephyr.Util;
 
 namespace Zephyr.Perks
 {
-    [CreateAssetMenu(fileName = "NewLifesteal", menuName = "Perks/Attack/Lifesteal")]
-    public class Perk_LifeSteal : Perk
+    [CreateAssetMenu(fileName = "NewThorn", menuName = "Perks/Defense/Thorn")]
+    public class Perk_Thorn : Perk
     {
         /**
-         * Lifesteal converts damage dealt to heal the skill user
+         * Thorn returns percent damage back to the attacker/skillUser
          **/
-        public float dmgPercentToHeal;
+        public float dmgPercentToReturn;
 
         public override void TriggerPerk(GameObject skillUser, Attack attack, GameObject attackTarget)
         {
@@ -20,13 +20,13 @@ namespace Zephyr.Perks
             // Calculate proc
             if (!UtilityHelper.RollForProc(chanceToApplyPerk)) { return; }
 
-            // Compute amount to heal
-            int lifeStealAmount = Mathf.RoundToInt(attack.Damage * (dmgPercentToHeal / 100) * -1);
-            if (Mathf.Abs(lifeStealAmount) < 1) { lifeStealAmount = 1; }
+            // Compute amount of damage to return
+            int thornDamageAmount = Mathf.RoundToInt(attack.Damage * (dmgPercentToReturn / 100));
+            if (Mathf.Abs(thornDamageAmount) < 1) { thornDamageAmount = 1; }
 
             // Create new Attack(heal) to pass to IAttackables
-            Attack newAttack = new Attack(lifeStealAmount);
-            
+            Attack newAttack = new Attack(thornDamageAmount);
+
             // Pass attack to all IAttackables in skillUser
             var attackables = skillUser.GetComponentsInChildren<IAttackable>();
             foreach (IAttackable a in attackables)

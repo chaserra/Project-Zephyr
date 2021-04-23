@@ -7,8 +7,14 @@ namespace Zephyr.Perks
 {
     public abstract class Perk : ScriptableObject
     {
+#if UNITY_EDITOR
+        [Multiline]
+        public string DeveloperNotes;
+        [Space]
+#endif
         // Attributes
         public string perkName;
+        public PerkType perkType;
         public ValidTargets perkTarget;
         [Range(0, 1)] public float chanceToApplyPerk = 1f;
         protected bool isActive = true;

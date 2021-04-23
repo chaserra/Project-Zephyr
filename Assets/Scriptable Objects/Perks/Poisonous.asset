@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46f56253af851744bae05dd34e8815f0, type: 3}
-  m_Name: Lifesteal
+  m_Script: {fileID: 11500000, guid: b0b9db1b21ab9c14b9aff06b33fb2d75, type: 3}
+  m_Name: Poisonous
   m_EditorClassIdentifier: 
-  DeveloperNotes: "Lifesteal converts damage to heal the \nskill user"
-  perkName: Lifesteal
-  perkType: 0
-  perkTarget: 0
+  DeveloperNotes: "Contagious passes an ailment to \nthe attacker"
+  perkName: Poisonous
+  perkType: 1
+  perkTarget: 1
   chanceToApplyPerk: 1
-  dmgPercentToHeal: 30
+  ailmentsToInfect:
+  - {fileID: 11400000, guid: 39b9fc479d1ae4e44b591b30c2641b46, type: 2}

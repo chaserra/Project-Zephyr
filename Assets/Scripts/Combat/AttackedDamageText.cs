@@ -47,6 +47,7 @@ namespace Zephyr.Combat
         private void InitializeText(ScrollingText text, Attack attack)
         {
             string damageText = attack.Damage.ToString();
+            // If damage is negative, change text to heal
             if (attack.Damage < 0f)
             {
                 // Remove negative sign if healing
@@ -58,11 +59,12 @@ namespace Zephyr.Combat
             {
                 // If not healing, set color to specified color
                 text.SetColor(attack.TextColor);
-            }
 
-            if (attack.IsCritical) {
-                text.SetColor(Color.yellow);
-                damageText += "!"; 
+                if (attack.IsCritical)
+                {
+                    text.SetColor(Color.yellow);
+                    damageText += "!";
+                }
             }
 
             text.SetText(damageText);

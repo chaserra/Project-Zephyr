@@ -29,6 +29,10 @@ namespace Zephyr.Mods
             {
                 if (ailmentToFind.ailmentName == ailment.ailmentName)
                 {
+                    if (ailment.IsActive) { 
+                        Debug.LogWarning(ailment.ailmentName + " is already active. Do something about this!");
+                        return;
+                    }
                     ailment.InitializeAilment(modManager, statEffect);
                 }
             }
