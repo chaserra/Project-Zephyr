@@ -7,6 +7,8 @@ namespace Zephyr.Mods
     public class StatEffect_Ailment : StatEffect
     {
         public Ailment targetAilment;
+        [Tooltip("Should never be 0. Else this won't trigger.")]
+        public int ailmentLevel = 1;
         [Tooltip("Applies effect every x seconds.")]
         public float tickInterval;
 
@@ -17,7 +19,7 @@ namespace Zephyr.Mods
 
         public override void RemoveEffect(ModifierManager modManager)
         {
-            modManager.AilmentsList.RemoveAilment(targetAilment);
+            modManager.AilmentsList.RemoveAilment(targetAilment, this);
         }
 
         public override void Tick(ModifierManager modManager)

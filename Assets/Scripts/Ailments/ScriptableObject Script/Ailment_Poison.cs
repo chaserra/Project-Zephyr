@@ -9,6 +9,7 @@ namespace Zephyr.Mods
     public class Ailment_Poison : Ailment
     {
         private float percentDamagePerTick = 0;
+        private DOT_Poison poison;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
@@ -17,21 +18,21 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            // Cast Stat Effect as DOT
-            var poison = statEffect as DOT_Poison;
-            if (poison == null) { return; }
+            // Check if ailment is already active
+            if (!CheckAilmentStatus(statEffect, out poison)) { return; }
+
             // Set values obtained from SO
             tickInterval = poison.tickInterval;
             percentDamagePerTick = poison.percentDamagePerTick;
+            currentAilmentLevel = poison.ailmentLevel;
             isActive = true;
         }
 
-        public override void RemoveAilment(ModifierManager modifierManager)
+        public override void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
             // Reset values
-            isActive = false;
-            tickInterval = 0;
-            tickTimer = 0;
+            if (!CheckAilmentStatus(statEffect, out poison)) { return; }
+            ResetBaseAilmentValues();
             percentDamagePerTick = 0;
         }
 

@@ -12,6 +12,7 @@ namespace Zephyr.Mods
         private float baseHealPerTick;
         private float healMultiplierPerTick = 0f;
         private bool isPercentage = false;
+        private HOT_Heal blessing;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
@@ -20,25 +21,26 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            // Cast Stat Effect as DOT
-            var blessing = statEffect as HOT_Heal;
-            if (blessing == null) { return; }
+            // Check if ailment is already active
+            if (!CheckAilmentStatus(statEffect, out blessing)) { return; }
 
             // Set values obtained from SO
             tickInterval = blessing.tickInterval;
-            healPerTick = blessing.healPerTick;
             baseHealPerTick = blessing.healPerTick;
             healMultiplierPerTick = blessing.healMultiplierPerTick;
             isPercentage = blessing.isPercentage;
             isActive = true;
+
+            // Prevent current heal from being overwritten if current heal is higher
+            if (healPerTick > blessing.healPerTick) { return; }
+            healPerTick = blessing.healPerTick;
         }
 
-        public override void RemoveAilment(ModifierManager modifierManager)
+        public override void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
             // Reset Values
-            isActive = false;
-            tickTimer = 0;
-            tickInterval = 0;
+            if (!CheckAilmentStatus(statEffect, out blessing)) { return; }
+            ResetBaseAilmentValues();
             healPerTick = 0f;
             baseHealPerTick = 0f;
             healMultiplierPerTick = 0f;

@@ -29,22 +29,18 @@ namespace Zephyr.Mods
             {
                 if (ailmentToFind.ailmentName == ailment.ailmentName)
                 {
-                    if (ailment.IsActive) { 
-                        Debug.LogWarning(ailment.ailmentName + " is already active. Do something about this!");
-                        return;
-                    }
                     ailment.InitializeAilment(modManager, statEffect);
                 }
             }
         }
 
-        public void RemoveAilment(Ailment ailmentToFind)
+        public void RemoveAilment(Ailment ailmentToFind, StatEffect statEffect)
         {
             foreach (Ailment ailment in ailmentsList)
             {
                 if (ailmentToFind.ailmentName == ailment.ailmentName)
                 {
-                    ailment.RemoveAilment(modManager);
+                    ailment.RemoveAilment(modManager, statEffect);
                 }
             }
         }

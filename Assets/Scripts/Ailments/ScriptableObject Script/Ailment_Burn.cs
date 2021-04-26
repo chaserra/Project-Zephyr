@@ -16,6 +16,7 @@ namespace Zephyr.Mods
         private float damageMultiplier = 0;
         private int maxTickIncrements = 1;
         private int currentTickIncrements = 0;
+        private DOT_Burn burn;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
@@ -24,24 +25,27 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            // Cast Stat Effect as DOT
-            var burn = statEffect as DOT_Burn;
-            if (burn == null) { return; }
+            // Check if ailment is already active
+            if (!CheckAilmentStatus(statEffect, out burn)) { return; }
+
             // Set values obtained from SO
             tickInterval = burn.tickInterval;
-            damagePerTick = burn.damagePerTick;
             baseDamagePerTick = burn.damagePerTick;
             damageMultiplier = burn.damageMultiplierPerTick;
             maxTickIncrements = burn.maxTickIncrements;
+            currentAilmentLevel = burn.ailmentLevel;
             isActive = true;
+
+            // Prevent current burn damage from being overwritten if current damage is higher
+            if (damagePerTick > burn.damagePerTick) { return; }
+            damagePerTick = burn.damagePerTick;
         }
 
-        public override void RemoveAilment(ModifierManager modifierManager)
+        public override void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
             // Reset values
-            isActive = false;
-            tickInterval = 0;
-            tickTimer = 0;
+            if (!CheckAilmentStatus(statEffect, out burn)) { return; }
+            ResetBaseAilmentValues();
             damagePerTick = 0;
             baseDamagePerTick = 0;
             damageMultiplier = 0;

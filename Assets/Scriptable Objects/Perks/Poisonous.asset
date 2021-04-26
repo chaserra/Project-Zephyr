@@ -18,4 +18,4 @@ MonoBehaviour:
   perkTarget: 1
   chanceToApplyPerk: 1
   ailmentsToInfect:
-  - {fileID: 11400000, guid: 39b9fc479d1ae4e44b591b30c2641b46, type: 2}
+  - {fileID: 11400000, guid: 7b3d893000e0de54aa6ffe2caa313cc6, type: 2}

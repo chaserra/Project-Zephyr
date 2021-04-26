@@ -75,8 +75,6 @@ namespace Zephyr.Mods
                 modWrappers.Add(newWrapper);
                 newWrapper.InitializeWrapper();
             }
-            // TODO (cleanup): Remove debug
-            // Debug.Log("Stat effect " + modifier.name + " added to " + gameObject.name);
         }
 
         /**
@@ -119,8 +117,6 @@ namespace Zephyr.Mods
             if (existingWrapper == null) { return; }
             existingWrapper.DeactivateMod();
             modWrappers.Remove(existingWrapper);
-            // TODO (cleanup): Remove debug
-            //Debug.Log("Stat effect " + modifier.name + " removed from " + gameObject.name);
         }
         #endregion
 
@@ -130,9 +126,6 @@ namespace Zephyr.Mods
         **/
         private ModifierWrapper ExistingMod(Modifier modifier)
         {
-            // TODO HIGH (Ailment Stacking Bug): Do something here? Not sure.
-            // Maybe check if modtype is ailment then do something about that.
-
             // Check each wrapper in the list
             foreach (ModifierWrapper wrapper in modWrappers)
             {

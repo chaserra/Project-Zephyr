@@ -17,7 +17,7 @@ MonoBehaviour:
   context:
     isActive: 0
     hasDuration: 1
-    duration: 35
+    duration: 15
     isStackable: 0
     maxStacks: 0
     modType: 3
