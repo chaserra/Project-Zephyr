@@ -5,6 +5,9 @@ using Zephyr.Stats;
 
 namespace Zephyr.Combat
 {
+    /**
+     * Make the object this script is attached on take HP damage.
+     **/
     [RequireComponent(typeof(CharacterStats))]
     public class AttackedTakeDamage : MonoBehaviour, IAttackable
     {

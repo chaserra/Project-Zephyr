@@ -4,7 +4,10 @@ using UnityEngine;
 using Zephyr.Mods;
 
 namespace Zephyr.Combat
-{
+{   
+    /**
+     * Make the object this script is attached on get stat effects from attacks.
+     **/
     [RequireComponent(typeof(ModifierManager))]
     public class AttackedGetStatEffects : MonoBehaviour, IAttackable
     {

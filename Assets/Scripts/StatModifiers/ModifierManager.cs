@@ -117,6 +117,19 @@ namespace Zephyr.Mods
             if (existingWrapper == null) { return; }
             existingWrapper.DeactivateMod();
             modWrappers.Remove(existingWrapper);
+            RecheckAllAilmentStatus();
+        }
+
+        /**
+         * Called after removing a Mod from the list. 
+         * Ensures ongoing lower-level ailments activate if higher ailments' effects have ended / removed
+         **/
+        public void RecheckAllAilmentStatus()
+        {
+            for (int i = modWrappers.Count - 1; i >= 0; i--)
+            {
+                modWrappers[i].ReapplyAilments();
+            }
         }
         #endregion
 

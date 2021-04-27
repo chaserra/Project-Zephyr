@@ -39,7 +39,7 @@ namespace Zephyr.Mods {
             mod.InitializeModifier(modMgr);
             modMgr.StartCoroutine(StartModDuration());
             currentStacks++;
-            TriggerUIEvent();
+            TriggerModUIEvent();
         }
 
         /**
@@ -50,7 +50,7 @@ namespace Zephyr.Mods {
             if (currentStacks >= mod.Context.maxStacks) { return; }
             mod.ApplyStatEffects(modMgr);
             currentStacks++;
-            TriggerUIEvent();
+            TriggerModUIEvent();
         }
 
         public void ResetModDuration()
@@ -81,7 +81,7 @@ namespace Zephyr.Mods {
             isActive = false;
         }
 
-        private void ReapplyAilments()
+        public void ReapplyAilments()
         {
             // Reapply all ailments in mod. Prevents ailments from not stacking
             // This triggers the ailment to check if the ailment level is lower or higher than the current
@@ -90,7 +90,7 @@ namespace Zephyr.Mods {
                 if (mod.StatEffects[i] is StatEffect_Ailment)
                 {
                     mod.StatEffects[i].ApplyEffect(modMgr);
-                    TriggerUIEvent();
+                    TriggerModUIEvent();
                 }
             }
         }
@@ -98,14 +98,13 @@ namespace Zephyr.Mods {
         public void DeactivateMod()
         {
             isActive = false;
-            TriggerUIEvent();
+            TriggerModUIEvent();
         }
 
-        private void TriggerUIEvent()
+        private void TriggerModUIEvent()
         {
             for (int i = 0; i < mod.StatEffects.Length; i++)
             {
-                // TODO HIGH (UI Icon Triggers): Fix this. Ailment disables even though it's still active
                 if (mod.StatEffects[i].effectImage == null) { return; }
                 modMgr.InvokeStatEffectUIEvent(mod.StatEffects[i].effectImage, isActive);
             }

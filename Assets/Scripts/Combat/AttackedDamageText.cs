@@ -5,6 +5,9 @@ using Zephyr.UI;
 
 namespace Zephyr.Combat
 {
+    /**
+     * Add damage text over object where this script is attached.
+     **/
     public class AttackedDamageText : MonoBehaviour, IAttackable
     {
         private List<ScrollingText> texts = new List<ScrollingText>();
@@ -24,6 +27,8 @@ namespace Zephyr.Combat
                 texts.Add(scrollingText);
             }
         }
+
+        // TODO HIGH (Damage Text): Create text queueing system
 
         public void OnAttacked(GameObject attacker, Attack attack)
         {
@@ -68,6 +73,7 @@ namespace Zephyr.Combat
             }
 
             text.SetText(damageText);
+            // TODO HIGH (Damage Text): Add to queue
             text.gameObject.SetActive(true);
         }
 

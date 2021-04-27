@@ -12,6 +12,8 @@ namespace Zephyr.Mods
         [Tooltip("Applies effect every x seconds.")]
         public float tickInterval;
 
+        // TODO LOW (Ailment Levels): Find a way to calculate raw level
+
         public override void ApplyEffect(ModifierManager modManager)
         {
             modManager.AilmentsList.InitializeAilment(targetAilment, this);

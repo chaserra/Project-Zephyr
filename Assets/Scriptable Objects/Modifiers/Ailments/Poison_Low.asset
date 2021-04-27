@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Poison_Low
   m_EditorClassIdentifier: 
   DeveloperNotes: 
-  modName: Poison
+  modName: Poison_Low
   context:
     isActive: 0
     hasDuration: 1
-    duration: 15
+    duration: 30
     isStackable: 0
     maxStacks: 0
     modType: 3
