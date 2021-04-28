@@ -25,6 +25,7 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   mods:
   - {fileID: 11400000, guid: 6a2f6003594c3fa4ba6a51db021e51e8, type: 2}
+  perks: []
   damage: 5
   criticalChance: 0.2
   criticalMultiplier: 2

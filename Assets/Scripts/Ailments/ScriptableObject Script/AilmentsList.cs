@@ -10,7 +10,8 @@ namespace Zephyr.Mods
         private ModifierManager modManager;
 
         [SerializeField] private List<Ailment> ailmentsList_Template;
-        [SerializeField] private List<Ailment> ailmentsList; // TODO (cleanup): remove SerializeField
+        [HideInInspector]
+        public List<Ailment> ailmentsList;
 
         #region SETUP
         public void Initialize(ModifierManager modMgr)
@@ -34,13 +35,13 @@ namespace Zephyr.Mods
             }
         }
 
-        public void RemoveAilment(Ailment ailmentToFind)
+        public void RemoveAilment(Ailment ailmentToFind, StatEffect statEffect)
         {
             foreach (Ailment ailment in ailmentsList)
             {
                 if (ailmentToFind.ailmentName == ailment.ailmentName)
                 {
-                    ailment.RemoveAilment(modManager);
+                    ailment.RemoveAilment(modManager, statEffect);
                 }
             }
         }

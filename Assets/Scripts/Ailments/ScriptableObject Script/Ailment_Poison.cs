@@ -9,6 +9,7 @@ namespace Zephyr.Mods
     public class Ailment_Poison : Ailment
     {
         private float percentDamagePerTick = 0;
+        private DOT_Poison poison;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
@@ -17,21 +18,22 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            // Cast Stat Effect as DOT
-            var poison = statEffect as DOT_Poison;
-            if (poison == null) { return; }
+            // If higher-level ailment is already active, do nothing
+            if (!CheckAilmentStatus(statEffect, out poison)) { return; }
+
             // Set values obtained from SO
             tickInterval = poison.tickInterval;
             percentDamagePerTick = poison.percentDamagePerTick;
+            currentAilmentLevel = poison.ailmentLevel;
             isActive = true;
         }
 
-        public override void RemoveAilment(ModifierManager modifierManager)
+        public override void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
             // Reset values
-            isActive = false;
-            tickInterval = 0;
-            tickTimer = 0;
+            // If higher-level ailment is already active, do nothing
+            if (!CheckAilmentStatus(statEffect, out poison)) { return; }
+            ResetBaseAilmentValues();
             percentDamagePerTick = 0;
         }
 
@@ -42,11 +44,13 @@ namespace Zephyr.Mods
                 if (tickTimer <= 0)
                 {
                     // Get computed damage from health percentage
-                    var computedDamage = modManager.DealPercentDamage(percentDamagePerTick);
-                    // Create attack
-                    var attack = new Attack(computedDamage, damageTextColor);
+                    var computedDamage = modManager.GetHealthPercentage(percentDamagePerTick);
 
+                    // Create attack
+                    var attack = new Attack(computedDamage, textColor);
                     modManager.DealDamage(attack);
+
+                    // Reset tick timer
                     tickTimer = tickInterval;
                 }
                 tickTimer -= Time.deltaTime;

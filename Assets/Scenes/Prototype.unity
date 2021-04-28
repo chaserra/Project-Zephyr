@@ -2435,6 +2435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0afdd9e92e9ad942916b7c4aec8d20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageMasterList: {fileID: 11400000, guid: db68f89eb3620824f88de5f3376b744a, type: 2}
 --- !u!222 &557856432
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3666,6 +3667,7 @@ GameObject:
   - component: {fileID: 914615299}
   - component: {fileID: 914615296}
   - component: {fileID: 914615300}
+  - component: {fileID: 914615304}
   - component: {fileID: 914615306}
   - component: {fileID: 914615303}
   - component: {fileID: 914615305}
@@ -3725,7 +3727,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillButtonOne: {fileID: 11400000, guid: 2d72cca43d0a7424c9f44970a46c6f7c, type: 2}
   skillButtonTwo: {fileID: 11400000, guid: f8616f0ab2cd3224aac2d617ab132900, type: 2}
-  skillButtonThree: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
+  skillButtonThree: {fileID: 11400000, guid: 59b786d3fcb3bfe4ba9576dd503658c9, type: 2}
+  skillButtonFour: {fileID: 11400000, guid: 240a96e7bf2d9024bac329a18ce0468d, type: 2}
+  skillButtonFive: {fileID: 11400000, guid: 646ee24cda921e646be6b23fcc0d61fe, type: 2}
+  skillButtonSix: {fileID: 0}
+  skillButtonSeven: {fileID: 0}
+  skillButtonEight: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3789,7 +3796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ailmentsList_Template: {fileID: 11400000, guid: ed54159cf07019243924ecd2faa86224,
     type: 2}
-  ailmentsList: {fileID: 0}
 --- !u!114 &914615301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3837,6 +3843,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cac225374b3fee42a2028c427c47a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &914615304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914615293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34860809f593bf649ad18dba7b8405d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perks:
+  - {fileID: 11400000, guid: 6bf22a05dd3805847b8f4663f2312982, type: 2}
+  - {fileID: 11400000, guid: 66ee4c2280cfea24b94ba4fb6d1e899a, type: 2}
 --- !u!114 &914615305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3874,7 +3895,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 2875650150705414853, guid: 016a757e270419b438cdeb12a48de49c, type: 3}
-  TextColor: {r: 0.9622642, g: 0, b: 0, a: 1}
+  DefaultTextColor: {r: 1, g: 0, b: 0, a: 1}
+  amountToPool: 5
 --- !u!1 &932937968
 GameObject:
   m_ObjectHideFlags: 0
@@ -8092,6 +8114,7 @@ GameObject:
   - component: {fileID: 1863028892}
   - component: {fileID: 1863028891}
   - component: {fileID: 1863028893}
+  - component: {fileID: 1863028895}
   - component: {fileID: 1863028894}
   - component: {fileID: 1863028896}
   - component: {fileID: 1863028897}
@@ -8163,7 +8186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ailmentsList_Template: {fileID: 11400000, guid: ed54159cf07019243924ecd2faa86224,
     type: 2}
-  ailmentsList: {fileID: 0}
 --- !u!114 &1863028894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8176,6 +8198,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cac225374b3fee42a2028c427c47a1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1863028895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863028889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34860809f593bf649ad18dba7b8405d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perks:
+  - {fileID: 11400000, guid: 66ee4c2280cfea24b94ba4fb6d1e899a, type: 2}
+  - {fileID: 11400000, guid: f6a80a0ec939bcb488113657f307b29e, type: 2}
 --- !u!114 &1863028896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8201,7 +8238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Text: {fileID: 2875650150705414853, guid: 016a757e270419b438cdeb12a48de49c, type: 3}
-  TextColor: {r: 1, g: 0, b: 0.009691238, a: 1}
+  DefaultTextColor: {r: 1, g: 0, b: 0, a: 1}
+  amountToPool: 5
 --- !u!1 &1879636411
 GameObject:
   m_ObjectHideFlags: 0

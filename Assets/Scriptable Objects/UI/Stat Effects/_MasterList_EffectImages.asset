@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440a6d109a986f14d82bd96f96c92863, type: 3}
+  m_Name: _MasterList_EffectImages
+  m_EditorClassIdentifier: 
+  _statEffectImages:
+  - {fileID: 11400000, guid: df2b79aac46252545ba92205774eb2ad, type: 2}
+  - {fileID: 11400000, guid: 2be2f54f70e199b49880d7adea99c9f1, type: 2}
+  - {fileID: 11400000, guid: 75510700f00847f4dbd8ecf4242e2d3c, type: 2}
+  - {fileID: 11400000, guid: 4ac931808859ed348a85ee74e7b1d6fc, type: 2}
+  - {fileID: 11400000, guid: ba849698968982a41b4d3ad9c67c2b9e, type: 2}
+  - {fileID: 11400000, guid: e7e708bdb23cc15459ba75951883c207, type: 2}
+  - {fileID: 11400000, guid: fc00f1546b723e24687cdd482738933d, type: 2}
+  - {fileID: 11400000, guid: c56deb643ccbebd449a89cb5b12297aa, type: 2}
+  - {fileID: 11400000, guid: f55b36b44ebb58642a6eac1a1a5753b8, type: 2}

@@ -13,5 +13,11 @@ namespace Zephyr.Util
         {
             obj.SetActive(!obj.activeSelf);
         }
+
+        public static bool RollForProc(float procChance)
+        {
+            bool proc = Random.value < procChance;
+            return proc;
+        }
     }
 }

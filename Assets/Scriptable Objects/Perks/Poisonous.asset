@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b9db1b21ab9c14b9aff06b33fb2d75, type: 3}
+  m_Name: Poisonous
+  m_EditorClassIdentifier: 
+  DeveloperNotes: "Contagious passes an ailment to \nthe attacker"
+  perkName: Poisonous
+  perkType: 1
+  perkTarget: 1
+  chanceToApplyPerk: 1
+  ailmentsToInfect:
+  - {fileID: 11400000, guid: 7b3d893000e0de54aa6ffe2caa313cc6, type: 2}

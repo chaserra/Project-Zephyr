@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6a2e756718ab54c971e9d391e9ecfd, type: 3}
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  currentHealth: 80
+  maxHealth: 200
+  currentMaxHealth: 200
+  currentHealth: 140
   moveSpeed: 6.5
-  baseDamage: 5
+  currentMoveSpeed: 6.5
+  baseDamage: 1
+  currentDamage: 1
   turnSmoothTime: 0.08
   equippedWeapon: {fileID: 11400000, guid: 4c10b462cb68fff4c9b2a5fea01855e5, type: 2}

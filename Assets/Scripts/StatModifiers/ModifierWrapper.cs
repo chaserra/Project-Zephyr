@@ -22,7 +22,7 @@ namespace Zephyr.Mods {
         public float Duration { get { return duration; } }
         public int CurrentStacks { get { return currentStacks; } }
 
-        // Constructor
+        /* Constructor */
         public ModifierWrapper(ModifierManager manager, Modifier modifier, float duration)
         {
             modMgr = manager;
@@ -39,7 +39,7 @@ namespace Zephyr.Mods {
             mod.InitializeModifier(modMgr);
             modMgr.StartCoroutine(StartModDuration());
             currentStacks++;
-            TriggerUIEvent();
+            TriggerModUIEvent();
         }
 
         /**
@@ -50,12 +50,13 @@ namespace Zephyr.Mods {
             if (currentStacks >= mod.Context.maxStacks) { return; }
             mod.ApplyStatEffects(modMgr);
             currentStacks++;
-            TriggerUIEvent();
+            TriggerModUIEvent();
         }
 
         public void ResetModDuration()
         {
             duration = mod.Context.duration;
+            ReapplyAilments();
         }
 
         /**
@@ -65,7 +66,10 @@ namespace Zephyr.Mods {
          **/
         IEnumerator StartModDuration()
         {
+            // Countdown only if Mod has a duration
             if (!mod.Context.hasDuration) { yield break; }
+
+            // Countdown
             while (duration > 0 && isActive)
             {
                 duration -= Time.deltaTime;
@@ -80,13 +84,31 @@ namespace Zephyr.Mods {
             isActive = false;
         }
 
+        /** 
+         * Reapply all ailments in this mod once a higher-level ailment deactivates.
+        **/
+        public void ReapplyAilments()
+        {
+            for (int i = 0; i < mod.StatEffects.Length; i++)
+            {
+                if (mod.StatEffects[i] is StatEffect_Ailment)
+                {
+                    mod.StatEffects[i].ApplyEffect(modMgr);
+                    TriggerModUIEvent();
+                }
+            }
+        }
+
         public void DeactivateMod()
         {
             isActive = false;
-            TriggerUIEvent();
+            TriggerModUIEvent();
         }
 
-        private void TriggerUIEvent()
+        /**
+         * Calls mod manager to trigger UI events
+         **/
+        private void TriggerModUIEvent()
         {
             for (int i = 0; i < mod.StatEffects.Length; i++)
             {

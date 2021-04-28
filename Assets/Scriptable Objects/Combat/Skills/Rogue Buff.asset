@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8105f1b7095d11c48843a24f0ef959c7, type: 3}
+  m_Name: Rogue Buff
+  m_EditorClassIdentifier: 
+  skillType: 2
+  skillName: Rogue Buff
+  skillAnimationName: Buff_Skill
+  skillCooldown: 0
+  userCanRotate: 1
+  userCanMove: 1
+  moveSpeedMultiplier: 1
+  skillSound: {fileID: 0}
+  skillChargeTime: 1.5
+  skillRealeaseWhenFullyCharged: 0
+  skillMustFullyCharge: 0
+  mods:
+  - {fileID: 11400000, guid: 583b0e2510ca7df4f9e72f1eeb6ce559, type: 2}
+  - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
+  - {fileID: 11400000, guid: 36c6bf973d7804e4c9c2322d844e01d3, type: 2}

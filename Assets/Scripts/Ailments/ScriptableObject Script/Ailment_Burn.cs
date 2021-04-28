@@ -8,12 +8,15 @@ namespace Zephyr.Mods
     [CreateAssetMenu(fileName = "Ailment_Burn", menuName = "Mods/Ailment_Ref/Burn")]
     public class Ailment_Burn : Ailment
     {
-        // TODO (Burn): Recode this as below code are all placeholder for testing
+        // TODO (Burn): Add more functionality like burn spreading
         // IDEAS: all nearby enemies get burned as well. But burn should not reset every time it
             // procs to avoid infinite burn loop
         private int damagePerTick = 0;
         private int baseDamagePerTick = 0;
-        private float damageMultiplier = 0; // TODO (Burn): Find way to make this editable in inspector
+        private float damageMultiplier = 0;
+        private int maxTickIncrements = 1;
+        private int currentTickIncrements = 0;
+        private DOT_Burn burn;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
@@ -22,26 +25,33 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            // Cast Stat Effect as DOT
-            var burn = statEffect as DOT_Burn;
-            if (burn == null) { return; }
+            // If higher-level ailment is already active, do nothing
+            if (!CheckAilmentStatus(statEffect, out burn)) { return; }
+
             // Set values obtained from SO
             tickInterval = burn.tickInterval;
-            damagePerTick = burn.damagePerTick;
             baseDamagePerTick = burn.damagePerTick;
             damageMultiplier = burn.damageMultiplierPerTick;
+            maxTickIncrements = burn.maxTickIncrements;
+            currentAilmentLevel = burn.ailmentLevel;
             isActive = true;
+
+            // Prevent current burn damage from being overwritten if current damage is higher
+            if (damagePerTick > burn.damagePerTick) { return; }
+            damagePerTick = burn.damagePerTick;
         }
 
-        public override void RemoveAilment(ModifierManager modifierManager)
+        public override void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
             // Reset values
-            isActive = false;
-            tickInterval = 0;
-            tickTimer = 0;
+            // If higher-level ailment is already active, do nothing
+            if (!CheckAilmentStatus(statEffect, out burn)) { return; }
+            ResetBaseAilmentValues();
             damagePerTick = 0;
             baseDamagePerTick = 0;
             damageMultiplier = 0;
+            maxTickIncrements = 1;
+            currentTickIncrements = 0;
         }
 
         public override void Tick(ModifierManager modifierManager)
@@ -52,14 +62,18 @@ namespace Zephyr.Mods
                 if (tickTimer <= 0)
                 {
                     // Create attack
-                    var attack = new Attack(damagePerTick, damageTextColor);
-
+                    var attack = new Attack(damagePerTick, textColor);
                     modManager.DealDamage(attack);
 
                     // Increment next burn damage tick
-                    float newDamage = baseDamagePerTick * damageMultiplier;
-                    damagePerTick += Mathf.RoundToInt(newDamage);
+                    if (currentTickIncrements < maxTickIncrements)
+                    {
+                        float newDamage = baseDamagePerTick * damageMultiplier;
+                        damagePerTick += Mathf.RoundToInt(newDamage);
+                        currentTickIncrements++;
+                    }
 
+                    // Reset tick timer
                     tickTimer = tickInterval;
                 }
                 tickTimer -= Time.deltaTime;

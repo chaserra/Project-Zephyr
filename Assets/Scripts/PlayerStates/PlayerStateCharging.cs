@@ -35,6 +35,9 @@ namespace Zephyr.Player.Combat
             chargeTime = skill.skillChargeTime;
             skillRealeaseWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;
             skillMustFullyCharge = skill.skillMustFullyCharge;
+
+            // TODO (Skill Animation): Change this to dynamically get from skill
+            player.Anim.SetTrigger("ChannelSkill");
         }
 
         public override void Update(PlayerController player)

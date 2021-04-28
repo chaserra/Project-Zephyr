@@ -29,8 +29,8 @@ namespace Zephyr.Player.Combat
             // TODO (Attacks): Possibly change this to animation based instead of a coroutine
             skill.Initialize(player.gameObject);
             // TODO (Combat): Create an attack, then pass to target
-            yield return new WaitForSeconds(.5f); // Better change this to wait for animation to end
-            player.ResetCurrentSkill();
+            yield return new WaitForSeconds(.55f); // Better change this to wait for animation to end
+            player.ResetCurrentSkill(); // TODO (Skills): Make animation end do this
             player.TransitionState(player.MoveState);
         }
 

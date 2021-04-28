@@ -5,6 +5,9 @@ using Zephyr.UI;
 
 namespace Zephyr.Combat
 {
+    /**
+     * Add damage text over object where this script is attached.
+     **/
     public class AttackedDamageText : MonoBehaviour, IAttackable
     {
         private List<ScrollingText> texts = new List<ScrollingText>();
@@ -24,6 +27,8 @@ namespace Zephyr.Combat
                 texts.Add(scrollingText);
             }
         }
+
+        // TODO HIGH (Damage Text): Create text queueing system
 
         public void OnAttacked(GameObject attacker, Attack attack)
         {
@@ -47,14 +52,28 @@ namespace Zephyr.Combat
         private void InitializeText(ScrollingText text, Attack attack)
         {
             string damageText = attack.Damage.ToString();
-            text.SetColor(attack.TextColor);
+            // If damage is negative, change text to heal
+            if (attack.Damage < 0f)
+            {
+                // Remove negative sign if healing
+                damageText = damageText.Substring(1, damageText.Length - 1);
+                // Color to green
+                text.SetColor(new Color(0, 150f / 255f, 0));
+            } 
+            else
+            {
+                // If not healing, set color to specified color
+                text.SetColor(attack.TextColor);
 
-            if (attack.IsCritical) {
-                text.SetColor(Color.yellow);
-                damageText += "!"; 
+                if (attack.IsCritical)
+                {
+                    text.SetColor(Color.yellow);
+                    damageText += "!";
+                }
             }
 
             text.SetText(damageText);
+            // TODO HIGH (Damage Text): Add to queue
             text.gameObject.SetActive(true);
         }
 

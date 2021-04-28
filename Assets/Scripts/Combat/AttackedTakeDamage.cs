@@ -5,6 +5,9 @@ using Zephyr.Stats;
 
 namespace Zephyr.Combat
 {
+    /**
+     * Make the object this script is attached on take HP damage.
+     **/
     [RequireComponent(typeof(CharacterStats))]
     public class AttackedTakeDamage : MonoBehaviour, IAttackable
     {
@@ -17,7 +20,15 @@ namespace Zephyr.Combat
 
         public void OnAttacked(GameObject attacker, Attack attack)
         {
-            stats.TakeDamage(attack.Damage);
+            // Getting negative damage means value should heal this object
+            if (attack.Damage < 0) { 
+                stats.TakeHealing(attack.Damage);
+            }
+            // Positive damage value will damage this object
+            else
+            {
+                stats.TakeDamage(attack.Damage);
+            }
         }
     }
 

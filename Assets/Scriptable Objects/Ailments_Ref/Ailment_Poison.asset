@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeveloperNotes: Poison deals PERCENT damage
   ailmentName: Poison
-  damageTextColor: {r: 0.20054044, g: 0.033641864, b: 0.33962262, a: 1}
+  textColor: {r: 0.20894752, g: 0, b: 0.3301887, a: 1}
