@@ -8,6 +8,9 @@ namespace Zephyr.UI
     public class UIStatEffectsManager : MonoBehaviour
     {
         #region Attributes
+        // Masterlist of all images for pooling
+        [SerializeField] private UIStatEffectMasterList_SO imageMasterList;
+
         // List of active stat effects to monitor.
         private List<UIStatEffect_SO> activeStatEffects = new List<UIStatEffect_SO>();
         
@@ -25,6 +28,18 @@ namespace Zephyr.UI
             UIEventListener.OnStatEffectUpdate -= HandleStatEffectUpdate;
         }
         #endregion
+
+        private void Awake()
+        {
+            // Pool all existing UI images on Awake
+            for (int i = 0; i < imageMasterList.ImageArray.Length; i++)
+            {
+                UIStatEffect_SO effectImage = imageMasterList.ImageArray[i];
+                string pooledObjectRefID = effectImage.GetEffectImage().GetInstanceID().ToString();
+                HandleStatEffectUpdate(effectImage, true);
+                ProcessEffectImages(pooledObjectRefID, false);
+            }
+        }
 
         private void HandleStatEffectUpdate(UIStatEffect_SO effectImage, bool isActive)
         {

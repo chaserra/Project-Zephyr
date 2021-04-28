@@ -7,6 +7,11 @@ namespace Zephyr.Perks
 {
     public class PerkManager : MonoBehaviour
     {
+        /**
+         * Perks are triggered by skills.
+         * Attack perks are triggered when attacks connect
+         * Defensive perks are triggered when attacked
+         **/
         [SerializeField] private List<Perk> perks;
 
         #region PERK MANAGER ACTIONS

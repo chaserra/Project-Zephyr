@@ -50,7 +50,13 @@ namespace Zephyr.Player.Combat
         {
             player.TransitionState(player.AttackState);
             ResetChargeStateValues(player);
+        }
 
+        // To be used for stagger
+        private void CancelSkillChannelling(PlayerController player)
+        {
+            player.TransitionState(player.MoveState);
+            ResetChargeStateValues(player);
         }
 
         private void ResetChargeStateValues(PlayerController player)

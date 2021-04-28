@@ -14,7 +14,7 @@ namespace Zephyr.Mods
         // Cache
         private CharacterStats characterStats;
         [SerializeField] private AilmentsList ailmentsList_Template;
-        [SerializeField] private AilmentsList ailmentsList; // TODO (cleanup): remove SerializeField
+        private AilmentsList ailmentsList;
         private UIEventListener eventListener;
 
         // State
@@ -36,6 +36,8 @@ namespace Zephyr.Mods
 
         private void Update()
         {
+            /* Tick Methods */
+            // Modwrappers
             if (modWrappers.Count > 0)
             {
                 foreach (ModifierWrapper wrapper in modWrappers)
@@ -43,7 +45,7 @@ namespace Zephyr.Mods
                     wrapper.Mod.Tick(this);
                 }
             }
-
+            // Ailments
             if (ailmentsList != null)
             {
                 ailmentsList.Tick();
@@ -78,7 +80,7 @@ namespace Zephyr.Mods
         }
 
         /**
-         * Removes Buffs or Debuffs (Type-specific)
+         * Removes Buffs, Debuffs, or Ailment (Type-specific)
          **/
         public void RemoveModType(ModType type)
         {
@@ -94,7 +96,7 @@ namespace Zephyr.Mods
         }
 
         /** 
-         * Remove target modifier 
+         * Remove target modifier. Used for specific mod type removals.
          **/
         public void RemoveModifier(Modifier modifier)
         {
@@ -110,6 +112,7 @@ namespace Zephyr.Mods
 
         /** 
          * Called by Modifier. Removes mod from manager's list after all effects are removed. 
+         * Used for when a modifier's duration ends.
          **/
         public void RemoveModifierFromList(Modifier modifier)
         {
@@ -164,6 +167,7 @@ namespace Zephyr.Mods
         #endregion
 
         #region MODIFIER ACTIONS
+        /* Modify Stat Effects */
         public void AggregateStatValues(StatList targetStat, float value, bool isPercentage, bool reverseValues)
         {
             // Reverse values for removing stat mods
@@ -176,6 +180,7 @@ namespace Zephyr.Mods
             characterStats.AggregateStatSheetValues(targetStat, value, isPercentage);
         }
 
+        /* Ailment Effects */
         public void DealDamage(Attack attack)
         {
             var attackables = gameObject.GetComponentsInChildren<IAttackable>();
@@ -193,6 +198,7 @@ namespace Zephyr.Mods
             DealDamage(newAttack);
         }
 
+        // Used for effects / ailments that do percentage damage/healing
         public int GetHealthPercentage(float amount)
         {
             return characterStats.GetHealthPercentValue(amount);
@@ -209,6 +215,7 @@ namespace Zephyr.Mods
         #endregion
 
         #region Cleanup
+        // Not used. Kept in just in case
         private void OnDisable()
         {
             // Failsafe

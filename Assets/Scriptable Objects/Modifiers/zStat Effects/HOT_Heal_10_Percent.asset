@@ -21,3 +21,4 @@ MonoBehaviour:
   healPerTick: 10
   healMultiplierPerTick: 0
   isPercentage: 1
+  maxTickIncrements: 3

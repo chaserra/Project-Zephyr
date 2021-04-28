@@ -18,7 +18,7 @@ namespace Zephyr.Perks
         public override void TriggerPerk(GameObject skillUser, Attack attack, GameObject attackTarget)
         {
             if (!isActive) { return; }
-            if (ailmentsToInfect == null) { return; }
+            if (ailmentsToInfect == null) { Debug.LogWarning("No ailment added to contagious perk!"); return; }
             // Calculate proc
             if (!UtilityHelper.RollForProc(chanceToApplyPerk)) { return; }
 

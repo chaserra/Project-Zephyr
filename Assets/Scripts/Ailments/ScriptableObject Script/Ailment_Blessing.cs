@@ -12,6 +12,8 @@ namespace Zephyr.Mods
         private float baseHealPerTick;
         private float healMultiplierPerTick = 0f;
         private bool isPercentage = false;
+        private int maxTickIncrements = 1;
+        private int currentTickIncrements = 0;
         private HOT_Heal blessing;
 
         public override void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect)
@@ -21,7 +23,7 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            // Check if ailment is already active
+            // If higher-level ailment is already active, do nothing
             if (!CheckAilmentStatus(statEffect, out blessing)) { return; }
 
             // Set values obtained from SO
@@ -29,6 +31,8 @@ namespace Zephyr.Mods
             baseHealPerTick = blessing.healPerTick;
             healMultiplierPerTick = blessing.healMultiplierPerTick;
             isPercentage = blessing.isPercentage;
+            maxTickIncrements = blessing.maxTickIncrements;
+            currentAilmentLevel = blessing.ailmentLevel;
             isActive = true;
 
             // Prevent current heal from being overwritten if current heal is higher
@@ -39,12 +43,15 @@ namespace Zephyr.Mods
         public override void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
             // Reset Values
+            // If higher-level ailment is already active, do nothing
             if (!CheckAilmentStatus(statEffect, out blessing)) { return; }
             ResetBaseAilmentValues();
             healPerTick = 0f;
             baseHealPerTick = 0f;
             healMultiplierPerTick = 0f;
             isPercentage = false;
+            maxTickIncrements = 1;
+            currentTickIncrements = 0;
         }
 
         public override void Tick(ModifierManager modifierManager)
@@ -72,8 +79,12 @@ namespace Zephyr.Mods
                     modManager.DealHealing(attack);
 
                     // Increment next heal recovery tick
-                    float newHeal = baseHealPerTick * healMultiplierPerTick;
-                    healPerTick += Mathf.RoundToInt(newHeal);
+                    if (currentTickIncrements < maxTickIncrements)
+                    {
+                        float newHeal = baseHealPerTick * healMultiplierPerTick;
+                        healPerTick += Mathf.RoundToInt(newHeal);
+                        currentTickIncrements++;
+                    }
 
                     // Reset tick timer
                     tickTimer = tickInterval;

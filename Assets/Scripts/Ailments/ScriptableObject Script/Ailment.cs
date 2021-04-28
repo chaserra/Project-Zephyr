@@ -28,6 +28,13 @@ namespace Zephyr.Mods
         public abstract void InitializeAilment(ModifierManager modifierManager, StatEffect statEffect);
         public abstract void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect);
         public abstract void Tick(ModifierManager modifierManager);
+
+        /**
+         * Used to compare new ailment level to currently active ailment
+         * Returns false (does not proceed with activation) if new ailment is lower level
+         * But the lower level ailment is still active in the background and will activate once the
+         *      higher level ailment has ended
+         **/
         protected bool CheckAilmentStatus<T>(StatEffect statEffect, out T type) where T : StatEffect_Ailment
         {
             var effect = (T)statEffect;
@@ -36,6 +43,11 @@ namespace Zephyr.Mods
             if (effect.ailmentLevel < currentAilmentLevel) { return false; }
             return true;
         }
+
+        /**
+         * Reset all parent variables upon ailment deactivation
+         * - Specific variables' reset within ailments are handled inside the specific ailment
+         **/
         protected void ResetBaseAilmentValues()
         {
             isActive = false;

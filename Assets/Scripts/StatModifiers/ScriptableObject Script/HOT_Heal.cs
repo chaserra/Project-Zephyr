@@ -13,5 +13,7 @@ namespace Zephyr.Mods
         public float healMultiplierPerTick = 0f;
         [Tooltip("True = Healing dealt will be calculated as percentage of max health.")]
         public bool isPercentage = false;
+        [Tooltip("Max number of times DamageMultiplierPerTick will add to current tick damage.")]
+        public int maxTickIncrements = 5;
     }
 }

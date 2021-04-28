@@ -14,26 +14,23 @@ namespace Zephyr.Combat
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
-            // Heal
-            if (amountToHeal > 0f)
+            CharacterStats stats = skillUser.gameObject.GetComponent<CharacterStats>();
+            var attackables = skillUser.GetComponentsInChildren<IAttackable>();
+            float healAmount = amountToHeal;
+
+            if (healPercent)
             {
-                CharacterStats stats = skillUser.gameObject.GetComponent<CharacterStats>();
-                var attackables = skillUser.GetComponentsInChildren<IAttackable>();
-                float healAmount = amountToHeal;
+                healAmount = stats.GetHealthPercentValue(amountToHeal);
+            }
 
-                if (healPercent)
-                {
-                    healAmount = stats.GetHealthPercentValue(amountToHeal);
-                }
+            // Convert to negative value (healing)
+            healAmount = Mathf.Abs(healAmount) * -1;
 
-                healAmount *= -1;
+            var heal = new Attack(Mathf.RoundToInt(healAmount));
 
-                var heal = new Attack(Mathf.RoundToInt(healAmount));
-
-                foreach (IAttackable a in attackables)
-                {
-                    a.OnAttacked(skillUser, heal);
-                }
+            foreach (IAttackable a in attackables)
+            {
+                a.OnAttacked(skillUser, heal);
             }
         }
     }

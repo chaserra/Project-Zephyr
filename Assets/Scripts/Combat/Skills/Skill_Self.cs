@@ -20,7 +20,8 @@ namespace Zephyr.Combat
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
-            // Apply skills found in child scripts
+            // Apply skills logic found in child scripts
+            // Nothing to do here
         }
 
     }

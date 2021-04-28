@@ -8,7 +8,7 @@ namespace Zephyr.Mods
     [CreateAssetMenu(fileName = "Ailment_Burn", menuName = "Mods/Ailment_Ref/Burn")]
     public class Ailment_Burn : Ailment
     {
-        // TODO (Burn): Recode this as below code are all placeholder for testing
+        // TODO (Burn): Add more functionality like burn spreading
         // IDEAS: all nearby enemies get burned as well. But burn should not reset every time it
             // procs to avoid infinite burn loop
         private int damagePerTick = 0;
@@ -25,7 +25,7 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            // Check if ailment is already active
+            // If higher-level ailment is already active, do nothing
             if (!CheckAilmentStatus(statEffect, out burn)) { return; }
 
             // Set values obtained from SO
@@ -44,6 +44,7 @@ namespace Zephyr.Mods
         public override void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
             // Reset values
+            // If higher-level ailment is already active, do nothing
             if (!CheckAilmentStatus(statEffect, out burn)) { return; }
             ResetBaseAilmentValues();
             damagePerTick = 0;

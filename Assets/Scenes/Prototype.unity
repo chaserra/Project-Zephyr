@@ -2435,6 +2435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0afdd9e92e9ad942916b7c4aec8d20e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  imageMasterList: {fileID: 11400000, guid: db68f89eb3620824f88de5f3376b744a, type: 2}
 --- !u!222 &557856432
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3795,7 +3796,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ailmentsList_Template: {fileID: 11400000, guid: ed54159cf07019243924ecd2faa86224,
     type: 2}
-  ailmentsList: {fileID: 0}
 --- !u!114 &914615301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8186,7 +8186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ailmentsList_Template: {fileID: 11400000, guid: ed54159cf07019243924ecd2faa86224,
     type: 2}
-  ailmentsList: {fileID: 0}
 --- !u!114 &1863028894
 MonoBehaviour:
   m_ObjectHideFlags: 0

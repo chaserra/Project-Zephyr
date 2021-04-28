@@ -18,7 +18,7 @@ namespace Zephyr.Mods
             {
                 modManager = modifierManager;
             }
-            // Check if ailment is already active
+            // If higher-level ailment is already active, do nothing
             if (!CheckAilmentStatus(statEffect, out poison)) { return; }
 
             // Set values obtained from SO
@@ -31,6 +31,7 @@ namespace Zephyr.Mods
         public override void RemoveAilment(ModifierManager modifierManager, StatEffect statEffect)
         {
             // Reset values
+            // If higher-level ailment is already active, do nothing
             if (!CheckAilmentStatus(statEffect, out poison)) { return; }
             ResetBaseAilmentValues();
             percentDamagePerTick = 0;

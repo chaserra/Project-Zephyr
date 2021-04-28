@@ -10,7 +10,8 @@ namespace Zephyr.Mods
         private ModifierManager modManager;
 
         [SerializeField] private List<Ailment> ailmentsList_Template;
-        [SerializeField] private List<Ailment> ailmentsList; // TODO (cleanup): remove SerializeField
+        [HideInInspector]
+        public List<Ailment> ailmentsList;
 
         #region SETUP
         public void Initialize(ModifierManager modMgr)
