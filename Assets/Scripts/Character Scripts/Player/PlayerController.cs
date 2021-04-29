@@ -136,6 +136,7 @@ namespace Zephyr.Player
         public void Hit(GameObject attackTarget)
         {
             if (currentSkill == null || currentSkill is Skill_Self) { return; }
+            if (currentState == ChannellingState || currentState == ChargingState) { return; }
             currentSkill.ApplySkill(gameObject, attackTarget);
         }
         #endregion

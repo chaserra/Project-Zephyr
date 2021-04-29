@@ -18,7 +18,7 @@ MonoBehaviour:
   skillCooldown: 0
   userCanRotate: 1
   userCanMove: 1
-  moveSpeedMultiplier: 1
+  moveSpeedMultiplier: 0.5
   skillSound: {fileID: 0}
   skillChargeTime: 1.5
   skillRealeaseWhenFullyCharged: 0

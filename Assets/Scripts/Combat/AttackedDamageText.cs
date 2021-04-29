@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.UI;
@@ -10,8 +11,12 @@ namespace Zephyr.Combat
      **/
     public class AttackedDamageText : MonoBehaviour, IAttackable
     {
+        // Attributes
         private List<ScrollingText> texts = new List<ScrollingText>();
+        private Queue<IEnumerator> textQueue = new Queue<IEnumerator>();
+        private float textQueueDelay = .1f; // Seconds before next text is displayed
 
+        // Properties
         public ScrollingText Text;
         public Color DefaultTextColor = Color.red;
         public int amountToPool = 5;
@@ -34,11 +39,43 @@ namespace Zephyr.Combat
             {
                 texts[i].gameObject.SetActive(false);
             }
+            // Start Queue system for displaying damage
+            StartCoroutine(TextDisplayQueue());
         }
 
-        // TODO HIGH (Damage Text): Create text queueing system
+        #region Queue System
+        /**
+         * Display damage queue system. Prevents overlapping damage texts.
+         * Displays damage text every [textQueueDelay] seconds
+         **/
+        private IEnumerator TextDisplayQueue()
+        {
+            while (true)
+            {
+                while (textQueue.Count > 0)
+                {
+                    yield return StartCoroutine(textQueue.Dequeue());
+                    yield return new WaitForSeconds(textQueueDelay);
+                }
+                yield return null;
+            }
+        }
+        #endregion
 
+        #region Interface Method and Callback Actions
+        /* Interface Method */
         public void OnAttacked(GameObject attacker, Attack attack)
+        {
+            // Enqueue coroutine processing the attack and initializing the text
+            textQueue.Enqueue(ProcessDamageText(attacker, attack));
+        }
+
+        /**
+         *  Checks if an existing disabled pooled text exists
+         *  Uses disabled text then initialize it with damage values
+         *  If no disabled text is found, creates a new text object in the pool then sets the damage values
+         **/
+        private IEnumerator ProcessDamageText(GameObject attacker, Attack attack)
         {
             // Iterate through list
             foreach (ScrollingText text in texts)
@@ -47,7 +84,7 @@ namespace Zephyr.Combat
                 if (!text.gameObject.activeSelf)
                 {
                     InitializeText(text, attack);
-                    return;
+                    yield break;
                 }
             }
             // If no existing deactivated text is found, create a new one.
@@ -55,8 +92,12 @@ namespace Zephyr.Combat
                             Text, transform.position, Quaternion.identity, gameObject.transform);
             InitializeText(scrollingText, attack);
             texts.Add(scrollingText);
+            yield break;
         }
 
+        /**
+         * Set text values and color then display the text
+         **/
         private void InitializeText(ScrollingText text, Attack attack)
         {
             string damageText = attack.Damage.ToString();
@@ -81,9 +122,9 @@ namespace Zephyr.Combat
             }
 
             text.SetText(damageText);
-            // TODO HIGH (Damage Text): Add to queue
             text.gameObject.SetActive(true);
         }
+        #endregion
 
     }
 }
