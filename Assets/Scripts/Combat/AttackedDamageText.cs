@@ -16,15 +16,23 @@ namespace Zephyr.Combat
         public Color DefaultTextColor = Color.red;
         public int amountToPool = 5;
 
-        private void Start()
+        private void Awake()
         {
-            // Initial pool at start
+            // Pool text objects at Awake
             for (int i = 0; i < amountToPool; i++)
             {
                 ScrollingText scrollingText = Instantiate(
                             Text, transform.position, Quaternion.identity, gameObject.transform);
-                scrollingText.gameObject.SetActive(false);
                 texts.Add(scrollingText);
+            }
+        }
+
+        private void Start()
+        {
+            // Disable all pooled text objects at Start
+            for (int i = 0; i < amountToPool; i++)
+            {
+                texts[i].gameObject.SetActive(false);
             }
         }
 

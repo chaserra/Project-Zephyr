@@ -35,8 +35,17 @@ namespace Zephyr.UI
             for (int i = 0; i < imageMasterList.ImageArray.Length; i++)
             {
                 UIStatEffect_SO effectImage = imageMasterList.ImageArray[i];
-                string pooledObjectRefID = effectImage.GetEffectImage().GetInstanceID().ToString();
                 HandleStatEffectUpdate(effectImage, true);
+            }
+        }
+
+        private void Start()
+        {
+            // Disable all pooled images on Start
+            for (int i = 0; i < imageMasterList.ImageArray.Length; i++)
+            {
+                UIStatEffect_SO effectImage = imageMasterList.ImageArray[i];
+                string pooledObjectRefID = effectImage.GetEffectImage().GetInstanceID().ToString();
                 ProcessEffectImages(pooledObjectRefID, false);
             }
         }
