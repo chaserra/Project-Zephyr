@@ -11,10 +11,7 @@ namespace Zephyr.Combat
     public class Skill_Melee : Skill
     {
         [Header("Skill Values")]
-        [SerializeField] private int damage = 1;
-        [Range(0, 1)][SerializeField] private float criticalChance = .05f;
-        [SerializeField] private float criticalMultiplier = 2f;
-        [SerializeField] private float hitForce = 10f;
+        [SerializeField] private AttackDefinition attackDefinition;
 
         public override void Initialize(GameObject skillUser)
         {
@@ -31,57 +28,8 @@ namespace Zephyr.Combat
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)
         {
-            // Get target stats
-            CharacterStats targetStats = attackTarget.GetComponent<CharacterStats>();
-            
-            if(targetStats != null)
-            {
-                // Get target perk manager
-                PerkManager targetPerkMgr = attackTarget.GetComponent<PerkManager>();
-
-                // Get skill user's stats and perk manager
-                CharacterStats userStats = skillUser.GetComponent<CharacterStats>();
-                PerkManager userPerkMgr = skillUser.GetComponent<PerkManager>();
-
-                // Create attack
-                var attack = CreateAttack(userStats, targetStats);
-                var attackables = attackTarget.GetComponentsInChildren<IAttackable>();
-
-                // Apply attack to attackables
-                foreach (IAttackable a in attackables)
-                {
-                    a.OnAttacked(skillUser, attack);
-                }
-
-                // Trigger TARGET's defensive perks
-                if (targetPerkMgr != null)
-                {
-                    targetPerkMgr.TriggerPerk(PerkType.Defense, skillUser, attack, attackTarget);
-                }
-
-                // Trigger USER's attack perks
-                if (userPerkMgr != null)
-                {
-                    userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, attackTarget);
-                }
-            }
-        }
-
-        private Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats)
-        {
-            float coreDamage = attackerStats.GetDamage();
-            coreDamage += damage;
-
-            bool isCritical = Random.value < criticalChance;
-
-            if (isCritical)
-            {
-                coreDamage *= criticalMultiplier;
-            }
-
-            // TODO (Combat): Compute defender resistance then subtract to coreDmg
-
-            return new Attack((int)coreDamage, isCritical, this);
+            // Weapon hurtbox connected with a hitbox
+            ApplyOffensiveSkill(skillUser, attackTarget, attackDefinition);
         }
 
     }
