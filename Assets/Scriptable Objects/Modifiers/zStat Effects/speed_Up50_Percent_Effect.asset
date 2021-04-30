@@ -17,4 +17,4 @@ MonoBehaviour:
   effectImage: {fileID: 11400000, guid: f55b36b44ebb58642a6eac1a1a5753b8, type: 2}
   targetStat: 1
   isPercentage: 1
-  modifierValue: 50
+  modifierValue: 15

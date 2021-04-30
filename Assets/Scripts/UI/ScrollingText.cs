@@ -10,7 +10,6 @@ namespace Zephyr.UI
         // Cache
         private RectTransform rectTransform;
         private TextMeshPro textMesh;
-        //private Animator anim;
         private Camera mainCam;
         private Transform parentTransform;
 
@@ -19,14 +18,14 @@ namespace Zephyr.UI
 
         // Parameters
         public float Duration = 1f;
-        public float Speed;
-        public float yOffset = 2.5f;
+        public float Speed = 1.75f;
+        public float yOffset = 2f;
+        public float zOffset = -0.5f;
 
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();
             textMesh = GetComponent<TextMeshPro>();
-            //anim = GetComponent<Animator>();
             mainCam = Camera.main;
             parentTransform = gameObject.transform.parent;
         }
@@ -34,7 +33,7 @@ namespace Zephyr.UI
         private void OnEnable()
         {
             startTime = Time.time;
-            Vector3 yPos = new Vector3(0, yOffset, 0);
+            Vector3 yPos = new Vector3(0, yOffset, zOffset);
             rectTransform.position = parentTransform.position + yPos;
         }
 
