@@ -9,7 +9,7 @@ namespace Zephyr.Combat
     public class Self_Heal : Skill_Self
     {
         [Header("Skill Values")]
-        [SerializeField] bool healPercent = false;
+        [SerializeField] private bool healPercent = false;
         [SerializeField] private float amountToHeal = 0f;
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
