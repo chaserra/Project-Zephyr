@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
@@ -16,6 +17,7 @@ namespace Zephyr.Combat
         [SerializeField] private float turnSpeed = .5f;
         [Tooltip("Target selection radius")]
         [SerializeField] private float homingRadius = 5f;
+        [SerializeField] LayerMask ignoreLayer;
 
         // State
         [SerializeField] private Transform currentTarget;
@@ -28,6 +30,7 @@ namespace Zephyr.Combat
         private void Start()
         {
             caster = projectile.Caster;
+            gameObject.layer = caster.layer;
         }
 
         private void OnDrawGizmos()
@@ -63,20 +66,21 @@ namespace Zephyr.Combat
             else
             {
                 // Check all targets within projectile radius
+                // TODO (Homing): Maybe change this to castsphere forward and lock into first closest target
                 Collider[] targets = Physics.OverlapSphere(transform.position, homingRadius);
                 float closestDistance = Mathf.Infinity; // float container for distance comparison
 
                 foreach (Collider col in targets)
                 {
-                    //if (gameObject.layer == col.gameObject.layer) { return; }
-                    if (col.gameObject.layer == LayerMask.NameToLayer("Enemy")) // TODO HIGH (REFACTOR)
+                    // Check if other object's layer is not ignored or is not the same as caster's
+                    if (!UtilityHelper.ContainsLayer(ignoreLayer, col.gameObject.layer) && 
+                        gameObject.layer != col.gameObject.layer)
                     {
                         // Get position of new target
                         Vector3 objPos = col.transform.position;
                         // Get direction to new target
                         Vector3 direction = (objPos - transform.position).normalized;
 
-                        // Check if new target is in front of projectile
                         if (Vector3.Dot(direction, transform.forward) > 0)
                         {
                             // Compare this object's distance to previous closest object
