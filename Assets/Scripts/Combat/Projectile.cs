@@ -15,6 +15,8 @@ namespace Zephyr.Combat
 
         public event Action<GameObject, GameObject> ProjectileCollided;
 
+        public GameObject Caster { get { return caster; } }
+
         public void Fire(GameObject Caster, float Speed, float Range)
         {
             caster = Caster;

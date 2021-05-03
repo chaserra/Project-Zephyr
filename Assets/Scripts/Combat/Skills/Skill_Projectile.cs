@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zephyr.Stats;
-using Zephyr.Perks;
 
 namespace Zephyr.Combat
 {
@@ -15,10 +13,6 @@ namespace Zephyr.Combat
         [SerializeField] private float projectileSpeed = 3f;
         [SerializeField] private float range = 8f;
         [Header("Homing")]
-        [Tooltip("Tracks closest target")]
-        [SerializeField] private bool isHoming = false;
-        [Tooltip("Speed of projectile turning towards homed target")]
-        [SerializeField] private float turnSpeed = .2f;
         [Header("Splash")]
         [Tooltip("Does splash damage/effects on nearby targets")]
         [SerializeField] private bool causesSplashEffects = false;

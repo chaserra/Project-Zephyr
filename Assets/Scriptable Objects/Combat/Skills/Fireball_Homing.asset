@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55b530cbc5c2ad84186f511d76d6177b, type: 3}
-  m_Name: Fireball
+  m_Name: Fireball_Homing
   m_EditorClassIdentifier: 
   skillType: 2
   skillName: Fireball
@@ -36,5 +36,5 @@ MonoBehaviour:
   range: 20
   causesSplashEffects: 0
   splashRadius: 1
-  projectilePrefab: {fileID: 2007279791028131222, guid: 44e8876ac75fe3e429cf99d324984e21,
+  projectilePrefab: {fileID: 2007279791028131222, guid: 522ff862ed642b244a167c7a6aff5a85,
     type: 3}

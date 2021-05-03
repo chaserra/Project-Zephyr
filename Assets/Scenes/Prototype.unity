@@ -6510,12 +6510,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillButtonOne: {fileID: 11400000, guid: 2d72cca43d0a7424c9f44970a46c6f7c, type: 2}
-  skillButtonTwo: {fileID: 11400000, guid: f8616f0ab2cd3224aac2d617ab132900, type: 2}
+  skillButtonTwo: {fileID: 11400000, guid: 21d84ac52b2bd8141b04bed0cc9d7f7b, type: 2}
   skillButtonThree: {fileID: 11400000, guid: 59b786d3fcb3bfe4ba9576dd503658c9, type: 2}
   skillButtonFour: {fileID: 11400000, guid: 240a96e7bf2d9024bac329a18ce0468d, type: 2}
   skillButtonFive: {fileID: 11400000, guid: 646ee24cda921e646be6b23fcc0d61fe, type: 2}
-  skillButtonSix: {fileID: 11400000, guid: 21d84ac52b2bd8141b04bed0cc9d7f7b, type: 2}
-  skillButtonSeven: {fileID: 0}
+  skillButtonSix: {fileID: 11400000, guid: f8616f0ab2cd3224aac2d617ab132900, type: 2}
+  skillButtonSeven: {fileID: 11400000, guid: 3ef3462aced1f534a9a5cb65fdabcf5b, type: 2}
   skillButtonEight: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
@@ -11886,7 +11886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1586652376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15616,7 +15616,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2088151173
 MonoBehaviour:
   m_ObjectHideFlags: 0

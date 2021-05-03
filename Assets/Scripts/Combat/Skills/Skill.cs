@@ -40,7 +40,7 @@ namespace Zephyr.Combat
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
         public abstract void ApplySkill(GameObject skillUser, GameObject skillTarget);
-        public void ApplyOffensiveSkill(GameObject skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
+        protected void ApplyOffensiveSkill(GameObject skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
         {
             // Get target stats
             CharacterStats targetStats = skillTarget.GetComponent<CharacterStats>();

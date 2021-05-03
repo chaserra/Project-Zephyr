@@ -1,9 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zephyr.Stats;
-using Zephyr.Mods;
-using Zephyr.Perks;
 
 namespace Zephyr.Combat
 {
