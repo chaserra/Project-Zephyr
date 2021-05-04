@@ -135,7 +135,8 @@ namespace Zephyr.Player
         // Hit other Combatants
         public void Hit(GameObject attackTarget)
         {
-            if (currentSkill == null || currentSkill is Skill_Self) { return; }
+            // TODO (HIT): make hurtboxes only active on skill use
+            if (currentSkill == null || currentSkill is Skill_Self || currentSkill is Skill_Projectile) { return; }
             if (currentState == ChannellingState || currentState == ChargingState) { return; }
             currentSkill.ApplySkill(gameObject, attackTarget);
         }

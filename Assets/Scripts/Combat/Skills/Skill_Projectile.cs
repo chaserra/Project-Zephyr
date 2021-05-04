@@ -33,6 +33,7 @@ namespace Zephyr.Combat
 
             // Fire projectile
             // TODO HIGH (projectile): Change transform.position to weapon's hotspot
+            // TODO (Object Pool): Pool this
             Projectile projectile = Instantiate(projectilePrefab, skillUser.transform.position, skillUser.transform.localRotation);
             projectile.transform.position += new Vector3(0, 1f, 0);
             projectile.Fire(skillUser, projectileSpeed, range);
