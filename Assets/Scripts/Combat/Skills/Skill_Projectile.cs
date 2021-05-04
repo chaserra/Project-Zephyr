@@ -12,7 +12,6 @@ namespace Zephyr.Combat
         [Header("Projectile Values")]
         [SerializeField] private float projectileSpeed = 3f;
         [SerializeField] private float range = 8f;
-        [Header("Homing")]
         [Header("Splash")]
         [Tooltip("Does splash damage/effects on nearby targets")]
         [SerializeField] private bool causesSplashEffects = false;
@@ -51,8 +50,6 @@ namespace Zephyr.Combat
             ApplyOffensiveSkill(skillUser, skillTarget, attackDefinition);
 
             // TODO HIGH (Projectiles) : Create splash effects
-
-            // TODO HIGH (Projectiles) : Create homing projectile system
         }
     }
 }
