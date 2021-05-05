@@ -11522,6 +11522,7 @@ GameObject:
   - component: {fileID: 1586652378}
   - component: {fileID: 1586652377}
   - component: {fileID: 1586652376}
+  - component: {fileID: 1586652384}
   m_Layer: 9
   m_Name: Enemy (3)
   m_TagString: Enemy
@@ -11636,14 +11637,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586652375}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.89677495, z: -0, w: 0.44248694}
   m_LocalPosition: {x: -4.5, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1881578612}
   m_Father: {fileID: 992355521}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 127.475006, z: 0}
+--- !u!114 &1586652384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586652375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3668e6bd0a8d247894ad9406ea11ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillToUse: {fileID: 11400000, guid: 3ef3462aced1f534a9a5cb65fdabcf5b, type: 2}
 --- !u!1 &1590169632
 GameObject:
   m_ObjectHideFlags: 0
@@ -15177,6 +15191,7 @@ GameObject:
   - component: {fileID: 2088151175}
   - component: {fileID: 2088151174}
   - component: {fileID: 2088151173}
+  - component: {fileID: 2088151181}
   m_Layer: 9
   m_Name: Enemy (1)
   m_TagString: Enemy
@@ -15291,14 +15306,27 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088151172}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.83197916, z: -0, w: 0.55480695}
   m_LocalPosition: {x: 2.25, y: 0, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2122629698}
   m_Father: {fileID: 992355521}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -112.605, z: 0}
+--- !u!114 &2088151181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088151172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab3668e6bd0a8d247894ad9406ea11ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillToUse: {fileID: 11400000, guid: 3ef3462aced1f534a9a5cb65fdabcf5b, type: 2}
 --- !u!1 &2118078495
 GameObject:
   m_ObjectHideFlags: 0

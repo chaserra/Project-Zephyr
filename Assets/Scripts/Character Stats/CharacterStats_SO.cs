@@ -142,6 +142,7 @@ namespace Zephyr.Stats
             // Equip weapon
             equippedWeapon = weapon;
             GameObject weaponPrefab = Instantiate(weapon.weaponPrefab, weaponSlot.transform);
+            weaponPrefab.tag = LayerMask.LayerToName(weaponSlot.gameObject.layer);
             weaponPrefab.layer = weaponSlot.gameObject.layer;
 
             baseDamage += weapon.damage;

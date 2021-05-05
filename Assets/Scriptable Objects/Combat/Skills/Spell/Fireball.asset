@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b530cbc5c2ad84186f511d76d6177b, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  skillType: 0
+  skillType: 2
   skillName: Fireball
   skillAnimationName: Buff_Skill
   skillCooldown: 0

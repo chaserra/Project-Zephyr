@@ -33,22 +33,22 @@ namespace Zephyr.Combat
         {
             if (projectile.Caster == null) { return; } // No caster == object pooling. Do nothing. Prevents errors on startup
             caster = projectile.Caster;
-            gameObject.layer = caster.layer;
+            gameObject.tag = caster.tag;
             _targettingRange = targettingRange;
 
             // Set target layer depending on caster's layer
             // TODO low (Homing Projectile): Maybe find a more elegant solution
-            if (gameObject.layer == LayerMask.NameToLayer("Player"))
+            if (gameObject.tag == "Player")
             {
                 targetLayer = 1 << LayerMask.NameToLayer("Enemy");
             }
-            else if (gameObject.layer == LayerMask.NameToLayer("Enemy"))
+            else if (gameObject.tag == "Enemy")
             {
                 targetLayer = 1 << LayerMask.NameToLayer("Player");
             }
             else
             {
-                Debug.LogError("Caster does not have a properly assigned layer!");
+                Debug.LogError("Caster does not have a properly assigned tag!");
             }
         }
 
@@ -56,7 +56,7 @@ namespace Zephyr.Combat
         {
             // Reset all values when disabled
             caster = null;
-            gameObject.layer = 1 << LayerMask.NameToLayer("Default");
+            gameObject.tag = "Untagged";
             _targettingRange = 0;
             currentTarget = null;
             targetLayer = 1 << LayerMask.NameToLayer("Default");

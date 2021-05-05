@@ -41,8 +41,8 @@ namespace Zephyr.Combat
             // Grab object from object pool
             GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(projectilePrefab.gameObject);
             Projectile projectile = prefabToCreate.GetComponent<Projectile>();
-            // Set Projectile's collision layer
-            projectile.gameObject.layer = skillUser.layer;
+            // Set Projectile's tag
+            projectile.gameObject.tag = skillUser.tag;
             // Fire projectile
             projectile.Fire(skillUser, projectileSpeed, range, isHoming, isSplash);
 
