@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b530cbc5c2ad84186f511d76d6177b, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  skillType: 2
+  skillType: 0
   skillName: Fireball
   skillAnimationName: Buff_Skill
   skillCooldown: 0
@@ -34,7 +34,8 @@ MonoBehaviour:
     hitForce: 5
   projectileSpeed: 10
   range: 20
-  causesSplashEffects: 0
+  isHoming: 1
+  isSplash: 0
   splashRadius: 1
   projectilePrefab: {fileID: 2007279791028131222, guid: 44e8876ac75fe3e429cf99d324984e21,
     type: 3}

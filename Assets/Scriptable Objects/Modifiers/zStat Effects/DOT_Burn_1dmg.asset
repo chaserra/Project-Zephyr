@@ -20,4 +20,4 @@ MonoBehaviour:
   tickInterval: 3
   damagePerTick: 1
   damageMultiplierPerTick: 1
-  maxTickIncrements: 5
+  maxTickIncrements: 10

@@ -14,10 +14,10 @@ namespace Zephyr.Combat
 
         // Attributes
         [Tooltip("Speed of projectile turning towards homed target")]
-        [SerializeField] private float turnSpeed = .65f;
+        [SerializeField] private float turnSpeed = 1f;
         [Tooltip("Target selection radius")]
         [SerializeField] private float targettingRange = 8f;
-        [SerializeField] private float targettingSphereRadius = 3f;
+        [SerializeField] private float targettingSphereRadius = 1.5f;
 
         // State
         private Transform currentTarget;
@@ -29,8 +29,9 @@ namespace Zephyr.Combat
             projectile = GetComponent<Projectile>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
+            if (projectile.Caster == null) { return; } // No caster == object pooling. Do nothing. Prevents errors on startup
             caster = projectile.Caster;
             gameObject.layer = caster.layer;
             _targettingRange = targettingRange;
@@ -45,6 +46,20 @@ namespace Zephyr.Combat
             {
                 targetLayer = 1 << LayerMask.NameToLayer("Player");
             }
+            else
+            {
+                Debug.LogError("Caster does not have a properly assigned layer!");
+            }
+        }
+
+        private void OnDisable()
+        {
+            // Reset all values when disabled
+            caster = null;
+            gameObject.layer = 1 << LayerMask.NameToLayer("Default");
+            _targettingRange = 0;
+            currentTarget = null;
+            targetLayer = 1 << LayerMask.NameToLayer("Default");
         }
 
         private void OnDrawGizmos()
@@ -63,6 +78,9 @@ namespace Zephyr.Combat
 
         private void Update()
         {
+            // Check if projectile is a homing projectile
+            if (!projectile.Homing) { return; }
+
             // If projectile does not have a target
             if (currentTarget == null)
             {
@@ -95,7 +113,7 @@ namespace Zephyr.Combat
 
             // Get direction to target
             Vector3 direction = (currentTarget.position - transform.position).normalized;
-            _targettingRange = (currentTarget.position - transform.position).magnitude;
+            _targettingRange = (currentTarget.position - transform.position).magnitude; // For gizmo only
 
             // Check if target is in front of projectile
             if (Vector3.Dot(direction, transform.forward) > 0)
