@@ -17,10 +17,6 @@ namespace Zephyr.Combat
         [Header("Homing")]
         [Tooltip("Home in on a target")]
         [SerializeField] private bool isHoming = false;
-        [Header("Splash")]
-        [Tooltip("Does splash damage/effects on nearby targets")]
-        [SerializeField] private bool isSplash = false;
-        [SerializeField] private float splashRadius = 1f;
         [Header("Projectile")]
         [SerializeField] private Projectile projectilePrefab;
 
@@ -47,7 +43,7 @@ namespace Zephyr.Combat
             // Get Projectile Hotspot
             Transform hotSpot = skillUser.GetComponent<CharacterStats>().GetProjectileHotSpot();
             // Fire projectile
-            projectile.Fire(skillUser, projectileSpeed, range, isHoming, isSplash, hotSpot);
+            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot);
 
             // Subscribe to projectile events
             projectile.ProjectileCollided += ApplySkill;

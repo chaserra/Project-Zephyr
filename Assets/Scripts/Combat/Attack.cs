@@ -27,7 +27,7 @@ namespace Zephyr.Combat
         {
             _damage = damage;
             _isCritical = critical;
-            _skillUsed = skillUsed;
+            _skillUsed = skillUsed; // For passing mods
         }
 
         public int Damage { get { return _damage; } }

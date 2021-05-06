@@ -11,7 +11,6 @@ namespace Zephyr.Combat
         private float speed;
         private float range;
         private bool isHoming;
-        private bool isSplash;
         private Transform hotSpot;
 
         private float distanceTraveled;
@@ -21,17 +20,15 @@ namespace Zephyr.Combat
 
         public GameObject Caster { get { return caster; } }
         public bool Homing { get { return isHoming; } }
-        public bool Splash { get { return isSplash; } }
 
         public void Fire(GameObject Caster, float Speed, float Range, 
-            bool Homing, bool Splash, Transform Hotspot)
+            bool Homing, Transform Hotspot)
         {
             // Assign values to this projectile from the caster
             caster = Caster;
             speed = Speed;
             range = Range;
             isHoming = Homing;
-            isSplash = Splash;
             hotSpot = Hotspot;
 
             // Reset distance traveled
@@ -52,7 +49,6 @@ namespace Zephyr.Combat
             speed = 0;
             range = 0;
             isHoming = false;
-            isSplash = false;
             hotSpot = null;
 
             distanceTraveled = 0f;
