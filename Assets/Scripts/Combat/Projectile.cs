@@ -75,7 +75,7 @@ namespace Zephyr.Combat
         private void OnTriggerEnter(Collider other)
         {
             // TODO HIGH (Tags and Layers): Rethink how tags and layers are used for triggering damages
-            if (gameObject.tag == other.gameObject.tag) { return; }
+            if (CompareTag(other.gameObject.tag)) { return; } // Ignore self / caster
             // Raise event on target hit
             ProjectileCollided?.Invoke(caster, other.gameObject);
             gameObject.SetActive(false);

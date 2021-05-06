@@ -9,6 +9,7 @@ namespace Zephyr.Combat
     {
         private void OnTriggerEnter(Collider other)
         {
+            if (CompareTag(other.gameObject.tag)) { return; } // Ignore self
             ICombatant combatant = GetComponentInParent<ICombatant>();
             combatant.Hit(other.gameObject);
         }

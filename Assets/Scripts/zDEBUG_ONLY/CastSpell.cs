@@ -6,19 +6,37 @@ namespace Zephyr.Combat
 {
     public class CastSpell : MonoBehaviour
     {
+        [SerializeField] private bool randomRotateAtStart = true;
         [SerializeField] private Skill skillToUse;
+        [SerializeField] private bool castSkill = false;
+        [SerializeField] private float coolDown = .8f;
+
+        private float timer = 0f;
 
         private void Start()
         {
-            StartCoroutine(UseSkill(skillToUse));
+            timer = Random.Range(0, 1f);
+            if(randomRotateAtStart)
+            {
+                var randomAngle = transform.eulerAngles;
+                randomAngle.y = Random.Range(0f, 360f);
+                transform.eulerAngles = randomAngle;
+            }
         }
 
-        IEnumerator UseSkill(Skill skill)
+        private void Update()
         {
-            while (true)
+            if (castSkill)
             {
-                skill.Initialize(gameObject);
-                yield return new WaitForSeconds(.8f);
+                if (timer <= 0f)
+                {
+                    skillToUse.Initialize(gameObject);
+                    timer = coolDown;
+                }
+                else
+                {
+                    timer -= Time.deltaTime;
+                }
             }
         }
     }

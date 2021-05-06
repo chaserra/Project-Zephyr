@@ -38,11 +38,11 @@ namespace Zephyr.Combat
 
             // Set target layer depending on caster's layer
             // TODO low (Homing Projectile): Maybe find a more elegant solution
-            if (gameObject.tag == "Player")
+            if (CompareTag("Player"))
             {
                 targetLayer = 1 << LayerMask.NameToLayer("Enemy");
             }
-            else if (gameObject.tag == "Enemy")
+            else if (CompareTag("Enemy"))
             {
                 targetLayer = 1 << LayerMask.NameToLayer("Player");
             }
