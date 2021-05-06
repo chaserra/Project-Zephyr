@@ -10,18 +10,51 @@ namespace Zephyr.Combat
         private GameObject caster;
         private float speed;
         private float range;
+        private bool isHoming;
+        private Transform hotSpot;
 
         private float distanceTraveled;
 
         public event Action<GameObject, GameObject> ProjectileCollided;
+        public event Action<Projectile> UnsubscribeProjectile;
 
-        public void Fire(GameObject Caster, float Speed, float Range)
+        public GameObject Caster { get { return caster; } }
+        public bool Homing { get { return isHoming; } }
+
+        public void Fire(GameObject Caster, float Speed, float Range, 
+            bool Homing, Transform Hotspot)
         {
+            // Assign values to this projectile from the caster
             caster = Caster;
             speed = Speed;
             range = Range;
+            isHoming = Homing;
+            hotSpot = Hotspot;
+
+            // Reset distance traveled
+            distanceTraveled = 0f;
+
+            // Set projectile initial position
+            transform.position = hotSpot.position;
+            transform.rotation = caster.transform.localRotation;
+
+            // Fire projectile
+            gameObject.SetActive(true);
+        }
+
+        private void OnDisable()
+        {
+            // Reset all values when disabled
+            caster = null;
+            speed = 0;
+            range = 0;
+            isHoming = false;
+            hotSpot = null;
 
             distanceTraveled = 0f;
+
+            // Remove projectile subscriptions to previous caster
+            UnsubscribeProjectile?.Invoke(this);
         }
 
         private void Update()
@@ -33,15 +66,17 @@ namespace Zephyr.Combat
 
             if (distanceTraveled > range)
             {
-                Destroy(gameObject); // TODO (Object Pool): Pool this
+                gameObject.SetActive(false);
             }
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            // Raise event
+            if (CompareTag(other.gameObject.tag)) { return; } // Ignore self / caster
+            // Raise event on target hit
             ProjectileCollided?.Invoke(caster, other.gameObject);
-            Destroy(gameObject); // TODO (Object Pool): Pool this
+            gameObject.SetActive(false);
         }
+
     }
 }

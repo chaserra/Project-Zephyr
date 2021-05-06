@@ -31,6 +31,10 @@ namespace Zephyr.Combat
         [Header("Skill Modifiers")]
         [Tooltip("Mods to apply upon skill use")]
         public Modifier[] mods;
+        [Header("Splash")]
+        [Tooltip("Does splash damage/effects on nearby targets")]
+        [SerializeField] bool splashEffects = false;
+        [SerializeField] float splashRadius = 1f;
         [Header("Contextual Events")]
         [Tooltip("Trigger skill user's perks")]
         public bool triggersSelfPerks = false;
@@ -40,7 +44,7 @@ namespace Zephyr.Combat
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
         public abstract void ApplySkill(GameObject skillUser, GameObject skillTarget);
-        public void ApplyOffensiveSkill(GameObject skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
+        protected void ApplyOffensiveSkill(GameObject skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
         {
             // Get target stats
             CharacterStats targetStats = skillTarget.GetComponent<CharacterStats>();
@@ -75,7 +79,54 @@ namespace Zephyr.Combat
                 {
                     userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
                 }
+
+                // Splash Actions
+                if (splashEffects)
+                {
+                    DealSplashEffects(userStats, skillTarget, attackDefinition);
+                }
             }
         }
+
+        protected void DealSplashEffects(CharacterStats skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
+        {
+            Collider[] colliders = Physics.OverlapSphere(skillTarget.transform.position, splashRadius);
+
+            foreach (Collider col in colliders)
+            {
+                if (col.gameObject.tag == skillUser.gameObject.tag) { continue; } // Ignore caster
+                if (col.gameObject == skillTarget) { continue; } // Ignore source of splash
+
+                // Get affected target's stats
+                CharacterStats targetStats = col.GetComponent<CharacterStats>();
+                if (targetStats == null) { continue; }
+
+                // Reroll attack
+                // Wrap in new AttackDefinition to prevent overwriting the original SO values
+                var newAttackDefinition = 
+                    new AttackDefinition(attackDefinition.damage, 
+                            attackDefinition.criticalChance, 
+                            attackDefinition.criticalMultiplier, 
+                            attackDefinition.hitForce);
+
+                // Compute damage based on distance
+                newAttackDefinition.damage = UtilityHelper.DamageDistanceFallOff(
+                    skillTarget.transform.position, 
+                    col.gameObject.transform.position, 
+                    splashRadius, 
+                    newAttackDefinition.damage);
+
+                // Create new attack to pass to attackables
+                var attack = newAttackDefinition.CreateAttack(skillUser, targetStats, this);
+                var attackables = col.GetComponentsInChildren<IAttackable>();
+
+                // Apply rerolled attack to attackables
+                foreach (IAttackable a in attackables)
+                {
+                    a.OnAttacked(skillUser.gameObject, attack);
+                }
+            }
+        }
+
     }
 }

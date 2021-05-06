@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
-using Zephyr.Perks;
+using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
@@ -15,14 +15,8 @@ namespace Zephyr.Combat
         [SerializeField] private float projectileSpeed = 3f;
         [SerializeField] private float range = 8f;
         [Header("Homing")]
-        [Tooltip("Tracks closest target")]
+        [Tooltip("Home in on a target")]
         [SerializeField] private bool isHoming = false;
-        [Tooltip("Speed of projectile turning towards homed target")]
-        [SerializeField] private float turnSpeed = .2f;
-        [Header("Splash")]
-        [Tooltip("Does splash damage/effects on nearby targets")]
-        [SerializeField] private bool causesSplashEffects = false;
-        [SerializeField] private float splashRadius = 1f;
         [Header("Projectile")]
         [SerializeField] private Projectile projectilePrefab;
 
@@ -36,19 +30,24 @@ namespace Zephyr.Combat
         {
             // Do skill stuff. Trigger animation and instantiate a projectile
             Animator userAnim = skillUser.GetComponent<Animator>();
-            userAnim.SetTrigger(skillAnimationName);
+            if (userAnim != null)
+            {
+                userAnim.SetTrigger(skillAnimationName);
+            }
 
+            // Grab object from object pool
+            GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(projectilePrefab.gameObject);
+            Projectile projectile = prefabToCreate.GetComponent<Projectile>();
+            // Set Projectile's tag
+            projectile.gameObject.tag = skillUser.tag;
+            // Get Projectile Hotspot
+            Transform hotSpot = skillUser.GetComponent<CharacterStats>().GetProjectileHotSpot();
             // Fire projectile
-            // TODO HIGH (projectile): Change transform.position to weapon's hotspot
-            Projectile projectile = Instantiate(projectilePrefab, skillUser.transform.position, skillUser.transform.localRotation);
-            projectile.transform.position += new Vector3(0, 1f, 0);
-            projectile.Fire(skillUser, projectileSpeed, range);
+            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot);
 
-            // Set Projectile's collision layer
-            projectile.gameObject.layer = skillUser.layer;
-
-            // Listen to Projectile Collided Event
+            // Subscribe to projectile events
             projectile.ProjectileCollided += ApplySkill;
+            projectile.UnsubscribeProjectile += UnsubSkill;
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
@@ -57,8 +56,13 @@ namespace Zephyr.Combat
             ApplyOffensiveSkill(skillUser, skillTarget, attackDefinition);
 
             // TODO HIGH (Projectiles) : Create splash effects
+        }
 
-            // TODO HIGH (Projectiles) : Create homing projectile system
+        private void UnsubSkill(Projectile projectile)
+        {
+            // Makes sure that this projectile unsubscribes all events to prevent multiple damage triggering
+            projectile.ProjectileCollided -= ApplySkill;
+            projectile.UnsubscribeProjectile -= UnsubSkill;
         }
     }
 }

@@ -9,6 +9,13 @@ namespace Zephyr.Util
             return percentValue / 100;
         }
 
+        public static int DamageDistanceFallOff(Vector3 sourcePos, Vector3 otherPos, float radius, int valueToCompute)
+        {
+            float distance = Vector3.Distance(sourcePos, otherPos);
+            float percent = distance / radius;
+            return Mathf.RoundToInt((1f - percent) * valueToCompute);
+        }
+
         public static void ToggleObject(GameObject obj)
         {
             obj.SetActive(!obj.activeSelf);
@@ -19,5 +26,11 @@ namespace Zephyr.Util
             bool proc = Random.value < procChance;
             return proc;
         }
+
+        public static bool ContainsLayer(this LayerMask mask, int layer)
+        {
+            return mask == (mask | (1 << layer));
+        }
+
     }
 }

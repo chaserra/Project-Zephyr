@@ -13,6 +13,14 @@ namespace Zephyr.Combat
         public float criticalMultiplier = 2f;
         public float hitForce = 10f;
 
+        public AttackDefinition(int Damage, float CriticalChance, float CriticalMultiplier, float HitForce)
+        {
+            damage = Damage;
+            criticalChance = CriticalChance;
+            criticalMultiplier = CriticalMultiplier;
+            hitForce = HitForce;
+        }
+
         public Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats, Skill skillUsed)
         {
             float coreDamage = attackerStats.GetDamage();
