@@ -12,6 +12,7 @@ namespace Zephyr.Combat
         private float range;
         private bool isHoming;
         private bool isSplash;
+        private Transform hotSpot;
 
         private float distanceTraveled;
 
@@ -22,7 +23,8 @@ namespace Zephyr.Combat
         public bool Homing { get { return isHoming; } }
         public bool Splash { get { return isSplash; } }
 
-        public void Fire(GameObject Caster, float Speed, float Range, bool Homing, bool Splash)
+        public void Fire(GameObject Caster, float Speed, float Range, 
+            bool Homing, bool Splash, Transform Hotspot)
         {
             // Assign values to this projectile from the caster
             caster = Caster;
@@ -30,14 +32,13 @@ namespace Zephyr.Combat
             range = Range;
             isHoming = Homing;
             isSplash = Splash;
+            hotSpot = Hotspot;
 
             // Reset distance traveled
             distanceTraveled = 0f;
 
             // Set projectile initial position
-            // TODO HIGH (projectile): Change position to caster's weapon hotspot
-            transform.position = caster.transform.position;
-            transform.position += new Vector3(0, 1f, 0);
+            transform.position = hotSpot.position;
             transform.rotation = caster.transform.localRotation;
 
             // Fire projectile
@@ -52,6 +53,7 @@ namespace Zephyr.Combat
             range = 0;
             isHoming = false;
             isSplash = false;
+            hotSpot = null;
 
             distanceTraveled = 0f;
 
@@ -74,11 +76,11 @@ namespace Zephyr.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            // TODO HIGH (Tags and Layers): Rethink how tags and layers are used for triggering damages
             if (CompareTag(other.gameObject.tag)) { return; } // Ignore self / caster
             // Raise event on target hit
             ProjectileCollided?.Invoke(caster, other.gameObject);
             gameObject.SetActive(false);
         }
+
     }
 }

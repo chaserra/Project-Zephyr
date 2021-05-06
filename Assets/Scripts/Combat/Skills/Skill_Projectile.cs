@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Stats;
 using Zephyr.Util;
 
 namespace Zephyr.Combat
@@ -43,8 +44,10 @@ namespace Zephyr.Combat
             Projectile projectile = prefabToCreate.GetComponent<Projectile>();
             // Set Projectile's tag
             projectile.gameObject.tag = skillUser.tag;
+            // Get Projectile Hotspot
+            Transform hotSpot = skillUser.GetComponent<CharacterStats>().GetProjectileHotSpot();
             // Fire projectile
-            projectile.Fire(skillUser, projectileSpeed, range, isHoming, isSplash);
+            projectile.Fire(skillUser, projectileSpeed, range, isHoming, isSplash, hotSpot);
 
             // Subscribe to projectile events
             projectile.ProjectileCollided += ApplySkill;

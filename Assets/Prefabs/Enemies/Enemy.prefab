@@ -37,6 +37,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2068402100851219497}
+  - {fileID: 1562702170357050660}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -88,6 +89,7 @@ MonoBehaviour:
   weaponSlot: {fileID: 0}
   test_Weapon: {fileID: 0}
   test_Weapon2: {fileID: 0}
+  projectileHotSpot: {fileID: 1562702170357050660}
 --- !u!114 &2068402100761630394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,8 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3668e6bd0a8d247894ad9406ea11ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomRotateAtStart: 1
   skillToUse: {fileID: 11400000, guid: 5af518c74c7abe5429645d24c07fc084, type: 2}
-  enableDebug: 0
+  castSkill: 0
   coolDown: 0.8
 --- !u!1 &2068402100851219498
 GameObject:
@@ -250,3 +253,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!1 &2103212233743793765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1562702170357050660}
+  m_Layer: 9
+  m_Name: Projectile Hotspot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1562702170357050660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2103212233743793765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2068402100761630397}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
