@@ -54,8 +54,6 @@ namespace Zephyr.Combat
         {
             // Projectile landed on target, create attack and damage the target
             ApplyOffensiveSkill(skillUser, skillTarget, attackDefinition);
-
-            // TODO HIGH (Projectiles) : Create splash effects
         }
 
         private void UnsubSkill(Projectile projectile)
