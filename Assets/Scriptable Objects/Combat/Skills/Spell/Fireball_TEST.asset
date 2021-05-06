@@ -25,6 +25,8 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   mods:
   - {fileID: 11400000, guid: b314195d797b43a4d8081616d23c559b, type: 2}
+  splashEffects: 0
+  splashRadius: 3
   triggersSelfPerks: 1
   triggersTargetPerks: 0
   attackDefinition:
@@ -35,7 +37,5 @@ MonoBehaviour:
   projectileSpeed: 8
   range: 25
   isHoming: 1
-  isSplash: 0
-  splashRadius: 1
   projectilePrefab: {fileID: 2007279791028131222, guid: b95906afa27939b4abe2f20700aa6811,
     type: 3}
