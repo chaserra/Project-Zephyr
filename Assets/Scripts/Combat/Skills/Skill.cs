@@ -13,6 +13,7 @@ namespace Zephyr.Combat
         //[System.NonSerialized]
         //public CharacterStats userStats;
         public SkillType skillType;
+        public ValidTargets skillTarget = ValidTargets.TARGET;
         public string skillName;
         public string skillAnimationName;
         public float skillCooldown;
@@ -88,14 +89,23 @@ namespace Zephyr.Combat
             }
         }
 
-        protected void DealSplashEffects(CharacterStats skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
+        protected void DealSplashEffects(CharacterStats skillUser, GameObject skillTargetObject, AttackDefinition attackDefinition)
         {
-            Collider[] colliders = Physics.OverlapSphere(skillTarget.transform.position, splashRadius);
+            Collider[] colliders = Physics.OverlapSphere(skillTargetObject.transform.position, splashRadius);
 
             foreach (Collider col in colliders)
             {
-                if (col.gameObject.tag == skillUser.gameObject.tag) { continue; } // Ignore caster
-                if (col.gameObject == skillTarget) { continue; } // Ignore source of splash
+                if (col.gameObject == skillTargetObject) { continue; } // Ignore source of splash
+                if (skillTarget == ValidTargets.TARGET)
+                {
+                    // Ignore tags same as caster (for dealing splash damage and ailment)
+                    if (col.gameObject.tag == skillUser.gameObject.tag) { continue; }
+                }
+                else
+                {
+                    // Ignore tags not the same as caster (for dealing splash heal and buff)
+                    if (col.gameObject.tag != skillUser.gameObject.tag) { continue; }
+                }
 
                 // Get affected target's stats
                 CharacterStats targetStats = col.GetComponent<CharacterStats>();
@@ -111,7 +121,7 @@ namespace Zephyr.Combat
 
                 // Compute damage based on distance
                 newAttackDefinition.damage = UtilityHelper.DamageDistanceFallOff(
-                    skillTarget.transform.position, 
+                    skillTargetObject.transform.position, 
                     col.gameObject.transform.position, 
                     splashRadius, 
                     newAttackDefinition.damage);

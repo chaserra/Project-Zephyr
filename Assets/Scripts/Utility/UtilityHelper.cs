@@ -12,7 +12,7 @@ namespace Zephyr.Util
         public static int DamageDistanceFallOff(Vector3 sourcePos, Vector3 otherPos, float radius, int valueToCompute)
         {
             float distance = Vector3.Distance(sourcePos, otherPos);
-            float percent = distance / radius;
+            float percent = Mathf.Clamp01(distance / radius);
             return Mathf.RoundToInt((1f - percent) * valueToCompute);
         }
 

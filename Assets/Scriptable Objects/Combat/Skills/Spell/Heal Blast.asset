@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55b530cbc5c2ad84186f511d76d6177b, type: 3}
-  m_Name: Fireball
+  m_Name: Heal Blast
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 1
+  skillTarget: 0
   skillName: Fireball
   skillAnimationName: Buff_Skill
   skillCooldown: 0
@@ -24,19 +24,18 @@ MonoBehaviour:
   skillChargeTime: 0.5
   skillRealeaseWhenFullyCharged: 0
   skillMustFullyCharge: 0
-  mods:
-  - {fileID: 11400000, guid: b314195d797b43a4d8081616d23c559b, type: 2}
+  mods: []
   splashEffects: 1
   splashRadius: 4.5
-  triggersSelfPerks: 1
+  triggersSelfPerks: 0
   triggersTargetPerks: 0
   attackDefinition:
-    damage: 8
-    criticalChance: 0.1
+    damage: -5
+    criticalChance: 0
     criticalMultiplier: 2
     hitForce: 5
-  projectileSpeed: 10
+  projectileSpeed: 2
   range: 20
   isHoming: 1
-  projectilePrefab: {fileID: 2007279791028131222, guid: 44e8876ac75fe3e429cf99d324984e21,
+  projectilePrefab: {fileID: 2007279791028131222, guid: b39c99be2184557469665c1272414505,
     type: 3}

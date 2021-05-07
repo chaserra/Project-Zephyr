@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2007279791028131222}
   - component: {fileID: -8684950986295881040}
   m_Layer: 11
-  m_Name: Fireball
+  m_Name: Heal Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ddbd6fe7d4a6a88429ccdaa3d714678f, type: 2}
+  - {fileID: 2100000, guid: 57df809d5e4d881418b9c52613d40bce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -136,6 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1409017a9a7253743ab7b1d419f639e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turnSpeed: 0.8
+  turnSpeed: 5
   targettingRange: 8
   targettingSphereRadius: 1.5

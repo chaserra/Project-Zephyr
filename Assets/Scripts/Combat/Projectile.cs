@@ -12,6 +12,7 @@ namespace Zephyr.Combat
         private float range;
         private bool isHoming;
         private Transform hotSpot;
+        private ValidTargets projectileTarget;
 
         private float distanceTraveled;
 
@@ -20,9 +21,10 @@ namespace Zephyr.Combat
 
         public GameObject Caster { get { return caster; } }
         public bool Homing { get { return isHoming; } }
+        public ValidTargets ProjectileTarget { get { return projectileTarget; } }
 
         public void Fire(GameObject Caster, float Speed, float Range, 
-            bool Homing, Transform Hotspot)
+            bool Homing, Transform Hotspot, ValidTargets Target)
         {
             // Assign values to this projectile from the caster
             caster = Caster;
@@ -30,6 +32,7 @@ namespace Zephyr.Combat
             range = Range;
             isHoming = Homing;
             hotSpot = Hotspot;
+            projectileTarget = Target;
 
             // Reset distance traveled
             distanceTraveled = 0f;
@@ -50,6 +53,7 @@ namespace Zephyr.Combat
             range = 0;
             isHoming = false;
             hotSpot = null;
+            projectileTarget = ValidTargets.TARGET;
 
             distanceTraveled = 0f;
 
@@ -72,7 +76,16 @@ namespace Zephyr.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            if (CompareTag(other.gameObject.tag)) { return; } // Ignore self / caster
+            // Ignore self / caster / friendly if projectile is offensive
+            if (projectileTarget == ValidTargets.TARGET)
+            {
+                if (CompareTag(other.gameObject.tag)) { return; }
+            }
+            // Ignore other object / enemy if projectile is healing / defensive
+            else
+            {
+                if (!CompareTag(other.gameObject.tag)) { return; }
+            }
             // Raise event on target hit
             ProjectileCollided?.Invoke(caster, other.gameObject);
             gameObject.SetActive(false);
