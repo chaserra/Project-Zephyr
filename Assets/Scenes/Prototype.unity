@@ -1155,6 +1155,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: coolDown
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -4524,8 +4529,8 @@ MonoBehaviour:
   skillButtonThree: {fileID: 11400000, guid: 59b786d3fcb3bfe4ba9576dd503658c9, type: 2}
   skillButtonFour: {fileID: 11400000, guid: 240a96e7bf2d9024bac329a18ce0468d, type: 2}
   skillButtonFive: {fileID: 11400000, guid: 646ee24cda921e646be6b23fcc0d61fe, type: 2}
-  skillButtonSix: {fileID: 11400000, guid: f8616f0ab2cd3224aac2d617ab132900, type: 2}
-  skillButtonSeven: {fileID: 11400000, guid: 6420868fa8ec5c848b7bd5a7b0ef8721, type: 2}
+  skillButtonSix: {fileID: 11400000, guid: f1e1e802a25cd9e4fa6f5e5ba69ae6c9, type: 2}
+  skillButtonSeven: {fileID: 11400000, guid: b4691ae3dfdb9aa4a93c86a3c54eb2c6, type: 2}
   skillButtonEight: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
@@ -6904,6 +6909,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: coolDown
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: skillToUse
+      value: 
+      objectReference: {fileID: 11400000, guid: f19e1de0ed6bf3a44a9ee5575a0efa83,
+        type: 2}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -8575,7 +8596,7 @@ PrefabInstance:
     - target: {fileID: 8881233999831500292, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
       propertyPath: castSkill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8881233999831500292, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
@@ -8591,7 +8612,7 @@ PrefabInstance:
     - target: {fileID: 8881233999831500348, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.77
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 8881233999831500348, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
@@ -10732,9 +10753,20 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
+      propertyPath: coolDown
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
       propertyPath: castSkill
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: skillToUse
+      value: 
+      objectReference: {fileID: 11400000, guid: f1e1e802a25cd9e4fa6f5e5ba69ae6c9,
+        type: 2}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -10807,7 +10839,7 @@ PrefabInstance:
     - target: {fileID: 8881233999831500292, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
       propertyPath: castSkill
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8881233999831500348, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}

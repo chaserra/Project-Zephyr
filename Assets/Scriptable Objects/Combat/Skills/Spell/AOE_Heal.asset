@@ -9,33 +9,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b530cbc5c2ad84186f511d76d6177b, type: 3}
-  m_Name: Heal Blast
+  m_Script: {fileID: 11500000, guid: d603ec379e25eb447bce06c27460b993, type: 3}
+  m_Name: AOE_Heal
   m_EditorClassIdentifier: 
   skillType: 2
   skillTarget: 0
-  skillName: Fireball
+  skillName: Ground Heal
   skillAnimationName: Buff_Skill
   skillCooldown: 0
-  userCanRotate: 1
+  userCanRotate: 0
   userCanMove: 1
-  moveSpeedMultiplier: 0.6
+  moveSpeedMultiplier: 0.1
   skillSound: {fileID: 0}
-  skillChargeTime: 0.5
+  skillChargeTime: 1
   skillRealeaseWhenFullyCharged: 0
   skillMustFullyCharge: 0
   mods: []
-  splashEffects: 1
-  splashRadius: 4.5
+  splashEffects: 0
+  splashRadius: 1
   triggersSelfPerks: 0
   triggersTargetPerks: 0
   attackDefinition:
     damage: -5
     criticalChance: 0
-    criticalMultiplier: 2
-    hitForce: 5
-  projectileSpeed: 6
-  range: 20
-  isHoming: 1
-  projectilePrefab: {fileID: 2007279791028131222, guid: b39c99be2184557469665c1272414505,
+    criticalMultiplier: 1
+    hitForce: 0
+  tickIntervals: 2
+  aoeRadius: 5
+  aoeDuration: 10
+  groundSkillPrefab: {fileID: 4036756525389006767, guid: 35f9cb1dd4268a249acc96383ac771bc,
     type: 3}
