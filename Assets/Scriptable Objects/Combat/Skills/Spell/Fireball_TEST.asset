@@ -26,7 +26,7 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   mods:
   - {fileID: 11400000, guid: b314195d797b43a4d8081616d23c559b, type: 2}
-  splashEffects: 0
+  splashEffects: 1
   splashRadius: 3
   triggersSelfPerks: 1
   triggersTargetPerks: 0

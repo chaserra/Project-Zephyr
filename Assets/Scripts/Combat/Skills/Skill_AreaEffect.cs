@@ -27,6 +27,7 @@ namespace Zephyr.Combat
         {
             // Trigger animation then cast spell on location
             Animator userAnim = skillUser.GetComponent<Animator>();
+            GroundAutoAim groundAim = skillUser.GetComponent<GroundAutoAim>();
             if (userAnim != null)
             {
                 userAnim.SetTrigger(skillAnimationName);
@@ -38,7 +39,15 @@ namespace Zephyr.Combat
             // Set skill's tag
             groundSkill.gameObject.tag = skillUser.gameObject.tag;
             // Set skill's position
-            groundSkill.transform.position = skillUser.transform.position; // TODO HIGH (AOE): Change to get from GroundAim
+            // TODO (Ground Aim): Get location while chanelling instead of here
+            if (groundAim != null)
+            {
+                groundSkill.transform.position = groundAim.AcquireTargetGroundPosition(skillTarget);
+            }
+            else
+            {
+                groundSkill.transform.position = skillUser.transform.position;
+            }
             // Cast skill
             groundSkill.Cast(skillUser, this, attackDefinition, 
                 aoeRadius, aoeDuration, tickIntervals, skillTarget);

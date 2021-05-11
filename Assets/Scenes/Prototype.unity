@@ -4464,6 +4464,7 @@ GameObject:
   - component: {fileID: 914615297}
   - component: {fileID: 914615299}
   - component: {fileID: 914615296}
+  - component: {fileID: 914615302}
   - component: {fileID: 914615300}
   - component: {fileID: 914615304}
   - component: {fileID: 914615306}
@@ -4617,6 +4618,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a2f6003594c3fa4ba6a51db021e51e8, type: 2}
   - {fileID: 11400000, guid: b314195d797b43a4d8081616d23c559b, type: 2}
   - {fileID: 11400000, guid: 39b9fc479d1ae4e44b591b30c2641b46, type: 2}
+--- !u!114 &914615302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914615293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f76afeed007a9a4ea560a0ceb6d9839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardRange: 15
+  targettingRadius: 2
+  forwardOffset: 2
+  displayDebugRange: 1
 --- !u!114 &914615303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8588,10 +8605,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1148182745}
     m_Modifications:
+    - target: {fileID: 2910951436474242737, guid: 01ab92ed21f93c046a128f2218eadbb2,
+        type: 3}
+      propertyPath: displayDebugRange
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8881233999831500292, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
       propertyPath: coolDown
-      value: 1.5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8881233999831500292, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
@@ -8602,7 +8624,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skillToUse
       value: 
-      objectReference: {fileID: 11400000, guid: 6420868fa8ec5c848b7bd5a7b0ef8721,
+      objectReference: {fileID: 11400000, guid: f19e1de0ed6bf3a44a9ee5575a0efa83,
         type: 2}
     - target: {fileID: 8881233999831500348, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
@@ -10836,6 +10858,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1148182745}
     m_Modifications:
+    - target: {fileID: 2910951436474242737, guid: 01ab92ed21f93c046a128f2218eadbb2,
+        type: 3}
+      propertyPath: displayDebugRange
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8881233999831500292, guid: 01ab92ed21f93c046a128f2218eadbb2,
         type: 3}
       propertyPath: castSkill

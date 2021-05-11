@@ -123,10 +123,12 @@ GameObject:
   - component: {fileID: 8881233999831500349}
   - component: {fileID: 8881233999831500347}
   - component: {fileID: 8881233999831500345}
+  - component: {fileID: 8026070493073861043}
   - component: {fileID: 8881233999831500344}
   - component: {fileID: 8881233999831500294}
   - component: {fileID: 8881233999831500295}
   - component: {fileID: 8881233999831500292}
+  - component: {fileID: 2910951436474242737}
   m_Layer: 8
   m_Name: Friendly
   m_TagString: Player
@@ -228,6 +230,22 @@ MonoBehaviour:
   perks:
   - {fileID: 11400000, guid: 66ee4c2280cfea24b94ba4fb6d1e899a, type: 2}
   - {fileID: 11400000, guid: f6a80a0ec939bcb488113657f307b29e, type: 2}
+--- !u!114 &8026070493073861043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881233999831500351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f76afeed007a9a4ea560a0ceb6d9839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardRange: 15
+  targettingRadius: 2
+  forwardOffset: 2
+  displayDebugRange: 0
 --- !u!114 &8881233999831500344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,3 +301,19 @@ MonoBehaviour:
   skillToUse: {fileID: 11400000, guid: 5af518c74c7abe5429645d24c07fc084, type: 2}
   castSkill: 0
   coolDown: 0.8
+--- !u!114 &2910951436474242737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881233999831500351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f76afeed007a9a4ea560a0ceb6d9839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  forwardRange: 15
+  targettingRadius: 2
+  forwardOffset: 2
+  displayDebugRange: 1

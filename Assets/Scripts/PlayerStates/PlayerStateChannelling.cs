@@ -27,6 +27,7 @@ namespace Zephyr.Player.Combat
 
             // TODO (Skill Animation): Change this to dynamically get from skill
             player.Anim.SetTrigger("ChannelSkill");
+            // TODO (Ground Aim): Get location here instead of right at moment of casting
         }
 
         public override void Update(PlayerController player)
