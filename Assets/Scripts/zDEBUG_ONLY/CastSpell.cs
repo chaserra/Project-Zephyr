@@ -11,7 +11,7 @@ namespace Zephyr.Combat
         [SerializeField] private bool castSkill = false;
         [SerializeField] private float coolDown = .8f;
 
-        private float timer = 0f;
+        private float timer = 1f;
 
         private void Start()
         {

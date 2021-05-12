@@ -26,12 +26,9 @@ namespace Zephyr.Combat
         public override void TriggerSkill(GameObject skillUser)
         {
             // Trigger animation then cast spell on location
-            Animator userAnim = skillUser.GetComponent<Animator>();
             GroundAutoAim groundAim = skillUser.GetComponent<GroundAutoAim>();
-            if (userAnim != null)
-            {
-                userAnim.SetTrigger(skillAnimationName);
-            }
+            Animator userAnim = skillUser.GetComponent<Animator>();
+            if (userAnim != null) { userAnim.SetTrigger(skillAnimationName); }
 
             // Grab object from object pool
             GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(groundSkillPrefab.gameObject);

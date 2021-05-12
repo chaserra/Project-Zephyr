@@ -133,8 +133,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardRange: 12
-  targettingRadius: 2
+  targettingRadius: 12
   forwardOffset: 2
+  targettingAngle: 45
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1047
+  yOffset: 0.8
   displayDebugRange: 0
 --- !u!114 &2068402100761630393
 MonoBehaviour:
