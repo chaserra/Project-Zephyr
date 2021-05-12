@@ -35,45 +35,7 @@ namespace Zephyr.Combat
             caster = projectile.Caster;
             gameObject.tag = caster.tag;
             _targettingRange = targettingRange;
-            SetupProjectileTargettingLayer();
-        }
-
-        private void SetupProjectileTargettingLayer()
-        {
-            // TODO low (Homing Projectile): Maybe find a more elegant solution
-            // Set target layer depending on caster's layer and projectile's target
-            // If projectile is an offensive skill
-            if (projectile.ProjectileTarget == ValidTargets.TARGET)
-            {
-                if (CompareTag("Player"))
-                {
-                    targetLayer = 1 << LayerMask.NameToLayer("Enemy");
-                }
-                else if (CompareTag("Enemy"))
-                {
-                    targetLayer = 1 << LayerMask.NameToLayer("Player");
-                }
-                else
-                {
-                    Debug.LogError("Caster does not have a properly assigned tag!");
-                }
-            }
-            // If projectile is a defensive skill
-            else
-            {
-                if (CompareTag("Player"))
-                {
-                    targetLayer = 1 << LayerMask.NameToLayer("Player");
-                }
-                else if (CompareTag("Enemy"))
-                {
-                    targetLayer = 1 << LayerMask.NameToLayer("Enemy");
-                }
-                else
-                {
-                    Debug.LogError("Caster does not have a properly assigned tag!");
-                }
-            }
+            targetLayer = UtilityHelper.SetupTargettingLayer(gameObject, projectile.ProjectileTarget);
         }
 
         private void OnDisable()

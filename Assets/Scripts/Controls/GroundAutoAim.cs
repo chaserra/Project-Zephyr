@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
@@ -13,7 +14,7 @@ namespace Zephyr.Combat
          * If no target found, return front of user + offset
          **/
 
-        [SerializeField] private float forwardRange = 15f;
+        [SerializeField] private float forwardRange = 12f;
         [SerializeField] private float targettingRadius = 2f;
         [SerializeField] private float forwardOffset = 2f;
 
@@ -33,7 +34,7 @@ namespace Zephyr.Combat
 
         public Vector3 AcquireTargetGroundPosition(ValidTargets targetType)
         {
-            SetupTargettingLayer(targetType);
+            targetLayer = UtilityHelper.SetupTargettingLayer(gameObject, targetType);
             RaycastHit hit;
             if (Physics.SphereCast(transform.position, targettingRadius, transform.forward,
                 out hit, forwardRange, targetLayer))
@@ -45,44 +46,6 @@ namespace Zephyr.Combat
                 targetGroundPosition = transform.position + transform.forward * forwardOffset;
             }
             return targetGroundPosition;
-        }
-
-        private void SetupTargettingLayer(ValidTargets targetType)
-        {
-            // TODO low (GroundAutoAim): Maybe find a more elegant solution. Duplicate with Homing Projectile
-            // Set target layer depending on caster's layer and spell's target
-            // If spell is an offensive skill
-            if (targetType == ValidTargets.TARGET)
-            {
-                if (CompareTag("Player"))
-                {
-                    targetLayer = 1 << LayerMask.NameToLayer("Enemy");
-                }
-                else if (CompareTag("Enemy"))
-                {
-                    targetLayer = 1 << LayerMask.NameToLayer("Player");
-                }
-                else
-                {
-                    Debug.LogError("Caster does not have a properly assigned tag!");
-                }
-            }
-            // If spell is a defensive skill
-            else
-            {
-                if (CompareTag("Player"))
-                {
-                    targetLayer = 1 << LayerMask.NameToLayer("Player");
-                }
-                else if (CompareTag("Enemy"))
-                {
-                    targetLayer = 1 << LayerMask.NameToLayer("Enemy");
-                }
-                else
-                {
-                    Debug.LogError("Caster does not have a properly assigned tag!");
-                }
-            }
         }
 
     }
