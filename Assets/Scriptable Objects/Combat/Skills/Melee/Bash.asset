@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bash
   m_EditorClassIdentifier: 
   skillType: 0
+  skillTarget: 1
   skillName: Bash
   skillAnimationName: Bash_Skill
   skillCooldown: 5

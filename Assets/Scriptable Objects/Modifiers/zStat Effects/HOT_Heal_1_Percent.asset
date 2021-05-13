@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40400649c15759241ac862cc20e4146d, type: 3}
+  m_Name: HOT_Heal_1_Percent
+  m_EditorClassIdentifier: 
+  DeveloperNotes: Percent heal over-time
+  effectName: Blessed Effect
+  effectImage: {fileID: 11400000, guid: df2b79aac46252545ba92205774eb2ad, type: 2}
+  targetAilment: {fileID: 11400000, guid: a20e801359521974cb44d7b7bb04e44f, type: 2}
+  ailmentLevel: 1
+  tickInterval: 2
+  healPerTick: 1
+  healMultiplierPerTick: 0
+  isPercentage: 1
+  maxTickIncrements: 3

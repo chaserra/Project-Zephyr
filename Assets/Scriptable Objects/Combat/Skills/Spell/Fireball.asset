@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   skillType: 2
+  skillTarget: 1
   skillName: Fireball
   skillAnimationName: Buff_Skill
   skillCooldown: 0
@@ -30,7 +31,7 @@ MonoBehaviour:
   triggersSelfPerks: 1
   triggersTargetPerks: 0
   attackDefinition:
-    damage: 8
+    damage: 10
     criticalChance: 0.1
     criticalMultiplier: 2
     hitForce: 5

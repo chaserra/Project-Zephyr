@@ -26,14 +26,12 @@ namespace Zephyr.Combat
             TriggerSkill(skillUser);
         }
 
+        /* ==Cast Spell== */
         public override void TriggerSkill(GameObject skillUser)
         {
             // Do skill stuff. Trigger animation and instantiate a projectile
             Animator userAnim = skillUser.GetComponent<Animator>();
-            if (userAnim != null)
-            {
-                userAnim.SetTrigger(skillAnimationName);
-            }
+            if (userAnim != null) { userAnim.SetTrigger(skillAnimationName); }
 
             // Grab object from object pool
             GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(projectilePrefab.gameObject);
@@ -43,19 +41,18 @@ namespace Zephyr.Combat
             // Get Projectile Hotspot
             Transform hotSpot = skillUser.GetComponent<CharacterStats>().GetProjectileHotSpot();
             // Fire projectile
-            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot);
+            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot, skillTarget);
 
             // Subscribe to projectile events
             projectile.ProjectileCollided += ApplySkill;
             projectile.UnsubscribeProjectile += UnsubSkill;
         }
 
+        /* ==Deal Damage== */
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
             // Projectile landed on target, create attack and damage the target
             ApplyOffensiveSkill(skillUser, skillTarget, attackDefinition);
-
-            // TODO HIGH (Projectiles) : Create splash effects
         }
 
         private void UnsubSkill(Projectile projectile)

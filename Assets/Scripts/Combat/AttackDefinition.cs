@@ -24,6 +24,13 @@ namespace Zephyr.Combat
         public Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats, Skill skillUsed)
         {
             float coreDamage = attackerStats.GetDamage();
+
+            // If healing
+            if (damage < 0)
+            {
+                // Make charStat damage bonus negative to add to healing
+                coreDamage *= -1;
+            }
             coreDamage += damage;
 
             bool isCritical = Random.value < criticalChance;
