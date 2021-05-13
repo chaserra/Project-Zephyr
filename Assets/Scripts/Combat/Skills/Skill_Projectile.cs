@@ -26,6 +26,7 @@ namespace Zephyr.Combat
             TriggerSkill(skillUser);
         }
 
+        /* ==Cast Spell== */
         public override void TriggerSkill(GameObject skillUser)
         {
             // Do skill stuff. Trigger animation and instantiate a projectile
@@ -47,6 +48,7 @@ namespace Zephyr.Combat
             projectile.UnsubscribeProjectile += UnsubSkill;
         }
 
+        /* ==Deal Damage== */
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
             // Projectile landed on target, create attack and damage the target

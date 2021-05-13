@@ -59,6 +59,7 @@ namespace Zephyr.Combat
                 CharacterStats userStats = skillUser.GetComponent<CharacterStats>();
                 PerkManager userPerkMgr = skillUser.GetComponent<PerkManager>();
 
+                /* ==Attack Actions== */
                 // Create attack
                 var attack = attackDefinition.CreateAttack(userStats, targetStats, this);
                 var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
@@ -69,6 +70,7 @@ namespace Zephyr.Combat
                     a.OnAttacked(skillUser, attack);
                 }
 
+                /* ==Perk Actions== */
                 // Trigger TARGET's defensive perks
                 if (triggersTargetPerks && targetPerkMgr != null)
                 {
@@ -81,7 +83,7 @@ namespace Zephyr.Combat
                     userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
                 }
 
-                // Splash Actions
+                /* ==Splash Actions== */
                 if (splashEffects)
                 {
                     DealSplashEffects(userStats, skillTarget, attackDefinition);
