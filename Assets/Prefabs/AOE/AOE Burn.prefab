@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3646073159704490845}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 285548234832657254}
   - component: {fileID: 1908914714873682155}
   - component: {fileID: 1048596548279888957}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,8 +133,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4036756525389006764}
+  - component: {fileID: 5131140383754443332}
   - component: {fileID: 4036756525389006767}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AOE Burn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +158,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5131140383754443332
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036756525389006765}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4036756525389006767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +195,7 @@ GameObject:
   - component: {fileID: 8306450962218930223}
   - component: {fileID: 725381356681472481}
   - component: {fileID: 7727951433964278786}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}

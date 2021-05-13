@@ -74,7 +74,6 @@ namespace Zephyr.Combat
                     // Obstacles block raycast. Returns nothing if blocked.
                     if (!Physics.Raycast(posYoffset, directionToTarget, distanceToTarget, obstacleMask))
                     {
-                        // TODO HIGH (Ground Auto Aim): Find a way to ignore caster's bodyparts and projectiles
                         if (distanceToTarget < closestTargetDistance)
                         {
                             visibleTargets.Add(target); // Used only for Editor

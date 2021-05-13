@@ -9,7 +9,7 @@ namespace Zephyr.Util
     [CustomEditor(typeof(GroundAutoAim))]
     public class GroundAutoAimEditor : Editor
     {
-        // Save in Editor
+        // Save in Editor folder
         void OnSceneGUI()
         {
             GroundAutoAim groundAim = (GroundAutoAim)target;

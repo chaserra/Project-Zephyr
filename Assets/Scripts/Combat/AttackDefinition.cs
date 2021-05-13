@@ -26,7 +26,7 @@ namespace Zephyr.Combat
             float coreDamage = attackerStats.GetDamage();
 
             // If healing
-            if (damage <= 0)
+            if (damage < 0)
             {
                 // Make charStat damage bonus negative to add to healing
                 coreDamage *= -1;

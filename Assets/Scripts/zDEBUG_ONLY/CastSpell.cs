@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Zephyr.Combat
 {
+    /*
+     * DEBUG ONLY. Remove on build
+     */
     public class CastSpell : MonoBehaviour
     {
         [SerializeField] private bool randomRotateAtStart = true;

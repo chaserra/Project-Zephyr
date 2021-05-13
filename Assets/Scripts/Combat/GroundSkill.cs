@@ -21,6 +21,13 @@ namespace Zephyr.Combat
         private float timer;
         private float tickTimer;
 
+        private void OnDrawGizmos()
+        {
+            if (caster == null) { return; }
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, radius);
+        }
+
         public void Cast(GameObject Caster, Skill SkillUsed, AttackDefinition AttackValues, 
             float Radius, float Duration, float TickIntervals, ValidTargets Target)
         {
@@ -48,13 +55,6 @@ namespace Zephyr.Combat
             gameObject.SetActive(true);
         }
 
-        private void OnDrawGizmos()
-        {
-            if (caster == null) { return; }
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawWireSphere(transform.position, radius);
-        }
-
         private void OnDisable()
         {
             // Set values
@@ -80,7 +80,6 @@ namespace Zephyr.Combat
             // Do timer / tick stuff
             if (timer < duration)
             {
-                // TODO HIGH (AOE): Make ailment passing instant.
                 // Stepping on this should apply mods immediately
                 if (tickTimer >= tickIntervals)
                 {
@@ -88,14 +87,7 @@ namespace Zephyr.Combat
                     List<Collider> targets = AcquireTargets(Physics.OverlapSphere(transform.position, radius));
                     foreach (Collider skillTarget in targets)
                     {
-                        // Apply skill effects to these targets
-                        var attack = new Attack(attackValues.damage + characterDamageBonus, false, skill);
-                        var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
-
-                        foreach (IAttackable a in attackables)
-                        {
-                            a.OnAttacked(caster, attack);
-                        }
+                        ApplyAttack(skillTarget);
                     }
                     tickTimer = 0f;
                 }
@@ -106,6 +98,21 @@ namespace Zephyr.Combat
             {
                 // Duration finished
                 gameObject.SetActive(false);
+            }
+        }
+
+        /* Trigger Attack (and pass mods) upon stepping on the AOE spell */
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.gameObject.tag == "Untagged") { return; }
+
+            // Only trigger attack if offensive spell. Else, this can easily be abused.
+            if (spellTarget == ValidTargets.TARGET)
+            {
+                if (!CompareTag(other.gameObject.tag))
+                {
+                    ApplyAttack(other);
+                }
             }
         }
 
@@ -136,6 +143,18 @@ namespace Zephyr.Combat
                 }
             }
             return targets;
+        }
+
+        private void ApplyAttack(Collider skillTarget)
+        {
+            // Apply skill effects to these targets
+            var attack = new Attack(attackValues.damage + characterDamageBonus, false, skill);
+            var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
+
+            foreach (IAttackable a in attackables)
+            {
+                a.OnAttacked(caster, attack);
+            }
         }
 
     }

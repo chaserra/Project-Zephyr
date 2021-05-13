@@ -723,6 +723,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -986,6 +991,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -1160,6 +1170,11 @@ PrefabInstance:
       propertyPath: coolDown
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -1329,6 +1344,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -1592,6 +1612,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -2778,6 +2803,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -3957,6 +3987,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -4032,6 +4067,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -4107,6 +4147,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -4280,6 +4325,11 @@ PrefabInstance:
         type: 3}
       propertyPath: coolDown
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
@@ -4728,6 +4778,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -5189,6 +5244,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -6064,6 +6124,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -6327,6 +6392,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -6567,6 +6637,11 @@ PrefabInstance:
         type: 3}
       propertyPath: coolDown
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
@@ -7903,6 +7978,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -8530,6 +8610,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
       propertyPath: skillToUse
       value: 
       objectReference: {fileID: 11400000, guid: 6420868fa8ec5c848b7bd5a7b0ef8721,
@@ -8995,6 +9080,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -9324,6 +9414,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -9989,6 +10084,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -10064,6 +10164,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -10515,6 +10620,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 992355521}
     m_Modifications:
+    - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: castSkill
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder
@@ -10886,12 +10996,12 @@ PrefabInstance:
         type: 3}
       propertyPath: skillToUse
       value: 
-      objectReference: {fileID: 11400000, guid: f1e1e802a25cd9e4fa6f5e5ba69ae6c9,
+      objectReference: {fileID: 11400000, guid: 880939e649913bf44a5346401597892d,
         type: 2}
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: randomRotateAtStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
