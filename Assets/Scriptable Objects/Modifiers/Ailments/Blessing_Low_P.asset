@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blessing_Low_P
   m_EditorClassIdentifier: 
   DeveloperNotes: 
-  modName: Blessing
+  modName: Blessing_Low_P
   context:
     isActive: 0
     hasDuration: 1

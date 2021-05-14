@@ -13,6 +13,7 @@ namespace Zephyr.Combat
         public float criticalMultiplier = 2f;
         public float hitForce = 10f;
 
+        /* Constructor */
         public AttackDefinition(int Damage, float CriticalChance, float CriticalMultiplier, float HitForce)
         {
             damage = Damage;
@@ -21,9 +22,30 @@ namespace Zephyr.Combat
             hitForce = HitForce;
         }
 
+        /* Used for creating attacks that do not proc mods */
+        public Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats)
+        {
+            float coreDamage;
+            bool isCritical;
+            ComputeAttackValues(attackerStats, out coreDamage, out isCritical);
+
+            return new Attack((int)coreDamage, isCritical);
+        }
+
+        /* Used for creating attacks that proc mods */
         public Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats, Skill skillUsed)
         {
-            float coreDamage = attackerStats.GetDamage();
+
+            float coreDamage;
+            bool isCritical;
+            ComputeAttackValues(attackerStats, out coreDamage, out isCritical);
+
+            return new Attack((int)coreDamage, isCritical, skillUsed);
+        }
+
+        private void ComputeAttackValues(CharacterStats attackerStats, out float coreDamage, out bool isCritical)
+        {
+            coreDamage = attackerStats.GetDamage();
 
             // If healing
             if (damage < 0)
@@ -33,16 +55,13 @@ namespace Zephyr.Combat
             }
             coreDamage += damage;
 
-            bool isCritical = Random.value < criticalChance;
-
+            isCritical = Random.value < criticalChance;
             if (isCritical)
             {
                 coreDamage *= criticalMultiplier;
             }
 
             // TODO (Combat): Compute defender resistance then subtract to coreDmg
-
-            return new Attack((int)coreDamage, isCritical, skillUsed);
         }
 
     }

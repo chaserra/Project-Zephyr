@@ -26,7 +26,8 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   mods: []
   splashEffects: 0
-  splashRadius: 1
+  splashRadius: 0
+  triggerSkillMods: 0
   triggersSelfPerks: 0
   triggersTargetPerks: 0
   attackDefinition:

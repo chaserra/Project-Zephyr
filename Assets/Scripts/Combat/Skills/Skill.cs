@@ -36,6 +36,8 @@ namespace Zephyr.Combat
         [Tooltip("Does splash damage/effects on nearby targets")]
         [SerializeField] bool splashEffects = false;
         [SerializeField] float splashRadius = 1f;
+        [Tooltip("Proc skill mods on targets affected by splash?")]
+        [SerializeField] bool triggerSkillMods = true;
         [Header("Contextual Events")]
         [Tooltip("Trigger skill user's perks")]
         public bool triggersSelfPerks = false;
@@ -129,7 +131,17 @@ namespace Zephyr.Combat
                     newAttackDefinition.damage);
 
                 // Create new attack to pass to attackables
-                var attack = newAttackDefinition.CreateAttack(skillUser, targetStats, this);
+                Attack attack;
+                if (triggerSkillMods)
+                {
+                    // Attack splash with mods to pass
+                    attack = newAttackDefinition.CreateAttack(skillUser, targetStats, this);
+                }
+                else
+                {
+                    // Attack splash damage only
+                    attack = newAttackDefinition.CreateAttack(skillUser, targetStats);
+                }
                 var attackables = col.GetComponentsInChildren<IAttackable>();
 
                 // Apply rerolled attack to attackables

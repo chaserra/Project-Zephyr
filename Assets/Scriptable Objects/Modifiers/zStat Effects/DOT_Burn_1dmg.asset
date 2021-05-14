@@ -21,3 +21,4 @@ MonoBehaviour:
   damagePerTick: 1
   damageMultiplierPerTick: 1
   maxTickIncrements: 10
+  burnRadius: 2.5

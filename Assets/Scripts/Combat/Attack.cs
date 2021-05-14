@@ -22,7 +22,14 @@ namespace Zephyr.Combat
             _color = newColor;
         }
 
-        // Used for skill attacks (passing mods)
+        // Attack and don't proc mods
+        public Attack(int damage, bool critical)
+        {
+            _damage = damage;
+            _isCritical = critical;
+        }
+
+        // Attack and proc mods
         public Attack(int damage, bool critical, Skill skillUsed)
         {
             _damage = damage;

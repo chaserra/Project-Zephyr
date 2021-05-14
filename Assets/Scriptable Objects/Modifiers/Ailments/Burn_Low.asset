@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Burn_Low
   m_EditorClassIdentifier: 
   DeveloperNotes: 
-  modName: Burn
+  modName: Burn_Low
   context:
     isActive: 0
     hasDuration: 1

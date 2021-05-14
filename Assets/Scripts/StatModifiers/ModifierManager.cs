@@ -203,6 +203,12 @@ namespace Zephyr.Mods
         {
             return characterStats.GetHealthPercentValue(amount);
         }
+
+        // Used to get if an ailment is already active
+        public bool AilmentActive(Ailment ailmentToFind)
+        {
+            return ailmentsList.AilmentActive(ailmentToFind);
+        }
         #endregion
 
         #region Event Triggering

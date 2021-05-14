@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Heal_Minor
   m_EditorClassIdentifier: 
   skillType: 2
+  skillTarget: 1
   skillName: Heal
   skillAnimationName: Buff_Skill
   skillCooldown: 0
@@ -24,5 +25,10 @@ MonoBehaviour:
   skillRealeaseWhenFullyCharged: 0
   skillMustFullyCharge: 0
   mods: []
+  splashEffects: 0
+  splashRadius: 0
+  triggerSkillMods: 0
+  triggersSelfPerks: 0
+  triggersTargetPerks: 0
   healPercent: 1
   amountToHeal: 15

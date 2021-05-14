@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af9ce6ed72bc56c4788091c13c73ce2c, type: 3}
-  m_Name: Ailment_Burn
+  m_Script: {fileID: 11500000, guid: 2864896fe67628845aedb5f52e3ba221, type: 3}
+  m_Name: Stun_Image
   m_EditorClassIdentifier: 
-  DeveloperNotes: 'Burn deals FLAT damage
-
-    Damage intensifies per tick
-
-    Damages
-    nearby targets'
-  ailmentName: Burn
-  textColor: {r: 0.38679248, g: 0.16668151, b: 0.0054734685, a: 1}
+  effectImage: {fileID: 1274509828703992897, guid: 6a70efa9510b3774a994801f3c65906d,
+    type: 3}

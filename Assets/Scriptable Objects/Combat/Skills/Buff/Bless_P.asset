@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bless_P
   m_EditorClassIdentifier: 
   skillType: 2
+  skillTarget: 1
   skillName: Blessing Percent
   skillAnimationName: Buff_Skill
   skillCooldown: 0
@@ -25,3 +26,8 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   mods:
   - {fileID: 11400000, guid: 5c163d873e84b5e4f986281f8cf75a6f, type: 2}
+  splashEffects: 0
+  splashRadius: 0
+  triggerSkillMods: 0
+  triggersSelfPerks: 0
+  triggersTargetPerks: 0
