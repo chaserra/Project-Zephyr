@@ -10,11 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9db1ee93c7f5e04abf4b954eb73aeab, type: 3}
-  m_Name: INC_Stun_2s
+  m_Name: INC_Stun_Lvl1
   m_EditorClassIdentifier: 
-  DeveloperNotes: 
+  DeveloperNotes: 'Flat stun. Cancels all animations and
+
+    skill channel/charge
+
+    No
+    need for tick interval value'
   effectName: Stun Effect
   effectImage: {fileID: 11400000, guid: f3cc97684495a5e4c8586fcf6c62e204, type: 2}
   targetAilment: {fileID: 11400000, guid: 34da5af02db23ac47a47b07b1b65d7a7, type: 2}
   ailmentLevel: 1
-  tickInterval: 0.5
+  tickInterval: 0

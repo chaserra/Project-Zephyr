@@ -126,9 +126,25 @@ namespace Zephyr.Player
             currentSkill = null;
         }
 
-        public void Stunned(bool flag)
+        // TODO HIGH (Stun): Find better way to trigger stun
+        // Should be abstracted to work on NPCs
+        public void ToggleStun(bool arg)
         {
-            isStunned = flag;
+            // Set stun flag
+            isStunned = arg;
+            if (!isStunned) { return; } // Only reset states if stunned
+
+            // Reset all triggers
+            foreach (var trigger in anim.parameters)
+            {
+                anim.ResetTrigger(trigger.name);
+            }
+
+            // Set trigger "Stunned" to escape from current animation
+            anim.SetTrigger("Stunned");
+
+            // Exit current state
+            currentState.ExitState(this);
         }
 
         #region Interface Methods

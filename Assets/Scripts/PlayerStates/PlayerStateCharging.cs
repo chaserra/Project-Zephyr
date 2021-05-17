@@ -90,22 +90,26 @@ namespace Zephyr.Player.Combat
         private void ReleaseAttack(PlayerController player)
         {
             // TODO (Charged Attack): Compute attack modifiers
-            // Release attack then return to movestate
             player.TransitionState(player.AttackState);
             ResetChargeStateValues(player);
         }
 
         private void CancelChargeAttack(PlayerController player)
         {
-            player.TransitionState(player.MoveState);
             ResetChargeStateValues(player);
+            player.TransitionState(player.MoveState);
         }
 
         private void ResetChargeStateValues(PlayerController player)
         {
             chargePercent = 0f;
             fullyCharged = false;
-            //player.ResetCurrentSkill(); // Not needed? Skill automatically resets after attack state
+        }
+
+        public override void ExitState(PlayerController player)
+        {
+            player.ResetCurrentSkill();
+            CancelChargeAttack(player);
         }
 
     }

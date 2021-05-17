@@ -4582,7 +4582,7 @@ MonoBehaviour:
   skillButtonFive: {fileID: 11400000, guid: 646ee24cda921e646be6b23fcc0d61fe, type: 2}
   skillButtonSix: {fileID: 11400000, guid: f1e1e802a25cd9e4fa6f5e5ba69ae6c9, type: 2}
   skillButtonSeven: {fileID: 11400000, guid: b4691ae3dfdb9aa4a93c86a3c54eb2c6, type: 2}
-  skillButtonEight: {fileID: 11400000, guid: f8616f0ab2cd3224aac2d617ab132900, type: 2}
+  skillButtonEight: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4665,10 +4665,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
   - {fileID: 11400000, guid: 36c6bf973d7804e4c9c2322d844e01d3, type: 2}
   mods_Comma:
-  - {fileID: 11400000, guid: 6a2f6003594c3fa4ba6a51db021e51e8, type: 2}
+  - {fileID: 11400000, guid: e8d97a27815e1c44b9d1090ddf69c585, type: 2}
   - {fileID: 11400000, guid: b314195d797b43a4d8081616d23c559b, type: 2}
   - {fileID: 11400000, guid: 39b9fc479d1ae4e44b591b30c2641b46, type: 2}
-  - {fileID: 11400000, guid: e8d97a27815e1c44b9d1090ddf69c585, type: 2}
 --- !u!114 &914615302
 MonoBehaviour:
   m_ObjectHideFlags: 0

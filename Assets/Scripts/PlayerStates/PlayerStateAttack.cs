@@ -30,7 +30,12 @@ namespace Zephyr.Player.Combat
             skill.Initialize(player.gameObject);
             // TODO (Combat): Create an attack, then pass to target
             yield return new WaitForSeconds(.55f); // Better change this to wait for animation to end
-            player.ResetCurrentSkill(); // TODO (Skills): Make animation end do this
+            ExitState(player); // TODO (Skills): Make animation end do this
+        }
+
+        public override void ExitState(PlayerController player)
+        {
+            player.ResetCurrentSkill();
             player.TransitionState(player.MoveState);
         }
 

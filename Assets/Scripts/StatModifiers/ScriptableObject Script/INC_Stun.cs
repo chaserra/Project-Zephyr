@@ -7,6 +7,6 @@ namespace Zephyr.Mods
     [CreateAssetMenu(fileName = "NewStun", menuName = "Mods/Stat Effects/Incapacitate/Stun")]
     public class INC_Stun : StatEffect_Ailment
     {
-        // TODO HIGH (Stun): Make stun ailment
+        // No need
     }
 }

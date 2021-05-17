@@ -5,6 +5,7 @@ using Zephyr.Combat;
 using Zephyr.Stats;
 using Zephyr.UI;
 using Zephyr.Util;
+using Zephyr.Player;
 
 namespace Zephyr.Mods
 {
@@ -208,6 +209,14 @@ namespace Zephyr.Mods
         public bool AilmentActive(Ailment ailmentToFind)
         {
             return ailmentsList.AilmentActive(ailmentToFind);
+        }
+
+        // TODO HIGH (Stun): Find a better way to trigger stun
+        // Should be abstracted to work on NPCs
+        // Stun
+        public void Stun(bool stunFlag)
+        {
+            GetComponent<PlayerController>().ToggleStun(stunFlag);
         }
         #endregion
 
