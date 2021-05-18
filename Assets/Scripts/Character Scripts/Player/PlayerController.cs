@@ -22,14 +22,15 @@ namespace Zephyr.Player
         private PlayerMover mover = new PlayerMover();
 
         // States
-        private PlayerStateBase currentState;
+        private PlayerStateBase _currentState;
         public readonly PlayerStateMove MoveState = new PlayerStateMove();
         public readonly PlayerStateAttack AttackState = new PlayerStateAttack();
         public readonly PlayerStateCharging ChargingState = new PlayerStateCharging();
         public readonly PlayerStateChannelling ChannellingState = new PlayerStateChannelling();
+        public readonly PlayerStateStunned StunnedState = new PlayerStateStunned();
         private Dictionary<string, Skill> skillWithKeyMap = new Dictionary<string, Skill>();
-        private Skill currentSkill = null;
-        private bool isStunned = false;
+        private Skill _currentSkill = null;
+        private bool _isStunned = false;
 
         // Properties
         #region Properties
@@ -46,8 +47,8 @@ namespace Zephyr.Player
         public int GetDamage { get { return characterStats.GetDamage(); } }
         public float GetTurnSmoothTime { get { return characterStats.GetTurnSpeed(); } }
         /* **States** */
-        public PlayerStateBase CurrentState { get { return currentState; } }
-        public Skill CurrentSkill { get { return currentSkill; } }
+        public PlayerStateBase CurrentState { get { return _currentState; } }
+        public Skill CurrentSkill { get { return _currentSkill; } }
         public Dictionary<string, Skill> SkillWithKeyMap { get { return skillWithKeyMap; } }
         #endregion
 
@@ -67,13 +68,13 @@ namespace Zephyr.Player
 
         private void Update()
         {
-            if (isStunned) { return; }
+            if (_isStunned) { return; }
 
             // Detect button press and get mapped skill
             UseSkill(inputController.SkillButtonPress());
 
             // Do state Update method
-            currentState.Update(this);
+            _currentState.Update(this);
         }
 
         private void UseSkill(Dictionary<string, Skill> skillWithKey)
@@ -84,19 +85,19 @@ namespace Zephyr.Player
                 foreach (KeyValuePair<string, Skill> keySkill in skillWithKey)
                 {
                     string keyPressed = keySkill.Key;
-                    currentSkill = keySkill.Value;
-                    skillWithKeyMap.Add(keyPressed, currentSkill);
+                    _currentSkill = keySkill.Value;
+                    skillWithKeyMap.Add(keyPressed, _currentSkill);
                 }
 
                 // Check if skill is a charged attack
-                if (currentSkill.skillType == SkillType.Charged)
+                if (_currentSkill.skillType == SkillType.Charged)
                 {
                     // Pass this attack type to ChargingState
                     TransitionState(ChargingState);
                 }
 
                 // Check if skill is a channelled attack
-                else if (currentSkill.skillType == SkillType.Channelled)
+                else if (_currentSkill.skillType == SkillType.Channelled)
                 {
                     // Pass this attack type to ChannellingState
                     TransitionState(ChannellingState);
@@ -113,48 +114,46 @@ namespace Zephyr.Player
 
         public void TransitionState(PlayerStateBase state)
         {
-            if (currentState != state)
+            if (_currentState != state)
             {
-                currentState = state;
-                currentState.EnterState(this);
+                _currentState = state;
+                _currentState.EnterState(this);
             }
         }
 
         public void ResetCurrentSkill()
         {
             skillWithKeyMap.Clear();
-            currentSkill = null;
-        }
-
-        // TODO HIGH (Stun): Find better way to trigger stun
-        // Should be abstracted to work on NPCs
-        public void ToggleStun(bool arg)
-        {
-            // Set stun flag
-            isStunned = arg;
-            if (!isStunned) { return; } // Only reset states if stunned
-
-            // Reset all triggers
-            foreach (var trigger in anim.parameters)
-            {
-                anim.ResetTrigger(trigger.name);
-            }
-
-            // Set trigger "Stunned" to escape from current animation
-            anim.SetTrigger("Stunned");
-
-            // Exit current state
-            currentState.ExitState(this);
+            _currentSkill = null;
         }
 
         #region Interface Methods
         // Hit other Combatants
-        public void Hit(GameObject attackTarget)
+        public void HitTarget(GameObject attackTarget)
         {
             // TODO (HIT): make hurtboxes only active on skill use
-            if (currentSkill == null || currentSkill is Skill_Self || currentSkill is Skill_Projectile) { return; }
-            if (currentState == ChannellingState || currentState == ChargingState) { return; }
-            currentSkill.ApplySkill(gameObject, attackTarget);
+            if (_currentSkill == null || _currentSkill is Skill_Self || _currentSkill is Skill_Projectile) { return; }
+            if (_currentState == ChannellingState || _currentState == ChargingState) { return; }
+            _currentSkill.ApplySkill(gameObject, attackTarget);
+        }
+
+        // Toggle Stunned State
+        public void Stunned(bool isStunned)
+        {
+            // Set stun flag
+            _isStunned = isStunned;
+
+            // Exit current state (Exit State resets all of state's values internally)
+            _currentState.ExitState(this);
+
+            if (_isStunned) 
+            {
+                TransitionState(StunnedState);
+            }
+            else
+            {
+                TransitionState(MoveState);
+            }
         }
         #endregion
 

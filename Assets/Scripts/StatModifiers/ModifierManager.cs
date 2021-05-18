@@ -168,7 +168,9 @@ namespace Zephyr.Mods
         #endregion
 
         #region MODIFIER ACTIONS
-        /* Modify Stat Effects */
+        /* *******************
+         * Modify Stat Effects 
+         * *******************/
         public void AggregateStatValues(StatList targetStat, float value, bool isPercentage, bool reverseValues)
         {
             // Reverse values for removing stat mods
@@ -181,7 +183,15 @@ namespace Zephyr.Mods
             characterStats.AggregateStatSheetValues(targetStat, value, isPercentage);
         }
 
-        /* Ailment Effects */
+        /* ***************
+         * Ailment Effects 
+         * ***************/
+        // Used to get if an ailment is already active
+        public bool AilmentActive(Ailment ailmentToFind)
+        {
+            return ailmentsList.AilmentActive(ailmentToFind);
+        }
+
         public void DealDamage(Attack attack)
         {
             var attackables = gameObject.GetComponentsInChildren<IAttackable>();
@@ -192,6 +202,9 @@ namespace Zephyr.Mods
             }
         }
 
+        /* *******
+         * Healing 
+         * ********/
         public void DealHealing(Attack attack)
         {
             // Convert to negative damage value (heal) then pass to DealDamage
@@ -205,23 +218,22 @@ namespace Zephyr.Mods
             return characterStats.GetHealthPercentValue(amount);
         }
 
-        // Used to get if an ailment is already active
-        public bool AilmentActive(Ailment ailmentToFind)
+        /* ***********
+         * Stun Effect 
+         * ************/
+        public void Stun(bool isStunned)
         {
-            return ailmentsList.AilmentActive(ailmentToFind);
-        }
-
-        // TODO HIGH (Stun): Find a better way to trigger stun
-        // Should be abstracted to work on NPCs
-        // Stun
-        public void Stun(bool stunFlag)
-        {
-            GetComponent<PlayerController>().ToggleStun(stunFlag);
+            // Toggle Stun if combatant
+            ICombatant combatant = GetComponentInParent<ICombatant>();
+            if (combatant == null) { return; }
+            combatant.Stunned(isStunned);
         }
         #endregion
 
         #region Event Triggering
-        /** UI Stat Effect Icons **/
+        /* ******************** 
+         * UI Stat Effect Icons 
+         * ********************/
         public void InvokeStatEffectUIEvent(UIStatEffect_SO statEffectImage, bool arg)
         {
             if (eventListener == null) { return; } // Only called if object listens to UI events

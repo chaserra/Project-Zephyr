@@ -25,8 +25,6 @@ namespace Zephyr.Mods
             currentAilmentLevel = stun.ailmentLevel;
             isActive = true;
 
-            // TODO HIGH (Stun): Find a better way to trigger stun
-            // Should be abstracted to work on NPCs
             modifierManager.Stun(isActive);
         }
 
@@ -37,8 +35,6 @@ namespace Zephyr.Mods
             if (!CheckAilmentStatus(statEffect, out stun)) { return; }
             ResetBaseAilmentValues();
 
-            // TODO HIGH (Stun): Find a better way to trigger stun
-            // Should be abstracted to work on NPCs
             modifierManager.Stun(isActive);
         }
 

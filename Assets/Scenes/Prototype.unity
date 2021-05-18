@@ -4582,7 +4582,7 @@ MonoBehaviour:
   skillButtonFive: {fileID: 11400000, guid: 646ee24cda921e646be6b23fcc0d61fe, type: 2}
   skillButtonSix: {fileID: 11400000, guid: f1e1e802a25cd9e4fa6f5e5ba69ae6c9, type: 2}
   skillButtonSeven: {fileID: 11400000, guid: b4691ae3dfdb9aa4a93c86a3c54eb2c6, type: 2}
-  skillButtonEight: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
+  skillButtonEight: {fileID: 11400000, guid: f8616f0ab2cd3224aac2d617ab132900, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
   m_ObjectHideFlags: 0
