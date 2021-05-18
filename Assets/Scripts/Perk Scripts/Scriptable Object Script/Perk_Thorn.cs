@@ -18,6 +18,7 @@ namespace Zephyr.Perks
         {
             if (!isActive) { return; }
             if (attack.Damage <= 0) { return; } // Don't trigger if attack missed or is a type of heal
+
             // Calculate proc
             if (!UtilityHelper.RollForProc(chanceToApplyPerk)) { return; }
 

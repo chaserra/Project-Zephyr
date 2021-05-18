@@ -11,7 +11,7 @@ namespace Zephyr.Combat
         {
             if (CompareTag(other.gameObject.tag)) { return; } // Ignore self
             ICombatant combatant = GetComponentInParent<ICombatant>();
-            combatant.Hit(other.gameObject);
+            combatant.HitTarget(other.gameObject);
         }
     }
 }

@@ -50,20 +50,14 @@ namespace Zephyr.Player.Combat
         private void ReleaseAttack(PlayerController player)
         {
             player.TransitionState(player.AttackState);
-            ResetChargeStateValues(player);
+            chargePercent = 0f;
         }
 
-        // To be used for stagger
-        private void CancelSkillChannelling(PlayerController player)
-        {
-            player.TransitionState(player.MoveState);
-            ResetChargeStateValues(player);
-        }
-
-        private void ResetChargeStateValues(PlayerController player)
+        public override void ExitState(PlayerController player)
         {
             chargePercent = 0f;
-            //player.ResetCurrentSkill(); // Not needed? Skill automatically resets after attack state
+            player.ResetCurrentSkill();
+            player.TransitionState(player.MoveState);
         }
     }
 }

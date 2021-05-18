@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adeaf3d9ced46ba428b5dfacedcbebc7, type: 3}
   m_Name: Ailment_Stun
   m_EditorClassIdentifier: 
-  DeveloperNotes: Basic stun
+  DeveloperNotes: 'Flat stun. Cancels all animations and
+
+    skill channel/charge
+
+    No
+    need for tick interval value'
   ailmentName: Stun
   textColor: {r: 1, g: 0, b: 0, a: 1}
