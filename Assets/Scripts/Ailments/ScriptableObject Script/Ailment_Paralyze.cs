@@ -46,7 +46,7 @@ namespace Zephyr.Mods
             {
                 if (tickTimer <= 0)
                 {
-                    // Proc paralyze
+                    // Proc paralyze per tick
                     if (UtilityHelper.RollForProc(stunChance))
                     {
                         modifierManager.StartCoroutine(ToggleMiniStun(modifierManager));
