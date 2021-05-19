@@ -50,6 +50,7 @@ namespace Zephyr.Player
         public PlayerStateBase CurrentState { get { return _currentState; } }
         public Skill CurrentSkill { get { return _currentSkill; } }
         public Dictionary<string, Skill> SkillWithKeyMap { get { return skillWithKeyMap; } }
+        public bool IsStunned { get { return IsStunned; } }
         #endregion
 
         private void Awake()

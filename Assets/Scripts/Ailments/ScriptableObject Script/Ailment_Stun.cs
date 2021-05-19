@@ -40,7 +40,11 @@ namespace Zephyr.Mods
 
         public override void Tick(ModifierManager modifierManager)
         {
-            // No need
+            // Makes sure stun is always active and not affected by paralyze ticks
+            if (isActive)
+            {
+                modifierManager.Stun(isActive);
+            }
         }
     }
 }
