@@ -52,7 +52,7 @@ namespace Zephyr.Combat
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
-            // Maybe not needed
+            // Maybe not needed here
         }
     }
 }

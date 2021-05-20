@@ -11,7 +11,7 @@ namespace Zephyr.Perks
     public class Perk_Contagious : Perk
     {
         /**
-         * Contagious passes an ailment to the attacker
+         * Contagious passes an ailment/mod to the attacker
          **/
         public Modifier[] ailmentsToInfect;
 

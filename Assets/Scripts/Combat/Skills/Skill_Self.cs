@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Mods;
 
 namespace Zephyr.Combat
 {
@@ -24,5 +25,14 @@ namespace Zephyr.Combat
             // Nothing to do here
         }
 
+        protected void ApplyMods(GameObject skillUser)
+        {
+            // Apply mods
+            ModifierManager modMgr = skillUser.GetComponent<ModifierManager>();
+            for (int i = 0; i < mods.Length; i++)
+            {
+                modMgr.AddModifier(mods[i]);
+            }
+        }
     }
 }

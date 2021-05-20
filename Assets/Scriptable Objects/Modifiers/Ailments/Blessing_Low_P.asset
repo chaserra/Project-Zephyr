@@ -22,6 +22,6 @@ MonoBehaviour:
     maxStacks: 0
     modType: 0
     procChance: 1
-  target: 0
+  target: 1
   statEffects:
   - {fileID: 11400000, guid: bc216fe05fb17594e8c88864f95b3450, type: 2}

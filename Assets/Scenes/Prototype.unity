@@ -4576,7 +4576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillButtonOne: {fileID: 11400000, guid: 2d72cca43d0a7424c9f44970a46c6f7c, type: 2}
-  skillButtonTwo: {fileID: 11400000, guid: 3ef3462aced1f534a9a5cb65fdabcf5b, type: 2}
+  skillButtonTwo: {fileID: 11400000, guid: 6420868fa8ec5c848b7bd5a7b0ef8721, type: 2}
   skillButtonThree: {fileID: 11400000, guid: 59b786d3fcb3bfe4ba9576dd503658c9, type: 2}
   skillButtonFour: {fileID: 11400000, guid: 240a96e7bf2d9024bac329a18ce0468d, type: 2}
   skillButtonFive: {fileID: 11400000, guid: 646ee24cda921e646be6b23fcc0d61fe, type: 2}
@@ -4660,10 +4660,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugEnabled: 1
-  mods_M:
-  - {fileID: 11400000, guid: 583b0e2510ca7df4f9e72f1eeb6ce559, type: 2}
-  - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
-  - {fileID: 11400000, guid: 36c6bf973d7804e4c9c2322d844e01d3, type: 2}
   mods_Comma:
   - {fileID: 11400000, guid: e914a482d5418724bb1a44deeb82d63f, type: 2}
   - {fileID: 11400000, guid: e8d97a27815e1c44b9d1090ddf69c585, type: 2}
@@ -10989,7 +10985,7 @@ PrefabInstance:
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: castSkill
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
@@ -11002,6 +10998,17 @@ PrefabInstance:
       propertyPath: randomRotateAtStart
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630392, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: perks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630392, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: perks.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c91c73a83a92654d83afe15c169669a,
+        type: 2}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder

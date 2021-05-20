@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5974af175da1f14688690202ed36ccb, type: 3}
+  m_Name: INT_RemoveAilments
+  m_EditorClassIdentifier: 
+  DeveloperNotes: Removes all ailments
+  effectName: Recover
+  effectImage: {fileID: 0}
+  instants:
+  - {fileID: 11400000, guid: 04e37ea75316ef6498c0898b9be88b6f, type: 2}

@@ -24,7 +24,8 @@ MonoBehaviour:
   skillChargeTime: 2
   skillRealeaseWhenFullyCharged: 0
   skillMustFullyCharge: 0
-  mods: []
+  mods:
+  - {fileID: 11400000, guid: 8a73d7496b298674eb133a6998eea40f, type: 2}
   splashEffects: 0
   splashRadius: 0
   triggerSkillMods: 0
@@ -32,3 +33,4 @@ MonoBehaviour:
   triggersTargetPerks: 0
   healPercent: 1
   amountToHeal: 15
+  appliesMods: 1

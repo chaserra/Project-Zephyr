@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * ModifyStats applies flat or percentage buffs to a specific stat of the target of the mod
+ */
 namespace Zephyr.Mods
 {
     [CreateAssetMenu(fileName = "NewStatModifier", menuName = "Mods/Stat Effects/Modify Stat Values")]

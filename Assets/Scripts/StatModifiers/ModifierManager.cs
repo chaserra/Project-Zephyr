@@ -59,6 +59,15 @@ namespace Zephyr.Mods
             // Roll for proc
             if (!UtilityHelper.RollForProc(modifier.Context.procChance)) { return; }
 
+            // If modifier is instant (no duration)
+            if (!modifier.Context.hasDuration) 
+            { 
+                // Apply instants then remove the modifier
+                modifier.InitializeModifier(this);
+                modifier.RemoveStatEffects(this);
+                return; 
+            }
+
             ModifierWrapper existingWrapper = ExistingMod(modifier);
 
             if (existingWrapper != null) // If mod exists
