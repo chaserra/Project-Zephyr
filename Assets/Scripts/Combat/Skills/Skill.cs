@@ -104,6 +104,7 @@ namespace Zephyr.Combat
             foreach (Collider col in colliders)
             {
                 if (col.gameObject == skillTargetObject) { continue; } // Ignore source of splash
+
                 if (skillEffectsTarget == ValidTargets.TARGET)
                 {
                     // Ignore tags same as caster (for dealing splash damage and ailment)
@@ -133,6 +134,9 @@ namespace Zephyr.Combat
                     col.gameObject.transform.position, 
                     splashRadius, 
                     newAttackDefinition.damage);
+
+                // If heal and splash falloff is zero, do nothing. Prevents bug making heals deal damage.
+                if (newAttackDefinition.damage == 0 && attackDefinition.damage < 0) { continue; }
 
                 // Create new attack to pass to attackables
                 Attack attack;

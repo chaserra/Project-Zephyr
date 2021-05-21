@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillType: 2
   skillEffectsTarget: 0
-  skillName: Fireball
+  skillName: Heal Blast
   skillAnimationName: Buff_Skill
   skillCooldown: 0
   userCanRotate: 1
@@ -28,7 +28,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2c8908e3101262f4782f8f1948347601, type: 2}
   splashEffects: 1
   splashRadius: 4.5
-  triggerSkillMods: 1
+  triggerSkillMods: 0
   triggersSelfPerks: 0
   triggersTargetPerks: 0
   attackDefinition:
