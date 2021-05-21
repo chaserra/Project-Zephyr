@@ -13,7 +13,7 @@ namespace Zephyr.Combat
         //[System.NonSerialized]
         //public CharacterStats userStats;
         public SkillType skillType;
-        public ValidTargets skillTarget = ValidTargets.TARGET;
+        public ValidTargets skillEffectsTarget = ValidTargets.TARGET;
         public string skillName;
         public string skillAnimationName;
         public float skillCooldown;
@@ -104,7 +104,8 @@ namespace Zephyr.Combat
             foreach (Collider col in colliders)
             {
                 if (col.gameObject == skillTargetObject) { continue; } // Ignore source of splash
-                if (skillTarget == ValidTargets.TARGET)
+
+                if (skillEffectsTarget == ValidTargets.TARGET)
                 {
                     // Ignore tags same as caster (for dealing splash damage and ailment)
                     if (col.gameObject.tag == skillUser.gameObject.tag) { continue; }
@@ -133,6 +134,9 @@ namespace Zephyr.Combat
                     col.gameObject.transform.position, 
                     splashRadius, 
                     newAttackDefinition.damage);
+
+                // If heal and splash falloff is zero, do nothing. Prevents bug making heals deal damage.
+                if (newAttackDefinition.damage == 0 && attackDefinition.damage < 0) { continue; }
 
                 // Create new attack to pass to attackables
                 Attack attack;

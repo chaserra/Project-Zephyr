@@ -41,7 +41,7 @@ namespace Zephyr.Combat
             // Get Projectile Hotspot
             Transform hotSpot = skillUser.GetComponent<CharacterStats>().GetProjectileHotSpot();
             // Fire projectile
-            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot, skillTarget);
+            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot, skillEffectsTarget);
 
             // Subscribe to projectile events
             projectile.ProjectileCollided += ApplySkill;

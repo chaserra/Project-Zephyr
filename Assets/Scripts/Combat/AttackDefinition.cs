@@ -35,7 +35,6 @@ namespace Zephyr.Combat
         /* Used for creating attacks that proc mods */
         public Attack CreateAttack(CharacterStats attackerStats, CharacterStats defenderStats, Skill skillUsed)
         {
-
             float coreDamage;
             bool isCritical;
             ComputeAttackValues(attackerStats, out coreDamage, out isCritical);

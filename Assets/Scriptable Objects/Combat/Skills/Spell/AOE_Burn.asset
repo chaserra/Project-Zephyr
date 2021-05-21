@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: AOE_Burn
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 1
-  skillName: Ground Heal
+  skillEffectsTarget: 1
+  skillName: Ground Burn
   skillAnimationName: Buff_Skill
   skillCooldown: 0
   userCanRotate: 0
