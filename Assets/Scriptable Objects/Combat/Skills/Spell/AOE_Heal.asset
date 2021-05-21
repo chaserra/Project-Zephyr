@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AOE_Heal
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 0
+  skillEffectsTarget: 0
   skillName: Ground Heal
   skillAnimationName: Buff_Skill
   skillCooldown: 0

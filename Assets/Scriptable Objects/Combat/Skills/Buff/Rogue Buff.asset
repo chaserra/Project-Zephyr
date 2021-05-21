@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rogue Buff
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 1
+  skillEffectsTarget: 0
   skillName: Rogue Buff
   skillAnimationName: Buff_Skill
   skillCooldown: 0

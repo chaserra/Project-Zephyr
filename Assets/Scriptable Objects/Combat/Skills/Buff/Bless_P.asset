@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bless_P
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 1
+  skillEffectsTarget: 0
   skillName: Blessing Percent
   skillAnimationName: Buff_Skill
   skillCooldown: 0

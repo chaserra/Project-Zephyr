@@ -39,7 +39,7 @@ namespace Zephyr.Combat
             // TODO (Ground Aim): Get location while chanelling instead of here
             if (groundAim != null)
             {
-                groundSkill.transform.position = groundAim.AcquireTargetGroundPosition(skillTarget);
+                groundSkill.transform.position = groundAim.AcquireTargetGroundPosition(skillEffectsTarget);
             }
             else
             {
@@ -47,7 +47,7 @@ namespace Zephyr.Combat
             }
             // Cast skill
             groundSkill.Cast(skillUser, this, attackDefinition, 
-                aoeRadius, aoeDuration, tickIntervals, skillTarget);
+                aoeRadius, aoeDuration, tickIntervals, skillEffectsTarget);
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)

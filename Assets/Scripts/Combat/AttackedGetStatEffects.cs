@@ -37,7 +37,7 @@ namespace Zephyr.Combat
                     modMgr.AddModifier(attackSkillMods[i]);
                 }
                 // Apply mod to self
-                if (attackSkillMods[i].Target == ValidTargets.SELF)
+                if (attackSkillMods[i].Target == ValidTargets.ALLY)
                 {
                     attackerModManager.AddModifier(attackSkillMods[i]);
                 }

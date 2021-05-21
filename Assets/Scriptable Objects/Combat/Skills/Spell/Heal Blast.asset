@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heal Blast
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 0
+  skillEffectsTarget: 0
   skillName: Fireball
   skillAnimationName: Buff_Skill
   skillCooldown: 0
@@ -24,7 +24,8 @@ MonoBehaviour:
   skillChargeTime: 0.5
   skillRealeaseWhenFullyCharged: 0
   skillMustFullyCharge: 0
-  mods: []
+  mods:
+  - {fileID: 11400000, guid: 2c8908e3101262f4782f8f1948347601, type: 2}
   splashEffects: 1
   splashRadius: 4.5
   triggerSkillMods: 1
