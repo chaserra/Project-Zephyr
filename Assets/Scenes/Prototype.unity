@@ -11001,13 +11001,19 @@ PrefabInstance:
     - target: {fileID: 2068402100761630392, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: perks.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630392, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: perks.Array.data[2]
       value: 
       objectReference: {fileID: 11400000, guid: 7c91c73a83a92654d83afe15c169669a,
+        type: 2}
+    - target: {fileID: 2068402100761630392, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: perks.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c40f86ab3273834db0c748e8c665fae,
         type: 2}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}

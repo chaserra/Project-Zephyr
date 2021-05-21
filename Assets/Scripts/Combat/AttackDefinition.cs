@@ -46,10 +46,6 @@ namespace Zephyr.Combat
         {
             coreDamage = attackerStats.GetDamage();
 
-            // TODO V.HIGH (Damage Computation): Make sure that damage falloff does not reverse
-            // Heal blast should heal and not heal splash damage
-            // Splash damage should not heal
-            // Maybe use original damage value to check if value is originally healing or damaging
             // If healing
             if (damage < 0)
             {
