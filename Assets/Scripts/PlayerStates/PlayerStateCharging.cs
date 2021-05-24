@@ -53,7 +53,16 @@ namespace Zephyr.Player.Combat
                 {
                     chargePercent += maxCharge / chargeTime * Time.deltaTime ;
 
-                    if (chargePercent > maxCharge)
+                    // If skill is a channelled skill, cast the spell continuously
+                    if (skill.GetType() == typeof(Skill_Channelled))
+                    {
+                        // TODO (Skill Animation): Play spell animation
+
+                        // Cast spell
+                        Debug.Log("I'MA FIRIN MAH LAZ0RS!!");
+                    }
+
+                    if (chargePercent >= maxCharge)
                     {
                         chargePercent = maxCharge;
                         fullyCharged = true;

@@ -23,7 +23,7 @@ namespace Zephyr.Combat
         [Header("SFX/VFX")]
         public AudioClip skillSound;
         [Header("Charge Attack Modifiers")]
-        [Tooltip("Used only for Charged and Channelled skill types")]
+        [Tooltip("Used only for Charged and Channelled skill types. Channelled skills use this as max duration for how long the skill can be used.")]
         public float skillChargeTime;
         [Tooltip("Auto cast when fully charged. Not needed for channelled skills")]
         public bool skillRealeaseWhenFullyCharged;

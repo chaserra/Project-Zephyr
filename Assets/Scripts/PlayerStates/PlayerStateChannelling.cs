@@ -39,7 +39,7 @@ namespace Zephyr.Player.Combat
             {
                 chargePercent += maxCharge / chargeTime * Time.deltaTime;
 
-                if (chargePercent > maxCharge)
+                if (chargePercent >= maxCharge)
                 {
                     chargePercent = maxCharge;
                     ReleaseAttack(player);
