@@ -53,22 +53,13 @@ namespace Zephyr.Player.Combat
                 {
                     chargePercent += maxCharge / chargeTime * Time.deltaTime ;
 
-                    // If skill is a channelled skill, cast the spell continuously
-                    if (skill.GetType() == typeof(Skill_Channelled))
-                    {
-                        // TODO (Skill Animation): Play spell animation
-
-                        // Cast spell
-                        Debug.Log("I'MA FIRIN MAH LAZ0RS!!");
-                    }
-
                     if (chargePercent >= maxCharge)
                     {
                         chargePercent = maxCharge;
                         fullyCharged = true;
 
                         // Auto Release if skill releases when fully charged
-                        if (skillRealeaseWhenFullyCharged)
+                        if (skillRealeaseWhenFullyCharged && skill.skillChargeTime != 0)
                         {
                             ReleaseAttack(player);
                         }
@@ -86,7 +77,7 @@ namespace Zephyr.Player.Combat
                     } 
                     else
                     {
-                        CancelChargeAttack(player);
+                        ExitState(player);
                     }
                 }
                 else
@@ -103,12 +94,6 @@ namespace Zephyr.Player.Combat
             ResetChargeStateValues(player);
         }
 
-        private void CancelChargeAttack(PlayerController player)
-        {
-            ResetChargeStateValues(player);
-            player.TransitionState(player.MoveState);
-        }
-
         private void ResetChargeStateValues(PlayerController player)
         {
             chargePercent = 0f;
@@ -117,8 +102,10 @@ namespace Zephyr.Player.Combat
 
         public override void ExitState(PlayerController player)
         {
+            ResetChargeStateValues(player);
             player.ResetCurrentSkill();
-            CancelChargeAttack(player);
+            player.Anim.SetTrigger("Default_Trigger");
+            player.TransitionState(player.MoveState);
         }
 
     }

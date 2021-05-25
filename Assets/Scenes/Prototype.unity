@@ -4576,13 +4576,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillButtonOne: {fileID: 11400000, guid: 2d72cca43d0a7424c9f44970a46c6f7c, type: 2}
-  skillButtonTwo: {fileID: 11400000, guid: 6420868fa8ec5c848b7bd5a7b0ef8721, type: 2}
+  skillButtonTwo: {fileID: 11400000, guid: 3ef3462aced1f534a9a5cb65fdabcf5b, type: 2}
   skillButtonThree: {fileID: 11400000, guid: 59b786d3fcb3bfe4ba9576dd503658c9, type: 2}
   skillButtonFour: {fileID: 11400000, guid: 240a96e7bf2d9024bac329a18ce0468d, type: 2}
   skillButtonFive: {fileID: 11400000, guid: 646ee24cda921e646be6b23fcc0d61fe, type: 2}
   skillButtonSix: {fileID: 11400000, guid: f1e1e802a25cd9e4fa6f5e5ba69ae6c9, type: 2}
   skillButtonSeven: {fileID: 11400000, guid: b4691ae3dfdb9aa4a93c86a3c54eb2c6, type: 2}
-  skillButtonEight: {fileID: 11400000, guid: 0d723a7163506ea40a7aa24aac8d57c4, type: 2}
+  skillButtonEight: {fileID: 11400000, guid: 24de23239b050db468f546bb78470456, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
   m_ObjectHideFlags: 0

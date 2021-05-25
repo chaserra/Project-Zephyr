@@ -3,4 +3,5 @@
     Instant,
     Charged,
     Channelled,
+    Beam
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spin
   m_EditorClassIdentifier: 
   skillType: 1
-  skillTarget: 1
+  skillEffectsTarget: 1
   skillName: Spin
   skillAnimationName: Spin_Skill
   skillCooldown: 10

@@ -9,29 +9,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 657c90df313485643a57957564aeba74, type: 3}
-  m_Name: Test_Channelled
+  m_Script: {fileID: 11500000, guid: 2ad8c8ffea1517e42a716bc143d27f1c, type: 3}
+  m_Name: Test_Beam
   m_EditorClassIdentifier: 
-  skillType: 1
+  skillType: 3
   skillEffectsTarget: 1
-  skillName: TEST
+  skillName: Beam
   skillAnimationName: Default_Trigger
   skillCooldown: 0
   userCanRotate: 1
-  userCanMove: 1
-  moveSpeedMultiplier: 0.3
+  userCanMove: 0
+  moveSpeedMultiplier: 0.2
   skillSound: {fileID: 0}
-  skillChargeTime: 5
+  skillChargeTime: 0
   skillRealeaseWhenFullyCharged: 1
   skillMustFullyCharge: 0
   mods: []
   splashEffects: 0
-  splashRadius: 1
-  triggerSkillMods: 0
+  splashRadius: 0
+  triggerSkillMods: 1
   triggersSelfPerks: 1
   triggersTargetPerks: 0
   attackDefinition:
-    damage: 5
+    damage: 2
     criticalChance: 0.05
-    criticalMultiplier: 1.5
+    criticalMultiplier: 2
     hitForce: 0
+  tickIntervals: 0.5
+  beamRange: 5
+  beamWidth: 1
+  piercing: 1

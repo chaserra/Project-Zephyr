@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fireball
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 1
+  skillEffectsTarget: 1
   skillName: Fireball
   skillAnimationName: Buff_Skill
   skillCooldown: 0

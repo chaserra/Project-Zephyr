@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace Zephyr.Combat
 {
-    [CreateAssetMenu(fileName = "NewChannelledSkill", menuName = "Skills/Channelled")]
-    public class Skill_Channelled : Skill
+    public class Skill_Continuous : Skill
     {
         /* *****************************
          * Continuously casts spell while button is held
@@ -14,27 +13,28 @@ namespace Zephyr.Combat
          * *****************************/
         [Header("Skill Values")]
         [SerializeField] private AttackDefinition attackDefinition;
+        [SerializeField] private float tickIntervals = .5f;
 
         private void Reset()
         {
-            skillType = SkillType.Charged; // Makes sure skill type is overridden to Charged
+            skillType = SkillType.Beam; // Makes sure skill type is overridden to Charged
         }
 
         public override void Initialize(GameObject skillUser)
         {
             // Initialize then trigger skill
-            if (skillType != SkillType.Charged)
+            if (skillType != SkillType.Beam)
             {
-                Debug.LogError("Channelled skill's skill type is not set to Charged. Double check this!");
-                skillType = SkillType.Charged; // Makes sure skill type is overridden to Charged
+                Debug.LogError("Continuous skill's skill type is not set to Beam. Double check this!");
+                skillType = SkillType.Beam; // Makes sure skill type is overridden to Charged
                 return;
             }
-            TriggerSkill(skillUser);
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            // TODO HIGH (Channelled Spells): Create channelled spell
+            // TODO HIGH (Continuous Spell): Create channelled spell
+            // TODO HIGH (Continuous Spell): Create child scripts derived from this one. Channelled_Cone, Channelled_Beam, etc.
             // Cast channelled spell
             Animator userAnim = skillUser.GetComponent<Animator>();
             userAnim.SetTrigger(skillAnimationName);

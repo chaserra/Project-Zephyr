@@ -27,6 +27,7 @@ namespace Zephyr.Player
         public readonly PlayerStateAttack AttackState = new PlayerStateAttack();
         public readonly PlayerStateCharging ChargingState = new PlayerStateCharging();
         public readonly PlayerStateChannelling ChannellingState = new PlayerStateChannelling();
+        public readonly PlayerStateContinuous ContinuousState = new PlayerStateContinuous();
         public readonly PlayerStateStunned StunnedState = new PlayerStateStunned();
         private Dictionary<string, Skill> skillWithKeyMap = new Dictionary<string, Skill>();
         private Skill _currentSkill = null;
@@ -90,25 +91,25 @@ namespace Zephyr.Player
                     skillWithKeyMap.Add(keyPressed, _currentSkill);
                 }
 
-                // Check if skill is a charged attack
-                if (_currentSkill.skillType == SkillType.Charged)
+                // Check skill type
+                switch (_currentSkill.skillType)
                 {
-                    // Pass this attack type to ChargingState
-                    TransitionState(ChargingState);
-                }
-
-                // Check if skill is a channelled attack
-                else if (_currentSkill.skillType == SkillType.Channelled)
-                {
-                    // Pass this attack type to ChannellingState
-                    TransitionState(ChannellingState);
-                }
-
-                // Instant skill
-                else
-                {
-                    // Pass this attack type to AttackState
-                    TransitionState(AttackState);
+                    // If Charged skill
+                    case SkillType.Charged:
+                        TransitionState(ChargingState);
+                        break;
+                    // If Beam/Continuous skill
+                    case SkillType.Beam:
+                        TransitionState(ContinuousState);
+                        break;
+                    // If Channelled skill
+                    case SkillType.Channelled:
+                        TransitionState(ChannellingState);
+                        break;
+                    // If Instant skill
+                    default:
+                        TransitionState(AttackState);
+                        break;
                 }
             }
         }
