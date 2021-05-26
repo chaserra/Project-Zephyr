@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Zephyr.Combat
 {
     [CreateAssetMenu(fileName = "NewBeamSkill", menuName = "Skills/Channelled/Beam")]
-    public class Continuous_Beam : Skill_Continuous
+    public class Channelled_Beam : Skill_Channelled
     {
         [Header("Beam Values")]
         [SerializeField] private float beamRange = 5f;

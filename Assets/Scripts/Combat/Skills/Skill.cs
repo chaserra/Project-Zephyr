@@ -23,11 +23,11 @@ namespace Zephyr.Combat
         [Header("SFX/VFX")]
         public AudioClip skillSound;
         [Header("Charge/Channelled/Beam Modifiers")]
-        [Tooltip("Not used for Instant skills. \n\nCharged Skills use this for computing damage values. \n\nChannelled skills use this for cast time.\n\nContinuous skills use this as max duration for how long the skill can be used. \n\n0 value makes skill charge indefinitely.")]
+        [Tooltip("Not used for Instant skills. \n\nCharged Skills use this for computing damage values. \n\nCasted skills use this for cast time.\n\nChannelled skills use this as max duration for how long the skill can be used. \n\n0 value makes skill charge indefinitely.")]
         public float skillChargeTime;
-        [Tooltip("Auto cast charged skill when fully charged. \n\nIf continuous skill, skill will deactivate once timer reaches max value. \n\nNot needed for channelling skills.")]
+        [Tooltip("Auto cast charged skill when fully charged. \n\nIf channelled skill, skill will deactivate once timer reaches max value. \n\nNot needed for casted skills.")]
         public bool skillRealeaseWhenFullyCharged;
-        [Tooltip("Skill will not cast if not fully charged. Not needed for channelling and continuous skills.")]
+        [Tooltip("Skill will not cast if not fully charged. Not needed for casted and channelled skills.")]
         public bool skillMustFullyCharge;
         [Header("Skill Modifiers")]
         [Tooltip("Mods to apply upon skill use")]

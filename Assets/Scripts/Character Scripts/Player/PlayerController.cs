@@ -26,8 +26,8 @@ namespace Zephyr.Player
         public readonly PlayerStateMove MoveState = new PlayerStateMove();
         public readonly PlayerStateAttack AttackState = new PlayerStateAttack();
         public readonly PlayerStateCharging ChargingState = new PlayerStateCharging();
+        public readonly PlayerStateCasting CastingState = new PlayerStateCasting();
         public readonly PlayerStateChannelling ChannellingState = new PlayerStateChannelling();
-        public readonly PlayerStateContinuous ContinuousState = new PlayerStateContinuous();
         public readonly PlayerStateStunned StunnedState = new PlayerStateStunned();
         private Dictionary<string, Skill> skillWithKeyMap = new Dictionary<string, Skill>();
         private Skill _currentSkill = null;
@@ -98,13 +98,13 @@ namespace Zephyr.Player
                     case SkillType.Charged:
                         TransitionState(ChargingState);
                         break;
-                    // If Beam/Continuous skill
-                    case SkillType.Beam:
-                        TransitionState(ContinuousState);
-                        break;
                     // If Channelled skill
                     case SkillType.Channelled:
                         TransitionState(ChannellingState);
+                        break;
+                    // If Casted skill
+                    case SkillType.Casting:
+                        TransitionState(CastingState);
                         break;
                     // If Instant skill
                     default:
@@ -135,7 +135,7 @@ namespace Zephyr.Player
         {
             // TODO (HIT): make hurtboxes only active on skill use
             if (_currentSkill == null || _currentSkill is Skill_Self || _currentSkill is Skill_Projectile) { return; }
-            if (_currentState == ChannellingState || _currentState == ChargingState) { return; }
+            if (_currentState == CastingState || _currentState == ChargingState || _currentState == ChannellingState) { return; }
             _currentSkill.ApplySkill(gameObject, attackTarget);
         }
 
