@@ -20,7 +20,7 @@ namespace Zephyr.Combat
 
         public override void Initialize(GameObject skillUser)
         {
-            // Initialize then trigger skill
+            // Initialize skill values
             if (skillType != SkillType.Channelled)
             {
                 Debug.LogError("Channelled skill's skill type is not set to Channelled. Double check this!");
@@ -33,9 +33,7 @@ namespace Zephyr.Combat
         {
             // TODO HIGH (Channelled Spell): Create channelled spell
             // TODO HIGH (Channelled Spell): Create child scripts derived from this one. Channelled_Cone, Channelled_Beam, etc.
-            // Cast channelled spell
-            Animator userAnim = skillUser.GetComponent<Animator>();
-            userAnim.SetTrigger(skillAnimationName);
+            // Tick Stuff
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)

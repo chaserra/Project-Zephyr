@@ -14,17 +14,21 @@ namespace Zephyr.Combat
 
         public override void Initialize(GameObject skillUser)
         {
+            // Initialize and cast
             base.Initialize(skillUser);
-            TriggerSkill(skillUser);
+            Debug.Log("I'MA FIRIN MAH LAZ0RS!!");
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
+            // Tick stuff
             base.TriggerSkill(skillUser);
+            Debug.Log("FIRIN LAZ0RS!!");
         }
         
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)
         {
+            // Apply damage / heal to all targets hit by the spell
             base.ApplySkill(skillUser, attackTarget);
         }
 

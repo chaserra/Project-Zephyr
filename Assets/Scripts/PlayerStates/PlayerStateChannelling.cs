@@ -36,8 +36,7 @@ namespace Zephyr.Player.Combat
             // TODO (Skill Animation): Change this to dynamically get from skill
             player.Anim.SetTrigger("ChannelSkill");
 
-            // TODO (Channelled Skill): Initialize and Trigger here
-            Debug.Log("I'MA FIRIN MAH LAZ0RS!!");
+            skill.Initialize(player.gameObject);
         }
 
         public override void Update(PlayerController player)
@@ -52,7 +51,7 @@ namespace Zephyr.Player.Combat
 
                 // Cast spell
                 // TODO (Channelled Skill): Do tick stuff here
-                Debug.Log("FIRIN LAZ0RS!!");
+                skill.TriggerSkill(player.gameObject);
 
                 // Timer logic
                 if (currentPercent < maxPercent)
@@ -63,7 +62,7 @@ namespace Zephyr.Player.Combat
                     {
                         currentPercent = maxPercent;
 
-                        // Auto Cancel if skill releases when fully charged
+                        // Auto Cancel skill when fully charged
                         if (cancelSkillWhenFullyCharged && skill.skillChargeTime != 0)
                         {
                             ExitState(player);
