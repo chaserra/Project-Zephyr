@@ -8,26 +8,36 @@ namespace Zephyr.Player.Combat
     public class PlayerStateChannelling : PlayerStateBase
     {
         // Cache
-        private PlayerMover mover;
+        private string heldKey;
         private Skill skill;
+        private PlayerMover mover;
 
         // State
-        private float chargePercent = 0f;
-        private float chargeTime = 1f;
+        private float currentPercent = 0f;
+        private float maxDuration = 1f;
 
         // Properties
-        private const float maxCharge = 100f;
+        private const float maxPercent = 100f;
+        private bool cancelSkillWhenFullyCharged;
 
         public override void EnterState(PlayerController player)
         {
             // Initialize
             mover = player.Mover;
-            skill = player.CurrentSkill;
-            chargeTime = player.CurrentSkill.skillChargeTime;
+            foreach (KeyValuePair<string, Skill> keyValue in player.SkillWithKeyMap)
+            {
+                heldKey = keyValue.Key;
+                skill = keyValue.Value;
+            }
+
+            maxDuration = skill.skillChargeTime;
+            cancelSkillWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;
 
             // TODO (Skill Animation): Change this to dynamically get from skill
             player.Anim.SetTrigger("ChannelSkill");
-            // TODO (Ground Aim): Get location here instead of right at moment of casting
+
+            // TODO (Channelled Skill): Initialize and Trigger here
+            Debug.Log("I'MA FIRIN MAH LAZ0RS!!");
         }
 
         public override void Update(PlayerController player)
@@ -35,29 +45,46 @@ namespace Zephyr.Player.Combat
             // Move if skill allows movement
             mover.Move(player, skill.userCanRotate, skill.userCanMove, skill.moveSpeedMultiplier);
 
-            if (chargePercent < maxCharge)
+            // Detect if input is still held
+            if (Input.GetButton(heldKey))
             {
-                chargePercent += maxCharge / chargeTime * Time.deltaTime;
+                // TODO (Skill Animation): Play spell animation
 
-                if (chargePercent >= maxCharge)
+                // Cast spell
+                // TODO (Channelled Skill): Do tick stuff here
+                Debug.Log("FIRIN LAZ0RS!!");
+
+                // Timer logic
+                if (currentPercent < maxPercent)
                 {
-                    chargePercent = maxCharge;
-                    ReleaseAttack(player);
+                    currentPercent += maxPercent / maxDuration * Time.deltaTime ;
+
+                    if (currentPercent >= maxPercent)
+                    {
+                        currentPercent = maxPercent;
+
+                        // Auto Cancel if skill releases when fully charged
+                        if (cancelSkillWhenFullyCharged && skill.skillChargeTime != 0)
+                        {
+                            ExitState(player);
+                        }
+                    }
                 }
             }
-        }
-
-        private void ReleaseAttack(PlayerController player)
-        {
-            player.TransitionState(player.AttackState);
-            chargePercent = 0f;
+            // Button held is released
+            else
+            {
+                ExitState(player);
+            }
         }
 
         public override void ExitState(PlayerController player)
         {
-            chargePercent = 0f;
-            player.ResetCurrentSkill();
+            currentPercent = 0f;
+            player.ResetCurrentSkill(); 
+            player.Anim.SetTrigger("Default_Trigger");
             player.TransitionState(player.MoveState);
         }
+
     }
 }
