@@ -33,9 +33,7 @@ namespace Zephyr.Player.Combat
             maxDuration = skill.skillChargeTime;
             cancelSkillWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;
 
-            // TODO (Skill Animation): Change this to dynamically get from skill
-            player.Anim.SetTrigger("ChannelSkill");
-
+            // Cast spell
             skill.Initialize(player.gameObject);
         }
 
@@ -47,10 +45,7 @@ namespace Zephyr.Player.Combat
             // Detect if input is still held
             if (Input.GetButton(heldKey))
             {
-                // TODO (Skill Animation): Play spell animation
-
-                // Cast spell
-                // TODO (Channelled Skill): Do tick stuff here
+                // TODO HIGH (Channelled Skill): Find way to deactivate beam when button is released
                 skill.TriggerSkill(player.gameObject);
 
                 // Timer logic

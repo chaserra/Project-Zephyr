@@ -10,12 +10,12 @@ namespace Zephyr.Combat
          * Continuously casts spell while button is held
          * *****************************/
         [Header("Skill Values")]
-        [SerializeField] private AttackDefinition attackDefinition;
-        [SerializeField] private float tickIntervals = .5f;
+        [SerializeField] protected AttackDefinition attackDefinition;
+        [SerializeField] protected float tickIntervals = .5f;
 
         private void Reset()
         {
-            skillType = SkillType.Channelled; // Makes sure skill type is overridden to Charged
+            skillType = SkillType.Channelled; // Makes sure skill type is overridden to Channelled
         }
 
         public override void Initialize(GameObject skillUser)
@@ -24,16 +24,17 @@ namespace Zephyr.Combat
             if (skillType != SkillType.Channelled)
             {
                 Debug.LogError("Channelled skill's skill type is not set to Channelled. Double check this!");
-                skillType = SkillType.Channelled; // Makes sure skill type is overridden to Channelled
+                Reset();
                 return;
             }
+            Animator userAnim = skillUser.GetComponent<Animator>();
+            if(userAnim != null) { userAnim.SetTrigger(skillAnimationName); }
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            // TODO HIGH (Channelled Spell): Create channelled spell
-            // TODO HIGH (Channelled Spell): Create child scripts derived from this one. Channelled_Cone, Channelled_Beam, etc.
-            // Tick Stuff
+            // TODO HIGH (Channelled Spell): Find way to deactivate beam when button is released
+            // Casting done by derived scripts
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)

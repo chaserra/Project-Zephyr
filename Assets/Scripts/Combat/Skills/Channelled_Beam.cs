@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Stats;
+using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
@@ -8,21 +10,34 @@ namespace Zephyr.Combat
     public class Channelled_Beam : Skill_Channelled
     {
         [Header("Beam Values")]
-        [SerializeField] private float beamRange = 5f;
-        [SerializeField] private float beamWidth = 1f;
-        [SerializeField] private bool piercing = true;
+        [SerializeField] public float beamRange = 5f;
+        [SerializeField] public float beamWidth = 1f;
+        [SerializeField] public bool piercing = true;
+        [SerializeField] BeamSkill beamPrefab;
 
         public override void Initialize(GameObject skillUser)
         {
-            // Initialize and cast
+            // Initialize
             base.Initialize(skillUser);
-            Debug.Log("I'MA FIRIN MAH LAZ0RS!!");
+
+            // Grab object from object pool
+            GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(beamPrefab.gameObject);
+            BeamSkill beam = prefabToCreate.GetComponent<BeamSkill>();
+
+            // Set Beam's tag
+            beam.gameObject.tag = skillUser.tag;
+
+            // Get Skill Hotspot
+            Transform hotSpot = skillUser.GetComponent<CharacterStats>().GetProjectileHotSpot();
+
+            // Fire Beam
+            beam.CastSkill(skillUser, this, attackDefinition, tickIntervals, hotSpot, skillEffectsTarget);
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            // Tick stuff
-            base.TriggerSkill(skillUser);
+            // Set targetting
+            //base.TriggerSkill(skillUser);
             Debug.Log("FIRIN LAZ0RS!!");
         }
         
