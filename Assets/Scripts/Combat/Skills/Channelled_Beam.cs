@@ -9,6 +9,10 @@ namespace Zephyr.Combat
     [CreateAssetMenu(fileName = "NewBeamSkill", menuName = "Skills/Channelled/Beam")]
     public class Channelled_Beam : Skill_Channelled
     {
+        /* *****************************
+         * Beam-type Channelled Skill
+         * DO NOT MODIFY VARIABLES HERE. This is a scriptable object!
+         * *****************************/
         [Header("Beam Values")]
         [SerializeField] public float beamRange = 5f;
         [SerializeField] public float beamWidth = 1f;
@@ -32,12 +36,16 @@ namespace Zephyr.Combat
 
             // Fire Beam
             beam.CastSkill(skillUser, this, attackDefinition, tickIntervals, hotSpot, skillEffectsTarget);
+
+            //TODO HIGH (Channelled Spell): Store beam reference to pass to trigger skill
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
             // Set targetting
             //base.TriggerSkill(skillUser);
+
+            //TODO HIGH (Channelled Spell): Get beam reference then keep beam activated
             Debug.Log("FIRIN LAZ0RS!!");
         }
         

@@ -45,7 +45,6 @@ namespace Zephyr.Player.Combat
             // Detect if input is still held
             if (Input.GetButton(heldKey))
             {
-                // TODO HIGH (Channelled Skill): Find way to deactivate beam when button is released
                 skill.TriggerSkill(player.gameObject);
 
                 // Timer logic

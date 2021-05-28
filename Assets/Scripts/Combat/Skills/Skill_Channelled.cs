@@ -8,6 +8,7 @@ namespace Zephyr.Combat
     {
         /* *****************************
          * Continuously casts spell while button is held
+         * DO NOT MODIFY VARIABLES HERE. This is a scriptable object!
          * *****************************/
         [Header("Skill Values")]
         [SerializeField] protected AttackDefinition attackDefinition;
@@ -33,7 +34,6 @@ namespace Zephyr.Combat
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            // TODO HIGH (Channelled Spell): Find way to deactivate beam when button is released
             // Casting done by derived scripts
         }
 
