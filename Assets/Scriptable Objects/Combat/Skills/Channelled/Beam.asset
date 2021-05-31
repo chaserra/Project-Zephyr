@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e901cb0220541440b375054c996a798, type: 3}
-  m_Name: Test_Beam
+  m_Name: Beam
   m_EditorClassIdentifier: 
   skillType: 3
   skillEffectsTarget: 1
@@ -19,7 +19,7 @@ MonoBehaviour:
   skillCooldown: 0
   userCanRotate: 1
   userCanMove: 0
-  moveSpeedMultiplier: 0.2
+  moveSpeedMultiplier: 0.15
   skillSound: {fileID: 0}
   skillChargeTime: 0
   skillRealeaseWhenFullyCharged: 1
@@ -37,7 +37,7 @@ MonoBehaviour:
     hitForce: 0
   tickIntervals: 0.5
   beamRange: 5
-  beamWidth: 0.35
+  beamWidth: 0.5
   piercing: 1
   beamPrefab: {fileID: 1288873401012019326, guid: 59007137c8be8b747ac1f3e7e1c4615d,
     type: 3}

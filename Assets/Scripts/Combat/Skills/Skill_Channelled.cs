@@ -34,7 +34,8 @@ namespace Zephyr.Combat
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            // Casting done by derived scripts
+            // None needed here
+            // Channelling logic done by the actual active channelled spell
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)

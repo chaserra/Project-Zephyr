@@ -14,9 +14,11 @@ namespace Zephyr.Combat
         //public CharacterStats userStats;
         public SkillType skillType;
         public ValidTargets skillEffectsTarget = ValidTargets.TARGET;
+        [Space]
         public string skillName;
         public string skillAnimationName;
         public float skillCooldown;
+        [Space]
         public bool userCanRotate;
         public bool userCanMove;
         [Range(0, 1)]public float moveSpeedMultiplier = 1f;

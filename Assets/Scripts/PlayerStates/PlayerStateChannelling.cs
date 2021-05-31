@@ -5,12 +5,14 @@ using Zephyr.Combat;
 
 namespace Zephyr.Player.Combat
 {
+    [RequireComponent(typeof(SpellCaster))]
     public class PlayerStateChannelling : PlayerStateBase
     {
         // Cache
         private string heldKey;
         private Skill skill;
         private PlayerMover mover;
+        private SpellCaster spellCaster;
 
         // State
         private float currentPercent = 0f;
@@ -22,6 +24,13 @@ namespace Zephyr.Player.Combat
 
         public override void EnterState(PlayerController player)
         {
+            // TODO (REFACTOR!): Should not use getcomponent here
+            if (spellCaster == null)
+            {
+                Debug.Log("Went here");
+                spellCaster = player.gameObject.GetComponent<SpellCaster>();
+            }
+
             // Initialize
             mover = player.Mover;
             foreach (KeyValuePair<string, Skill> keyValue in player.SkillWithKeyMap)
@@ -33,7 +42,7 @@ namespace Zephyr.Player.Combat
             maxDuration = skill.skillChargeTime;
             cancelSkillWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;
 
-            // Cast spell
+            // Initialize spell
             skill.Initialize(player.gameObject);
         }
 
@@ -45,9 +54,11 @@ namespace Zephyr.Player.Combat
             // Detect if input is still held
             if (Input.GetButton(heldKey))
             {
+                // Do spell tick stuff
                 skill.TriggerSkill(player.gameObject);
+                spellCaster.ActiveChannelledSpell.Tick();
 
-                // Timer logic
+                // Timer logic. Used only when certain flags are active.
                 if (currentPercent < maxPercent)
                 {
                     currentPercent += maxPercent / maxDuration * Time.deltaTime ;
@@ -73,7 +84,14 @@ namespace Zephyr.Player.Combat
 
         public override void ExitState(PlayerController player)
         {
+            // Reset percentage counter
             currentPercent = 0f;
+
+            // Deactivate channelled spell prefab and remove as reference
+            spellCaster.ActiveChannelledSpell.DeactivateSpell();
+            spellCaster.ActiveChannelledSpell = null;
+
+            // Reset player states
             player.ResetCurrentSkill(); 
             player.Anim.SetTrigger("Default_Trigger");
             player.TransitionState(player.MoveState);

@@ -15,7 +15,6 @@ namespace Zephyr.Stats
         [SerializeField] GameObject weaponSlot;
         [SerializeField] Weapon test_Weapon; // TODO (cleanup): Remove this
         [SerializeField] Weapon test_Weapon2; // TODO (cleanup): Remove this
-        [SerializeField] Transform projectileHotSpot;
 
         private void Awake()
         {
@@ -105,10 +104,6 @@ namespace Zephyr.Stats
         #endregion
 
         #region Reporters
-        public Transform GetProjectileHotSpot()
-        {
-            return projectileHotSpot;
-        }
 
         public int GetMaxHealth()
         {

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8802442602920359225}
   - component: {fileID: 1288873401012019326}
   m_Layer: 11
-  m_Name: Beam
+  m_Name: Heal Beam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +116,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a80ae462686a378429a37a003e95cd0e, type: 2}
+  - {fileID: 2100000, guid: 57df809d5e4d881418b9c52613d40bce, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

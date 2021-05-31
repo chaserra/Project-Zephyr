@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
+using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
@@ -16,19 +17,16 @@ namespace Zephyr.Combat
         protected AttackDefinition attackValues;
         protected float tickIntervals;
         private Transform hotSpot;
-        private ValidTargets spellTarget;
+        protected ValidTargets spellTarget;
+        protected LayerMask targetLayer;
 
         protected CharacterStats casterStat;
         protected int characterDamageBonus;
 
-        protected float timer;
         protected float tickTimer;
 
-        public abstract void CastSkill(GameObject Caster, Skill SkillUsed, AttackDefinition AttackValues,
-            float TickIntervals, Transform HotSpot, ValidTargets Target);
-
-        // TODO (Channelled Skill): Find a way to always implement these and get called as base method
-        protected void SetSkillValues(GameObject Caster, Skill SkillUsed, AttackDefinition AttackValues,
+        // Initialize Spell
+        public virtual void CastSkill(GameObject Caster, Skill SkillUsed, AttackDefinition AttackValues,
             float TickIntervals, Transform HotSpot, ValidTargets Target)
         {
             // Set initial channelled skill values
@@ -38,6 +36,7 @@ namespace Zephyr.Combat
             tickIntervals = TickIntervals;
             hotSpot = HotSpot;
             spellTarget = Target;
+            targetLayer = UtilityHelper.SetupTargettingLayer(gameObject, spellTarget);
 
             // Compute Bonus Damage/Heal Values on cast
             casterStat = caster.GetComponent<CharacterStats>();
@@ -46,11 +45,19 @@ namespace Zephyr.Combat
             characterDamageBonus = Mathf.RoundToInt(tempBonus);
 
             // Reset timer
-            timer = 0f;
             tickTimer = tickIntervals;
         }
 
-        protected void ResetInitialValues()
+        // Tick logic
+        public virtual void Tick()
+        {
+            // Move and rotate spell relative to caster's hotspot and local rotation
+            transform.position = hotSpot.position;
+            transform.rotation = caster.transform.localRotation;
+        }
+
+        // Reset values
+        public void DeactivateSpell()
         {
             caster = null;
             skill = null;
@@ -58,13 +65,16 @@ namespace Zephyr.Combat
             tickIntervals = 0f;
             hotSpot = null;
             spellTarget = ValidTargets.TARGET;
+            targetLayer = 1 << LayerMask.NameToLayer("Default");
 
             casterStat = null;
             characterDamageBonus = 0;
 
             // Reset timer
-            timer = 0f;
             tickTimer = 0f;
+
+            // Deactivate spell. Triggers derived script's OnDisable
+            gameObject.SetActive(false);
         }
 
     }

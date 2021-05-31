@@ -31,24 +31,23 @@ namespace Zephyr.Combat
             // Set Beam's tag
             beam.gameObject.tag = skillUser.tag;
 
-            // Get Skill Hotspot
-            Transform hotSpot = skillUser.GetComponent<CharacterStats>().GetProjectileHotSpot();
+            // Get Skill Hotspot and store beam reference
+            SpellCaster spellCasterComponent = skillUser.GetComponent<SpellCaster>();
+            Transform hotSpot = spellCasterComponent.SpellHotSpot;
+
+            // Assign channelled spell to component for reference
+            spellCasterComponent.ActiveChannelledSpell = beam;
 
             // Fire Beam
             beam.CastSkill(skillUser, this, attackDefinition, tickIntervals, hotSpot, skillEffectsTarget);
-
-            //TODO HIGH (Channelled Spell): Store beam reference to pass to trigger skill
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            // Set targetting
-            //base.TriggerSkill(skillUser);
-
-            //TODO HIGH (Channelled Spell): Get beam reference then keep beam activated
-            Debug.Log("FIRIN LAZ0RS!!");
+            // None needed here
+            // Channelling logic done by the actual active channelled spell
         }
-        
+
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)
         {
             // Apply damage / heal to all targets hit by the spell

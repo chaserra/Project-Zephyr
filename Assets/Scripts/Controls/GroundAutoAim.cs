@@ -8,7 +8,7 @@ namespace Zephyr.Combat
     public class GroundAutoAim : MonoBehaviour
     {
         /** 
-         * Use this to return a target enemy around the skill user
+         * Use this to return a target enemy in front of the skill user
          * If skill target is for friendlies, return target friendly position
          * If skill target is for enemies, return target enemy position
          * If no target found, return front of user + offset
@@ -18,7 +18,7 @@ namespace Zephyr.Combat
         [SerializeField] private float targettingRadius = 12f;
         [SerializeField] private float forwardOffset = 2f;
         [SerializeField] private float targettingAngle = 45f;
-        [Tooltip("Everything except Player and Enemy")]
+        [Tooltip("UI, Player, Enemy, Projectile, and Weapon should be unchecked. These should not block the raycast.")]
         [SerializeField] private LayerMask obstacleMask;
         [SerializeField] private float yOffset = .8f;
 
