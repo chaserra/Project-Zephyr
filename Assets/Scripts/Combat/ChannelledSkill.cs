@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
-using Zephyr.Util;
+using Zephyr.Targetting;
 
 namespace Zephyr.Combat
 {
@@ -12,6 +12,10 @@ namespace Zephyr.Combat
      * *****************************/
     public abstract class ChannelledSkill : MonoBehaviour
     {
+        //Cache
+        private TargettingSystem targettingSystem = new TargettingSystem();
+
+        // Properties
         protected GameObject caster;
         protected Skill skill;
         protected AttackDefinition attackValues;
@@ -20,9 +24,7 @@ namespace Zephyr.Combat
         protected ValidTargets spellTarget;
         protected LayerMask targetLayer;
 
-        protected CharacterStats casterStat;
-        protected int characterDamageBonus;
-
+        // State
         protected float tickTimer;
 
         // Initialize Spell
@@ -36,13 +38,7 @@ namespace Zephyr.Combat
             tickIntervals = TickIntervals;
             hotSpot = HotSpot;
             spellTarget = Target;
-            targetLayer = UtilityHelper.SetupTargettingLayer(gameObject, spellTarget);
-
-            // Compute Bonus Damage/Heal Values on cast
-            casterStat = caster.GetComponent<CharacterStats>();
-            float tempBonus = casterStat.GetDamage();
-            if (attackValues.damage <= 0) { tempBonus *= -1; } // If heal, reverse bonus values
-            characterDamageBonus = Mathf.RoundToInt(tempBonus);
+            targetLayer = targettingSystem.SetupTargettingLayer(gameObject, spellTarget);
 
             // Reset timer
             tickTimer = tickIntervals;
@@ -66,9 +62,6 @@ namespace Zephyr.Combat
             hotSpot = null;
             spellTarget = ValidTargets.TARGET;
             targetLayer = 1 << LayerMask.NameToLayer("Default");
-
-            casterStat = null;
-            characterDamageBonus = 0;
 
             // Reset timer
             tickTimer = 0f;

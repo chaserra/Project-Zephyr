@@ -65,6 +65,7 @@ namespace Zephyr.Combat
                     skill.ApplySkill(caster, skillTarget.gameObject);
                 }
 
+                // Reset tickTimer and list of targets
                 tickTimer = 0f;
                 targets.Clear();
             }

@@ -21,7 +21,7 @@ MonoBehaviour:
   userCanMove: 0
   moveSpeedMultiplier: 0.15
   skillSound: {fileID: 0}
-  skillChargeTime: 0
+  skillChargeTime: 5
   skillRealeaseWhenFullyCharged: 1
   skillMustFullyCharge: 0
   mods: []
@@ -35,7 +35,7 @@ MonoBehaviour:
     criticalChance: 0.05
     criticalMultiplier: 2
     hitForce: 0
-  tickIntervals: 0.5
+  tickIntervals: 0.25
   beamRange: 5
   beamWidth: 0.5
   piercing: 1

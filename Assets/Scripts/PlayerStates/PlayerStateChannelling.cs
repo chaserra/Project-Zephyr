@@ -5,7 +5,6 @@ using Zephyr.Combat;
 
 namespace Zephyr.Player.Combat
 {
-    [RequireComponent(typeof(SpellCaster))]
     public class PlayerStateChannelling : PlayerStateBase
     {
         // Cache
@@ -24,14 +23,8 @@ namespace Zephyr.Player.Combat
 
         public override void EnterState(PlayerController player)
         {
-            // TODO (REFACTOR!): Should not use getcomponent here
-            if (spellCaster == null)
-            {
-                Debug.Log("Went here");
-                spellCaster = player.gameObject.GetComponent<SpellCaster>();
-            }
-
             // Initialize
+            spellCaster = player.SpellCaster;
             mover = player.Mover;
             foreach (KeyValuePair<string, Skill> keyValue in player.SkillWithKeyMap)
             {

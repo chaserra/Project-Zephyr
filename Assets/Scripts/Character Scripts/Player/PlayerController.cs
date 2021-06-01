@@ -11,6 +11,7 @@ namespace Zephyr.Player
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(CharacterStats))]
     [RequireComponent(typeof(InputController))]
+    [RequireComponent(typeof(SpellCaster))]
     public class PlayerController : MonoBehaviour, ICombatant
     {
         // Cache
@@ -19,6 +20,7 @@ namespace Zephyr.Player
         private InputController inputController;
         private Animator anim;
         private Camera cam;
+        private SpellCaster spellCaster;
         private PlayerMover mover = new PlayerMover();
 
         // States
@@ -41,6 +43,7 @@ namespace Zephyr.Player
         public Animator Anim { get { return anim; } }
         public Camera Cam { get { return cam; } }
         public PlayerMover Mover { get { return mover; } }
+        public SpellCaster SpellCaster { get { return spellCaster; } }
         /* **Parameters** */
         public int GetMaxHealth { get { return characterStats.GetMaxHealth(); } }
         public int GetCurrentHealth { get { return characterStats.GetHealthPoints(); } }
@@ -60,6 +63,7 @@ namespace Zephyr.Player
             characterStats = GetComponent<CharacterStats>();
             inputController = GetComponent<InputController>();
             anim = GetComponent<Animator>();
+            spellCaster = GetComponent<SpellCaster>();
             cam = Camera.main;
         }
 

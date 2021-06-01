@@ -52,7 +52,8 @@ namespace Zephyr.Combat
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
-            // Maybe not needed here
+            // Not needed here.
+            // Ground skills contain the logic to apply damage.
         }
     }
 }

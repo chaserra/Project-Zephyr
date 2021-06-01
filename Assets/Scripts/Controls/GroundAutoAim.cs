@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zephyr.Util;
+using Zephyr.Targetting;
 
 namespace Zephyr.Combat
 {
@@ -13,6 +13,9 @@ namespace Zephyr.Combat
          * If skill target is for enemies, return target enemy position
          * If no target found, return front of user + offset
          **/
+        // Cache
+        TargettingSystem targettingSystem = new TargettingSystem();
+
         // Attributes
         [SerializeField] private float forwardRange = 12f;
         [SerializeField] private float targettingRadius = 12f;
@@ -46,7 +49,7 @@ namespace Zephyr.Combat
         {
             visibleTargets.Clear(); // Used only for Editor
             // Set layer to target
-            targetLayer = UtilityHelper.SetupTargettingLayer(gameObject, targetType);
+            targetLayer = targettingSystem.SetupTargettingLayer(gameObject, targetType);
 
             // Find all target objects within radius
             Collider[] targetsInRange = Physics.OverlapSphere(transform.position, targettingRadius, targetLayer);

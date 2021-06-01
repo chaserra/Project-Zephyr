@@ -45,7 +45,7 @@ namespace Zephyr.Combat
         public override void TriggerSkill(GameObject skillUser)
         {
             // None needed here
-            // Channelling logic done by the actual active channelled spell
+            // Channelling logic done by the actual active channelled spell (ChannelledSkill.cs)
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)
