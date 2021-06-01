@@ -53,5 +53,20 @@ namespace Zephyr.Targetting
             return targetLayer;
         }
 
+        public bool ApplySkillToTarget(GameObject source, ValidTargets skillTarget, Collider other)
+        {
+            // If skill is an offensive skill
+            if (skillTarget == ValidTargets.TARGET)
+            {
+                if (!source.CompareTag(other.gameObject.tag)) { return true; }
+            }
+            // If skill is a defensive skill
+            else
+            {
+                if (source.CompareTag(other.gameObject.tag)) { return true; }
+            }
+            return false;
+        }
+
     }
 }

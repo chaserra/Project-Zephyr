@@ -19,7 +19,10 @@ namespace Zephyr.Combat
 
         private void Awake()
         {
-            if (spellHotSpot == null) { Debug.LogError("Spell Hotspot not assigned!"); }
+            if (spellHotSpot == null) { 
+                Debug.LogError("Spell Hotspot not assigned!");
+                spellHotSpot = gameObject.transform;
+            }
         }
 
     }

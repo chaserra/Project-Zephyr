@@ -19,7 +19,7 @@ MonoBehaviour:
   skillCooldown: 0
   userCanRotate: 1
   userCanMove: 0
-  moveSpeedMultiplier: 0.15
+  moveSpeedMultiplier: 0.175
   skillSound: {fileID: 0}
   skillChargeTime: 5
   skillRealeaseWhenFullyCharged: 1
@@ -31,11 +31,11 @@ MonoBehaviour:
   triggersSelfPerks: 1
   triggersTargetPerks: 0
   attackDefinition:
-    damage: -2
+    damage: -1
     criticalChance: 0.05
     criticalMultiplier: 2
     hitForce: 0
-  tickIntervals: 0.25
+  tickIntervals: 0.4
   beamRange: 5
   beamWidth: 0.5
   piercing: 1

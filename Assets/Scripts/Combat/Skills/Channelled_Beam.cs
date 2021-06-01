@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zephyr.Stats;
 using Zephyr.Util;
 
 namespace Zephyr.Combat
@@ -39,7 +38,7 @@ namespace Zephyr.Combat
             spellCasterComponent.ActiveChannelledSpell = beam;
 
             // Fire Beam
-            beam.CastSkill(skillUser, this, attackDefinition, tickIntervals, hotSpot, skillEffectsTarget);
+            beam.CastSkill(skillUser, this, tickIntervals, hotSpot, skillEffectsTarget);
         }
 
         public override void TriggerSkill(GameObject skillUser)

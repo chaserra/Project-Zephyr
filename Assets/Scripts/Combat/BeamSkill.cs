@@ -16,11 +16,11 @@ namespace Zephyr.Combat
         private List<Collider> targets = new List<Collider>();
 
         // Cast spell
-        public override void CastSkill(GameObject Caster, Skill SkillUsed, AttackDefinition AttackValues,
+        public override void CastSkill(GameObject Caster, Skill SkillUsed,
             float TickIntervals, Transform HotSpot, ValidTargets Target)
         {
             // Set parent skill values
-            base.CastSkill(Caster, SkillUsed, AttackValues, TickIntervals, HotSpot, Target);
+            base.CastSkill(Caster, SkillUsed, TickIntervals, HotSpot, Target);
 
             // Cast as Channelled_Beam if skill is a beam-type skill.
             Channelled_Beam beam = (Channelled_Beam)SkillUsed;

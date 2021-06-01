@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 8881233999831500349}
   - component: {fileID: 8881233999831500347}
   - component: {fileID: 8881233999831500345}
+  - component: {fileID: 2628923316579322610}
   - component: {fileID: 8026070493073861043}
   - component: {fileID: 8881233999831500344}
   - component: {fileID: 8881233999831500294}
@@ -200,7 +201,6 @@ MonoBehaviour:
   weaponSlot: {fileID: 0}
   test_Weapon: {fileID: 0}
   test_Weapon2: {fileID: 0}
-  projectileHotSpot: {fileID: 8240424982939221413}
 --- !u!114 &8881233999831500347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +230,19 @@ MonoBehaviour:
   perks:
   - {fileID: 11400000, guid: 66ee4c2280cfea24b94ba4fb6d1e899a, type: 2}
   - {fileID: 11400000, guid: f6a80a0ec939bcb488113657f307b29e, type: 2}
+--- !u!114 &2628923316579322610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881233999831500351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b2063bcaae68d4d95d43210c4b79f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellHotSpot: {fileID: 8240424982939221413}
 --- !u!114 &8026070493073861043
 MonoBehaviour:
   m_ObjectHideFlags: 0

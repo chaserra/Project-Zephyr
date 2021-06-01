@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zephyr.Stats;
 using Zephyr.Targetting;
 
 namespace Zephyr.Combat
@@ -18,7 +17,6 @@ namespace Zephyr.Combat
         // Properties
         protected GameObject caster;
         protected Skill skill;
-        protected AttackDefinition attackValues;
         protected float tickIntervals;
         private Transform hotSpot;
         protected ValidTargets spellTarget;
@@ -28,13 +26,12 @@ namespace Zephyr.Combat
         protected float tickTimer;
 
         // Initialize Spell
-        public virtual void CastSkill(GameObject Caster, Skill SkillUsed, AttackDefinition AttackValues,
+        public virtual void CastSkill(GameObject Caster, Skill SkillUsed, 
             float TickIntervals, Transform HotSpot, ValidTargets Target)
         {
             // Set initial channelled skill values
             caster = Caster;
             skill = SkillUsed;
-            attackValues = AttackValues;
             tickIntervals = TickIntervals;
             hotSpot = HotSpot;
             spellTarget = Target;
@@ -57,7 +54,6 @@ namespace Zephyr.Combat
         {
             caster = null;
             skill = null;
-            attackValues = null;
             tickIntervals = 0f;
             hotSpot = null;
             spellTarget = ValidTargets.TARGET;
@@ -68,6 +64,17 @@ namespace Zephyr.Combat
 
             // Deactivate spell. Triggers derived script's OnDisable
             gameObject.SetActive(false);
+        }
+
+        // Apply Damage or Heal on skill hit
+        private void OnTriggerEnter(Collider other)
+        {
+            // Ignore untagged
+            if (other.gameObject.tag == "Untagged") { return; }
+
+            if (targettingSystem.ApplySkillToTarget(gameObject, spellTarget, other)) {
+                skill.ApplySkill(caster, other.gameObject);
+            }
         }
 
     }
