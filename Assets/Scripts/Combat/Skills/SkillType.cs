@@ -2,5 +2,6 @@
 {
     Instant,
     Charged,
-    Channelled,
+    Casting,
+    Channelled
 }

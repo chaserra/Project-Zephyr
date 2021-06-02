@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spin
   m_EditorClassIdentifier: 
   skillType: 1
-  skillTarget: 1
+  skillEffectsTarget: 1
   skillName: Spin
   skillAnimationName: Spin_Skill
   skillCooldown: 10
@@ -26,7 +26,8 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   mods: []
   splashEffects: 0
-  splashRadius: 1
+  splashRadius: 0
+  triggerSkillMods: 0
   triggersSelfPerks: 1
   triggersTargetPerks: 1
   attackDefinition:

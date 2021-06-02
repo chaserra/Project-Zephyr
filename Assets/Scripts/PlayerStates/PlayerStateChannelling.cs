@@ -8,26 +8,35 @@ namespace Zephyr.Player.Combat
     public class PlayerStateChannelling : PlayerStateBase
     {
         // Cache
-        private PlayerMover mover;
+        private string heldKey;
         private Skill skill;
+        private PlayerMover mover;
+        private SpellCaster spellCaster;
 
         // State
-        private float chargePercent = 0f;
-        private float chargeTime = 1f;
+        private float currentPercent = 0f;
+        private float maxDuration = 1f;
 
         // Properties
-        private const float maxCharge = 100f;
+        private const float maxPercent = 100f;
+        private bool cancelSkillWhenFullyCharged;
 
         public override void EnterState(PlayerController player)
         {
             // Initialize
+            spellCaster = player.SpellCaster;
             mover = player.Mover;
-            skill = player.CurrentSkill;
-            chargeTime = player.CurrentSkill.skillChargeTime;
+            foreach (KeyValuePair<string, Skill> keyValue in player.SkillWithKeyMap)
+            {
+                heldKey = keyValue.Key;
+                skill = keyValue.Value;
+            }
 
-            // TODO (Skill Animation): Change this to dynamically get from skill
-            player.Anim.SetTrigger("ChannelSkill");
-            // TODO (Ground Aim): Get location here instead of right at moment of casting
+            maxDuration = skill.skillChargeTime;
+            cancelSkillWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;
+
+            // Initialize spell
+            skill.Initialize(player.gameObject);
         }
 
         public override void Update(PlayerController player)
@@ -35,35 +44,50 @@ namespace Zephyr.Player.Combat
             // Move if skill allows movement
             mover.Move(player, skill.userCanRotate, skill.userCanMove, skill.moveSpeedMultiplier);
 
-            if (chargePercent < maxCharge)
+            // Detect if input is still held
+            if (Input.GetButton(heldKey))
             {
-                chargePercent += maxCharge / chargeTime * Time.deltaTime;
+                // Do spell tick stuff
+                skill.TriggerSkill(player.gameObject);
+                spellCaster.ActiveChannelledSpell.Tick();
 
-                if (chargePercent > maxCharge)
+                // Timer logic. Used only when certain flags are active.
+                // Auto-cancels skill when fully charged
+                if (cancelSkillWhenFullyCharged && skill.skillChargeTime != 0)
                 {
-                    chargePercent = maxCharge;
-                    ReleaseAttack(player);
+                    if (currentPercent < maxPercent)
+                    {
+                        currentPercent += maxPercent / maxDuration * Time.deltaTime;
+
+                        if (currentPercent >= maxPercent)
+                        {
+                            currentPercent = maxPercent;
+                            ExitState(player);
+                        }
+                    }
                 }
+            }
+            // Button held is released
+            else
+            {
+                ExitState(player);
             }
         }
 
-        private void ReleaseAttack(PlayerController player)
+        public override void ExitState(PlayerController player)
         {
-            player.TransitionState(player.AttackState);
-            ResetChargeStateValues(player);
-        }
+            // Reset percentage counter
+            currentPercent = 0f;
 
-        // To be used for stagger
-        private void CancelSkillChannelling(PlayerController player)
-        {
+            // Deactivate channelled spell prefab and remove as reference
+            spellCaster.ActiveChannelledSpell.DeactivateSpell();
+            spellCaster.ActiveChannelledSpell = null;
+
+            // Reset player states
+            player.ResetCurrentSkill(); 
+            player.Anim.SetTrigger("Default_Trigger");
             player.TransitionState(player.MoveState);
-            ResetChargeStateValues(player);
         }
 
-        private void ResetChargeStateValues(PlayerController player)
-        {
-            chargePercent = 0f;
-            //player.ResetCurrentSkill(); // Not needed? Skill automatically resets after attack state
-        }
     }
 }

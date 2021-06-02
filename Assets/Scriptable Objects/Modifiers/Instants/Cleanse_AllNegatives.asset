@@ -10,16 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
-  m_Name: Stun
+  m_Name: Cleanse_AllNegatives
   m_EditorClassIdentifier: 
-  modName: Stun
+  DeveloperNotes: Removes all debuffs and ailments
+  modName: Cleanse
   context:
     isActive: 0
-    hasDuration: 1
-    duration: 2
+    hasDuration: 0
+    duration: 0
     isStackable: 0
     maxStacks: 0
-    modType: 1
+    modType: 0
+    procChance: 1
   target: 1
   statEffects:
-  - {fileID: 11400000, guid: 7e7ff3222ffd9214bae074745a5cc76d, type: 2}
+  - {fileID: 11400000, guid: 31a1ffc53e5502c48a9f24616154cb13, type: 2}

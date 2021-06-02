@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Blessing_Med_P
   m_EditorClassIdentifier: 
   DeveloperNotes: 
-  modName: Blessing
+  modName: Blessing_Med_P
   context:
     isActive: 0
     hasDuration: 1
@@ -22,6 +22,6 @@ MonoBehaviour:
     maxStacks: 0
     modType: 0
     procChance: 1
-  target: 0
+  target: 1
   statEffects:
   - {fileID: 11400000, guid: 48bf8f7dbb04b1f4e8eca28909fdfb78, type: 2}

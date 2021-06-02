@@ -13,5 +13,7 @@ namespace Zephyr.Mods
         public float damageMultiplierPerTick = 1f;
         [Tooltip("Max number of times DamageMultiplierPerTick will add to current tick damage.")]
         public int maxTickIncrements = 5;
+        [Tooltip("Damage other targets within range.")]
+        public float burnRadius = 1.5f;
     }
 }

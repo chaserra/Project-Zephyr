@@ -102,13 +102,13 @@ namespace Zephyr.Combat
         {
             string damageText = attack.Damage.ToString();
             // If damage is negative, change text to heal
-            if (attack.Damage < 0f)
+            if (attack.Damage < 0)
             {
                 // Remove negative sign if healing
                 damageText = damageText.Substring(1, damageText.Length - 1);
                 // Color to green
                 text.SetColor(new Color(0, 150f / 255f, 0));
-            } 
+            }
             else
             {
                 // If not healing, set color to specified color

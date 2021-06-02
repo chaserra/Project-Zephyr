@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484ecc464fc8d124ebcfcea0dc8a99de, type: 3}
+  m_Name: INC_Paralyze_VLow
+  m_EditorClassIdentifier: 
+  DeveloperNotes: Tick stun chance
+  effectName: Paralyze VLow
+  effectImage: {fileID: 11400000, guid: 5363583bf64cd4745a211f59f13802a4, type: 2}
+  targetAilment: {fileID: 11400000, guid: 86c7b1c6f86841f4482aff5c7aa95bbb, type: 2}
+  ailmentLevel: 1
+  tickInterval: 2.5
+  stunDuration: 0.35
+  stunChance: 0.4

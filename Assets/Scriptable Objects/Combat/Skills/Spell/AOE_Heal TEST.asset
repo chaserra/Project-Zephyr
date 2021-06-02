@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AOE_Heal TEST
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 0
+  skillEffectsTarget: 0
   skillName: Ground Heal
   skillAnimationName: Buff_Skill
   skillCooldown: 0
@@ -24,9 +24,12 @@ MonoBehaviour:
   skillChargeTime: 1
   skillRealeaseWhenFullyCharged: 0
   skillMustFullyCharge: 0
-  mods: []
+  mods:
+  - {fileID: 11400000, guid: 2c8908e3101262f4782f8f1948347601, type: 2}
+  - {fileID: 11400000, guid: e48268434c8a1864fb71f13d0f6b8283, type: 2}
   splashEffects: 0
-  splashRadius: 1
+  splashRadius: 0
+  triggerSkillMods: 0
   triggersSelfPerks: 0
   triggersTargetPerks: 0
   attackDefinition:

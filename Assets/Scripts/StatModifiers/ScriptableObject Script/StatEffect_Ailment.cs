@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Ailment applies a specific ailment to the target of the mod
+ */
 namespace Zephyr.Mods
 {
     public class StatEffect_Ailment : StatEffect
@@ -26,7 +29,7 @@ namespace Zephyr.Mods
 
         public override void Tick(ModifierManager modManager)
         {
-            
+            // Tick is done via the ailment itself. Not needed here
         }
 
     }

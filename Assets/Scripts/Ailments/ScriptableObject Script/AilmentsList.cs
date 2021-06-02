@@ -55,5 +55,17 @@ namespace Zephyr.Mods
             }
         }
 
+        public bool AilmentActive(Ailment ailmentToFind)
+        {
+            foreach (Ailment ailment in ailmentsList)
+            {
+                if (ailmentToFind.ailmentName == ailment.ailmentName)
+                {
+                    return ailment.IsActive;
+                }
+            }
+            return false;
+        }
+
     }
 }

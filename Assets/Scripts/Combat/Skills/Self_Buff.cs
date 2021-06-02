@@ -10,12 +10,7 @@ namespace Zephyr.Combat
     {
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
-            // Apply mods
-            ModifierManager modMgr = skillUser.GetComponent<ModifierManager>();
-            for (int i = 0; i < mods.Length; i++)
-            {
-                modMgr.AddModifier(mods[i]);
-            }
+            ApplyMods(skillUser);
         }
     }
 }

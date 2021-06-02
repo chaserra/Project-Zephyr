@@ -12,22 +12,25 @@ namespace Zephyr.Combat
         //public Animator userAnim;
         //[System.NonSerialized]
         //public CharacterStats userStats;
+        [Header("Skill Targetting")]
         public SkillType skillType;
-        public ValidTargets skillTarget = ValidTargets.TARGET;
+        public ValidTargets skillEffectsTarget = ValidTargets.TARGET;
+        [Space]
         public string skillName;
         public string skillAnimationName;
         public float skillCooldown;
+        [Header("Movement Modifiers")]
         public bool userCanRotate;
         public bool userCanMove;
         [Range(0, 1)]public float moveSpeedMultiplier = 1f;
         [Header("SFX/VFX")]
         public AudioClip skillSound;
-        [Header("Charge Attack Modifiers")]
-        [Tooltip("Used only for Charged and Channelled skill types")]
+        [Header("Charge/Channelled/Beam Modifiers")]
+        [Tooltip("Not used for Instant skills. \n\nCharged Skills use this for computing damage values. \n\nCasted skills use this for cast time.\n\nChannelled skills use this as max duration for how long the skill can be used. \n\n0 value makes skill charge indefinitely.")]
         public float skillChargeTime;
-        [Tooltip("Auto cast when fully charged. Not needed for channelled skills")]
+        [Tooltip("Auto cast charged skill when fully charged. \n\nIf channelled skill, skill will deactivate once timer reaches max value. \n\nNot needed for casted skills.")]
         public bool skillRealeaseWhenFullyCharged;
-        [Tooltip("Skill will not cast if not fully charged. Not needed for channelled skills")]
+        [Tooltip("Skill will not cast if not fully charged. Not needed for casted and channelled skills.")]
         public bool skillMustFullyCharge;
         [Header("Skill Modifiers")]
         [Tooltip("Mods to apply upon skill use")]
@@ -36,6 +39,8 @@ namespace Zephyr.Combat
         [Tooltip("Does splash damage/effects on nearby targets")]
         [SerializeField] bool splashEffects = false;
         [SerializeField] float splashRadius = 1f;
+        [Tooltip("Proc skill mods on targets affected by splash?")]
+        [SerializeField] bool triggerSkillMods = true;
         [Header("Contextual Events")]
         [Tooltip("Trigger skill user's perks")]
         public bool triggersSelfPerks = false;
@@ -70,7 +75,9 @@ namespace Zephyr.Combat
                     a.OnAttacked(skillUser, attack);
                 }
 
-                /* ==Perk Actions== */
+                /* ************
+                 * Perk Actions 
+                 * ************/
                 // Trigger TARGET's defensive perks
                 if (triggersTargetPerks && targetPerkMgr != null)
                 {
@@ -83,7 +90,9 @@ namespace Zephyr.Combat
                     userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
                 }
 
-                /* ==Splash Actions== */
+                /* **************
+                 * Splash Actions 
+                 * **************/
                 if (splashEffects)
                 {
                     DealSplashEffects(userStats, skillTarget, attackDefinition);
@@ -98,7 +107,8 @@ namespace Zephyr.Combat
             foreach (Collider col in colliders)
             {
                 if (col.gameObject == skillTargetObject) { continue; } // Ignore source of splash
-                if (skillTarget == ValidTargets.TARGET)
+
+                if (skillEffectsTarget == ValidTargets.TARGET)
                 {
                     // Ignore tags same as caster (for dealing splash damage and ailment)
                     if (col.gameObject.tag == skillUser.gameObject.tag) { continue; }
@@ -128,8 +138,21 @@ namespace Zephyr.Combat
                     splashRadius, 
                     newAttackDefinition.damage);
 
+                // If heal and splash falloff is zero, do nothing. Prevents bug making heals deal damage.
+                if (newAttackDefinition.damage == 0 && attackDefinition.damage < 0) { continue; }
+
                 // Create new attack to pass to attackables
-                var attack = newAttackDefinition.CreateAttack(skillUser, targetStats, this);
+                Attack attack;
+                if (triggerSkillMods)
+                {
+                    // Attack splash with mods to pass
+                    attack = newAttackDefinition.CreateAttack(skillUser, targetStats, this);
+                }
+                else
+                {
+                    // Attack splash damage only
+                    attack = newAttackDefinition.CreateAttack(skillUser, targetStats);
+                }
                 var attackables = col.GetComponentsInChildren<IAttackable>();
 
                 // Apply rerolled attack to attackables

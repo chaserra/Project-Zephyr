@@ -1,24 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zephyr.Util;
+using Zephyr.Targetting;
 
 namespace Zephyr.Combat
 {
     public class GroundAutoAim : MonoBehaviour
     {
         /** 
-         * Use this to return a target enemy around the skill user
+         * Use this to return a target enemy in front of the skill user
          * If skill target is for friendlies, return target friendly position
          * If skill target is for enemies, return target enemy position
          * If no target found, return front of user + offset
          **/
+        // Cache
+        TargettingSystem targettingSystem = new TargettingSystem();
+
         // Attributes
         [SerializeField] private float forwardRange = 12f;
         [SerializeField] private float targettingRadius = 12f;
         [SerializeField] private float forwardOffset = 2f;
         [SerializeField] private float targettingAngle = 45f;
-        [Tooltip("Everything except Player and Enemy")]
+        [Tooltip("UI, Player, Enemy, Projectile, and Weapon should be unchecked. These should not block the raycast.")]
         [SerializeField] private LayerMask obstacleMask;
         [SerializeField] private float yOffset = .8f;
 
@@ -46,7 +49,7 @@ namespace Zephyr.Combat
         {
             visibleTargets.Clear(); // Used only for Editor
             // Set layer to target
-            targetLayer = UtilityHelper.SetupTargettingLayer(gameObject, targetType);
+            targetLayer = targettingSystem.SetupTargettingLayer(gameObject, targetType);
 
             // Find all target objects within radius
             Collider[] targetsInRange = Physics.OverlapSphere(transform.position, targettingRadius, targetLayer);

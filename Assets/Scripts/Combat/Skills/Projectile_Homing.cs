@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
@@ -15,8 +14,9 @@ namespace Zephyr.Combat
         // Attributes
         [Tooltip("Speed of projectile turning towards homed target")]
         [SerializeField] private float turnSpeed = 1f;
-        [Tooltip("Target selection radius")]
+        [Tooltip("Forward range for target acquisition. Anything further is ignored.")]
         [SerializeField] private float targettingRange = 8f;
+        [Tooltip("Radius of sphere casted forwards. Makes it easier to acquire target within periphery.")]
         [SerializeField] private float targettingSphereRadius = 1.5f;
 
         // State
@@ -35,7 +35,7 @@ namespace Zephyr.Combat
             caster = projectile.Caster;
             gameObject.tag = caster.tag;
             _targettingRange = targettingRange;
-            targetLayer = UtilityHelper.SetupTargettingLayer(gameObject, projectile.ProjectileTarget);
+            targetLayer = projectile.TargettingSystem.SetupTargettingLayer(gameObject, projectile.ProjectileTarget);
         }
 
         private void OnDisable()
@@ -116,40 +116,6 @@ namespace Zephyr.Combat
                 currentTarget = null;
             }
         }
-
-        /*** DEPRECATED - OverlapSphere version of acquiring a target ***/
-        //private void OverlapAcquire()
-        //{
-        //    // Check all targets within projectile radius
-        //    Collider[] targets = Physics.OverlapSphere(transform.position, homingRadius);
-        //    float closestDistance = Mathf.Infinity; // float container for distance comparison
-
-        //    foreach (Collider col in targets)
-        //    {
-        //        // Check if other object's layer is not ignored or is not the same as caster's
-        //        if (!UtilityHelper.ContainsLayer(ignoreLayer, col.gameObject.layer) &&
-        //            gameObject.layer != col.gameObject.layer)
-        //        {
-        //            // Get position of new target
-        //            Vector3 objPos = col.transform.position;
-        //            // Get direction to new target
-        //            Vector3 direction = (objPos - transform.position).normalized;
-
-        //            if (Vector3.Dot(direction, transform.forward) > 0)
-        //            {
-        //                // Compare this object's distance to previous closest object
-        //                float newObjectDistance = Vector3.Distance(transform.position, objPos);
-
-        //                if (newObjectDistance < closestDistance)
-        //                {
-        //                    // Lock into closest target in front of projectile
-        //                    closestDistance = newObjectDistance;
-        //                    currentTarget = col.transform;
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
 
     }
 }

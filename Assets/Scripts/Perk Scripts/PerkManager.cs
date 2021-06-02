@@ -19,6 +19,7 @@ namespace Zephyr.Perks
         {
             for (int i = perks.Count - 1; i >= 0; i--)
             {
+                // Trigger only perks of the same perk type passed by the caller
                 if (perks[i].perkType == perkType)
                 {
                     perks[i].TriggerPerk(skillUser, attack, attackTarget);
@@ -26,6 +27,9 @@ namespace Zephyr.Perks
             }
         }
 
+        /* *** 
+         * BELOW ARE NOT YET USED 
+         * ***/
         public void DealDamage(Attack attack)
         {
             var attackables = gameObject.GetComponentsInChildren<IAttackable>();

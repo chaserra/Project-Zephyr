@@ -18,5 +18,10 @@
             mover.Move(player, playerCanRotate, playerCanMove, 1f);
         }
 
+        public override void ExitState(PlayerController player)
+        {
+            // None since all exit states go back to MoveState
+        }
+
     }
 }

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e5a205b639d4047b162bca12e8617d, type: 3}
+  m_Name: Cleanse_AllAilments
+  m_EditorClassIdentifier: 
+  DeveloperNotes: Removes all ailments
+  modName: Recover
+  context:
+    isActive: 0
+    hasDuration: 0
+    duration: 0
+    isStackable: 0
+    maxStacks: 0
+    modType: 0
+    procChance: 1
+  target: 1
+  statEffects:
+  - {fileID: 11400000, guid: cc833a291bef9b14da07ee4cad6ef392, type: 2}

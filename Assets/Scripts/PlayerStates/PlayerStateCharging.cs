@@ -53,13 +53,13 @@ namespace Zephyr.Player.Combat
                 {
                     chargePercent += maxCharge / chargeTime * Time.deltaTime ;
 
-                    if (chargePercent > maxCharge)
+                    if (chargePercent >= maxCharge)
                     {
                         chargePercent = maxCharge;
                         fullyCharged = true;
 
                         // Auto Release if skill releases when fully charged
-                        if (skillRealeaseWhenFullyCharged)
+                        if (skillRealeaseWhenFullyCharged && skill.skillChargeTime != 0)
                         {
                             ReleaseAttack(player);
                         }
@@ -77,7 +77,7 @@ namespace Zephyr.Player.Combat
                     } 
                     else
                     {
-                        CancelChargeAttack(player);
+                        ExitState(player);
                     }
                 }
                 else
@@ -90,14 +90,7 @@ namespace Zephyr.Player.Combat
         private void ReleaseAttack(PlayerController player)
         {
             // TODO (Charged Attack): Compute attack modifiers
-            // Release attack then return to movestate
             player.TransitionState(player.AttackState);
-            ResetChargeStateValues(player);
-        }
-
-        private void CancelChargeAttack(PlayerController player)
-        {
-            player.TransitionState(player.MoveState);
             ResetChargeStateValues(player);
         }
 
@@ -105,7 +98,14 @@ namespace Zephyr.Player.Combat
         {
             chargePercent = 0f;
             fullyCharged = false;
-            //player.ResetCurrentSkill(); // Not needed? Skill automatically resets after attack state
+        }
+
+        public override void ExitState(PlayerController player)
+        {
+            ResetChargeStateValues(player);
+            player.ResetCurrentSkill();
+            player.Anim.SetTrigger("Default_Trigger");
+            player.TransitionState(player.MoveState);
         }
 
     }

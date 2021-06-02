@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e901cb0220541440b375054c996a798, type: 3}
+  m_Name: Beam
+  m_EditorClassIdentifier: 
+  skillType: 3
+  skillEffectsTarget: 1
+  skillName: Beam
+  skillAnimationName: ChannelSkill
+  skillCooldown: 0
+  userCanRotate: 1
+  userCanMove: 0
+  moveSpeedMultiplier: 0.175
+  skillSound: {fileID: 0}
+  skillChargeTime: 0
+  skillRealeaseWhenFullyCharged: 1
+  skillMustFullyCharge: 0
+  mods: []
+  splashEffects: 0
+  splashRadius: 0
+  triggerSkillMods: 1
+  triggersSelfPerks: 1
+  triggersTargetPerks: 0
+  attackDefinition:
+    damage: 2
+    criticalChance: 0.05
+    criticalMultiplier: 2
+    hitForce: 0
+  tickIntervals: 0.5
+  beamRange: 5
+  beamWidth: 0.5
+  piercing: 1
+  beamPrefab: {fileID: 1288873401012019326, guid: 59007137c8be8b747ac1f3e7e1c4615d,
+    type: 3}

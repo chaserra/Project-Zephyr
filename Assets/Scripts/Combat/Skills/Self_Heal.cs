@@ -11,6 +11,7 @@ namespace Zephyr.Combat
         [Header("Skill Values")]
         [SerializeField] private bool healPercent = false;
         [SerializeField] private float amountToHeal = 0f;
+        [SerializeField] private bool appliesMods = false;
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
@@ -31,6 +32,11 @@ namespace Zephyr.Combat
             foreach (IAttackable a in attackables)
             {
                 a.OnAttacked(skillUser, heal);
+            }
+
+            if (appliesMods)
+            {
+                ApplyMods(skillUser);
             }
         }
     }

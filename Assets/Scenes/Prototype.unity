@@ -2101,7 +2101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 424708247}
   m_Layer: 8
-  m_Name: Projectile Hotspot
+  m_Name: Spell Hotspot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4514,6 +4514,7 @@ GameObject:
   - component: {fileID: 914615297}
   - component: {fileID: 914615299}
   - component: {fileID: 914615296}
+  - component: {fileID: 914615309}
   - component: {fileID: 914615302}
   - component: {fileID: 914615300}
   - component: {fileID: 914615304}
@@ -4582,7 +4583,7 @@ MonoBehaviour:
   skillButtonFive: {fileID: 11400000, guid: 646ee24cda921e646be6b23fcc0d61fe, type: 2}
   skillButtonSix: {fileID: 11400000, guid: f1e1e802a25cd9e4fa6f5e5ba69ae6c9, type: 2}
   skillButtonSeven: {fileID: 11400000, guid: b4691ae3dfdb9aa4a93c86a3c54eb2c6, type: 2}
-  skillButtonEight: {fileID: 11400000, guid: 2e7024467fa7e2347a3ec0c5829b1ca3, type: 2}
+  skillButtonEight: {fileID: 11400000, guid: 255469b81b8af894589a974d9d9763ef, type: 2}
 --- !u!114 &914615297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4632,7 +4633,6 @@ MonoBehaviour:
   weaponSlot: {fileID: 1283512902}
   test_Weapon: {fileID: 11400000, guid: 438fb698a3bd2e24a97c2148481f3743, type: 2}
   test_Weapon2: {fileID: 11400000, guid: 4c10b462cb68fff4c9b2a5fea01855e5, type: 2}
-  projectileHotSpot: {fileID: 424708247}
 --- !u!114 &914615300
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4660,14 +4660,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debugEnabled: 1
-  mods_M:
-  - {fileID: 11400000, guid: 583b0e2510ca7df4f9e72f1eeb6ce559, type: 2}
-  - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
-  - {fileID: 11400000, guid: 36c6bf973d7804e4c9c2322d844e01d3, type: 2}
   mods_Comma:
-  - {fileID: 11400000, guid: 6a2f6003594c3fa4ba6a51db021e51e8, type: 2}
-  - {fileID: 11400000, guid: b314195d797b43a4d8081616d23c559b, type: 2}
-  - {fileID: 11400000, guid: 39b9fc479d1ae4e44b591b30c2641b46, type: 2}
+  - {fileID: 11400000, guid: e914a482d5418724bb1a44deeb82d63f, type: 2}
+  - {fileID: 11400000, guid: e8d97a27815e1c44b9d1090ddf69c585, type: 2}
 --- !u!114 &914615302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4771,6 +4766,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &914615309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 914615293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b2063bcaae68d4d95d43210c4b79f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellHotSpot: {fileID: 424708247}
 --- !u!1001 &921829057
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10990,7 +10998,7 @@ PrefabInstance:
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: castSkill
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2068402100761630341, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
@@ -11003,6 +11011,23 @@ PrefabInstance:
       propertyPath: randomRotateAtStart
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630392, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: perks.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068402100761630392, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: perks.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 7c91c73a83a92654d83afe15c169669a,
+        type: 2}
+    - target: {fileID: 2068402100761630392, guid: 871188da2f5a203409ae148457bbde84,
+        type: 3}
+      propertyPath: perks.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c40f86ab3273834db0c748e8c665fae,
+        type: 2}
     - target: {fileID: 2068402100761630397, guid: 871188da2f5a203409ae148457bbde84,
         type: 3}
       propertyPath: m_RootOrder

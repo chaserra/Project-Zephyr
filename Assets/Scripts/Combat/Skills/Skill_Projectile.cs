@@ -39,9 +39,9 @@ namespace Zephyr.Combat
             // Set Projectile's tag
             projectile.gameObject.tag = skillUser.tag;
             // Get Projectile Hotspot
-            Transform hotSpot = skillUser.GetComponent<CharacterStats>().GetProjectileHotSpot();
+            Transform hotSpot = skillUser.GetComponent<SpellCaster>().SpellHotSpot;
             // Fire projectile
-            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot, skillTarget);
+            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot, skillEffectsTarget);
 
             // Subscribe to projectile events
             projectile.ProjectileCollided += ApplySkill;

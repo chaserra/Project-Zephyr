@@ -16,7 +16,7 @@ MonoBehaviour:
 
     Damage intensifies per tick
 
-    Spreads
-    to nearby targets'
+    Damages
+    nearby targets'
   ailmentName: Burn
   textColor: {r: 0.38679248, g: 0.16668151, b: 0.0054734685, a: 1}
