@@ -10,6 +10,7 @@ namespace Zephyr.Combat
     {
         /* *****************************
          * Beam-type Channelled Skill
+         * Derived from Skill_Channelled. This script handles casting logic.
          * DO NOT MODIFY VARIABLES HERE. This is a scriptable object!
          * *****************************/
         [Header("Beam Values")]
@@ -44,7 +45,7 @@ namespace Zephyr.Combat
         public override void TriggerSkill(GameObject skillUser)
         {
             // None needed here
-            // Channelling logic done by the actual active channelled spell (ChannelledSkill.cs)
+            // Channelling logic done by the script attached to spell prefab (Beam Skill, Cone Skill, etc.)
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)

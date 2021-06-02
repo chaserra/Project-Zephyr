@@ -53,7 +53,7 @@ namespace Zephyr.Targetting
             return targetLayer;
         }
 
-        public bool ApplySkillToTarget(GameObject source, ValidTargets skillTarget, Collider other)
+        public bool SkillShouldHitTarget(GameObject source, ValidTargets skillTarget, Collider other)
         {
             // If skill is an offensive skill
             if (skillTarget == ValidTargets.TARGET)

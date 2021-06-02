@@ -6,6 +6,7 @@ namespace Zephyr.Combat
 {
     /* *****************************
      * Derived Channelled Skill
+     * Handles all logic for this specific skill.
      * Beam type
      * *****************************/
     public class BeamSkill : ChannelledSkill
@@ -13,7 +14,6 @@ namespace Zephyr.Combat
         private float beamRange;
         private float beamWidth;
         private bool piercing;
-        private List<Collider> targets = new List<Collider>();
 
         // Cast spell
         public override void CastSkill(GameObject Caster, Skill SkillUsed,

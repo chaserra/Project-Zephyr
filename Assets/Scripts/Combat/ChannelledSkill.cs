@@ -6,8 +6,8 @@ using Zephyr.Targetting;
 namespace Zephyr.Combat
 {
     /* *****************************
-     * Parent abstract script for all prefab of channelled skills.
-     * Derived scripts are the ones attached to prefabs.
+     * Parent abstract script for all PREFAB of channelled skills.
+     * Derived scripts are the ones attached to the prefabs.
      * *****************************/
     public abstract class ChannelledSkill : MonoBehaviour
     {
@@ -24,6 +24,7 @@ namespace Zephyr.Combat
 
         // State
         protected float tickTimer;
+        protected List<Collider> targets = new List<Collider>();
 
         // Initialize Spell
         public virtual void CastSkill(GameObject Caster, Skill SkillUsed, 
@@ -72,7 +73,7 @@ namespace Zephyr.Combat
             // Ignore untagged
             if (other.gameObject.tag == "Untagged") { return; }
 
-            if (targettingSystem.ApplySkillToTarget(gameObject, spellTarget, other)) {
+            if (targettingSystem.SkillShouldHitTarget(gameObject, spellTarget, other)) {
                 skill.ApplySkill(caster, other.gameObject);
             }
         }

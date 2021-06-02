@@ -12,13 +12,14 @@ namespace Zephyr.Combat
         //public Animator userAnim;
         //[System.NonSerialized]
         //public CharacterStats userStats;
+        [Header("Skill Targetting")]
         public SkillType skillType;
         public ValidTargets skillEffectsTarget = ValidTargets.TARGET;
         [Space]
         public string skillName;
         public string skillAnimationName;
         public float skillCooldown;
-        [Space]
+        [Header("Movement Modifiers")]
         public bool userCanRotate;
         public bool userCanMove;
         [Range(0, 1)]public float moveSpeedMultiplier = 1f;

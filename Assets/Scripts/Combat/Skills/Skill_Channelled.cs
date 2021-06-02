@@ -8,6 +8,7 @@ namespace Zephyr.Combat
     {
         /* *****************************
          * Continuously casts spell while button is held
+         * Parent Channelled Skill script. Derived scripts handle actual casting of the spell.
          * DO NOT MODIFY VARIABLES HERE. This is a scriptable object!
          * *****************************/
         [Header("Skill Values")]
@@ -35,7 +36,7 @@ namespace Zephyr.Combat
         public override void TriggerSkill(GameObject skillUser)
         {
             // None needed here
-            // Channelling logic done by the actual active channelled spell
+            // Channelling logic done by the script attached to spell prefab (Beam Skill, Cone Skill, etc.)
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)

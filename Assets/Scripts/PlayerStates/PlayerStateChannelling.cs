@@ -52,17 +52,16 @@ namespace Zephyr.Player.Combat
                 spellCaster.ActiveChannelledSpell.Tick();
 
                 // Timer logic. Used only when certain flags are active.
-                if (currentPercent < maxPercent)
+                // Auto-cancels skill when fully charged
+                if (cancelSkillWhenFullyCharged && skill.skillChargeTime != 0)
                 {
-                    currentPercent += maxPercent / maxDuration * Time.deltaTime ;
-
-                    if (currentPercent >= maxPercent)
+                    if (currentPercent < maxPercent)
                     {
-                        currentPercent = maxPercent;
+                        currentPercent += maxPercent / maxDuration * Time.deltaTime;
 
-                        // Auto Cancel skill when fully charged
-                        if (cancelSkillWhenFullyCharged && skill.skillChargeTime != 0)
+                        if (currentPercent >= maxPercent)
                         {
+                            currentPercent = maxPercent;
                             ExitState(player);
                         }
                     }

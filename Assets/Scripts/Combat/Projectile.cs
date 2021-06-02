@@ -82,7 +82,7 @@ namespace Zephyr.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            if (targettingSystem.ApplySkillToTarget(gameObject, projectileTarget, other))
+            if (targettingSystem.SkillShouldHitTarget(gameObject, projectileTarget, other))
             {
                 // Raise event on target hit
                 ProjectileCollided?.Invoke(caster, other.gameObject);
