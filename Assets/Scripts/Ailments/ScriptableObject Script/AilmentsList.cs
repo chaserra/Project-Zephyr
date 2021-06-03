@@ -9,11 +9,16 @@ namespace Zephyr.Mods
     {
         private ModifierManager modManager;
 
+        // Drag and drop all new ailments in the field below
         [SerializeField] private List<Ailment> ailmentsList_Template;
         [HideInInspector]
         public List<Ailment> ailmentsList;
 
         #region SETUP
+        /* ********
+         * Creates instances of Ailment SO then adds them to a List 
+         * Used for triggering/disabling ailments without affecting SO (data) values
+         * ********/
         public void Initialize(ModifierManager modMgr)
         {
             modManager = modMgr;

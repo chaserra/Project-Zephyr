@@ -14,7 +14,7 @@ namespace Zephyr.Combat
         // Attributes
         private List<ScrollingText> texts = new List<ScrollingText>();
         private Queue<IEnumerator> textQueue = new Queue<IEnumerator>();
-        private float textQueueDelay = .08f; // Seconds before next text is displayed
+        private float textQueueDelay = .06f; // Seconds before next text is displayed
 
         // Properties
         public ScrollingText Text;
