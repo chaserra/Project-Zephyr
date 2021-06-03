@@ -60,7 +60,7 @@ namespace Zephyr.Stats
             {
                 //Die();
                 // TODO (Combat): Create Die() method to invoke an event
-                // TODO (Death): Make sure scripts stop when a character dies
+                // TODO (Death): Make sure scripts stop when a character dies.
             }
         }
         #endregion
