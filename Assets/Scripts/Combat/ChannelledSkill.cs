@@ -38,8 +38,8 @@ namespace Zephyr.Combat
             spellTarget = Target;
             targetLayer = targettingSystem.SetupTargettingLayer(gameObject, spellTarget);
 
-            // Reset timer
-            tickTimer = tickIntervals;
+            // Set timer
+            tickTimer = 0f;
         }
 
         // Tick logic

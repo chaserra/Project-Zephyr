@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Mods;
 using Zephyr.Combat;
+using Zephyr.Util;
 
 namespace Zephyr.Stats
 {
@@ -67,12 +68,6 @@ namespace Zephyr.Stats
         {
             characterStats.TakeDamage(amount);
         }
-
-        public int GetHealthPercentValue(float percentValue)
-        {
-            float flatValue = characterStats.currentMaxHealth * (percentValue / 100);
-            return Mathf.RoundToInt(flatValue);
-        }
         #endregion
 
         #region Stat Modification
@@ -104,6 +99,11 @@ namespace Zephyr.Stats
         #endregion
 
         #region Reporters
+        public int GetHealthPercentValue(float percentValue)
+        {
+            float flatValue = characterStats.currentMaxHealth * UtilityHelper.PercentageToDecimal(percentValue);
+            return Mathf.RoundToInt(flatValue);
+        }
 
         public int GetMaxHealth()
         {

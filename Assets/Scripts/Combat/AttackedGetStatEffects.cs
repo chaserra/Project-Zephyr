@@ -25,9 +25,8 @@ namespace Zephyr.Combat
 
             Modifier[] attackSkillMods = attack.SkillUsed.mods;
             
+            // Do nothing if no mods are attached with the skill
             if (attackSkillMods.Length < 1) { return; }
-
-            ModifierManager attackerModManager = attacker.GetComponent<ModifierManager>();
 
             for (int i = 0; i < attackSkillMods.Length; i++)
             {
@@ -39,6 +38,7 @@ namespace Zephyr.Combat
                 // Apply mod to self
                 if (attackSkillMods[i].Target == ValidTargets.ALLY)
                 {
+                    ModifierManager attackerModManager = attacker.GetComponent<ModifierManager>();
                     attackerModManager.AddModifier(attackSkillMods[i]);
                 }
             }
