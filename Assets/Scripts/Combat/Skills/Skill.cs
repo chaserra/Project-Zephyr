@@ -53,16 +53,10 @@ namespace Zephyr.Combat
         protected void ApplyOffensiveSkill(GameObject skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
         {
             // Get target stats
-            CharacterStats targetStats = skillTarget.GetComponent<CharacterStats>();
-
-            if (targetStats != null)
+            if (skillTarget.TryGetComponent<CharacterStats>(out var targetStats))
             {
-                // Get target perk manager
-                PerkManager targetPerkMgr = skillTarget.GetComponent<PerkManager>();
-
                 // Get skill user's stats and perk manager
                 CharacterStats userStats = skillUser.GetComponent<CharacterStats>();
-                PerkManager userPerkMgr = skillUser.GetComponent<PerkManager>();
 
                 /* ==Attack Actions== */
                 // Create attack
@@ -79,13 +73,13 @@ namespace Zephyr.Combat
                  * Perk Actions 
                  * ************/
                 // Trigger TARGET's defensive perks
-                if (triggersTargetPerks && targetPerkMgr != null)
+                if (triggersTargetPerks && skillTarget.TryGetComponent<PerkManager>(out var targetPerkMgr))
                 {
                     targetPerkMgr.TriggerPerk(PerkType.Defense, skillUser, attack, skillTarget);
                 }
 
                 // Trigger USER's attack perks
-                if (triggersSelfPerks && userPerkMgr != null)
+                if (triggersSelfPerks && skillUser.TryGetComponent<PerkManager>(out var userPerkMgr))
                 {
                     userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
                 }
@@ -120,8 +114,7 @@ namespace Zephyr.Combat
                 }
 
                 // Get affected target's stats
-                CharacterStats targetStats = col.GetComponent<CharacterStats>();
-                if (targetStats == null) { continue; }
+                if (!col.TryGetComponent<CharacterStats>(out var targetStats)) { continue; }
 
                 // Reroll attack
                 // Wrap in new AttackDefinition to prevent overwriting the original SO values

@@ -14,8 +14,8 @@ namespace Zephyr.Combat
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            Animator userAnim = skillUser.GetComponent<Animator>();
-            userAnim.SetTrigger(skillAnimationName);
+            if (skillUser.TryGetComponent<Animator>(out var userAnim))
+            { userAnim.SetTrigger(skillAnimationName); }
             ApplySkill(skillUser, skillUser);
         }
 

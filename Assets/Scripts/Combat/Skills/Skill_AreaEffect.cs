@@ -14,6 +14,7 @@ namespace Zephyr.Combat
         [Header("Ground Skill Values")]
         [SerializeField] private float aoeRadius = 10f;
         [SerializeField] private float aoeDuration = 10f;
+        [SerializeField] private bool groundAutoAimActive = true;
         [Header("Ground Skill")]
         [SerializeField] private GroundSkill groundSkillPrefab;
 
@@ -26,9 +27,8 @@ namespace Zephyr.Combat
         public override void TriggerSkill(GameObject skillUser)
         {
             // Trigger animation then cast spell on location
-            GroundAutoAim groundAim = skillUser.GetComponent<SpellCaster>().GroundAutoAim;
-            Animator userAnim = skillUser.GetComponent<Animator>();
-            if (userAnim != null) { userAnim.SetTrigger(skillAnimationName); }
+            if (skillUser.TryGetComponent<Animator>(out var userAnim)) 
+            { userAnim.SetTrigger(skillAnimationName); }
 
             // Grab object from object pool
             GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(groundSkillPrefab.gameObject);
@@ -37,13 +37,14 @@ namespace Zephyr.Combat
             groundSkill.gameObject.tag = skillUser.gameObject.tag;
             // Set skill's position
             // TODO (Ground Aim): Get location while chanelling instead of here
-            if (groundAim != null)
+            if (groundAutoAimActive)
             {
-                groundSkill.transform.position = groundAim.AcquireTargetGroundPosition(skillEffectsTarget);
+                GroundAutoAim groundAim = skillUser.GetComponent<SpellCaster>().GroundAutoAim;
+                groundSkill.transform.position = groundAim.AcquireTargetGroundPosition(skillEffectsTarget); 
             }
             else
-            {
-                groundSkill.transform.position = skillUser.transform.position;
+            { 
+                groundSkill.transform.position = skillUser.transform.position; 
             }
             // Cast skill
             groundSkill.Cast(skillUser, this, attackDefinition, 

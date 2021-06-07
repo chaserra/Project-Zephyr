@@ -29,8 +29,8 @@ namespace Zephyr.Combat
                 Reset();
                 return;
             }
-            Animator userAnim = skillUser.GetComponent<Animator>();
-            if(userAnim != null) { userAnim.SetTrigger(skillAnimationName); }
+            if (skillUser.TryGetComponent<Animator>(out var userAnim))
+            { userAnim.SetTrigger(skillAnimationName); }
         }
 
         public override void TriggerSkill(GameObject skillUser)

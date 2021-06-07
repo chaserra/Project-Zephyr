@@ -74,8 +74,7 @@ namespace Zephyr.Mods
                         if (col[i].gameObject == modifierManager.gameObject) { continue; } // Ignore self
                         if (col[i].gameObject.tag != modifierManager.gameObject.tag) { continue; } // Only affect same tag (Player or Enemy)
                         
-                        ModifierManager target = col[i].GetComponent<ModifierManager>();
-                        if (target != null)
+                        if (col[i].TryGetComponent<ModifierManager>(out var target))
                         {
                             if (target.AilmentActive(this)) { continue; } // Ignore already burning enemy
                             int damageWithFalloff = UtilityHelper.DamageDistanceFallOff(modifierManager.gameObject.transform.position, target.transform.position, burnRadius, damagePerTick);

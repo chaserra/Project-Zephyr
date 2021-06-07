@@ -40,5 +40,6 @@ MonoBehaviour:
   tickIntervals: 2
   aoeRadius: 5
   aoeDuration: 10
+  groundAutoAimActive: 1
   groundSkillPrefab: {fileID: 4036756525389006767, guid: 35f9cb1dd4268a249acc96383ac771bc,
     type: 3}

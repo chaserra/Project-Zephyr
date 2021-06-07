@@ -30,8 +30,8 @@ namespace Zephyr.Combat
         public override void TriggerSkill(GameObject skillUser)
         {
             // Do skill stuff. Trigger animation and instantiate a projectile
-            Animator userAnim = skillUser.GetComponent<Animator>();
-            if (userAnim != null) { userAnim.SetTrigger(skillAnimationName); }
+            if (skillUser.TryGetComponent<Animator>(out var userAnim))
+            { userAnim.SetTrigger(skillAnimationName); }
 
             // Grab object from object pool
             GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(projectilePrefab.gameObject);
