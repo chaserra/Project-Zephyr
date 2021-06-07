@@ -6,10 +6,17 @@ namespace Zephyr.Combat
 {
     public class SpellCaster : MonoBehaviour
     {
-        [SerializeField] Transform spellHotSpot;
-        private ChannelledSkill activeChannelledSpell; 
+        // Cache
+        private ChannelledSkill activeChannelledSpell;
+        private GroundAutoAim groundAutoAim;
 
+        // Attributes
+        [SerializeField] Transform spellHotSpot;
+        [SerializeField] GroundAutoAim_SO autoAimValues;
+
+        // Properties
         public Transform SpellHotSpot { get { return spellHotSpot; } }
+        public GroundAutoAim GroundAutoAim { get { return groundAutoAim; } }
 
         public ChannelledSkill ActiveChannelledSpell
         {
@@ -20,9 +27,9 @@ namespace Zephyr.Combat
         private void Awake()
         {
             if (spellHotSpot == null) { 
-                Debug.LogError("Spell Hotspot not assigned!");
-                spellHotSpot = gameObject.transform;
+                Debug.LogError("Spell Hotspot not assigned!");;
             }
+            groundAutoAim = new GroundAutoAim(gameObject, gameObject.transform, autoAimValues);
         }
 
     }

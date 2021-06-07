@@ -11,9 +11,6 @@ namespace Zephyr.Combat
      * *****************************/
     public abstract class ChannelledSkill : MonoBehaviour
     {
-        //Cache
-        private TargettingSystem targettingSystem = new TargettingSystem();
-
         // Properties
         protected GameObject caster;
         protected Skill skill;
@@ -36,7 +33,7 @@ namespace Zephyr.Combat
             tickIntervals = TickIntervals;
             hotSpot = HotSpot;
             spellTarget = Target;
-            targetLayer = targettingSystem.SetupTargettingLayer(gameObject, spellTarget);
+            targetLayer = TargettingSystem.SetupTargettingLayer(gameObject, spellTarget);
 
             // Set timer
             tickTimer = 0f;
@@ -73,7 +70,7 @@ namespace Zephyr.Combat
             // Ignore untagged
             if (other.gameObject.tag == "Untagged") { return; }
 
-            if (targettingSystem.SkillShouldHitTarget(gameObject, spellTarget, other)) {
+            if (TargettingSystem.SkillShouldHitTarget(gameObject, spellTarget, other)) {
                 skill.ApplySkill(caster, other.gameObject);
             }
         }

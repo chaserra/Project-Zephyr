@@ -5,7 +5,7 @@ using Zephyr.Targetting;
 
 namespace Zephyr.Combat
 {
-    public class GroundAutoAim : MonoBehaviour
+    public class GroundAutoAim
     {
         /** 
          * Use this to return a target enemy in front of the skill user
@@ -14,45 +14,29 @@ namespace Zephyr.Combat
          * If no target found, return front of user + offset
          **/
         // Cache
-        TargettingSystem targettingSystem = new TargettingSystem();
-
-        // Attributes
-        [SerializeField] private float forwardRange = 12f;
-        [SerializeField] private float targettingRadius = 12f;
-        [SerializeField] private float forwardOffset = 2f;
-        [SerializeField] private float targettingAngle = 45f;
-        [Tooltip("UI, Player, Enemy, Projectile, and Weapon should be unchecked. These should not block the raycast.")]
-        [SerializeField] private LayerMask obstacleMask;
-        [SerializeField] private float yOffset = .8f;
+        private GameObject groundCaster;
+        private Transform groundCasterTransform;
+        private GroundAutoAim_SO autoAimValue;
 
         // State
-        [SerializeField] private bool displayDebugRange = false;
         private LayerMask targetLayer;
-        private List<Transform> visibleTargets = new List<Transform>(); // Used only for Editor
 
-        // Properties
-        public float TargettingRadius { get { return targettingRadius; } }
-        public float TargettingAngle { get { return targettingAngle; } }
-        public List<Transform> VisibleTargets { get { return visibleTargets; } } // Used only for Editor
-
-
-        private void OnDrawGizmos()
+        #region Constructor
+        public GroundAutoAim(GameObject gameObject, Transform transform, GroundAutoAim_SO autoAimValues)
         {
-            if(!displayDebugRange) { return; }
-            Gizmos.color = Color.white;
-            Gizmos.DrawLine(transform.position, transform.position + transform.forward * forwardRange);
-            Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position + transform.up * yOffset, transform.position + transform.up * yOffset + transform.forward * forwardRange);
+            groundCaster = gameObject;
+            groundCasterTransform = transform;
+            autoAimValue = autoAimValues;
         }
+        #endregion
 
         public Vector3 AcquireTargetGroundPosition(ValidTargets targetType)
         {
-            visibleTargets.Clear(); // Used only for Editor
             // Set layer to target
-            targetLayer = targettingSystem.SetupTargettingLayer(gameObject, targetType);
+            targetLayer = TargettingSystem.SetupTargettingLayer(groundCaster, targetType);
 
             // Find all target objects within radius
-            Collider[] targetsInRange = Physics.OverlapSphere(transform.position, targettingRadius, targetLayer);
+            Collider[] targetsInRange = Physics.OverlapSphere(groundCasterTransform.position, autoAimValue.targettingRadius, targetLayer);
 
             // Member variable setup
             float closestTargetDistance = Mathf.Infinity;
@@ -60,26 +44,25 @@ namespace Zephyr.Combat
 
             for (int i = 0; i < targetsInRange.Length; i++)
             {
-                if (targetsInRange[i].gameObject == gameObject) { continue; } // Ignore self
+                if (targetsInRange[i].gameObject == groundCaster) { continue; } // Ignore self
 
                 Transform target = targetsInRange[i].transform;
-                Vector3 directionToTarget = (target.position - transform.position).normalized;
+                Vector3 directionToTarget = (target.position - groundCasterTransform.position).normalized;
                 // If target is inside view angle range
-                if (Vector3.Angle(transform.forward, directionToTarget) < targettingAngle / 2)
+                if (Vector3.Angle(groundCasterTransform.forward, directionToTarget) < autoAimValue.targettingAngle / 2)
                 {
                     // Setup offsets (prevents ground from blocking the raycast)
-                    Vector3 posYoffset = transform.position + transform.up * yOffset;
-                    Vector3 targetYoffset = target.position + target.transform.up * yOffset;
+                    Vector3 posYoffset = groundCasterTransform.position + groundCasterTransform.up * autoAimValue.yOffset;
+                    Vector3 targetYoffset = target.position + target.transform.up * autoAimValue.yOffset;
 
                     // Get distance to target for comparison with current closest target
                     float distanceToTarget = Vector3.Distance(posYoffset, targetYoffset);
 
                     // Obstacles block raycast. Returns nothing if blocked.
-                    if (!Physics.Raycast(posYoffset, directionToTarget, distanceToTarget, obstacleMask))
+                    if (!Physics.Raycast(posYoffset, directionToTarget, distanceToTarget, autoAimValue.obstacleMask))
                     {
                         if (distanceToTarget < closestTargetDistance)
                         {
-                            visibleTargets.Add(target); // Used only for Editor
                             closestTargetDistance = distanceToTarget;
                             closestTarget = target.position;
                         }
@@ -94,23 +77,8 @@ namespace Zephyr.Combat
             else
             {
                 // Returns default cast location
-                return transform.position + transform.forward * forwardOffset;
+                return groundCasterTransform.position + groundCasterTransform.forward * autoAimValue.forwardOffset;
             }
-        }
-
-        // Used for Editor lines
-        public Vector3 DirFromAngle(float angleInDegrees, bool angleIsGlobal)
-        {
-            if (!angleIsGlobal)
-            {
-                angleInDegrees += transform.eulerAngles.y;
-            }
-
-            return new Vector3(
-                Mathf.Sin(angleInDegrees * Mathf.Deg2Rad),
-                0,
-                Mathf.Cos(angleInDegrees * Mathf.Deg2Rad)
-            );
         }
 
     }

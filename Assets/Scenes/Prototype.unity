@@ -4515,7 +4515,6 @@ GameObject:
   - component: {fileID: 914615299}
   - component: {fileID: 914615296}
   - component: {fileID: 914615309}
-  - component: {fileID: 914615302}
   - component: {fileID: 914615300}
   - component: {fileID: 914615304}
   - component: {fileID: 914615306}
@@ -4663,27 +4662,6 @@ MonoBehaviour:
   mods_Comma:
   - {fileID: 11400000, guid: e914a482d5418724bb1a44deeb82d63f, type: 2}
   - {fileID: 11400000, guid: e8d97a27815e1c44b9d1090ddf69c585, type: 2}
---- !u!114 &914615302
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 914615293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f76afeed007a9a4ea560a0ceb6d9839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forwardRange: 12
-  targettingRadius: 12
-  forwardOffset: 2
-  targettingAngle: 45
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1047
-  yOffset: 0.8
-  displayDebugRange: 1
 --- !u!114 &914615303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4779,6 +4757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellHotSpot: {fileID: 424708247}
+  autoAimValues: {fileID: 11400000, guid: a5e16cc24119ba74985cde8c93074466, type: 2}
 --- !u!1001 &921829057
 PrefabInstance:
   m_ObjectHideFlags: 0

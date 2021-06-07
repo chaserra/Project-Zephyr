@@ -8,9 +8,6 @@ namespace Zephyr.Combat
 {
     public class Projectile : MonoBehaviour
     {
-        // Cache
-        private TargettingSystem targettingSystem = new TargettingSystem();
-
         // Properties
         private GameObject caster;
         private float speed;
@@ -27,7 +24,6 @@ namespace Zephyr.Combat
         public GameObject Caster { get { return caster; } }
         public bool Homing { get { return isHoming; } }
         public ValidTargets ProjectileTarget { get { return projectileTarget; } }
-        public TargettingSystem TargettingSystem { get { return targettingSystem; } }
 
         public void Fire(GameObject Caster, float Speed, float Range, 
             bool Homing, Transform Hotspot, ValidTargets Target)
@@ -82,7 +78,7 @@ namespace Zephyr.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            if (targettingSystem.SkillShouldHitTarget(gameObject, projectileTarget, other))
+            if (TargettingSystem.SkillShouldHitTarget(gameObject, projectileTarget, other))
             {
                 // Raise event on target hit
                 ProjectileCollided?.Invoke(caster, other.gameObject);

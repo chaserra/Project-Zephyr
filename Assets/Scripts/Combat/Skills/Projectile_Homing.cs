@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Targetting;
 
 namespace Zephyr.Combat
 {
@@ -35,7 +36,7 @@ namespace Zephyr.Combat
             caster = projectile.Caster;
             gameObject.tag = caster.tag;
             _targettingRange = targettingRange;
-            targetLayer = projectile.TargettingSystem.SetupTargettingLayer(gameObject, projectile.ProjectileTarget);
+            targetLayer = TargettingSystem.SetupTargettingLayer(gameObject, projectile.ProjectileTarget);
         }
 
         private void OnDisable()
