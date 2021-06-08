@@ -78,6 +78,7 @@ namespace Zephyr.Combat
                 /* ************
                  * Perk Actions 
                  * ************/
+                // Roll to proc perks
                 if (UtilityHelper.RollForProc(perkProcChance))
                 {
                     // Trigger TARGET's defensive perks

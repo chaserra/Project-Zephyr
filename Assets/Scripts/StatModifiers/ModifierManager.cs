@@ -28,7 +28,7 @@ namespace Zephyr.Mods
         private void Awake()
         {
             characterStats = GetComponent<CharacterStats>();
-            eventListener = GetComponent<UIEventListener>();
+            if(TryGetComponent<UIEventListener>(out var e)) { eventListener = e; }
             if (ailmentsList_Template == null) { Debug.LogWarning("Missing Ailments List for " + gameObject.name); return; }
             ailmentsList = Instantiate(ailmentsList_Template); // Creates instance of SO
             ailmentsList.Initialize(this);
@@ -37,7 +37,7 @@ namespace Zephyr.Mods
         private void Update()
         {
             /* Tick Methods */
-            // Modwrappers
+            // ModWrappers
             if (modWrappers.Count > 0)
             {
                 foreach (ModifierWrapper wrapper in modWrappers)
