@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Mods;
+using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
@@ -28,6 +29,7 @@ namespace Zephyr.Combat
         protected void ApplyMods(GameObject skillUser)
         {
             // Apply mods
+            if (!UtilityHelper.RollForProc(modProcChance)) { return; }
             ModifierManager modMgr = skillUser.GetComponent<ModifierManager>();
             for (int i = 0; i < mods.Length; i++)
             {

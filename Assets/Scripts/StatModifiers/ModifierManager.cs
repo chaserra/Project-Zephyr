@@ -5,7 +5,6 @@ using Zephyr.Combat;
 using Zephyr.Stats;
 using Zephyr.UI;
 using Zephyr.Util;
-using Zephyr.Player;
 
 namespace Zephyr.Mods
 {

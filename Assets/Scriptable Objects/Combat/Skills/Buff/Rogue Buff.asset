@@ -28,8 +28,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 583b0e2510ca7df4f9e72f1eeb6ce559, type: 2}
   - {fileID: 11400000, guid: 281ccc155a366e04bbf0e502fe69e5bc, type: 2}
   - {fileID: 11400000, guid: 36c6bf973d7804e4c9c2322d844e01d3, type: 2}
+  modProcChance: 1
   splashEffects: 0
   splashRadius: 0
   triggerSkillMods: 0
   triggersSelfPerks: 0
   triggersTargetPerks: 0
+  perkProcChance: 0

@@ -35,6 +35,8 @@ namespace Zephyr.Combat
         [Header("Skill Modifiers")]
         [Tooltip("Mods to apply upon skill use")]
         public Modifier[] mods;
+        [Tooltip("Chance for skill to apply mods to the target. \nThis is rolled first before specific mods are rolled to proc.")]
+        [Range(0f, 1f)]public float modProcChance = 1f;
         [Header("Splash")]
         [Tooltip("Does splash damage/effects on nearby targets")]
         [SerializeField] bool splashEffects = false;
@@ -46,6 +48,8 @@ namespace Zephyr.Combat
         public bool triggersSelfPerks = false;
         [Tooltip("Trigger skill target's perks")]
         public bool triggersTargetPerks = false;
+        [Tooltip("Chance for skill to trigger perks. \nThis is rolled first before specific perks are rolled to proc.")]
+        [Range(0f, 1f)] public float perkProcChance = 1f;
 
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
@@ -58,7 +62,9 @@ namespace Zephyr.Combat
                 // Get skill user's stats and perk manager
                 CharacterStats userStats = skillUser.GetComponent<CharacterStats>();
 
-                /* ==Attack Actions== */
+                /* ************
+                 * Attack Actions 
+                 * ************/
                 // Create attack
                 var attack = attackDefinition.CreateAttack(userStats, targetStats, this);
                 var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
@@ -72,16 +78,19 @@ namespace Zephyr.Combat
                 /* ************
                  * Perk Actions 
                  * ************/
-                // Trigger TARGET's defensive perks
-                if (triggersTargetPerks && skillTarget.TryGetComponent<PerkManager>(out var targetPerkMgr))
+                if (UtilityHelper.RollForProc(perkProcChance))
                 {
-                    targetPerkMgr.TriggerPerk(PerkType.Defense, skillUser, attack, skillTarget);
-                }
+                    // Trigger TARGET's defensive perks
+                    if (triggersTargetPerks && skillTarget.TryGetComponent<PerkManager>(out var targetPerkMgr))
+                    {
+                        targetPerkMgr.TriggerPerk(PerkType.Defense, skillUser, attack, skillTarget);
+                    }
 
-                // Trigger USER's attack perks
-                if (triggersSelfPerks && skillUser.TryGetComponent<PerkManager>(out var userPerkMgr))
-                {
-                    userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
+                    // Trigger USER's attack perks
+                    if (triggersSelfPerks && skillUser.TryGetComponent<PerkManager>(out var userPerkMgr))
+                    {
+                        userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
+                    }
                 }
 
                 /* **************
