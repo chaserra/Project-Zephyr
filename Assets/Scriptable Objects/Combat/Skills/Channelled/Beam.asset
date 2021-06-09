@@ -31,7 +31,7 @@ MonoBehaviour:
   triggerSkillMods: 1
   triggersSelfPerks: 1
   triggersTargetPerks: 0
-  perkProcChance: 1
+  perkProcChance: 0.125
   attackDefinition:
     damage: 2
     criticalChance: 0.05
