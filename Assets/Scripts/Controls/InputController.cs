@@ -6,6 +6,7 @@ namespace Zephyr.Player.Controls
 {
     public class InputController : MonoBehaviour
     {
+        // TODO HIGH (Controls): Try making this a non-mono Serializable class. Attach to PlayerController
         // Parameters
         [SerializeField] Skill skillButtonOne;
         [SerializeField] Skill skillButtonTwo;
@@ -19,12 +20,6 @@ namespace Zephyr.Player.Controls
         // State
         private float horizontal;
         private float vertical;
-
-        private void Update()
-        {
-            JoystickDirection(); // Listen for directional input
-            SkillButtonPress(); // Listen for button input
-        }
 
         public Vector3 JoystickDirection()
         {

@@ -8,10 +8,6 @@ namespace Zephyr.Combat
 {
     public abstract class Skill : ScriptableObject
     {
-        //[System.NonSerialized]
-        //public Animator userAnim;
-        //[System.NonSerialized]
-        //public CharacterStats userStats;
         [Header("Skill Targetting")]
         public SkillType skillType;
         public ValidTargets skillEffectsTarget = ValidTargets.TARGET;

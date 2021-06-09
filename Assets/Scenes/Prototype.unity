@@ -4837,6 +4837,7 @@ MonoBehaviour:
   perks:
   - {fileID: 11400000, guid: 6bf22a05dd3805847b8f4663f2312982, type: 2}
   - {fileID: 11400000, guid: 66ee4c2280cfea24b94ba4fb6d1e899a, type: 2}
+  perksList: []
 --- !u!114 &914615305
 MonoBehaviour:
   m_ObjectHideFlags: 0

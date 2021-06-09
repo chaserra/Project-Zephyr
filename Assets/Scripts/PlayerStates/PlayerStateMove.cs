@@ -16,6 +16,7 @@
         public override void Update(PlayerController player)
         {
             mover.Move(player, playerCanRotate, playerCanMove, 1f);
+            // Insert interact listener logic here
         }
 
         public override void ExitState(PlayerController player)
