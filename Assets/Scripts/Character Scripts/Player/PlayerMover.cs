@@ -31,6 +31,11 @@ namespace Zephyr.Player.Movement
                     player.Controller.Move(moveDir.normalized * player.GetMoveSpeed * Time.deltaTime * speedMultiplier);
                 }
             }
+            else
+            {
+                // Reset reference to how fast the player rotates to prevent quick turn bug.
+                turnSmoothVelocity = 0f;
+            }
         }
     }
 }

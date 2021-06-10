@@ -4,9 +4,9 @@ using Zephyr.Combat;
 
 namespace Zephyr.Player.Controls
 {
-    public class InputController : MonoBehaviour
+    [System.Serializable]
+    public class InputController
     {
-        // TODO HIGH (Controls): Try making this a non-mono Serializable class. Attach to PlayerController
         // Parameters
         [SerializeField] Skill skillButtonOne;
         [SerializeField] Skill skillButtonTwo;

@@ -31,22 +31,22 @@ namespace Zephyr.Mods
 
         public void InitializeAilment(Ailment ailmentToFind, StatEffect statEffect)
         {
-            foreach (Ailment ailment in ailmentsList)
+            for (int i = ailmentsList.Count - 1; i >= 0; i--)
             {
-                if (ailmentToFind.ailmentName == ailment.ailmentName)
+                if (ailmentToFind.ailmentName == ailmentsList[i].ailmentName)
                 {
-                    ailment.InitializeAilment(modManager, statEffect);
+                    ailmentsList[i].InitializeAilment(modManager, statEffect);
                 }
             }
         }
 
         public void RemoveAilment(Ailment ailmentToFind, StatEffect statEffect)
         {
-            foreach (Ailment ailment in ailmentsList)
+            for (int i = ailmentsList.Count - 1; i >= 0; i--)
             {
-                if (ailmentToFind.ailmentName == ailment.ailmentName)
+                if (ailmentToFind.ailmentName == ailmentsList[i].ailmentName)
                 {
-                    ailment.RemoveAilment(modManager, statEffect);
+                    ailmentsList[i].RemoveAilment(modManager, statEffect);
                 }
             }
         }
@@ -54,9 +54,9 @@ namespace Zephyr.Mods
         public void Tick()
         {
             if (ailmentsList == null) { Debug.LogWarning("No ailments found in " + ailmentsList_Template); return; }
-            foreach (Ailment ailment in ailmentsList)
+            for (int i = ailmentsList.Count - 1; i >= 0; i--)
             {
-                ailment.Tick(modManager);
+                ailmentsList[i].Tick(modManager);
             }
         }
 

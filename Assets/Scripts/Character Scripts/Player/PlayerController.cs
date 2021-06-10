@@ -10,19 +10,22 @@ namespace Zephyr.Player
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(CharacterStats))]
-    [RequireComponent(typeof(InputController))]
     [RequireComponent(typeof(SpellCaster))]
     public class PlayerController : MonoBehaviour, ICombatant
     {
+        #region Cache and Attributes
         // Cache
         private CharacterController characterController;
         private CharacterStats characterStats;
-        private InputController inputController;
         private Animator anim;
         private Camera cam;
         private SpellCaster spellCaster;
         private PlayerMover mover = new PlayerMover();
+        // Attributes
+        [SerializeField] private InputController inputController;
+        #endregion
 
+        #region States
         // States
         private PlayerStateBase _currentState;
         public readonly PlayerStateMove MoveState = new PlayerStateMove();
@@ -34,8 +37,8 @@ namespace Zephyr.Player
         private Dictionary<string, Skill> skillWithKeyMap = new Dictionary<string, Skill>();
         private Skill _currentSkill = null;
         private bool _isStunned = false;
+        #endregion
 
-        // Properties
         #region Properties
         /* **Cache** */
         public CharacterController Controller { get { return characterController; } }
@@ -61,7 +64,6 @@ namespace Zephyr.Player
         {
             characterController = GetComponent<CharacterController>();
             characterStats = GetComponent<CharacterStats>();
-            inputController = GetComponent<InputController>();
             anim = GetComponent<Animator>();
             spellCaster = GetComponent<SpellCaster>();
             cam = Camera.main;

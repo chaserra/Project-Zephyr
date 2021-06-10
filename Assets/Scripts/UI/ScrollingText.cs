@@ -17,7 +17,8 @@ namespace Zephyr.UI
         private float startTime;
 
         // Parameters
-        public float Duration = 1f;
+        [Tooltip("Make sure this value is lower than the animation's duration.")]
+        public float Duration = .99f;
         public float Speed = 1.75f;
         public float yOffset = 2f;
         public float zOffset = -0.5f;
