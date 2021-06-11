@@ -22,17 +22,15 @@ namespace Zephyr.Combat
 
         public override void Initialize(GameObject skillUser)
         {
-            // Initialize then trigger skill
+            // Initialize animation then trigger skill
+            if (skillUser.TryGetComponent<Animator>(out var userAnim))
+            { userAnim.SetTrigger(skillAnimationName); }
             TriggerSkill(skillUser);
         }
 
         /* ==Cast Spell== */
         public override void TriggerSkill(GameObject skillUser)
         {
-            // Do skill stuff. Trigger animation and instantiate a projectile
-            if (skillUser.TryGetComponent<Animator>(out var userAnim))
-            { userAnim.SetTrigger(skillAnimationName); }
-
             // Grab object from object pool
             GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(projectilePrefab.gameObject);
             Projectile projectile = prefabToCreate.GetComponent<Projectile>();

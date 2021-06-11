@@ -22,7 +22,7 @@ namespace Zephyr.Combat
 
         public override void Initialize(GameObject skillUser)
         {
-            // Initialize skill values
+            // Initialize animation and skill values
             if (skillType != SkillType.Channelled)
             {
                 Debug.LogError("Channelled skill's skill type is not set to Channelled. Double check this!");

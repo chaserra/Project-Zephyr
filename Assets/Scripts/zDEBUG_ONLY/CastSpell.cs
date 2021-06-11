@@ -14,10 +14,13 @@ namespace Zephyr.Combat
         [SerializeField] private bool castSkill = false;
         [SerializeField] private float coolDown = .8f;
 
+        private SpellCaster spellCaster;
+
         private float timer = 1f;
 
         private void Start()
         {
+            spellCaster = GetComponent<SpellCaster>();
             timer = Random.Range(0, 1f);
             if(randomRotateAtStart)
             {
@@ -33,6 +36,10 @@ namespace Zephyr.Combat
             {
                 if (timer <= 0f)
                 {
+                    if (skillToUse is Skill_AreaEffect)
+                    {
+                        spellCaster.AcquireGroundTarget(skillToUse.skillEffectsTarget);
+                    }
                     skillToUse.Initialize(gameObject);
                     timer = coolDown;
                 }

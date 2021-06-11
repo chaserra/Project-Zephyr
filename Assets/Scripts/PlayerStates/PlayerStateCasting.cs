@@ -10,6 +10,7 @@ namespace Zephyr.Player.Combat
         // Cache
         private PlayerMover mover;
         private Skill skill;
+        private SpellCaster spellCaster;
 
         // State
         private float chargePercent = 0f;
@@ -23,11 +24,17 @@ namespace Zephyr.Player.Combat
             // Initialize
             mover = player.Mover;
             skill = player.CurrentSkill;
-            chargeTime = player.CurrentSkill.skillChargeTime;
+            spellCaster = player.SpellCaster;
+            chargeTime = skill.skillChargeTime;
 
             // TODO (Skill Animation): Change this to dynamically get from skill
             player.Anim.SetTrigger("ChannelSkill");
-            // TODO (Ground Aim): Get location here instead of right at moment of casting
+
+            // Set location of where AOE skills will be casted on
+            if (skill is Skill_AreaEffect)
+            {
+                spellCaster.AcquireGroundTarget(skill.skillEffectsTarget);
+            }
         }
 
         public override void Update(PlayerController player)

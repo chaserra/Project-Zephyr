@@ -10,19 +10,20 @@ namespace Zephyr.Combat
     {
         public override void Initialize(GameObject skillUser)
         {
+            // Initialize animation then trigger skill
+            if (skillUser.TryGetComponent<Animator>(out var userAnim))
+            { userAnim.SetTrigger(skillAnimationName); }
             TriggerSkill(skillUser);
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            if (skillUser.TryGetComponent<Animator>(out var userAnim))
-            { userAnim.SetTrigger(skillAnimationName); }
             ApplySkill(skillUser, skillUser);
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject skillTarget)
         {
-            // Apply skills logic found in child scripts
+            // Apply skills logic found in derived scripts (Self_)
             // Nothing to do here
         }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fireball_TEST
   m_EditorClassIdentifier: 
   skillType: 2
-  skillTarget: 1
+  skillEffectsTarget: 1
   skillName: Fireball
   skillAnimationName: Buff_Skill
   skillCooldown: 0
@@ -26,10 +26,13 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   mods:
   - {fileID: 11400000, guid: b314195d797b43a4d8081616d23c559b, type: 2}
+  modProcChance: 1
   splashEffects: 1
   splashRadius: 3
+  triggerSkillMods: 1
   triggersSelfPerks: 1
   triggersTargetPerks: 0
+  perkProcChance: 1
   attackDefinition:
     damage: 2
     criticalChance: 0.1

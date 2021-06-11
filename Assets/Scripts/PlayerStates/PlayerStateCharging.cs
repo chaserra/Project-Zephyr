@@ -14,7 +14,7 @@ namespace Zephyr.Player.Combat
 
         // State
         private float chargePercent = 0f;
-        private float chargeTime = 1f;
+        private float chargeTime;
         private bool fullyCharged = false;
 
         // Properties
