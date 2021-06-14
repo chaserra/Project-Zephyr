@@ -54,6 +54,8 @@ namespace Zephyr.Combat
             {
                 while (textQueue.Count > 0)
                 {
+                    // Trigger then remove textQueue coroutine item (that assigns and displays DamageText)
+                    // This does this every [textQueueDelay]
                     yield return StartCoroutine(textQueue.Dequeue());
                     yield return new WaitForSeconds(textQueueDelay);
                 }

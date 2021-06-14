@@ -12,7 +12,6 @@ namespace Zephyr.Combat
         private GameObject caster;
         private float speed;
         private float range;
-        private bool isHoming;
         private Transform hotSpot;
         private ValidTargets projectileTarget;
 
@@ -22,17 +21,15 @@ namespace Zephyr.Combat
         public event Action<Projectile> UnsubscribeProjectile;
 
         public GameObject Caster { get { return caster; } }
-        public bool Homing { get { return isHoming; } }
         public ValidTargets ProjectileTarget { get { return projectileTarget; } }
 
-        public void Fire(GameObject Caster, float Speed, float Range, 
-            bool Homing, Transform Hotspot, ValidTargets Target)
+        public void Cast(GameObject Caster, float Speed, float Range, 
+            Transform Hotspot, ValidTargets Target)
         {
             // Assign values to this projectile from the caster
             caster = Caster;
             speed = Speed;
             range = Range;
-            isHoming = Homing;
             hotSpot = Hotspot;
             projectileTarget = Target;
 
@@ -53,10 +50,10 @@ namespace Zephyr.Combat
             caster = null;
             speed = 0;
             range = 0;
-            isHoming = false;
             hotSpot = null;
             projectileTarget = ValidTargets.TARGET;
 
+            // Reset distance traveled
             distanceTraveled = 0f;
 
             // Remove projectile subscriptions to previous caster

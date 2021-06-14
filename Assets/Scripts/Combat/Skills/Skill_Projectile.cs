@@ -14,9 +14,6 @@ namespace Zephyr.Combat
         [Header("Projectile Values")]
         [SerializeField] private float projectileSpeed = 3f;
         [SerializeField] private float range = 8f;
-        [Header("Homing")]
-        [Tooltip("Home in on a target")]
-        [SerializeField] private bool isHoming = false;
         [Header("Projectile")]
         [SerializeField] private Projectile projectilePrefab;
 
@@ -39,7 +36,7 @@ namespace Zephyr.Combat
             // Get Projectile Hotspot
             Transform hotSpot = skillUser.GetComponent<SpellCaster>().SpellHotSpot;
             // Fire projectile
-            projectile.Fire(skillUser, projectileSpeed, range, isHoming, hotSpot, skillEffectsTarget);
+            projectile.Cast(skillUser, projectileSpeed, range, hotSpot, skillEffectsTarget);
 
             // Subscribe to projectile events
             projectile.ProjectileCollided += ApplySkill;

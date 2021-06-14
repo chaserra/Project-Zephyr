@@ -40,6 +40,5 @@ MonoBehaviour:
     hitForce: 5
   projectileSpeed: 10
   range: 20
-  isHoming: 1
   projectilePrefab: {fileID: 2007279791028131222, guid: 44e8876ac75fe3e429cf99d324984e21,
     type: 3}

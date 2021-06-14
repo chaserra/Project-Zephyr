@@ -47,9 +47,13 @@ namespace Zephyr.Combat
         [Tooltip("Chance for skill to trigger perks. \nThis is rolled first before specific perks are rolled to proc.")]
         [Range(0f, 1f)] public float perkProcChance = 1f;
 
+        #region Abstract Methods
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
         public abstract void ApplySkill(GameObject skillUser, GameObject skillTarget);
+        #endregion
+
+        #region Skill Methods
         protected void ApplyOffensiveSkill(GameObject skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
         {
             // Get target stats
@@ -104,23 +108,23 @@ namespace Zephyr.Combat
         {
             Collider[] colliders = Physics.OverlapSphere(skillTargetObject.transform.position, splashRadius);
 
-            foreach (Collider col in colliders)
+            for (int i = colliders.Length - 1; i >= 0; i--)
             {
-                if (col.gameObject == skillTargetObject) { continue; } // Ignore source of splash
+                if (colliders[i].gameObject == skillTargetObject) { continue; } // Ignore source of splash
 
                 if (skillEffectsTarget == ValidTargets.TARGET)
                 {
                     // Ignore tags same as caster (for dealing splash damage and ailment)
-                    if (col.gameObject.tag == skillUser.gameObject.tag) { continue; }
+                    if (colliders[i].gameObject.tag == skillUser.gameObject.tag) { continue; }
                 }
                 else
                 {
                     // Ignore tags not the same as caster (for dealing splash heal and buff)
-                    if (col.gameObject.tag != skillUser.gameObject.tag) { continue; }
+                    if (colliders[i].gameObject.tag != skillUser.gameObject.tag) { continue; }
                 }
 
                 // Get affected target's stats
-                if (!col.TryGetComponent<CharacterStats>(out var targetStats)) { continue; }
+                if (!colliders[i].TryGetComponent<CharacterStats>(out var targetStats)) { continue; }
 
                 // Reroll attack
                 // Wrap in new AttackDefinition to prevent overwriting the original SO values
@@ -132,8 +136,8 @@ namespace Zephyr.Combat
 
                 // Compute damage based on distance
                 newAttackDefinition.damage = UtilityHelper.DamageDistanceFallOff(
-                    skillTargetObject.transform.position, 
-                    col.gameObject.transform.position, 
+                    skillTargetObject.transform.position,
+                    colliders[i].gameObject.transform.position, 
                     splashRadius, 
                     newAttackDefinition.damage);
 
@@ -152,7 +156,7 @@ namespace Zephyr.Combat
                     // Attack splash damage only
                     attack = newAttackDefinition.CreateAttack(skillUser, targetStats);
                 }
-                var attackables = col.GetComponentsInChildren<IAttackable>();
+                var attackables = colliders[i].GetComponentsInChildren<IAttackable>();
 
                 // Apply rerolled attack to attackables
                 foreach (IAttackable a in attackables)
@@ -161,6 +165,7 @@ namespace Zephyr.Combat
                 }
             }
         }
+        #endregion
 
     }
 }
