@@ -10,8 +10,8 @@ namespace Zephyr.Combat
         private GroundAutoAim groundAutoAim;
 
         // Attributes
-        [SerializeField] Transform spellHotSpot;
-        [SerializeField] GroundAutoAim_SO autoAimValues;
+        [SerializeField] private Transform spellHotSpot;
+        [SerializeField] private GroundAutoAim_SO autoAimValues;
 
         // State
         private ChannelledSkill activeChannelledSpell;

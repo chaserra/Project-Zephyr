@@ -3037,7 +3037,6 @@ GameObject:
   - component: {fileID: 557856430}
   - component: {fileID: 557856429}
   - component: {fileID: 557856431}
-  - component: {fileID: 557856434}
   m_Layer: 5
   m_Name: Active Mods Panel
   m_TagString: Untagged
@@ -3124,33 +3123,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 557856427}
   m_CullTransparentMesh: 0
---- !u!114 &557856434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 557856427}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e3ab0e2ca2a4842b5bd2639035dfe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Event: {fileID: 11400000, guid: 00ea8bb0620e73c41a7737c8e60c50a5, type: 2}
-  Response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 557856427}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &584914620
 GameObject:
   m_ObjectHideFlags: 0

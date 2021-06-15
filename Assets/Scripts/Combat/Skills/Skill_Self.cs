@@ -6,7 +6,7 @@ using Zephyr.Util;
 
 namespace Zephyr.Combat
 {
-    public class Skill_Self : Skill
+    public abstract class Skill_Self : Skill
     {
         public override void Initialize(GameObject skillUser)
         {

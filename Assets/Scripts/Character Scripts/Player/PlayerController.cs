@@ -140,7 +140,8 @@ namespace Zephyr.Player
         public void HitTarget(GameObject attackTarget)
         {
             // TODO (HIT): make hurtboxes only active on skill use
-            if (_currentSkill == null || _currentSkill is Skill_Self || _currentSkill is Skill_Projectile) { return; }
+            //if (_currentSkill == null || _currentSkill is Skill_Self || _currentSkill is Skill_Projectile) { return; }
+            if (!(_currentSkill is Skill_Melee)) { return; } // Ignore if skill is not melee
             if (_currentState == CastingState || _currentState == ChargingState || _currentState == ChannellingState) { return; }
             _currentSkill.ApplySkill(gameObject, attackTarget);
         }

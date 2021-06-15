@@ -31,7 +31,6 @@ namespace Zephyr.Player.Combat
                 heldKey = keyValue.Key;
                 skill = keyValue.Value;
             }
-
             maxDuration = skill.skillChargeTime;
             cancelSkillWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;
 
@@ -52,7 +51,7 @@ namespace Zephyr.Player.Combat
                 spellCaster.ActiveChannelledSpell.Tick();
 
                 // Timer logic. Used only when certain flags are active.
-                // Auto-cancels skill when fully charged
+                // Auto-cancels skill when fully "charged"
                 if (cancelSkillWhenFullyCharged && skill.skillChargeTime != 0)
                 {
                     if (currentPercent < maxPercent)

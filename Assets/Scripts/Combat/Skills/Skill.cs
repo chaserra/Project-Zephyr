@@ -62,9 +62,7 @@ namespace Zephyr.Combat
                 // Get skill user's stats and perk manager
                 CharacterStats userStats = skillUser.GetComponent<CharacterStats>();
 
-                /* ************
-                 * Attack Actions 
-                 * ************/
+                #region Attack Actions
                 // Create attack
                 var attack = attackDefinition.CreateAttack(userStats, targetStats, this);
                 var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
@@ -74,10 +72,9 @@ namespace Zephyr.Combat
                 {
                     a.OnAttacked(skillUser, attack);
                 }
+                #endregion
 
-                /* ************
-                 * Perk Actions 
-                 * ************/
+                #region Perk Actions
                 // Roll to proc perks
                 if (UtilityHelper.RollForProc(perkProcChance))
                 {
@@ -93,14 +90,14 @@ namespace Zephyr.Combat
                         userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
                     }
                 }
+                #endregion
 
-                /* **************
-                 * Splash Actions 
-                 * **************/
+                #region Splash Actions
                 if (splashEffects)
                 {
                     DealSplashEffects(userStats, skillTarget, attackDefinition);
                 }
+                #endregion
             }
         }
 
