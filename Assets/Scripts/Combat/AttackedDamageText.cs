@@ -39,6 +39,10 @@ namespace Zephyr.Combat
             {
                 texts[i].gameObject.SetActive(false);
             }
+        }
+
+        private void OnEnable()
+        {
             // Start Queue system for displaying damage
             StartCoroutine(TextDisplayQueue());
         }

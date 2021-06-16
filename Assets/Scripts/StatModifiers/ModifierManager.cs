@@ -254,8 +254,17 @@ namespace Zephyr.Mods
         private void OnDisable()
         {
             // Failsafe
+            RemoveAllMods();
             StopAllCoroutines();
             modWrappers.Clear();
+        }
+
+        private void RemoveAllMods()
+        {
+            for (int i = modWrappers.Count - 1; i >= 0; i--)
+            {
+                RemoveModifier(modWrappers[i].Mod);
+            }
         }
         #endregion
 

@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Zephyr.UI
 {
+    /* *************************
+     * Attached to Canvas object
+     * *************************/
     public class UIStatEffectsManager : MonoBehaviour
     {
         #region Attributes
