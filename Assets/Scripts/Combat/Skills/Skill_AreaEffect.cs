@@ -14,36 +14,34 @@ namespace Zephyr.Combat
         [Header("Ground Skill Values")]
         [SerializeField] private float aoeRadius = 10f;
         [SerializeField] private float aoeDuration = 10f;
+        [SerializeField] private bool groundAutoAimActive = true;
         [Header("Ground Skill")]
         [SerializeField] private GroundSkill groundSkillPrefab;
 
         public override void Initialize(GameObject skillUser)
         {
-            // Initialize then trigger skill
+            // Initialize animation then trigger skill
+            if (skillUser.TryGetComponent<Animator>(out var userAnim))
+            { userAnim.SetTrigger(skillAnimationName); }
             TriggerSkill(skillUser);
         }
 
         public override void TriggerSkill(GameObject skillUser)
         {
-            // Trigger animation then cast spell on location
-            GroundAutoAim groundAim = skillUser.GetComponent<GroundAutoAim>();
-            Animator userAnim = skillUser.GetComponent<Animator>();
-            if (userAnim != null) { userAnim.SetTrigger(skillAnimationName); }
-
             // Grab object from object pool
             GameObject prefabToCreate = ObjectPool.Instance.InstantiateObject(groundSkillPrefab.gameObject);
             GroundSkill groundSkill = prefabToCreate.GetComponent<GroundSkill>();
             // Set skill's tag
             groundSkill.gameObject.tag = skillUser.gameObject.tag;
             // Set skill's position
-            // TODO (Ground Aim): Get location while chanelling instead of here
-            if (groundAim != null)
+            if (groundAutoAimActive)
             {
-                groundSkill.transform.position = groundAim.AcquireTargetGroundPosition(skillEffectsTarget);
+                // TODO (GroundAimPosition): Make sure AI also finds the ground target
+                groundSkill.transform.position = skillUser.GetComponent<SpellCaster>().CurrentGroundTarget; 
             }
             else
-            {
-                groundSkill.transform.position = skillUser.transform.position;
+            { 
+                groundSkill.transform.position = skillUser.transform.position; 
             }
             // Cast skill
             groundSkill.Cast(skillUser, this, attackDefinition, 

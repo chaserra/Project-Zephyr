@@ -5,7 +5,6 @@ using Zephyr.Combat;
 using Zephyr.Stats;
 using Zephyr.UI;
 using Zephyr.Util;
-using Zephyr.Player;
 
 namespace Zephyr.Mods
 {
@@ -29,16 +28,16 @@ namespace Zephyr.Mods
         private void Awake()
         {
             characterStats = GetComponent<CharacterStats>();
-            eventListener = GetComponent<UIEventListener>();
+            if(TryGetComponent<UIEventListener>(out var e)) { eventListener = e; }
             if (ailmentsList_Template == null) { Debug.LogWarning("Missing Ailments List for " + gameObject.name); return; }
-            ailmentsList = Instantiate(ailmentsList_Template);
+            ailmentsList = Instantiate(ailmentsList_Template); // Creates instance of SO
             ailmentsList.Initialize(this);
         }
 
         private void Update()
         {
             /* Tick Methods */
-            // Modwrappers
+            // ModWrappers
             if (modWrappers.Count > 0)
             {
                 foreach (ModifierWrapper wrapper in modWrappers)
@@ -255,8 +254,17 @@ namespace Zephyr.Mods
         private void OnDisable()
         {
             // Failsafe
+            RemoveAllMods();
             StopAllCoroutines();
             modWrappers.Clear();
+        }
+
+        private void RemoveAllMods()
+        {
+            for (int i = modWrappers.Count - 1; i >= 0; i--)
+            {
+                RemoveModifier(modWrappers[i].Mod);
+            }
         }
         #endregion
 

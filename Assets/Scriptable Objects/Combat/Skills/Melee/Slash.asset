@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Slash
   m_EditorClassIdentifier: 
   skillType: 0
-  skillTarget: 1
+  skillEffectsTarget: 1
   skillName: Slash
   skillAnimationName: Slash_Skill
   skillCooldown: 0.5
@@ -26,11 +26,13 @@ MonoBehaviour:
   skillMustFullyCharge: 0
   mods:
   - {fileID: 11400000, guid: 39b9fc479d1ae4e44b591b30c2641b46, type: 2}
+  modProcChance: 1
   splashEffects: 0
   splashRadius: 0
   triggerSkillMods: 0
   triggersSelfPerks: 1
   triggersTargetPerks: 1
+  perkProcChance: 1
   attackDefinition:
     damage: 1
     criticalChance: 0.1

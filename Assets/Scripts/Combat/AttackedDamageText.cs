@@ -13,8 +13,8 @@ namespace Zephyr.Combat
     {
         // Attributes
         private List<ScrollingText> texts = new List<ScrollingText>();
-        private Queue<IEnumerator> textQueue = new Queue<IEnumerator>();
-        private float textQueueDelay = .08f; // Seconds before next text is displayed
+        private Queue<IEnumerator> textQueue = new Queue<IEnumerator>(); // Queue of IEnumerators. Prevents coroutines overlapping processes
+        private float textQueueDelay = .06f; // Seconds before next text is displayed
 
         // Properties
         public ScrollingText Text;
@@ -39,6 +39,10 @@ namespace Zephyr.Combat
             {
                 texts[i].gameObject.SetActive(false);
             }
+        }
+
+        private void OnEnable()
+        {
             // Start Queue system for displaying damage
             StartCoroutine(TextDisplayQueue());
         }
@@ -54,6 +58,8 @@ namespace Zephyr.Combat
             {
                 while (textQueue.Count > 0)
                 {
+                    // Trigger then remove textQueue coroutine item (that assigns and displays DamageText)
+                    // This does this every [textQueueDelay]
                     yield return StartCoroutine(textQueue.Dequeue());
                     yield return new WaitForSeconds(textQueueDelay);
                 }

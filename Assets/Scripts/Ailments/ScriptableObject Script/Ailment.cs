@@ -37,9 +37,13 @@ namespace Zephyr.Mods
          **/
         protected bool CheckAilmentStatus<T>(StatEffect statEffect, out T type) where T : StatEffect_Ailment
         {
+            // Assign specific StatEffect_Ailment type (from T) to local variable 'effect'
             var effect = (T)statEffect;
+            // Return specific type via 'out'
             type = effect;
+            // Null check
             if (effect == null) { return false; }
+            // Ailment level check
             if (effect.ailmentLevel < currentAilmentLevel) { return false; }
             return true;
         }

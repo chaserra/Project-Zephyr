@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Zephyr.Events;
 
 [System.Serializable]
 public class ModifierContext
@@ -10,6 +9,5 @@ public class ModifierContext
     public bool isStackable;
     public int maxStacks;
     public ModType modType;
-    [Range(0, 1)] public float procChance = 1;
-    //public float chanceToApplyMod; // Design: Not sure if chance should be per mod or per skill            
+    [Range(0, 1)] public float procChance = 1;        
 }

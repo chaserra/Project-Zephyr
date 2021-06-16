@@ -7,7 +7,7 @@ namespace Zephyr.UI
     [CreateAssetMenu(fileName = "New UI Effect Image", menuName = "UI/Effect Image")]
     public class UIStatEffect_SO : ScriptableObject
     {
-        public GameObject effectImage;
+        [SerializeField] private GameObject effectImage;
 
         public GameObject GetEffectImage()
         {

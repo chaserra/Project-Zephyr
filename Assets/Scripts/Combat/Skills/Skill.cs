@@ -8,10 +8,6 @@ namespace Zephyr.Combat
 {
     public abstract class Skill : ScriptableObject
     {
-        //[System.NonSerialized]
-        //public Animator userAnim;
-        //[System.NonSerialized]
-        //public CharacterStats userStats;
         [Header("Skill Targetting")]
         public SkillType skillType;
         public ValidTargets skillEffectsTarget = ValidTargets.TARGET;
@@ -35,6 +31,8 @@ namespace Zephyr.Combat
         [Header("Skill Modifiers")]
         [Tooltip("Mods to apply upon skill use")]
         public Modifier[] mods;
+        [Tooltip("Chance for skill to apply mods to the target. \nThis is rolled first before specific mods are rolled to proc.")]
+        [Range(0f, 1f)]public float modProcChance = 1f;
         [Header("Splash")]
         [Tooltip("Does splash damage/effects on nearby targets")]
         [SerializeField] bool splashEffects = false;
@@ -46,25 +44,25 @@ namespace Zephyr.Combat
         public bool triggersSelfPerks = false;
         [Tooltip("Trigger skill target's perks")]
         public bool triggersTargetPerks = false;
+        [Tooltip("Chance for skill to trigger perks. \nThis is rolled first before specific perks are rolled to proc.")]
+        [Range(0f, 1f)] public float perkProcChance = 1f;
 
+        #region Abstract Methods
         public abstract void Initialize(GameObject skillUser);
         public abstract void TriggerSkill(GameObject skillUser);
         public abstract void ApplySkill(GameObject skillUser, GameObject skillTarget);
+        #endregion
+
+        #region Skill Methods
         protected void ApplyOffensiveSkill(GameObject skillUser, GameObject skillTarget, AttackDefinition attackDefinition)
         {
             // Get target stats
-            CharacterStats targetStats = skillTarget.GetComponent<CharacterStats>();
-
-            if (targetStats != null)
+            if (skillTarget.TryGetComponent<CharacterStats>(out var targetStats))
             {
-                // Get target perk manager
-                PerkManager targetPerkMgr = skillTarget.GetComponent<PerkManager>();
-
                 // Get skill user's stats and perk manager
                 CharacterStats userStats = skillUser.GetComponent<CharacterStats>();
-                PerkManager userPerkMgr = skillUser.GetComponent<PerkManager>();
 
-                /* ==Attack Actions== */
+                #region Attack Actions
                 // Create attack
                 var attack = attackDefinition.CreateAttack(userStats, targetStats, this);
                 var attackables = skillTarget.GetComponentsInChildren<IAttackable>();
@@ -74,29 +72,32 @@ namespace Zephyr.Combat
                 {
                     a.OnAttacked(skillUser, attack);
                 }
+                #endregion
 
-                /* ************
-                 * Perk Actions 
-                 * ************/
-                // Trigger TARGET's defensive perks
-                if (triggersTargetPerks && targetPerkMgr != null)
+                #region Perk Actions
+                // Roll to proc perks
+                if (UtilityHelper.RollForProc(perkProcChance))
                 {
-                    targetPerkMgr.TriggerPerk(PerkType.Defense, skillUser, attack, skillTarget);
-                }
+                    // Trigger TARGET's defensive perks
+                    if (triggersTargetPerks && skillTarget.TryGetComponent<PerkManager>(out var targetPerkMgr))
+                    {
+                        targetPerkMgr.TriggerPerk(PerkType.Defense, skillUser, attack, skillTarget);
+                    }
 
-                // Trigger USER's attack perks
-                if (triggersSelfPerks && userPerkMgr != null)
-                {
-                    userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
+                    // Trigger USER's attack perks
+                    if (triggersSelfPerks && skillUser.TryGetComponent<PerkManager>(out var userPerkMgr))
+                    {
+                        userPerkMgr.TriggerPerk(PerkType.Attack, skillUser, attack, skillTarget);
+                    }
                 }
+                #endregion
 
-                /* **************
-                 * Splash Actions 
-                 * **************/
+                #region Splash Actions
                 if (splashEffects)
                 {
                     DealSplashEffects(userStats, skillTarget, attackDefinition);
                 }
+                #endregion
             }
         }
 
@@ -104,24 +105,23 @@ namespace Zephyr.Combat
         {
             Collider[] colliders = Physics.OverlapSphere(skillTargetObject.transform.position, splashRadius);
 
-            foreach (Collider col in colliders)
+            for (int i = colliders.Length - 1; i >= 0; i--)
             {
-                if (col.gameObject == skillTargetObject) { continue; } // Ignore source of splash
+                if (colliders[i].gameObject == skillTargetObject) { continue; } // Ignore source of splash
 
                 if (skillEffectsTarget == ValidTargets.TARGET)
                 {
                     // Ignore tags same as caster (for dealing splash damage and ailment)
-                    if (col.gameObject.tag == skillUser.gameObject.tag) { continue; }
+                    if (colliders[i].gameObject.tag == skillUser.gameObject.tag) { continue; }
                 }
                 else
                 {
                     // Ignore tags not the same as caster (for dealing splash heal and buff)
-                    if (col.gameObject.tag != skillUser.gameObject.tag) { continue; }
+                    if (colliders[i].gameObject.tag != skillUser.gameObject.tag) { continue; }
                 }
 
                 // Get affected target's stats
-                CharacterStats targetStats = col.GetComponent<CharacterStats>();
-                if (targetStats == null) { continue; }
+                if (!colliders[i].TryGetComponent<CharacterStats>(out var targetStats)) { continue; }
 
                 // Reroll attack
                 // Wrap in new AttackDefinition to prevent overwriting the original SO values
@@ -133,8 +133,8 @@ namespace Zephyr.Combat
 
                 // Compute damage based on distance
                 newAttackDefinition.damage = UtilityHelper.DamageDistanceFallOff(
-                    skillTargetObject.transform.position, 
-                    col.gameObject.transform.position, 
+                    skillTargetObject.transform.position,
+                    colliders[i].gameObject.transform.position, 
                     splashRadius, 
                     newAttackDefinition.damage);
 
@@ -153,7 +153,7 @@ namespace Zephyr.Combat
                     // Attack splash damage only
                     attack = newAttackDefinition.CreateAttack(skillUser, targetStats);
                 }
-                var attackables = col.GetComponentsInChildren<IAttackable>();
+                var attackables = colliders[i].GetComponentsInChildren<IAttackable>();
 
                 // Apply rerolled attack to attackables
                 foreach (IAttackable a in attackables)
@@ -162,6 +162,7 @@ namespace Zephyr.Combat
                 }
             }
         }
+        #endregion
 
     }
 }

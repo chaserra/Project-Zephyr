@@ -19,8 +19,8 @@ namespace Zephyr.Combat
         public override void TriggerSkill(GameObject skillUser)
         {
             // Do melee skill stuff like trigger animations, etc
-            Animator userAnim = skillUser.GetComponent<Animator>();
-            userAnim.SetTrigger(skillAnimationName);
+            if (skillUser.TryGetComponent<Animator>(out var userAnim))
+            { userAnim.SetTrigger(skillAnimationName); }
         }
 
         public override void ApplySkill(GameObject skillUser, GameObject attackTarget)

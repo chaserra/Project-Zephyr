@@ -25,11 +25,13 @@ MonoBehaviour:
   skillRealeaseWhenFullyCharged: 1
   skillMustFullyCharge: 0
   mods: []
+  modProcChance: 0
   splashEffects: 0
   splashRadius: 0
   triggerSkillMods: 0
   triggersSelfPerks: 1
   triggersTargetPerks: 1
+  perkProcChance: 1
   attackDefinition:
     damage: 5
     criticalChance: 0.15

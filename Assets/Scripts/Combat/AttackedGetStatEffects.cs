@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Mods;
+using Zephyr.Util;
 
 namespace Zephyr.Combat
 {   
@@ -25,20 +26,23 @@ namespace Zephyr.Combat
 
             Modifier[] attackSkillMods = attack.SkillUsed.mods;
             
+            // Do nothing if no mods are attached with the skill
             if (attackSkillMods.Length < 1) { return; }
 
-            ModifierManager attackerModManager = attacker.GetComponent<ModifierManager>();
+            // Roll for skill to proc mods
+            if (!UtilityHelper.RollForProc(attack.SkillUsed.modProcChance)) { return; }
 
             for (int i = 0; i < attackSkillMods.Length; i++)
             {
-                // Apply mod to target
+                // Apply mod to target. Rolling for proc is done via AddModifier method.
                 if (attackSkillMods[i].Target == ValidTargets.TARGET)
                 {
                     modMgr.AddModifier(attackSkillMods[i]);
                 }
-                // Apply mod to self
+                // Apply mod to self. Rolling for proc is done via AddModifier method.
                 if (attackSkillMods[i].Target == ValidTargets.ALLY)
                 {
+                    ModifierManager attackerModManager = attacker.GetComponent<ModifierManager>();
                     attackerModManager.AddModifier(attackSkillMods[i]);
                 }
             }

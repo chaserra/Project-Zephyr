@@ -17,6 +17,7 @@ namespace Zephyr.Util
 
         #region Properties
         public static ObjectPool Instance;
+        public Dictionary<GameObject, string> PooledObjects { get { return pooledObjects; } }
         #endregion
 
         private void Awake()

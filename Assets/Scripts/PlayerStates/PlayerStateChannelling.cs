@@ -31,11 +31,10 @@ namespace Zephyr.Player.Combat
                 heldKey = keyValue.Key;
                 skill = keyValue.Value;
             }
-
             maxDuration = skill.skillChargeTime;
             cancelSkillWhenFullyCharged = skill.skillRealeaseWhenFullyCharged;
 
-            // Initialize spell
+            // Initialize spell -- Activates/Casts spell
             skill.Initialize(player.gameObject);
         }
 
@@ -48,11 +47,11 @@ namespace Zephyr.Player.Combat
             if (Input.GetButton(heldKey))
             {
                 // Do spell tick stuff
-                skill.TriggerSkill(player.gameObject);
+                skill.TriggerSkill(player.gameObject); // This does nothing for now.
                 spellCaster.ActiveChannelledSpell.Tick();
 
                 // Timer logic. Used only when certain flags are active.
-                // Auto-cancels skill when fully charged
+                // Auto-cancels skill when fully "charged"
                 if (cancelSkillWhenFullyCharged && skill.skillChargeTime != 0)
                 {
                     if (currentPercent < maxPercent)

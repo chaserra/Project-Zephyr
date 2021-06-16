@@ -25,13 +25,13 @@ namespace Zephyr.Perks
             if (!UtilityHelper.RollForProc(chanceToApplyPerk)) { return; }
 
             // Get attacker's ModifierManager
-            ModifierManager attackerModMgr = skillUser.GetComponent<ModifierManager>();
-
-            if (attackerModMgr == null) { return; }
-            // Apply ailment to attacker
-            for (int i = 0; i < ailmentsToInfect.Length; i++)
+            if (skillUser.TryGetComponent<ModifierManager>(out var attackerModMgr))
             {
-                attackerModMgr.AddModifier(ailmentsToInfect[i]);
+                // Apply ailment to attacker
+                for (int i = 0; i < ailmentsToInfect.Length; i++)
+                {
+                    attackerModMgr.AddModifier(ailmentsToInfect[i]);
+                }
             }
         }
 

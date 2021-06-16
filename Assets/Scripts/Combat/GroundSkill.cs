@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Zephyr.Stats;
+using Zephyr.Targetting;
 
 namespace Zephyr.Combat
 {
@@ -126,20 +127,8 @@ namespace Zephyr.Combat
                 // Disregard untagged
                 if (colliders[i].gameObject.tag == "Untagged") { continue; }
 
-                // If this is an offensive spell
-                if (spellTarget == ValidTargets.TARGET)
-                {
-                    if (!CompareTag(colliders[i].gameObject.tag)) {
-                        targets.Add(colliders[i]);
-                    }
-                }
-                // If this is a defensive spell
-                else
-                {
-                    if (CompareTag(colliders[i].gameObject.tag))
-                    {
-                        targets.Add(colliders[i]);
-                    }
+                if (TargettingSystem.SkillShouldHitTarget(gameObject, spellTarget, colliders[i])) {
+                    targets.Add(colliders[i]);
                 }
             }
             return targets;

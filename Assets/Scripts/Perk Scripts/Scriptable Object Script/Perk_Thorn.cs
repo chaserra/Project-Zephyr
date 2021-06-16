@@ -26,7 +26,7 @@ namespace Zephyr.Perks
             int thornDamageAmount = Mathf.RoundToInt(attack.Damage * (dmgPercentToReturn / 100));
             if (Mathf.Abs(thornDamageAmount) < 1) { thornDamageAmount = 1; }
 
-            // Create new Attack(heal) to pass to IAttackables
+            // Create new Attack to pass to IAttackables
             Attack newAttack = new Attack(thornDamageAmount);
 
             // Pass attack to all IAttackables in skillUser

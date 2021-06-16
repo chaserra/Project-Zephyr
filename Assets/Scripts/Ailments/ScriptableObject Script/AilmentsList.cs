@@ -9,11 +9,16 @@ namespace Zephyr.Mods
     {
         private ModifierManager modManager;
 
+        // Drag and drop all new ailments in the field below
         [SerializeField] private List<Ailment> ailmentsList_Template;
         [HideInInspector]
         public List<Ailment> ailmentsList;
 
         #region SETUP
+        /* ********
+         * Creates instances of Ailment SO then adds them to a List 
+         * Used for triggering/disabling ailments without affecting SO (data) values
+         * ********/
         public void Initialize(ModifierManager modMgr)
         {
             modManager = modMgr;
@@ -26,22 +31,22 @@ namespace Zephyr.Mods
 
         public void InitializeAilment(Ailment ailmentToFind, StatEffect statEffect)
         {
-            foreach (Ailment ailment in ailmentsList)
+            for (int i = ailmentsList.Count - 1; i >= 0; i--)
             {
-                if (ailmentToFind.ailmentName == ailment.ailmentName)
+                if (ailmentToFind.ailmentName == ailmentsList[i].ailmentName)
                 {
-                    ailment.InitializeAilment(modManager, statEffect);
+                    ailmentsList[i].InitializeAilment(modManager, statEffect);
                 }
             }
         }
 
         public void RemoveAilment(Ailment ailmentToFind, StatEffect statEffect)
         {
-            foreach (Ailment ailment in ailmentsList)
+            for (int i = ailmentsList.Count - 1; i >= 0; i--)
             {
-                if (ailmentToFind.ailmentName == ailment.ailmentName)
+                if (ailmentToFind.ailmentName == ailmentsList[i].ailmentName)
                 {
-                    ailment.RemoveAilment(modManager, statEffect);
+                    ailmentsList[i].RemoveAilment(modManager, statEffect);
                 }
             }
         }
@@ -49,9 +54,9 @@ namespace Zephyr.Mods
         public void Tick()
         {
             if (ailmentsList == null) { Debug.LogWarning("No ailments found in " + ailmentsList_Template); return; }
-            foreach (Ailment ailment in ailmentsList)
+            for (int i = ailmentsList.Count - 1; i >= 0; i--)
             {
-                ailment.Tick(modManager);
+                ailmentsList[i].Tick(modManager);
             }
         }
 

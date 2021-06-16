@@ -13,7 +13,6 @@ namespace Zephyr.Combat
     {
         private float beamRange;
         private float beamWidth;
-        private bool piercing;
 
         // Cast spell
         public override void CastSkill(GameObject Caster, Skill SkillUsed,
@@ -29,7 +28,6 @@ namespace Zephyr.Combat
             // Set beam values
             beamRange = beam.beamRange;
             beamWidth = beam.beamWidth;
-            piercing = beam.piercing;
 
             // Set scale and position
             transform.localScale = new Vector3(beamWidth, beamWidth, beamRange);
@@ -77,7 +75,6 @@ namespace Zephyr.Combat
         {
             beamRange = 0f;
             beamWidth = 0f;
-            piercing = false;
             targets.Clear();
         }
 

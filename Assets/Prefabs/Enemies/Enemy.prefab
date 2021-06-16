@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 2068402100761630395}
   - component: {fileID: 2068402100761630396}
   - component: {fileID: 5615134071884189765}
-  - component: {fileID: 7210500289671049337}
   - component: {fileID: 2068402100761630394}
   - component: {fileID: 2068402100761630392}
   - component: {fileID: 2068402100761630393}
@@ -104,28 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellHotSpot: {fileID: 1562702170357050660}
-  activeChannelledSpell: {fileID: 0}
---- !u!114 &7210500289671049337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2068402100761630398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f76afeed007a9a4ea560a0ceb6d9839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forwardRange: 12
-  targettingRadius: 12
-  forwardOffset: 2
-  targettingAngle: 45
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1047
-  yOffset: 0.8
-  displayDebugRange: 0
+  autoAimValues: {fileID: 11400000, guid: a5e16cc24119ba74985cde8c93074466, type: 2}
 --- !u!114 &2068402100761630394
 MonoBehaviour:
   m_ObjectHideFlags: 0

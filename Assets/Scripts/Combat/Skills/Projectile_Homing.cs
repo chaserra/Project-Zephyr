@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zephyr.Targetting;
 
 namespace Zephyr.Combat
 {
@@ -35,7 +36,7 @@ namespace Zephyr.Combat
             caster = projectile.Caster;
             gameObject.tag = caster.tag;
             _targettingRange = targettingRange;
-            targetLayer = projectile.TargettingSystem.SetupTargettingLayer(gameObject, projectile.ProjectileTarget);
+            targetLayer = TargettingSystem.SetupTargettingLayer(gameObject, projectile.ProjectileTarget);
         }
 
         private void OnDisable()
@@ -64,9 +65,6 @@ namespace Zephyr.Combat
 
         private void Update()
         {
-            // Check if projectile is a homing projectile
-            if (!projectile.Homing) { return; }
-
             // If projectile does not have a target
             if (currentTarget == null)
             {
@@ -81,22 +79,15 @@ namespace Zephyr.Combat
 
         private void AcquireTarget()
         {
-            RaycastHit hit;
             if (Physics.SphereCast(transform.position, targettingSphereRadius, transform.forward,
-                out hit, targettingRange, targetLayer, QueryTriggerInteraction.UseGlobal))
+                out RaycastHit hit, targettingRange, targetLayer, QueryTriggerInteraction.UseGlobal))
             {
                 currentTarget = hit.transform;
-            }
-            else
-            {
-                _targettingRange = targettingRange;
-                currentTarget = null;
             }
         }
 
         private void HomeToTarget()
         {
-
             // Get direction to target
             Vector3 direction = (currentTarget.position - transform.position).normalized;
             _targettingRange = (currentTarget.position - transform.position).magnitude; // For gizmo only

@@ -35,7 +35,7 @@ namespace Zephyr.Combat
             SpellCaster spellCasterComponent = skillUser.GetComponent<SpellCaster>();
             Transform hotSpot = spellCasterComponent.SpellHotSpot;
 
-            // Assign channelled spell to component for reference
+            // Assign channelled spell to component to be referenced in Tick
             spellCasterComponent.ActiveChannelledSpell = beam;
 
             // Fire Beam

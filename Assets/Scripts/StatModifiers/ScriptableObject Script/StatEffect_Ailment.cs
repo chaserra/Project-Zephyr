@@ -16,9 +16,13 @@ namespace Zephyr.Mods
         public float tickInterval;
 
         // TODO LOW (Ailment Levels): Find a way to calculate raw level
-
         public override void ApplyEffect(ModifierManager modManager)
         {
+            if (ailmentLevel < 1) { 
+                // Failsafe
+                ailmentLevel = 1;
+                Debug.LogWarning("Ailment level for " + effectName + "is less than 1. Set ailment level!");
+            }
             modManager.AilmentsList.InitializeAilment(targetAilment, this);
         }
 

@@ -5,13 +5,16 @@ using UnityEngine;
 
 namespace Zephyr.UI
 {
+    /* *************************
+     * Attached to Player object
+     * *************************/
     public class UIEventListener : MonoBehaviour
     {
         public static event Action<UIStatEffect_SO, bool> OnStatEffectUpdate;
 
-        public void RaiseUIEvent(UIStatEffect_SO effectImage, bool arg)
+        public void RaiseUIEvent(UIStatEffect_SO effectImage, bool flag)
         {
-            OnStatEffectUpdate?.Invoke(effectImage, arg);
+            OnStatEffectUpdate?.Invoke(effectImage, flag);
         }
     }
 }

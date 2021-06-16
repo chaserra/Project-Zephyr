@@ -8,14 +8,10 @@ namespace Zephyr.Combat
 {
     public class Projectile : MonoBehaviour
     {
-        // Cache
-        private TargettingSystem targettingSystem = new TargettingSystem();
-
         // Properties
         private GameObject caster;
         private float speed;
         private float range;
-        private bool isHoming;
         private Transform hotSpot;
         private ValidTargets projectileTarget;
 
@@ -25,18 +21,15 @@ namespace Zephyr.Combat
         public event Action<Projectile> UnsubscribeProjectile;
 
         public GameObject Caster { get { return caster; } }
-        public bool Homing { get { return isHoming; } }
         public ValidTargets ProjectileTarget { get { return projectileTarget; } }
-        public TargettingSystem TargettingSystem { get { return targettingSystem; } }
 
-        public void Fire(GameObject Caster, float Speed, float Range, 
-            bool Homing, Transform Hotspot, ValidTargets Target)
+        public void Cast(GameObject Caster, float Speed, float Range, 
+            Transform Hotspot, ValidTargets Target)
         {
             // Assign values to this projectile from the caster
             caster = Caster;
             speed = Speed;
             range = Range;
-            isHoming = Homing;
             hotSpot = Hotspot;
             projectileTarget = Target;
 
@@ -57,10 +50,10 @@ namespace Zephyr.Combat
             caster = null;
             speed = 0;
             range = 0;
-            isHoming = false;
             hotSpot = null;
             projectileTarget = ValidTargets.TARGET;
 
+            // Reset distance traveled
             distanceTraveled = 0f;
 
             // Remove projectile subscriptions to previous caster
@@ -82,7 +75,7 @@ namespace Zephyr.Combat
 
         private void OnTriggerEnter(Collider other)
         {
-            if (targettingSystem.SkillShouldHitTarget(gameObject, projectileTarget, other))
+            if (TargettingSystem.SkillShouldHitTarget(gameObject, projectileTarget, other))
             {
                 // Raise event on target hit
                 ProjectileCollided?.Invoke(caster, other.gameObject);

@@ -4,14 +4,14 @@ using UnityEngine;
 
 namespace Zephyr.Targetting
 {
-    public class TargettingSystem
+    public static class TargettingSystem
     {
         /* 
          * Return which layer should be targetted by a skill
          * Uses target type along with object tags to mark the skill's layer
          * Layers are used to make skills only affect objects with the targetted layer
          */
-        public LayerMask SetupTargettingLayer(GameObject obj, ValidTargets targetType)
+        public static LayerMask SetupTargettingLayer(GameObject obj, ValidTargets targetType)
         {
             /** Sets target layer depending on caster's layer and spell's target **/
             LayerMask targetLayer;
@@ -53,7 +53,7 @@ namespace Zephyr.Targetting
             return targetLayer;
         }
 
-        public bool SkillShouldHitTarget(GameObject source, ValidTargets skillTarget, Collider other)
+        public static bool SkillShouldHitTarget(GameObject source, ValidTargets skillTarget, Collider other)
         {
             // If skill is an offensive skill
             if (skillTarget == ValidTargets.TARGET)

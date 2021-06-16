@@ -4,7 +4,8 @@ using Zephyr.Combat;
 
 namespace Zephyr.Player.Controls
 {
-    public class InputController : MonoBehaviour
+    [System.Serializable]
+    public class InputController
     {
         // Parameters
         [SerializeField] Skill skillButtonOne;
@@ -19,12 +20,6 @@ namespace Zephyr.Player.Controls
         // State
         private float horizontal;
         private float vertical;
-
-        private void Update()
-        {
-            JoystickDirection(); // Listen for directional input
-            SkillButtonPress(); // Listen for button input
-        }
 
         public Vector3 JoystickDirection()
         {
