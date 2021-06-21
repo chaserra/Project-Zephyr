@@ -18,7 +18,7 @@ namespace Zephyr.UI
 
         // Parameters
         [Tooltip("Make sure this value is lower than the text animation's duration.")]
-        public float Duration = .99f;
+        public float Duration = .98f;
         public float Speed = 1.75f;
         public float yOffset = 2f;
         public float zOffset = -0.5f;
@@ -44,8 +44,8 @@ namespace Zephyr.UI
             if (Time.time - startTime < Duration)
             {
                 transform.rotation = mainCam.transform.rotation;
-                transform.localPosition += Vector3.up * Speed * Time.deltaTime;
-                //transform.Translate(Vector3.up * Speed * Time.deltaTime);
+                //transform.localPosition += Vector3.up * Speed * Time.deltaTime;
+                transform.Translate(Vector3.up * Speed * Time.deltaTime);
             }
             else
             {

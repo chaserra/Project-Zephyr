@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030e52c0780e3c14395f40b04f0f0e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Duration: 0.99
+  Duration: 0.98
   Speed: 1.75
   yOffset: 2
   zOffset: -0.5

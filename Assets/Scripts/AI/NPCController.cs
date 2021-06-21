@@ -5,21 +5,22 @@ using Zephyr.AI;
 
 namespace Zephyr.NPC
 {
-    public class NPCController : MonoBehaviour
+    public abstract class NPCController : MonoBehaviour
     {
-        private Animator anim;
+        // Cache
+        protected Animator anim;
 
-        private NPCStateBase _currentState;
-        private readonly NPCStateIdle IdleState = new NPCStateIdle();
+        // State
+        protected NPCStateBase _currentState;
 
-        private void Awake()
+        #region Properties
+        /* **States** */
+        public NPCStateBase CurrentState { get { return _currentState; } }
+        #endregion
+
+        protected virtual void Awake()
         {
             anim = GetComponent<Animator>();
-        }
-
-        private void Start()
-        {
-            TransitionState(IdleState);
         }
 
         private void Update()

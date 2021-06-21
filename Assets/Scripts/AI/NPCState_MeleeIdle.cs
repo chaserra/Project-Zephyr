@@ -5,7 +5,7 @@ using Zephyr.NPC;
 
 namespace Zephyr.AI
 {
-    public class NPCStateIdle : NPCStateBase
+    public class NPCState_MeleeIdle : NPCStateBase
     {
         public override void EnterState(NPCController npc)
         {
@@ -21,5 +21,6 @@ namespace Zephyr.AI
         {
             // Do exit state stuff
         }
+
     }
 }
