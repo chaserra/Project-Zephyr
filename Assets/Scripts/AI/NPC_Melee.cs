@@ -13,8 +13,14 @@ namespace Zephyr.NPC
         // Cache
         private CharacterStats npcStats;
 
+        // Attributes
+        [SerializeField] private float awarenessRadius = 4f;
+
         // Melee NPC States
         public readonly NPCState_MeleeIdle IdleState = new NPCState_MeleeIdle();
+
+        // Properties
+        public float AwarenessRadius { get { return awarenessRadius; } }
 
         protected override void Awake()
         {
@@ -25,6 +31,7 @@ namespace Zephyr.NPC
 
         private void Start()
         {
+            NavAgent.speed = npcStats.GetMoveSpeed();
             TransitionState(IdleState);
         }
 
