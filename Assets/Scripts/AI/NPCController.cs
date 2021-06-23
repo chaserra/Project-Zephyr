@@ -10,7 +10,7 @@ namespace Zephyr.NPC
     {
         // Cache
         protected Animator anim;
-        private NavMeshAgent navMeshAgent;
+        protected NavMeshAgent navMeshAgent;
 
         // State
         protected NPCStateBase _currentState;

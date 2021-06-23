@@ -12,26 +12,37 @@ namespace Zephyr.NPC
     {
         // Cache
         private CharacterStats npcStats;
+        private NPCMover mover;
+
+        // Parameters
+        [SerializeField] private float maxPathLength = 20f;
 
         // Attributes
-        [SerializeField] private float awarenessRadius = 4f;
+        [SerializeField] private float awarenessRadius = 8f;
 
         // Melee NPC States
+        private float walkSpeed;
+        private Vector3 initialPosition;
         public readonly NPCState_MeleeIdle IdleState = new NPCState_MeleeIdle();
 
         // Properties
+        public NPCMover Mover { get { return mover; } }
         public float AwarenessRadius { get { return awarenessRadius; } }
+        public float WalkSpeed { get { return walkSpeed; } }
+        public Vector3 InitialPosition { get { return initialPosition; } }
 
         protected override void Awake()
         {
             base.Awake();
             npcStats = GetComponent<CharacterStats>();
+            mover = new NPCMover(navMeshAgent, maxPathLength);
             // TODO (AI): Setup Targetting layers here
         }
 
         private void Start()
         {
-            NavAgent.speed = npcStats.GetMoveSpeed();
+            walkSpeed = npcStats.GetMoveSpeed();
+            initialPosition = transform.position;
             TransitionState(IdleState);
         }
 
