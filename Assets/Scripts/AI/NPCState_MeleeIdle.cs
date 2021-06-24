@@ -20,6 +20,7 @@ namespace Zephyr.AI
 
         // State
         private bool idling;
+        public Vector3 here; // TODO: REMOVE DEBUG
 
         public override void EnterState(NPCController npc)
         {
@@ -57,13 +58,18 @@ namespace Zephyr.AI
                 if (npc.NavAgent.isStopped)
                 {
                     yield return new WaitForSeconds(Random.Range(minIdleTime, maxIdleTime));
+                    Vector3 randomPos = GetRandomPosition(meleeController, meleeController.AwarenessRadius / 2);
+
+                    // Roll for actions
                     if (WillDoAction(idleMoveChance))
                     {
-                        MoveToRandomPosition(meleeController, meleeController.WalkSpeed, meleeController.AwarenessRadius / 2);
+                        // Move
+                        MoveToRandomPosition(meleeController, randomPos, meleeController.WalkSpeed);
                     }
                     else if (WillDoAction(idleMoveChance * 1.5f))
                     {
-                        npc.StartCoroutine(RotateToRandomDirection(meleeController, meleeController.WalkSpeed, meleeController.AwarenessRadius / 2));
+                        // Stationary rotate
+                        npc.StartCoroutine(RotateToRandomDirection(meleeController, randomPos, meleeController.WalkSpeed));
                     }
                 }
                 yield return null;
@@ -72,22 +78,20 @@ namespace Zephyr.AI
         }
 
         // Move within starting point range
-        private void MoveToRandomPosition(NPC_Melee npc, float walkSpeed, float radius)
+        private void MoveToRandomPosition(NPC_Melee npc, Vector3 randomPos, float walkSpeed)
         {
-            Vector3 finalPosition = GetRandomPosition(npc, radius);
-
             // Move npc to position if within maxPathLength
-            if (npc.Mover.CanMoveTo(finalPosition))
+            if (npc.Mover.CanMoveTo(randomPos))
             {
-                npc.Mover.MoveTo(finalPosition, walkSpeed, idleWalkSpeedModifier);
+                npc.Mover.MoveTo(randomPos, walkSpeed, idleWalkSpeedModifier);
             }
         }
 
         // Stationary rotate
-        private IEnumerator RotateToRandomDirection(NPC_Melee npc, float rotateSpeed, float radius)
+        private IEnumerator RotateToRandomDirection(NPC_Melee npc, Vector3 randomPos, float rotateSpeed)
         {
-            Vector3 direction = GetRandomPosition(npc, radius).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            Vector3 randomDir = (randomPos - npc.transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(randomDir);
             while (Quaternion.Angle(npc.transform.rotation, targetRotation) > .1f && npc.NavAgent.isStopped)
             {
                 // Smooth rotate
@@ -104,7 +108,7 @@ namespace Zephyr.AI
             yield return null;
         }
 
-        private static Vector3 GetRandomPosition(NPC_Melee npc, float radius)
+        private Vector3 GetRandomPosition(NPC_Melee npc, float radius)
         {
             // Find random position on NavMesh
             Vector3 randomDirection = Random.insideUnitSphere * radius;
@@ -114,6 +118,7 @@ namespace Zephyr.AI
             if (NavMesh.SamplePosition(randomDirection, out hit, radius, 1))
             {
                 finalPosition = hit.position;
+                here = finalPosition; // TODO: REMOVE DEBUG
             }
             return finalPosition;
         }

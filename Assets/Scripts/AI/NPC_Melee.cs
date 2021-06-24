@@ -39,6 +39,15 @@ namespace Zephyr.NPC
             // TODO (AI): Setup Targetting layers here
         }
 
+        private void OnDrawGizmosSelected()
+        {
+            // TODO: REMOVE DEBUG
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(IdleState.here, .2f);
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, IdleState.here);
+        }
+
         private void Start()
         {
             walkSpeed = npcStats.GetMoveSpeed();
