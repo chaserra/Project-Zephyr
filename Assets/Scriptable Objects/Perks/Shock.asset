@@ -16,6 +16,6 @@ MonoBehaviour:
   perkName: Shock
   perkType: 1
   perkTarget: 1
-  chanceToApplyPerk: 0.15
+  chanceToApplyPerk: 0.08
   ailmentsToInfect:
   - {fileID: 11400000, guid: e914a482d5418724bb1a44deeb82d63f, type: 2}

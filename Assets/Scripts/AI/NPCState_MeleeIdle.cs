@@ -90,15 +90,17 @@ namespace Zephyr.AI
         // Stationary rotate
         private IEnumerator RotateToRandomDirection(NPC_Melee npc, Vector3 randomPos, float rotateSpeed)
         {
+            float modifiedRotateSpeed = rotateSpeed * idleWalkSpeedModifier;
             Vector3 randomDir = (randomPos - npc.transform.position).normalized;
+            randomDir.y = 0;
             Quaternion targetRotation = Quaternion.LookRotation(randomDir);
             while (Quaternion.Angle(npc.transform.rotation, targetRotation) > .1f && npc.NavAgent.isStopped)
             {
                 // Smooth rotate
                 npc.transform.rotation = Quaternion.Slerp(
-                    npc.transform.rotation, targetRotation, rotateSpeed * Time.deltaTime);
-                // If within 2 degrees, snap to target rotation. Prevents jitter at the end
-                if (Quaternion.Angle(npc.transform.rotation, targetRotation) <= 2f)
+                    npc.transform.rotation, targetRotation, modifiedRotateSpeed * Time.deltaTime);
+                // If within 1 degree, snap to target rotation. Prevents jitter at the end
+                if (Quaternion.Angle(npc.transform.rotation, targetRotation) <= 1f)
                 {
                     npc.transform.rotation = targetRotation;
                     yield break;

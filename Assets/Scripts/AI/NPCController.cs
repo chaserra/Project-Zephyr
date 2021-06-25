@@ -26,6 +26,7 @@ namespace Zephyr.NPC
         {
             anim = GetComponent<Animator>();
             navMeshAgent = GetComponent<NavMeshAgent>();
+            navMeshAgent.avoidancePriority = Random.Range(1, 99);
         }
 
         private void Update()
